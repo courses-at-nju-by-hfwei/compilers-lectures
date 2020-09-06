@@ -10,12 +10,12 @@ Lectures for the class on Compilers@software.nju.edu.cn
 | 11 | 2020-11-24 (周二) | Syntax (2): Grammatical Structure and CFG | 课堂教学 | |
 | 11 | 2020-11-26 (周四) | Lexical Analysis (1): Handwritten | | |
 | 12 | 2020-12-01 (周二) | Lexical Analysis (2): Automata-theory Based Way| | |
-| 12 | 2020-12-03 (周四) | Lexical Analysis | 习题课 | |
+| 12 | 2020-12-03 (周四) | | 习题课 | |
 | | | | |
 | 13 | 2020-12-08 (周二) | Syntax Analysis (1): LL(1) | 课堂教学 | |
 | 13 | 2020-12-10 (周四) | Syntax Analysis (2): SLR(1) | 课堂教学 | |
 | 14 | 2020-12-15 (周二) | Syntax Analysis (3) & (4): LR(1) & LALR(1) | 课堂教学 | |
-| 14 | 2020-12-17 (周四) | Syntax Analysis | 习题课 | |
+| 14 | 2020-12-17 (周四) | | 习题课 | |
 | | | | |
 | 15 | 2020-12-22 (周二) | Semantic Analysis: SDD & SDT | 课堂教学 | |
 | 15 | 2020-11-24 (周四) | Intermediate-Code Generation (1): TAC & Expression & Type Checking | 课堂教学 | |
