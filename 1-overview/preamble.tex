@@ -1,6 +1,7 @@
 % preamble.tex
 
 \usepackage{lmodern}
+\usepackage{xeCJK}
 
 \usetheme{CambridgeUS} % try Madrid, Pittsburgh
 \usecolortheme{beaver}
@@ -23,6 +24,16 @@
 \usepackage[noend]{algpseudocode}
 \newcommand{\hStatex}[0]{\vspace{5pt}}
 
+\renewcommand{\today}{\number\year 年\number\month 月\number\day 日}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = blue,
+  filecolor = magenta,      
+  urlcolor = teal,
+}
+
 % colors
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\redoverlay}[2]{\textcolor<#2>{red}{#1}}
@@ -33,11 +44,39 @@
 \newcommand{\purple}[1]{\textcolor{purple}{#1}}
 \newcommand{\cyan}[1]{\textcolor{cyan}{#1}}
 
-% colorded box
+% color box
 \newcommand{\rbox}[1]{\red{\boxed{#1}}}
 \newcommand{\gbox}[1]{\green{\boxed{#1}}}
 \newcommand{\bbox}[1]{\blue{\boxed{#1}}}
 \newcommand{\pbox}[1]{\purple{\boxed{#1}}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{compstyle}{
+  backgroundcolor=\color{backcolour},   
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+\lstset{style=compstyle}
 
 \usepackage{pifont}
 \usepackage{wasysym}
@@ -66,8 +105,6 @@
   \end{figure}
 }
 
-\newcommand{\titletext}{2-3 Counting}
-
 \newcommand{\lset}{\mathcal{L}_{\textsl{Set}}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -86,3 +123,8 @@
   \fig{width = 0.50\textwidth}{figs/thankyou.png}
 \end{frame}
 }
+
+\newcommand{\id}{\text{\bf id}}
+\newcommand{\ws}{\text{\textcolor{gray}{\bf ws}}}
+\newcommand{\num}{\text{\bf num}}
+\newcommand{\assign}{\text{\bf assign}}
