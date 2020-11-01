@@ -1,5 +1,7 @@
 # 1-intro
 
+- [ ] 介绍教材与参考教材
+
 ## Structure of Programs
 - [Header files and libraries (Kevin Lynch) @ Youtube](https://youtu.be/5UMHbzZGQuE)
   - structure graph
