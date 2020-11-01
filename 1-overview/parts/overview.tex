@@ -2,8 +2,14 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/welcome-again}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
-    \blue{\Large ``father of the analysis of algorithms''}
+    {\Large the ``father of the analysis of algorithms''}
   \end{center}
 
   \begin{columns}
@@ -23,7 +29,7 @@
   \fig{width = 0.30\textwidth}{figs/selected-papers-lang}
 
   \begin{center}
-    \red{ALGO Compiler \qquad {\bf LR Parser} \qquad {\bf Attribute Grammar}}
+    \red{ALGOL 58 Compiler \qquad {\bf LR Parser} \qquad {\bf Attribute Grammar}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -34,7 +40,8 @@
     \fig{width = 0.40\textwidth}{figs/video}
 
     \vspace{0.50cm}
-    \href{https://youtu.be/QeiuVNDQg4k}{Writing a Compiler for the Burroughs Corporation}
+    \href{https://youtu.be/QeiuVNDQg4k}{``I got a job at the end of my senior year 
+    \\ to write a compiler for Burroughs''}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -43,9 +50,15 @@
 \begin{frame}{}
   \begin{center}
     \[
-      \text{``高级''语言 $\implies$ ``低级''语言 (如, 汇编语言)}
+      \text{``高级''语言 $\implies$ \gray{(通常)} ``低级''语言 (如, 汇编语言)}
     \]
+    汇编语言经过{\bf 汇编器}生成机器语言
+
+    \vspace{0.30cm}
     \fig{width = 0.40\textwidth}{figs/compiler-blackbox}
+
+    \vspace{0.30cm}
+    \red{$Q:$ 机器语言是如何跑起来的?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -55,7 +68,7 @@
   \begin{center}
     {\large 两个月的``编译器设计原理''之旅}
 
-    \fig{width = 0.40\textwidth}{figs/keep-calm-open-box}
+    \fig{width = 0.35\textwidth}{figs/keep-calm-open-box}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -74,13 +87,14 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    IR: Intermediate Representation (中间表示)
+    \vspace{0.50cm}
+
     \fig{width = 0.80\textwidth}{figs/front-back}
 
     \vspace{0.50cm}
-    IR: Intermediate Representation (中间表示)
-
-    \vspace{0.50cm}
-    模块化设计
+    前端 \red{\bf (分析阶段)}: 分析源语言程序, 收集所有必要的信息 \\[8pt]
+    后端 \red{\bf (综合阶段)}: 利用收集到的信息, 生成目标语言程序
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -102,76 +116,73 @@
     \column{0.50\textwidth}
       \begin{center}
         编译器前端: 分析阶段
+        \fig{width = 0.95\textwidth}{figs/front-end}
+
+        \teal{前四次必做实验}
       \end{center}
-      \fig{width = 0.95\textwidth}{figs/front-end}
     \column{0.50\textwidth}
       \begin{center}
         编译器后端: 综合阶段
+        \fig{width = 0.50\textwidth}{figs/back-end}
+
+        \teal{第五次选做实验}
       \end{center}
-      \fig{width = 0.50\textwidth}{figs/back-end}
   \end{columns}
+
+  \pause
+  \fig{width = 0.50\textwidth}{figs/assignment}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 词法分析器 (Scanner):} 将{\bf 字符}流转化为{\bf 词法单元} (token) 流。
-  \end{center}
+    \red{\bf 词法分析器 (Lexer/Scanner):} 将{\bf 字符}流转化为{\bf 词法单元} (token) 流。
 
-  \begin{exampleblock}{词法分析 (Lexical Analysis)}
-    \begin{center}
-      \fig{width = 0.50\textwidth}{figs/assignment}
-      \[
-        \text{token}: \langle \text{token-class}, \text{attribute-value} \rangle
-      \]
-      \begin{align*}
-        \langle \id, \red{1} \rangle \quad 
-        \langle \ws \rangle \quad
-        \langle \assign \rangle \quad
-        \langle \ws \rangle \quad
-        \langle \id, \red{2} \rangle \quad
-        \langle \ws \rangle \quad \\
-        \langle + \rangle \quad
-        \langle \ws \rangle \quad
-        \langle \id, \red{3} \rangle \quad
-        \langle \ws \rangle \quad
-        \langle \ast \rangle \quad
-        \langle \ws \rangle \quad
-        \langle \num, \red{4} \rangle
-      \end{align*}
-    \end{center}
-  \end{exampleblock}
+    \[
+      \boxed{\text{token}: \langle \text{token-class}, \text{attribute-value} \rangle}
+    \]
+
+    \begin{align*}
+    \langle \id, \red{1} \rangle \quad 
+    \langle \ws \rangle \quad
+    \langle \assign \rangle \quad
+    \langle \ws \rangle \quad
+    \langle \id, \red{2} \rangle \quad
+    \langle \ws \rangle \quad \\
+    \langle + \rangle \quad
+    \langle \ws \rangle \quad
+    \langle \id, \red{3} \rangle \quad
+    \langle \ws \rangle \quad
+    \langle \ast \rangle \quad
+    \langle \ws \rangle \quad
+    \langle \num, \red{4} \rangle
+    \end{align*}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 语法分析器 (Parser):} 构建{\bf 词法单元}之间的{\bf 语法结构}
-  \end{center}
+    \red{\bf 语法分析器 (Parser):} 构建{\bf 词法单元}之间的语法结构, 生成{\bf 语法树}
 
-  \begin{exampleblock}{语法分析 (Syntax Analysis)}
-    \begin{center}
-      % \fig{width = 0.50\textwidth}{figs/assignment}
-      \fig{width = 0.60\textwidth}{figs/syntax-tree}
-    \end{center}
-  \end{exampleblock}
+    \vspace{0.80cm}
+    % \fig{width = 0.50\textwidth}{figs/assignment}
+    \fig{width = 0.50\textwidth}{figs/syntax-tree}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 语义分析器:} 语义检查, 如类型检查、一致性约束检查
-  \end{center}
+    \red{\bf 语义分析器:} 语义检查, 如{\bf 类型检查}、{\bf ``先声明后使用''约束检查}
 
-  \begin{exampleblock}{语义分析 (Semantic Analysis)}
-    \begin{center}
-      % \fig{width = 0.50\textwidth}{figs/assignment}
-      \fig{width = 0.50\textwidth}{figs/semantic-analysis}
-    \end{center}
-  \end{exampleblock}
+    \vspace{0.80cm}
+    % \fig{width = 0.50\textwidth}{figs/assignment}
+    \fig{width = 0.50\textwidth}{figs/semantic-analysis}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -179,25 +190,23 @@
 \begin{frame}{}
   \begin{center}
     \red{\bf 中间代码生成器:} 生成中间代码, 如 {\bf ``三地址代码''}
-  \end{center}
 
-  \begin{exampleblock}{中间代码生成}
-    \begin{center}
-      % \fig{width = 0.50\textwidth}{figs/assignment}
-      \fig{width = 0.50\textwidth}{figs/ICG}
-    \end{center}
-  \end{exampleblock}
+    \vspace{0.80cm}
+    % \fig{width = 0.50\textwidth}{figs/assignment}
+    \fig{width = 0.50\textwidth}{figs/ICG}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{exampleblock}{中间代码优化}
-    \begin{center}
-      % \fig{width = 0.50\textwidth}{figs/assignment}
-      \fig{width = 0.50\textwidth}{figs/CO}
-    \end{center}
-  \end{exampleblock}
+  \begin{center}
+    \red{\bf 中间代码优化器}
+
+    \vspace{0.80cm}
+    % \fig{width = 0.50\textwidth}{figs/assignment}
+    \fig{width = 0.50\textwidth}{figs/CO}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -205,14 +214,11 @@
 \begin{frame}{}
   \begin{center}
     \red{\bf 代码生成器:} 生成目标代码, 主要任务包括{\bf 指令选择、寄存器分配}
-  \end{center}
 
-  \begin{exampleblock}{中间代码生成}
-    \begin{center}
-      % \fig{width = 0.50\textwidth}{figs/assignment}
-      \fig{width = 0.50\textwidth}{figs/CG}
-    \end{center}
-  \end{exampleblock}
+    \vspace{0.80cm}
+    % \fig{width = 0.50\textwidth}{figs/assignment}
+    \fig{width = 0.50\textwidth}{figs/CG}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -240,9 +246,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    符号表可能有多个
+    为了方便表达嵌套结构与作用域, 可能需要维护多个符号表
   \end{center}
 
   \fig{width = 0.50\textwidth}{figs/nested-symbol-tables}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 时间苦短, 来不及优化}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/front-end}
+    \column{0.50\textwidth}
+       \fig{width = 0.50\textwidth}{figs/back-end}
+  \end{columns}
+
+  \begin{center}
+    但是, 在设计实际生产环境中的编译器时, {\bf 优化}通常占用了大多数时间
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
