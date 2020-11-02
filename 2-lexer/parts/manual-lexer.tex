@@ -2,30 +2,114 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合{\bf 某种词法单元模式}的{\bf 所有词素}
+    \fig{width = 0.50\textwidth}{figs/if-else}
+    \ws \quad \ifkw \quad \elsekw \quad \id \quad \intnum \quad \floatnum \quad \relop
+
+    \pause
+    \vspace{0.80cm}
+    识别字符串$s$中符合{\bf 某种词法单元模式}的\red{\bf 第一个词素}
+
+    \pause
+    \vspace{0.80cm}
+    识别字符串$s$中符合\red{\bf 特定词法单元模式}的{\bf 第一个词素}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合\red{\bf 特定词法单元模式}的{\bf 第一个词素}
+
+    \vspace{0.60cm}
+    \ws: \blank \quad \tab \quad \line
+
+    \vspace{0.60cm}
+    \fig{width = 0.40\textwidth}{figs/ws}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合\red{\bf 特定词法单元模式}的{\bf 第一个词素}
+
+    \vspace{0.60cm}
+    \num: 整数 (允许以0开头)
+
+    \vspace{0.60cm}
+    \fig{width = 0.80\textwidth}{figs/number}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合\red{\bf 特定词法单元模式}的{\bf 第一个词素}
+
+    \vspace{0.60cm}
+    \id: 字母开头的字母/数字串
+
+    \vspace{0.60cm}
+    \fig{width = 0.80\textwidth}{figs/id}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合\red{\bf 特定词法单元模式}的{\bf 第一个词素}
+
+    \vspace{0.60cm}
+    \relop: $< \quad > \quad <= \quad >= \quad == \quad <>$
+
+    \vspace{0.60cm}
+    \fig{width = 0.60\textwidth}{figs/relop}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合\red{\bf 某种词法单元模式}的{\bf 第一个词素} 
+    \blue{($\Call{scan}{\null}$)}
+  \end{center}
+
+  \begin{columns}
+    \column{0.45\textwidth}
+      \fig{width = 1.00\textwidth}{figs/relop}
+      \fig{width = 1.00\textwidth}{figs/id}
+    \column{0.55\textwidth}
+      \fig{width = 1.00\textwidth}{figs/number}
+      \fig{width = 0.60\textwidth}{figs/ws}
+  \end{columns}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{center}
+    根据\red{\bf 下一个字符}即可判定词法单元的类型 \\[8pt]
+    \pause
+    否则, 报告\purple{\bf 该字符有误}, 并忽略该字符
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    识别字符串$s$中符合{\bf 某种词法单元模式}的\red{\bf 所有词素}
+
+    \vspace{1.00cm}
+    最外层循环调用 \blue{$\Call{scan}{\null}$}
+
+    \vspace{0.60cm}
+    或者, 由语法分析器按需调用 \blue{$\Call{scan}{\null}$}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
