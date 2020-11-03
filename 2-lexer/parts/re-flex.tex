@@ -1,0 +1,179 @@
+% re-flex.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/flex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 输入:} 程序文本/字符串 $s$ \& 词法单元的规约
+
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/lexer}
+
+    \vspace{0.30cm}
+    \red{\bf 输出:} 词法单元流
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 输入:} 词法单元的规约
+
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/flex-flow}
+
+    \vspace{0.30cm}
+    \red{\bf 输出:} 词法分析器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    词法单元的规约
+
+    \vspace{0.40cm}
+    \begin{columns}
+      \column{0.30\textwidth}
+        \uncover<2->{\fig{width = 0.70\textwidth}{figs/do-not-understand}}
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/token-table}
+    \end{columns}
+
+    \pause
+    \vspace{0.60cm}
+    我们需要词法单元的\red{\bf 形式化}规约
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \id: 字母开头的字母/数字串
+
+    \vspace{0.80cm}
+    \id{} 定义了一个集合, 我们称之为\red{\bf 语言 (Language)} \\[15pt]
+    它使用了字母与数字等符号集合, 我们称之为\blue{\bf 字母表 (Alphabet)} \\[15pt]
+    该语言中的每个元素(即, 标识符)称为\purple{\bf 串 (String)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[字母表]
+    字母表 $\Sigma$ 是一个有限的符号集合。
+  \end{definition}
+  
+  \fig{width = 0.35\textwidth}{figs/symbols}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[串]
+    字母表 $\Sigma$ 上的串 ($s$) 是由 $\Sigma$ 中符号构成的一个{\bf 有穷}序列。
+  \end{definition}
+
+  \fig{width = 0.30\textwidth}{figs/epsilon}
+  \vspace{-0.30cm}
+  \[
+    \text{空串}: |\epsilon| = 0
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[串上的``连接''运算]
+    \[
+      x = dog, y = house \qquad xy = doghouse
+    \]
+
+    \[
+      s \epsilon = \epsilon s = s
+    \]
+  \end{definition}
+
+  \pause
+  \vspace{0.60cm}
+  \begin{definition}[串上的``指数''运算]
+    \[
+      s^{0} \triangleq \epsilon
+    \]
+
+    \[
+      s^{i} \triangleq s s^{i-1}, i > 0
+    \]
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[语言]
+    语言是给定字母表 $\Sigma$ 上一个任意的{\bf 可数的}串集合。
+  \end{definition}
+
+  \[
+    \emptyset \qquad \set{\epsilon}
+  \]
+
+  \pause
+  \[
+    \id: \set{a, b, c, a1, a2, \dots}
+  \]
+
+  \[
+    \ws: \set{\blank, \tab, \line}
+  \]
+
+  \[
+    \ifkw: \set{if}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\Large \bf 语言是串的集合}
+
+    \vspace{0.80cm}
+    因此, 我们可以通过集合操作构造新的语言。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
