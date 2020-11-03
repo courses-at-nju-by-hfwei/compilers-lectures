@@ -148,18 +148,47 @@
     \red{\Large \bf 语言是串的集合}
 
     \vspace{0.80cm}
-    因此, 我们可以通过集合操作构造新的语言。
+    因此, 我们可以通过集合操作{\bf 构造}新的语言。
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{columns}
+    \column{0.75\textwidth}
+      \fig{width = 1.00\textwidth}{figs/language-operator}
+
+      \begin{center}
+        $L^{\ast}$ 允许我们构造{\bf 无穷}集合
+      \end{center}
+    \column{0.25\textwidth}
+      \fig{width = 1.00\textwidth}{figs/kleene}
+      \begin{center}
+        Stephen Kleene (1909 $\sim$ 1994)
+      \end{center}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \[
+    L = \set{A, B, \dots, Z, a, b, \dots, z}
+  \]
+  \[
+    D = \set{0, 1, \dots, 9}
+  \]
+  \fig{width = 0.70\textwidth}{figs/language-operator}
+
+  \pause
+  \[
+    L \cup D \qquad LD \qquad L^4 \qquad L^{\ast} \qquad D^{+}
+  \]
+
+  \[
+    \red{L(L \cup D)^{\ast}}
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
