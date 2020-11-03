@@ -1,4 +1,4 @@
-# 1-intro
+# 1-overview
 
 ## Structure of Programs
 - [Header files and libraries (Kevin Lynch) @ Youtube](https://youtu.be/5UMHbzZGQuE)
