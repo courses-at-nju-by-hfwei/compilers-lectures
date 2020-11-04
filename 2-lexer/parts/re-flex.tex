@@ -313,27 +313,55 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  num
+  \begin{center}
+    {\bf 正则定义}与简记法
+  \end{center}
+
+  \fig{width = 0.92\textwidth}{figs/regex-shorthand}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    C 语言中的标识符?
+  \end{center}
+
+  \pause
+  \fig{width = 0.60\textwidth}{figs/reg101-id}
 \end{frame}{}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    C 语言的注释对应的正则表达式?
+    整数部分$.$小数部分\texttt{E/e}指数部分
   \end{center}
 
   \pause
-  \fig{width = 0.20\textwidth}{figs/re-single-line-comment}
-  % \[
-  %   //(^{\^}\n)^{\ast}\n
-  % \]
+  \fig{width = 0.95\textwidth}{figs/reg101-number}
+\end{frame}{}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    C 语言中{\bf 单行注释}对应的正则表达式?
+  \end{center}
 
   \pause
-  \fig{width = 0.30\textwidth}{figs/re-multi-line-comment}
-  % \[
-  %   /\ast (^{^}\ast | \ast^{+}^{^}/)^{\ast} \ast/
-  % \]
+  \fig{width = 0.80\textwidth}{figs/reg101-single-line-comment}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    C 语言中{\bf 多行注释}对应的正则表达式?
+  \end{center}
+
+  \pause
+  \fig{width = 0.80\textwidth}{figs/reg101-multi-line-comment}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -343,5 +371,67 @@
     \Big(0|\big(1(01^{\ast}0)^{\ast}1\big)\Big)^{\ast} 
   \]
   \fig{width = 0.40\textwidth}{figs/what-is-this}
+
+  \begin{center}
+    \blue{\url{https://regex101.com/r/ED4qgC/1}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Flex 程序的结构 ($.l$ 文件)
+  \end{center}
+
+  \begin{columns}
+    \column{0.55\textwidth}
+      \begin{description}
+        \setlength{\itemsep}{12pt}
+        \item[声明部分:] 直接拷贝到$.c$文件中
+        \item[转换规则:] \red{\bf 正则表达式 \set{动作}}
+        \item[辅助函数:] 动作中使用的辅助函数
+      \end{description}
+    \column{0.45\textwidth}
+      \fig{width = 0.40\textwidth}{figs/flex-structure}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.75\textwidth}{figs/flex-def}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/flex-rule}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/flex-func}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.85\textwidth}{figs/flex-wc}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    两大\red{\bf 冲突解决}规则
+
+    \vspace{1.20cm}
+    {\bf 最前优先匹配:} 关键字
+
+    \vspace{0.60cm}
+    {\bf 最长优先匹配:} ``>='', ``ifhappy''
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
