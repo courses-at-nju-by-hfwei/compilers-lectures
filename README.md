@@ -2,6 +2,12 @@
 
 Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-nju-by-hfwei/teams/compilers-course-at-nju-software/repositories).
 
+## Next year, I may
+- [ ] try PL/0
+- [ ] try ANTLR
+- [ ] try LLVM IR
+- [ ] try stack machine
+
 **以下周历可能会随具体授课情况进行调整:**
 
 (TODO: 需重新组织)
@@ -13,7 +19,7 @@ Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/org
 | 12 | 2020-11-24 (周二) | Lexical Analysis (2): Automata-theory Based Way| | |
 | | | | |
 | | | | |
-| 12 | 2020-11-26 (周四) | | 习题课? | |
+| 12 | 2020-11-26 (周四) | | | |
 | 11 | 2020-11-17 (周二) | Syntax (2): Grammatical Structure and CFG | 课堂教学 | |
 | 13 | 2020-12-01 (周二) | Syntax Analysis (1): LL(1) | 课堂教学 | |
 | 13 | 2020-12-03 (周四) | Syntax Analysis (2): SLR(1) | 课堂教学 | |
