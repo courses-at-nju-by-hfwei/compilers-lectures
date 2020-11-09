@@ -268,16 +268,97 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    $\epsilon$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.40\textwidth}{figs/epsilon-nfa}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    $a \in \Sigma$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.40\textwidth}{figs/symbol-nfa}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    如果 $s$, $t$ 是正则表达式, 则 $s | t$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.50\textwidth}{figs/or-nfa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$, $t$ 是正则表达式, 则 $st$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.60\textwidth}{figs/concat-nfa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$, 则 $s^{\ast}$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.60\textwidth}{figs/kleene-star-nfa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Thompson 构造法得到的 NFA 的\red{\bf 性质}以及\red{复杂度分析}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    r = (a | b)^{\ast} abb
+  \]
+
+  \pause
+  \begin{columns}
+    \column{0.30\textwidth}
+      \fig{width = 0.80\textwidth}{figs/r1-nfa-ex}
+    \column{0.30\textwidth}
+      \fig{width = 0.80\textwidth}{figs/r2-nfa-ex}
+    \column{0.40\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/r3-nfa-ex}
+  \end{columns}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/r5-nfa-ex}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/r6-nfa-ex}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -336,6 +417,13 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/nfa-dfa-table}
+  \fig{width = 0.60\textwidth}{figs/dfa-abb-subset}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \[
     \epsilon\text{-closure}(s)
   \]
@@ -380,13 +468,25 @@
     \pause
     \vspace{0.30cm}
     最坏情况下, 复杂度为 $\Omega(2^n)$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``长度为 $m \ge n$个字符的$a$, $b$串, 且倒数第$n$个字符是$a$''
 
     \pause
-    \vspace{0.50cm}
-    ``长度为 $m \ge n$个字符的0,1串, 且倒数第$n$个字符是1''
+    \[
+      L_{n} = (a | b)^{\ast} a (a | b)^{n-1}
+    \]
 
     \pause
-    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/nfa-Ln}
+
+    \pause
+    \vspace{0.30cm}
     \blue{\bf 作业:} $m = n = 3$
   \end{center}
 \end{frame}
