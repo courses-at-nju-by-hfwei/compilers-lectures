@@ -12,7 +12,7 @@
     \red{\bf 输入:} 程序文本/字符串 $s$ \& 词法单元的规约
 
     \vspace{0.50cm}
-    \fig{width = 0.50\textwidth}{figs/lexer}
+    \fig{width = 0.65\textwidth}{figs/lexer}
 
     \vspace{0.30cm}
     \red{\bf 输出:} 词法单元流
@@ -26,7 +26,7 @@
     \red{\bf 输入:} 词法单元的规约
 
     \vspace{0.50cm}
-    \fig{width = 0.50\textwidth}{figs/flex-flow}
+    \fig{width = 0.60\textwidth}{figs/flex-flow}
 
     \vspace{0.30cm}
     \red{\bf 输出:} 词法分析器
@@ -47,9 +47,8 @@
         \fig{width = 1.00\textwidth}{figs/token-table}
     \end{columns}
 
-    \pause
     \vspace{0.60cm}
-    我们需要词法单元的\red{\bf 形式化}规约
+    \uncover<3->{我们需要词法单元的\red{\bf 形式化}规约}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -70,7 +69,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{definition}[字母表]
-    字母表 $\Sigma$ 是一个有限的符号集合。
+    \red{\bf 字母表} $\Sigma$ 是一个有限的符号集合。
   \end{definition}
   
   \fig{width = 0.35\textwidth}{figs/symbols}
@@ -80,7 +79,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{definition}[串]
-    字母表 $\Sigma$ 上的串 ($s$) 是由 $\Sigma$ 中符号构成的一个{\bf 有穷}序列。
+    字母表 $\Sigma$ 上的\red{\bf 串} ($s$) 是由 $\Sigma$ 中符号构成的一个\blue{\bf 有穷}序列。
   \end{definition}
 
   \fig{width = 0.30\textwidth}{figs/epsilon}
@@ -120,11 +119,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{definition}[语言]
-    语言是给定字母表 $\Sigma$ 上一个任意的{\bf 可数的}串集合。
+    \red{\bf 语言}是给定字母表 $\Sigma$ 上一个任意的\blue{\bf 可数的}串集合。
   \end{definition}
 
   \[
-    \emptyset \qquad \set{\epsilon}
+    \emptyset 
+  \]
+
+  \[
+    \set{\epsilon}
   \]
 
   \pause
@@ -187,7 +190,7 @@
   \]
 
   \[
-    \red{L(L \cup D)^{\ast}}
+    \red{L(L \cup D)^{\ast}} \qquad \pause \text{标识符}
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -235,6 +238,7 @@
       \item 如果 $r$ 与 $s$ 是正则表达式, 则 $r|s$, $rs$, $r^{\ast}$ 也是正则表达式。
     \end{enumerate}
 
+    \pause
     \vspace{0.30cm}
     \begin{center}
       运算优先级: $()\; \purple{\succ} \ast\; \purple{\succ} \text{ 连接 }\; \purple{\succ}\; |$
@@ -261,7 +265,7 @@
   \begin{definition}[正则表达式对应的正则语言]
     \begin{gather}
       L(\epsilon) = \set{\epsilon} \\[8pt]
-      L(a) = \set{a}, a \in \Sigma \\[8pt]
+      L(a) = \set{a}, \forall a \in \Sigma \\[8pt]
       L((r)) = L(r) \\[8pt]
       \red{L(r|s) = L(r) \cup L(s) \quad L(rs) = L(r)L(s) 
       \quad L(r^{\ast}) = (L(r))^{\ast}}
@@ -324,6 +328,12 @@
   \end{center}
 
   \fig{width = 0.92\textwidth}{figs/regex-shorthand}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/hello-kitty}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 

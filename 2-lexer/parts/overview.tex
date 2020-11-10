@@ -6,7 +6,7 @@
     \red{\bf 输入:} 程序文本/字符串 $s$ \& \blue{\bf 词法单元 (token) 的规约}
 
     \vspace{0.50cm}
-    \fig{width = 0.50\textwidth}{figs/lexer}
+    \fig{width = 0.65\textwidth}{figs/lexer}
 
     \vspace{0.30cm}
     \red{\bf 输出:} 词法单元流
@@ -39,9 +39,9 @@
   \pause
   \vspace{0.20cm}
   \begin{center}
-    \intkw \quad \ws \quad \red{\mainkw/\id} \quad \lp \quad \voidkw \quad \rp \quad \ws \\[6pt]
-    \lb \quad \ws \\[6pt]
-    \ws \quad \id \quad \lp \quad \literal \quad \rp \quad \semicolon \ws \\[6pt]
+    \intkw \quad \ws \quad \red{\mainkw/\id} \quad \blue{\lp} \quad \voidkw \quad \blue{\rp} \quad \ws \\[8pt]
+    \lb \quad \ws \\[8pt]
+    \ws \quad \id \quad \lp \quad \literal \quad \rp \quad \semicolon\quad \ws \\[8pt]
     \rb
   \end{center}
 
