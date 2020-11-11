@@ -3,6 +3,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.40\textwidth}{figs/flex}
+  \begin{center}
+    词法分析器的生成器 \\[5pt]
+    (\blue{\it F}ast \blue{\it Lex}ical Analyzer Generator)
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -238,7 +242,6 @@
       \item 如果 $r$ 与 $s$ 是正则表达式, 则 $r|s$, $rs$, $r^{\ast}$ 也是正则表达式。
     \end{enumerate}
 
-    \pause
     \vspace{0.30cm}
     \begin{center}
       运算优先级: $()\; \purple{\succ} \ast\; \purple{\succ} \text{ 连接 }\; \purple{\succ}\; |$
@@ -248,11 +251,11 @@
     \]
   \end{definition}
 
-  \pause
-  \vspace{0.30cm}
-  \begin{center}
-    \red{\bf 结构 (Structure)}
-  \end{center}
+  % \pause
+  % \vspace{0.30cm}
+  % \begin{center}
+  %   \red{\bf 结构 (Structure)}
+  % \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -332,52 +335,65 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.40\textwidth}{figs/tiger-hello-kitty}
-\end{frame}
+% \begin{frame}{}
+%   \fig{width = 0.40\textwidth}{figs/tiger-hello-kitty}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    C 语言中的标识符?
+    C 语言中的{\bf 标识符}?
   \end{center}
 
   \pause
-  \fig{width = 0.60\textwidth}{figs/reg101-id}
+  \fig{width = 0.60\textwidth}{figs/regex101-id}
 \end{frame}{}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    整数部分$.$小数部分\texttt{E/e}指数部分
-  \end{center}
-
-  \pause
-  \fig{width = 0.95\textwidth}{figs/reg101-number}
-\end{frame}{}
+% \begin{frame}{}
+%   \begin{center}
+%     整数部分$.$小数部分\texttt{E/e}指数部分
+%   \end{center}
+% 
+%   \pause
+%   \fig{width = 0.95\textwidth}{figs/regex101-number}
+% \end{frame}{}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
     C 语言中{\bf 单行注释}对应的正则表达式?
-  \end{center}
 
-  \pause
-  \fig{width = 0.80\textwidth}{figs/reg101-single-line-comment}
+    \pause
+    \fig{width = 0.70\textwidth}{figs/regex101-single-line-comment}
+    \teal{\url{https://regex101.com/r/ED4qgC/2}}
+  \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     C 语言中{\bf 多行注释}对应的正则表达式?
+% 
+%     \pause
+%     \fig{width = 0.70\textwidth}{figs/regex101-multi-line-comment}
+%     \teal{\url{https://regex101.com/r/ED4qgC/3}}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    C 语言中{\bf 多行注释}对应的正则表达式?
-  \end{center}
+    如何满足 $L1$ 关于{\bf 多行注释}的要求?
 
-  \pause
-  \fig{width = 0.80\textwidth}{figs/reg101-multi-line-comment}
+    \vspace{0.50cm}
+    \fig{width = 0.95\textwidth}{figs/multi-line-comment-spec}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -389,7 +405,7 @@
   \fig{width = 0.40\textwidth}{figs/what-is-this}
 
   \begin{center}
-    \blue{\url{https://regex101.com/r/ED4qgC/1}}
+    \teal{\url{https://regex101.com/r/ED4qgC/1}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -429,39 +445,44 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.75\textwidth}{figs/flex-def}
-\end{frame}
+% \begin{frame}{}
+% from the dragon book: not runnable
+%   \fig{width = 0.75\textwidth}{figs/flex-def}
+%   \fig{width = 0.80\textwidth}{figs/flex-rule}
+%   \fig{width = 0.80\textwidth}{figs/flex-func}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/flex-rule}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/flex-func}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.85\textwidth}{figs/flex-wc}
+  \fig{width = 0.85\textwidth}{figs/lexical-l}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    两大\red{\bf 冲突解决}规则
+    \texttt{flex lexical.l}
+
+    \vspace{0.80cm}
+    \texttt{cc lex.yy.c -lfl -o lexical.out}
+
+    \vspace{0.80cm}
+    \texttt{./lexical-out}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Flex 中两大\red{\bf 冲突解决}规则
 
     \vspace{1.20cm}
-    {\bf 最前优先匹配:} 关键字
+    \blue{\bf 最前优先匹配:} 关键字 \emph{vs.} 标识符
 
     \vspace{0.60cm}
-    {\bf 最长优先匹配:} ``>='', ``ifhappy''
+    \blue{\bf 最长优先匹配:} \texttt{>=}, \texttt{ifhappy}, \texttt{thenext}, \texttt{1.23}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
