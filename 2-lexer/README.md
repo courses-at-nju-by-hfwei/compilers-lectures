@@ -5,4 +5,10 @@
 
 ## tools
 - try [Regulex](https://jex.im/regulex/)
-- try [Debuggex][https://www.debuggex.com/)
+- try [Debuggex](https://www.debuggex.com/)
+
+## gcc
+- [c-lex.c](https://github.com/gcc-mirror/gcc/blob/master/gcc/c-family/c-lex.c)
+- [lex.c](https://github.com/gcc-mirror/gcc/blob/master/libcpp/lex.c)
+
+具体是如何实现的?

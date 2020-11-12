@@ -12,6 +12,24 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.20\textwidth}{figs/gcc-logo}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/gcc-c-lex}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/gcc-cpp-lex}
+  \end{columns}
+
+  \vspace{0.50cm}
+  \begin{center}
+    我们着重介绍词法分析原理, 具体方案与$GCC$有差异
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     识别字符串$s$中符合{\bf 某种词法单元模式}的{\bf 所有词素}
     \fig{width = 0.50\textwidth}{figs/program}
@@ -474,6 +492,21 @@
     \red{\bf 关键点:} 合并$22, 12, 9, 0$, 根据\purple{\bf 下一个字符}即可判定词法单元的类型 \\[4pt]
     否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 忽略该字符。 \\[4pt]
     注意, 在\scinum{}中, 有时需要\purple{\bf 回退}, 寻找最长匹配。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/lexer-transition-diagram}
+
+    \vspace{1.00cm}
+    \blue{\texttt{1.2345E+a}}
+
+    \pause
+    \vspace{0.60cm}
+    \texttt{1.2345 \qquad E \qquad + \qquad a}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
