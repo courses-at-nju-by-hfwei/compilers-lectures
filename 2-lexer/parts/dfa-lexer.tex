@@ -3,6 +3,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.60\textwidth}{figs/dfa-lexer}
+  \begin{center}
+    自动化词法分析器
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -13,9 +16,6 @@
 
     \vspace{0.30cm}
     \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
-    \[
-      \textsl{RE} \implies \epsilon\text{-}\textsl{NFA} \implies \textsl{NFA}
-    \]
 
     \vspace{0.50cm}
     \purple{终点固然令人向往, 这一路上的风景更是美不胜收}
@@ -119,7 +119,7 @@
 
     \vspace{0.60cm}
     \[
-      \text{给定字符串 $x$}, x \in L(\mathcal{A})?
+      \text{Membership 问题}: \text{给定字符串 $x$}, x \in L(\mathcal{A})?
     \]
 
     \vspace{0.30cm}
@@ -199,7 +199,7 @@
     \red{\bf 取长补短:} 
 
     \vspace{0.30cm}
-    用 NFA 描述, 用 NFA 实现; 
+    用 NFA 描述, 用 DFA 实现; 
 
     \vspace{0.30cm}
     从 NFA 到 DFA 的转化自动完成
@@ -210,6 +210,18 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{RE $\implies$ NFA}
+    \[
+      r \implies N(r)
+    \]
+    \pause
+    \[
+      \red{L(N(r)) = L(r)}
+    \]
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -259,8 +271,8 @@
     \begin{enumerate}[(1)]
       \item $\epsilon$ 是正则表达式;
       \item $\forall a \in \Sigma$, $a$ 是正则表达式;
-      \item 如果 $r$ 是正则表达式, 则 $(r)$ 是正则表达式;
-      \item 如果 $r$ 与 $s$ 是正则表达式, 则 $r|s$, $rs$, $r^{\ast}$ 也是正则表达式。
+      \item 如果 $s$ 是正则表达式, 则 $(s)$ 是正则表达式;
+      \item 如果 $s$ 与 $t$ 是正则表达式, 则 $s|t$, $st$, $s^{\ast}$ 也是正则表达式。
     \end{enumerate}
   \end{definition}
 \end{frame}
@@ -293,6 +305,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    如果 $s$ 是正则表达式, 则 $(s)$ 是正则表达式;
+
+    \pause
+    \vspace{0.60cm}
+    \[
+      N((s)) = N(s).
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     如果 $s$, $t$ 是正则表达式, 则 $s | t$ 是正则表达式。
 
     \pause
@@ -308,20 +334,16 @@
     如果 $s$, $t$ 是正则表达式, 则 $st$ 是正则表达式。
 
     \pause
-    \vspace{0.80cm}
+    \vspace{0.50cm}
     \fig{width = 0.60\textwidth}{figs/concat-nfa}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    如果 $s$, 则 $s^{\ast}$ 是正则表达式。
 
     \pause
-    \vspace{0.80cm}
-    \fig{width = 0.60\textwidth}{figs/kleene-star-nfa}
+    \vspace{0.50cm}
+    \red{$Q:$ 如果 $N(s)$ 或 $N(t)$ 的开始状态或接受状态不唯一, 怎么办?}
+
+    \pause
+    \vspace{0.50cm}
+    根据\blue{\bf 归纳假设}, $N(s)$ 与 $N(t)$ 的开始状态与接受状态均\blue{\bf 唯一}。
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -329,8 +351,32 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    Thompson 构造法得到的 NFA 的\red{\bf 性质}以及\red{复杂度分析}
+    如果 $s$ 是正则表达式, 则 $s^{\ast}$ 是正则表达式。
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.60\textwidth}{figs/kleene-star-nfa}
+
+    \pause
+    \vspace{0.50cm}
+    根据\blue{\bf 归纳假设}, $N(s)$ 的开始状态与接受状态\blue{\bf 唯一}。
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $N(r)$ 的\red{\bf 性质}以及 Thompson 构造法\red{复杂度分析}
+  \end{center}
+
+  \vspace{0.30cm}
+  \begin{enumerate}
+    \setlength{\itemsep}{6pt}
+    \item $N(r)$ 有且仅有一个开始状态和一个接受状态。
+      开始状态没有入边, 接受状态没有出边。
+    \item 
+  \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -359,6 +405,25 @@
       \pause
       \fig{width = 0.95\textwidth}{figs/r6-nfa-ex}
   \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+  
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{NFA $\implies$ DFA}
+    \[
+      N \implies D
+    \]
+
+    \pause
+    \[
+      \red{L(D) = L(N)}
+    \]
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
