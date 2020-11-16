@@ -16,8 +16,10 @@
     (Automaton; Automata)
 
     \fig{width = 0.50\textwidth}{figs/off-on}
+    \vspace{-0.30cm}
+    ``开关''自动机
 
-    \vspace{0.50cm}
+    \vspace{0.80cm}
     两大要素: {\bf 状态集} $S$ 以及{\bf 状态转移函数} $\delta$
   \end{center}
 \end{frame}
@@ -45,7 +47,7 @@
     \column{0.60\textwidth}
       \fig{width = 1.00\textwidth}{figs/breeder}
       \begin{center}
-        ``播种机''、``滑翔机枪''与``滑翔机''
+        ``播种机''、``滑翔机枪''与``滑翔机'' \\[5pt]
       \end{center}
     \column{0.40\textwidth}
       \fig{width = 0.90\textwidth}{figs/John-Conway}
@@ -54,6 +56,10 @@
         \teal{(1937 $\sim$ 2020)}
       \end{center}
   \end{columns}
+  
+  \begin{center}
+    \teal{\url{https://en.wikipedia.org/wiki/File:Conways_game_of_life_breeder_animation.gif}}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -93,7 +99,7 @@
     \begin{enumerate}[(1)]
       \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
       \item \red{\bf 有穷}的状态集合 $S$
-      \item \red{唯一}的初始状态 $s_{0} \in S$
+      \item \purple{唯一}的初始状态 $s_{0} \in S$
       \item 状态转移\red{\bf 函数} $\delta$
         \[
           \delta: S \times (\Sigma \cup \set{\blue{\epsilon}}) \to \blue{2^{S}}
@@ -132,7 +138,7 @@
       \end{center}
   \end{columns}
 
-  \vspace{0.30cm}
+  \vspace{0.60cm}
   \begin{center}
     \begin{quote}
     ``which introduced the idea of \red{\emph{\textbf{nondeterministic machines}}}, \\[6pt]
@@ -213,6 +219,23 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/nfa-even-01}
+
+  \vspace{-0.50cm}
+  \[
+    1011 \in L(\mathcal{A})? \qquad 0011 \in L(\mathcal{A})?
+  \]
+
+  \pause
+  \vspace{-0.30cm}
+  \[
+    L(\mathcal{A}) = \set{\text{包含偶数个1或偶数个0的01串}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{definition}[DFA (Deterministic Finite Automaton)]
     确定性有穷自动机 $\mathcal{A}$ 是一个五元组 
     \red{$\mathcal{A} = (\Sigma, S, s_{0}, \delta, F)$}:
@@ -221,7 +244,7 @@
     \begin{enumerate}[(1)]
       \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
       \item \red{\bf 有穷}的状态集合 $S$
-      \item \red{唯一}的初始状态 $s_{0} \in S$
+      \item \red{\bf 唯一}的初始状态 $s_{0} \in S$
       \item 状态转移\red{\bf 函数} $\delta$
         \[
           \delta: S \times \blue{\Sigma} \to \blue{S}
@@ -244,6 +267,11 @@
   \fig{width = 0.50\textwidth}{figs/dfa-abb}
 
   \[
+    aabb \in L(\mathcal{A}) \qquad ababab \notin L(\mathcal{A})
+  \]
+
+  \pause
+  \[
     L(\mathcal{A}) = \pause L((a|b)^{\ast}abb)
   \]
 
@@ -255,24 +283,17 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    NFA 与 DFA 的\red{\bf 优缺点}比较:
-
-    \vspace{0.80cm}
-    \blue{$x \in L(\mathcal{A}):$} 
-    DFA 易于实现; NFA 不易实现
+    NFA 简洁易于理解, 方面描述语言 \blue{$L(\mathcal{A})$}
 
     \vspace{0.30cm}
-    \blue{$L(\mathcal{A}):$} 
-    NFA 简洁易于理解; DFA 状态多转移多
+    DFA 易于判断 \blue{$x \in L(\mathcal{A})$}, 适合产生词法分析器 
 
-    \vspace{0.80cm}
-    \red{\bf 取长补短:} 
-
-    \vspace{0.30cm}
-    用 NFA 描述, 用 DFA 实现; 
+    \pause
+    \vspace{1.20cm}
+    用 NFA 描述语言, 用 DFA 实现词法分析器
 
     \vspace{0.30cm}
-    从 NFA 到 DFA 的转化自动完成
+    \purple{RE $\implies$ NFA $\implies$ DFA $\implies$ 词法分析器}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -285,7 +306,7 @@
   \begin{center}
     \blue{RE $\implies$ NFA}
     \[
-      r \implies N(r)
+      \boxed{r \implies N(r)}
     \]
     \[
       \text{要求}: \red{L(N(r)) = L(r)}
@@ -451,10 +472,12 @@
         \setlength{\itemsep}{8pt}
         \item $N(r)$ 的开始状态与接受状态均\blue{\bf 唯一}。
         \item 开始状态没有入边, 接受状态没有出边。
-        \item 每个状态最多有两个$\epsilon$-入边与两个$\epsilon$出边。
-        \item $\forall a \in \Sigma$, 每个状态最多有一个$a$-入边与一个$a$-出边。
+        \pause
         \item $N(r)$ 的\blue{\bf 状态数} $|S| \le$ $2 \times |r|$。\\
           ($|r|:$ $r$ 中运算符与运算分量的总和)
+        \pause
+        \item 每个状态最多有两个$\epsilon$-入边与两个$\epsilon$-出边。
+        \item $\forall a \in \Sigma$, 每个状态最多有一个$a$-入边与一个$a$-出边。
       \end{enumerate}
     \column{0.10\textwidth}
   \end{columns}
@@ -497,7 +520,7 @@
   \begin{center}
     \blue{NFA $\implies$ DFA}
     \[
-      N \implies D
+      \boxed{N \implies D}
     \]
     \[
       \text{要求}: \red{L(D) = L(N)}
@@ -702,7 +725,8 @@
   \vspace{-0.30cm}
   \[
     \text{\purple{\bf 接受状态集}}\;
-    F_{\mathcal{D}} = \set{s \in S_{\mathcal{D}} \mid \exists f \in F_{\mathcal{N}}.\; f \in s}
+    F_{\mathcal{D}} = \set{s_{D} \in S_{\mathcal{D}} \mid 
+      \exists f \in F_{\mathcal{N}}.\; f \in s_{D}}
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -829,7 +853,7 @@
 
     \[
       s \sim t \iff \forall a \in \Sigma.\; 
-        (s \rel{a} s') \land (t \rel{a} t') \land (\red{s' = t'}).
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
     \]
 
     \pause
@@ -848,7 +872,7 @@
 
   \[
     s \sim t \iff \forall a \in \Sigma.\; 
-      (s \rel{a} s') \land (t \rel{a} t') \land (\red{s' \sim t'}).
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' \sim t'}).
   \]
 
   \pause
@@ -864,7 +888,7 @@
   \begin{center}
     \[
       s \sim t \iff \forall a \in \Sigma.\; 
-        (s \rel{a} s') \land (t \rel{a} t') \land (s' \sim t').
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
     \]
 
     基于该定义, 不断\red{\bf 合并}等价的状态, 直到无法合并为止
@@ -889,7 +913,7 @@
   \begin{center}
     \[
       s \sim t \iff \forall a \in \Sigma.\; 
-        (s \rel{a} s') \land (t \rel{a} t') \land (s' \sim t').
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
     \]
 
     缺少基础情况, 不知从何下手
@@ -920,6 +944,7 @@
     \red{\bf 从哪里开始呢?}
   \end{center}
 
+  \pause
   \begin{columns}
     \column{0.50\textwidth}
       \fig{width = 1.00\textwidth}{figs/dfa-abb-subset}
@@ -964,9 +989,9 @@
   \fig{width = 0.85\textwidth}{figs/partition}
 
   \begin{center}
-    直到再也无法划分为止 \quad (不动点!)
+    直到再也无法\blue{\bf 划分}为止 \quad (\purple{不动点!})
 
-    \vspace{0.30cm}
+    \vspace{0.40cm}
     然后, 将同一等价类里的状态\blue{\bf 合并}
   \end{center}
 \end{frame}
@@ -1015,7 +1040,7 @@
   \begin{center}
     \blue{DFA $\implies$ RE}
     \[
-      D \implies r
+      \boxed{D \implies r}
     \]
     \[
       \text{要求}: \red{L(r) = L(D)}
@@ -1078,11 +1103,116 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 如何初始化?}
+
+    \vspace{0.30cm}
+    $R^{-1}_{ij}:$ \pause 从节点 $i$ 到节点 $j$、且\red{\bf 不经过中间节点}的所有路径
+  \end{center}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/i-j}
+      \[
+        R^{-1}_{ij} = a_{1} | a_{2} | \dots | a_{m}
+      \]
+
+      \fig{width = 0.60\textwidth}{figs/i-j-no-edge}
+      \[
+        R^{-1}_{ij} = \red{\emptyset}
+      \]
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.60\textwidth}{figs/i-loop}
+      \[
+        R^{-1}_{ii} = a_{1} | a_{2} | \dots | a_{m} | \red{\epsilon}
+      \]
+
+      \fig{width = 0.15\textwidth}{figs/i}
+      \[
+        R^{-1}_{ii} = \red{\epsilon}
+      \]
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    关于 \red{$\emptyset$} (注意: 它不是正则表达式) 的规定 
+    \[
+      \emptyset r = r \emptyset = \emptyset
+    \]
+
+    \[
+      \emptyset | r = r
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ $r$ 的最终结果是什么?}
+
+    \vspace{0.50cm}
+    求有向图中所有 (从初始状态到接受状态的) 路径
+
+    \pause
+    \vspace{0.50cm}
+    \[
+      r = |_{s_{j} \in F_{D}} R^{|S_{D}| - 1}_{0j}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \fig{width = 0.60\textwidth}{figs/dfa-re-alg}
 
   \begin{center}
-    $|D|$: 状态数; \qquad $D_{A}$: 接受状态集合
+    $|D|$: 状态数 ($|S_{D}|$); \qquad $D_{A}$: 接受状态集合 ($F_{D}$)
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.12\textwidth}{figs/dfa-re-init}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.65\textwidth}{figs/dfa-re-step-0}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.70\textwidth}{figs/dfa-re-step-1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.95\textwidth}{figs/dfa-re-step-2}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
