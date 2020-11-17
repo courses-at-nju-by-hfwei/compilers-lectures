@@ -792,7 +792,22 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    闭包 (Closure) 与不动点 (Fixed Point)
+    \red{\bf 闭包 (Closure):} $f\text{-closure}(T)$
+
+    \pause
+    \[
+      \epsilon\text{-closure}(T) \qquad \pause
+      L^{\ast} = \bigcup_{i = 0}^{\infty} L^{i} \qquad \pause
+      R^{+}: \text{传递闭包}
+    \]
+
+    \pause
+    \[
+      T \implies f(T) \implies f(f(T)) \implies f(f(f(T))) \implies \dots
+    \]
+
+    \pause
+    直到找到 $x$ 使得 $f(x) = x$ ($x$ 称为 $f$ 的\red{\bf 不动点})
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
