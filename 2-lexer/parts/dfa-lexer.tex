@@ -1369,7 +1369,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    模拟运行该 DFA, \red{直到无法继续为止}(\teal{输入结束或状态无转移}); \\[3pt]
+    模拟运行该 DFA, \red{直到无法继续为止} (\teal{输入结束或状态无转移}); \\[3pt]
     假设此时状态为 $s$
 
     \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
@@ -1378,10 +1378,10 @@
     若 $s$ 为\blue{\bf 接受状态}, 则识别成功;
 
     \vspace{0.30cm}
-    否则, \blue{\bf 回溯}(\teal{包括状态与输入流})至最近一次经过的接受状态, 识别成功;
+    否则, \blue{\bf 回溯} (\teal{包括状态与输入流})至最近一次经过的接受状态, 识别成功;
 
     \vspace{0.30cm}
-    若没有经过任何接受状态, 则\blue{\bf 报错}(\teal{第一个字符?})
+    若没有经过任何接受状态, 则\red{\bf 报错} (\teal{忽略第一个字符})
 
     \vspace{0.30cm}
     无论成功还是失败, 都从{\bf 初始状态}开始继续识别下一个词法单元
@@ -1398,21 +1398,21 @@
   \]
 
   \pause
-  \vspace{-0.20cm}
+  \vspace{-0.40cm}
   \[
     x = abba \qquad \text{状态无转移; 接受; 识别出 $abb$}
   \]
 
   \pause
-  \vspace{-0.20cm}
+  \vspace{-0.40cm}
   \[
     x = aaaa \qquad \text{输入结束; 回溯成功; 识别出 $a$}
   \]
 
   \pause
-  \vspace{-0.20cm}
+  \vspace{-0.40cm}
   \[
-    x = cabb \qquad \text{状态无转移; 回溯失败; 报错}
+    x = cabb \qquad \text{状态无转移; 回溯失败; 报错 $c$}
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
