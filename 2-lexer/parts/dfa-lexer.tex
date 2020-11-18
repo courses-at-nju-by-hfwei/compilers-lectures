@@ -712,7 +712,7 @@
   \pause
   \[
     \text{\purple{\bf 初始状态}}\;
-    {d_{0} = \epsilon\text{-closure}(s_{0})}
+    {d_{0} = \epsilon\text{-closure}(n_{0})}
   \]
   \pause
   \vspace{-0.30cm}
@@ -728,6 +728,25 @@
     F_{\mathcal{D}} = \set{s_{D} \in S_{\mathcal{D}} \mid 
       \exists f \in F_{\mathcal{N}}.\; f \in s_{D}}
   \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    消除\red{\bf ``死状态 $\emptyset$''}
+
+    \[
+      \text{move}(T, a) = \emptyset
+        \implies \delta(T, a) = \emptyset
+    \]
+
+    \[
+      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
+    \]
+
+    需要消除死状态, 避免词法分析器进入$\emptyset$状态
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -797,7 +816,6 @@
     \pause
     \[
       \epsilon\text{-closure}(T) \qquad \pause
-      L^{\ast} = \bigcup_{i = 0}^{\infty} L^{i} \qquad \pause
       R^{+}: \text{传递闭包}
     \]
 
@@ -872,8 +890,47 @@
     \]
 
     \pause
-    但是, 这个定义过于严格
+    但是, 这个定义是错误的
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    s \sim t \iff \forall a \in \Sigma.\; 
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
+  \]
+  
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \vspace{-0.30cm}
+  \[
+    A \sim C \sim E
+  \]
+
+  \pause
+  \vspace{0.20cm}
+  \begin{center}
+    但是, 接受状态与非接受状态必定不等价
+
+    \vspace{0.30cm}
+    空串 $\epsilon$ {\bf 区分}了这两类状态
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    s \sim t \iff \forall a \in \Sigma.\; 
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
+  \]
+  \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-before}
+  \[
+    c \sim d \sim e \qquad \red{a \nsim b}
+  \]
+  \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-after}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -993,6 +1050,34 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{align*}
+    \Pi_{0} &= \set{\set{A, B, C, D}, \set{E}} \\[10pt]
+    \Pi_{1} &= \set{\set{A, B, C}, \set{D}, \set{E}} \\[10pt]
+    \Pi_{2} &= \set{\set{A, C}, \set{B}, \set{D}, \set{E}} \\[10pt]
+    \Pi_{3} &= \Pi_{2}
+  \end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \begin{center}
+    \blue{\bf 合并}等价状态 $A \sim C$
+  \end{center}
+
+  \fig{width = 0.50\textwidth}{figs/dfa-abb}
+
+  \pause
+  \begin{center}
+    \red{$Q:$ 合并后是否一定还是 DFA?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     DFA 最小化\red{\bf 等价状态划分}方法
   \end{center}
@@ -1067,7 +1152,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.60\textwidth}{figs/dfa-abb}
+    \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
 
     \pause
     \vspace{-0.30cm}
@@ -1244,8 +1329,115 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/3-regex}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
-    特定于词法分析器的最小化方法
+    根据正则表达式构造相应的NFA
+  \end{center}
+
+  \fig{width = 0.60\textwidth}{figs/3-nfa}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    合并这三个NFA, 构造 $a | abb | a^{\ast}b^{+}$ 对应的 NFA
+  \end{center}
+
+  \fig{width = 0.70\textwidth}{figs/3-nfa-into-1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    使用\blue{\bf 子集构造法}将NFA转化为等价的DFA (\teal{并消除``死状态'' $\emptyset$})
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \vspace{0.30cm}
+    \teal{注意: 要保留各个NFA的\red{\bf 接受状态}信息, 并采用\red{\bf 最前优先匹配}原则}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    模拟运行该 DFA, \red{直到无法继续为止}(\teal{输入结束或状态无转移}); \\[3pt]
+    假设此时状态为 $s$
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \pause
+    若 $s$ 为\blue{\bf 接受状态}, 则识别成功;
+
+    \vspace{0.30cm}
+    否则, \blue{\bf 回溯}(\teal{包括状态与输入流})至最近一次经过的接受状态, 识别成功;
+
+    \vspace{0.30cm}
+    若没有经过任何接受状态, 则\blue{\bf 报错}(\teal{第一个字符?})
+
+    \vspace{0.30cm}
+    无论成功还是失败, 都从{\bf 初始状态}开始继续识别下一个词法单元
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+  \[
+    x = a \qquad \text{输入结束; 接受; 识别出 $a$}
+  \]
+
+  \pause
+  \vspace{-0.20cm}
+  \[
+    x = abba \qquad \text{状态无转移; 接受; 识别出 $abb$}
+  \]
+
+  \pause
+  \vspace{-0.20cm}
+  \[
+    x = aaaa \qquad \text{输入结束; 回溯成功; 识别出 $a$}
+  \]
+
+  \pause
+  \vspace{-0.20cm}
+  \[
+    x = cabb \qquad \text{状态无转移; 回溯失败; 报错}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    特定于词法分析器的DFA最小化方法
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \vspace{0.30cm}
+    初始划分需要考虑不同的\red{\bf 词法单元}
+
+    \vspace{-0.50cm}
+    \[
+      \Pi_{0} = \set{\set{0137, 7}, \red{\set{247}, \set{8, 58}, \set{68}}}
+    \]
+
+    \pause
+    \vspace{-1.00cm}
+    \[
+      \Pi_{1} = \set{\blue{\set{0137}, \set{7}}, \set{247}, \blue{\set{8}, \set{58}}, 
+        \set{68}}
+    \]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
