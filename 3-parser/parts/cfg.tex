@@ -22,13 +22,13 @@
       \item $N$ 是\red{\bf 非终结符号} (\teal{Non-terminal}) 集合;
       \item $P$ 是\red{\bf 产生式} (\teal{Production}) 集合;
         \[
-          \boxed{\alpha \in N \longrightarrow \beta \in (T \cup N)^{\ast}}
+          \boxed{A \in N \longrightarrow \alpha \in (T \cup N)^{\ast}}
         \]
         \vspace{-0.60cm}
         \begin{description}
           \setlength{\itemsep}{5pt}
-          \item[头部/左部 (Head):] \purple{\bf 唯一}的非终结符
-          \item[体部/右部 (Body):] 终结符与非终结符构成的串, 也可以是空串 $\epsilon$
+          \item[头部/左部 (Head) $A$:] \purple{\bf 单个}非终结符
+          \item[体部/右部 (Body) $\alpha$:] 终结符与非终结符构成的串, 也可以是空串 $\epsilon$
         \end{description}
       \item $S$ 为\red{\bf 开始} (\teal{Start}) 符号。要求 $S \in N$且唯一。
     \end{itemize}
@@ -193,6 +193,7 @@
         L(G) = \pause \set{\text{长度$\ge 2$的已匹配括号串}}
       \]
     \column{0.50\textwidth}
+      \pause
       \fig{width = 0.40\textwidth}{figs/cfg-anbn}
 
       \[
