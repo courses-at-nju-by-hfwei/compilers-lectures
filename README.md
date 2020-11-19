@@ -14,8 +14,8 @@ Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/org
 | 10 | 2020-11-12 (周四) | [2-lexer (1)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2-lexer) | 2.6, 3.1, 3.3, 3.4 |
 | | | |
 | | | |
-| 11 | 2020-11-17 (周二) | [2-lexer (2)](ttps://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2-lexer) | 3.6, 3.7 (1, 3, 4, 5) |
-| 11 | 2020-11-19 (周四) | [2-lexer (3)](ttps://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2-lexer) | 3.8 (1, 2, 3), 3.9 (6, 7) |
+| 11 | 2020-11-17 (周二) | [2-lexer (2)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2-lexer) | 3.6, 3.7 (1, 3, 4, 5) |
+| 11 | 2020-11-19 (周四) | [2-lexer (3)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2-lexer) | 3.8 (1, 2, 3), 3.9 (6, 7) |
 | | | | 
 | | | | 
 | 12 | 2020-11-24 (周二) | [3-parser (1)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-parser) | 4.1 (1, 2), 4.2, 4.3 |
