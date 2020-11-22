@@ -61,7 +61,7 @@
 %   \[
 %     G = (\set{a,b}, \set{S}, P, S)
 %   \]
-% 
+%
 %   \input{cfg/cfg-palindrome}
 % \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -69,12 +69,23 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.70\textwidth}{figs/if-statement-list}
+    \fig{width = 0.75\textwidth}{figs/cfg-if-then-else}
+
+    \vspace{0.60cm}
+    \blue{\bf 条件语句}文法
 
     \vspace{0.20cm}
-    关于语句块与条件语句的文法
+    \red{\bf 悬空 (Dangling)-else} 文法
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \vspace{0.50cm}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.90\textwidth}{figs/cfg-if-then-else-list}
+
+  \vspace{0.30cm}
+  \begin{center}
     \blue{\bf 约定:} 如果没有明确指定, 第一个产生式的头部就是开始符号
   \end{center}
 \end{frame}
@@ -115,8 +126,7 @@
   \begin{center}
     {\large \red{\bf 推导}} (Derivation)
 
-    \vspace{0.50cm}
-    \fig{width = 0.60\textwidth}{figs/cfg-expression}
+    \input{cfg/cfg-expr-add-mul}
 
     \vspace{0.50cm}
     推导即是将某个产生式的左边\blue{\bf 替换}成它的右边
@@ -133,7 +143,7 @@
     {\large \red{\bf 推导}} (Derivation)
   \end{center}
 
-  \fig{width = 0.60\textwidth}{figs/cfg-expression}
+  \input{cfg/cfg-expr-add-mul}
 
   \vspace{-0.50cm}
   \[
@@ -160,15 +170,15 @@
 \begin{frame}{}
   \begin{definition}[Sentential Form; 句型]
     如果 $S \dstar \alpha$, 且 $\alpha \in (T \cup N)^{\ast}$,
-    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 句型}。 
+    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 句型}。
   \end{definition}
 
   \vspace{0.30cm}
-  \fig{width = 0.60\textwidth}{figs/cfg-expression}
+  \input{cfg/cfg-expr-add-mul}
 
   \vspace{-0.80cm}
   \[
-    E \implies -E \implies -(E) \implies -(E + E) 
+    E \implies -E \implies -(E) \implies -(E + E)
       \implies \red{-(\id + E)} \implies \blue{-(\id + \id)}
   \]
 
@@ -223,7 +233,7 @@
 
     \pause
     \[
-      S \to a S a \;|\; bSb \;|\; a \;|\; b \;|\; \epsilon 
+      S \to a S a \;|\; bSb \;|\; a \;|\; b \;|\; \epsilon
     \]
   \end{center}
 \end{frame}
@@ -243,10 +253,43 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \[
+    \set{x \in \set{a, b}^{\ast} \mid x \text{ 中 }\; a, b \text{ 个数\red{相同}}}
+  \]
+
+  \pause
+  \vspace{0.50cm}
+  \input{cfg/cfg-equal-number-a-b}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \set{x \in \set{a, b}^{\ast} \mid x \text{ 中 }\; a, b \text{ 个数\red{不同}}}
+  \]
+
+  \pause
+  \vspace{0.50cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \input{cfg/cfg-unequal-number-a-b}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.70\textwidth}{figs/keep-calm-prove-it}
+      \begin{center}
+        \blue{\bf 练习 (非作业):} 证明之
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \red{\bf 最左 (leftmost) 推导与最右 (rightmost) 推导}
 
-    \fig{width = 0.60\textwidth}{figs/cfg-expression}
+    \input{cfg/cfg-expr-add-mul}
 
     \vspace{-0.50cm}
     \[
@@ -274,7 +317,7 @@
 \begin{frame}{}
   \begin{definition}[Left-sentential Form; 最左句型]
     如果 $S \;\red{\dstarlm}\; \alpha$, 且 $\alpha \in (T \cup N)^{\ast}$,
-    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 最左句型}。 
+    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 最左句型}。
   \end{definition}
 
   \[
@@ -283,7 +326,7 @@
 
   \begin{definition}[Right-sentential Form; 最右句型]
     如果 $S \;\red{\dstarrm}\; \alpha$, 且 $\alpha \in (T \cup N)^{\ast}$,
-    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 最右句型}。 
+    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 最右句型}。
   \end{definition}
 
   \[
@@ -329,10 +372,11 @@
   \end{columns}
 
   \pause
-  \vspace{0.60cm}
-  \begin{center}
-    \red{\bf 二义性(Ambiguous)文法:} \blue{\bf 存在}具有\purple{\bf 不唯一}的语法树的句子
-  \end{center}
+  \vspace{0.30cm}
+  \begin{definition}[\red{\bf 二义性}(Ambiguous)文法]
+    如果$L(G)$中的\purple{\bf 某个}句子有\blue{\bf 一个以上}\teal{语法树/最左推导/最右推导}, \\[5pt]
+    则文法$G$是二义性的。
+  \end{definition}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -363,16 +407,21 @@
   \end{center}
 
   \[
-    \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2} 
+    \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2}
   \]
 
   \pause
   \begin{columns}
     \column{0.50\textwidth}
       \fig{width = 1.00\textwidth}{figs/tree-if-then-else-1}
+      \[
+        \ifkw\; E_{1} \;\thenkw\; \red{\big(}\ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2}\red{\big)}
+      \]
     \column{0.50\textwidth}
-      \pause
       \fig{width = 1.00\textwidth}{figs/tree-if-then-else-2}
+      \[
+        \ifkw\; E_{1} \;\thenkw\; \red{\big(}\ifkw\; E_{2} \;\thenkw\; S_{1}\red{\big)} \;\elsekw\; S_{2}
+      \]
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -388,7 +437,7 @@
     \fig{width = 0.40\textwidth}{figs/girl-woman}
 
     \pause
-    \red{(任何)语法分析器都无法解析二义性文法}
+    \red{任何语法分析器都无法解析二义性文法}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -415,11 +464,86 @@
 
   \vspace{0.30cm}
   \begin{center}
-    左结合, 先乘除后加减
+    四则运算均是\red{\bf 左结合}的
+
+    \vspace{0.30cm}
+    \red{\bf 优先级:} 括号最先, 先乘除后加减
+
+    \vspace{0.80cm}
+    二义性表达式文法以\blue{\bf 相同的方式}处理所有的算术运算符
+
+    \vspace{0.30cm}
+    要消除二义性, 需要\blue{\bf 区别对待}不同的运算符
+
+    \pause
+    \vspace{0.80cm}
+    \purple{将运算的``先后''顺序信息编码到语法树的``层次''结构中}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-expr-add}
+
+  \vspace{0.80cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \pause
+      \input{cfg/cfg-expr-add-left-assoc}
+      \begin{center}
+        \blue{\bf 左结合}文法
+      \end{center}
+    \column{0.50\textwidth}
+      \pause
+      \input{cfg/cfg-expr-add-right-assoc}
+      \begin{center}
+        \blue{\bf 右结合}文法
+      \end{center}
+  \end{columns}
 
   \pause
+  \vspace{0.80cm}
+  \begin{center}
+    使用\red{\bf 左(右)递归}实现\blue{\bf 左(右)结合}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-expr-add-mul}
+
+  \pause
+  \vspace{0.80cm}
+  \input{cfg/cfg-expr-add-mul-mul-first}
+
+  \begin{center}
+    \blue{\bf 括号最先, 先乘后加}文法
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-expr-add-sub-mul-div}
+
+  \vspace{0.50cm}
   \input{cfg/cfg-expr-add-sub-mul-div-ETF}
+
+  \begin{center}
+    \blue{\bf 无二义性}的表达式文法
+    \[
+      \gray{
+      E: \text{表达式} (expression); \quad
+      T: \text{项} (term) \quad
+      F: \text{因子} (factor)}
+    \]
+
+    \pause
+    \vspace{0.20cm}
+    \purple{将运算的``先后''顺序信息编码到语法树的``层次''结构中}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -429,7 +553,7 @@
     \fig{width = 0.50\textwidth}{figs/cfg-if-then-else}
 
     \[
-      \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2} 
+      \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2}
     \]
 
     \fig{width = 0.70\textwidth}{figs/tree-if-then-else-1}
