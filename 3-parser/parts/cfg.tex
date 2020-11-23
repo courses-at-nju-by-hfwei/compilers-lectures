@@ -733,7 +733,18 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    每个正则表达式 $r$ 对应的语言 $L(r)$ 都可以使用上下文无关文法来描述
+    每个\blue{正则表达式} $r$ 对应的语言 $L(r)$ 都可以使用\blue{上下文无关文法}来描述
+
+    \[
+      r = (a | b)^{\ast} abb
+    \]
+
+    \pause
+    \fig{width = 0.50\textwidth}{figs/nfa-abb}
+
+    \pause
+    \fig{width = 0.40\textwidth}{figs/nfa-abb-cfg}
+    此外, 若 $\delta(A_i, \epsilon) = A_{j}$, 则添加 $A_{i} \to A_{j}$
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
