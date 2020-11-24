@@ -23,7 +23,10 @@
 
   \vspace{0.60cm}
   \begin{center}
-    仅根据\red{\bf 当前字符}, 就可以确定应该使用哪条产生式
+    \red{每个产生式都以一个终结符开头, 且这些终结符各不相同}
+
+    \vspace{0.30cm}
+    因此, 仅根据输入中的\blue{\bf 当前词法单元}, 就可以确定应该使用哪条产生式
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -77,11 +80,15 @@
   \[
     \ifkw\; 1 = 2 \;\thenkw \;\beginkw\; \printkw\; 2 = 1; \;\endkw\; \elsekw\; 1 = 1
   \]
+  \[
+    \blue{\ifkw\; \num = \num \;\thenkw \;\beginkw\; \printkw\; \num = \num; \;\endkw\; \elsekw\; \num = \num}
+  \]
 
+  \pause
   \fig{width = 0.35\textwidth}{figs/blackboard}
 
   \begin{center}
-    板书演示\blue{语法分析器}的工作过程
+    板书演示这个\blue{语法分析器}的工作过程
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -89,6 +96,61 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.90\textwidth}{figs/ll-if-then-else-list}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \uncover<2->{
+        $E$ 在\purple{\bf 不消耗任何词法单元}的情况下, 直接递归调用 $E$, 造成\green{\bf 死循环}
+    }
+    \input{cfg/cfg-expr-add-sub-mul-div-ETF}
+
+    \fig{width = 0.80\textwidth}{figs/ll-expr-E}
+
+    \uncover<3->{
+        \vspace{0.30cm}
+        更重要的是, $E$与$T$ 的产生式所能生成的句子可能\purple{\bf 以相同的终结符开头}
+
+        \vspace{0.10cm}
+        因此, \blue{\bf 无法仅根据输入中当前的词法单元确定要使用的生成式}}
+    % \pause
+    % \fig{width = 0.60\textwidth}{figs/ll-expr-T}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 消除左递归}
+    \input{cfg/E-T-left-recursion}
+
+    \pause
+    \vspace{0.30cm}
+    \input{cfg/E-T-right-recursion}
+    将左递归转为\blue{\bf 右递归}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-expr-add-mul}
+
+  \pause
+  \input{cfg/cfg-expr-add-mul-no-left-recursion}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
