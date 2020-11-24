@@ -1,1 +1,108 @@
 % top-down.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/show-me-the-code}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.90\textwidth}{figs/cfg-if-then-else-list}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \red{\bf 顺序语句}、条件语句、打印语句
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
+
+  \vspace{0.60cm}
+  \begin{center}
+    仅根据\red{\bf 当前字符}, 就可以确定应该使用哪条产生式
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
+
+  \vspace{0.60cm}
+  \fig{width = 1.00\textwidth}{figs/ll-if-then-else-list-token}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \textsl{getToken}: \blue{语法分析器}\red{\bf 按需}向\blue{词法分析器}索要下一个词法单元
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
+
+  \fig{width = 1.00\textwidth}{figs/ll-if-then-else-list-advance-eat}
+
+  \begin{center}
+    \textsl{eat(t)}: 根据当前的产生式, \red{\bf 预期}的词法单元应该是 $t$
+
+    \vspace{0.30cm}
+    \red{\bf 匹配} $t$, 继续试图匹配下一个词法单元; 否则, 报错
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/cfg-if-then-else-list-First}
+
+  \fig{width = 0.90\textwidth}{figs/ll-if-then-else-list-procedures}
+
+  \begin{center}
+    为每个\red{\bf 非终结符}写一个\blue{\bf 递归函数}
+
+    \vspace{0.20cm}
+    对于每个\red{\bf 产生式}, 写一个 \texttt{case} \blue{\bf 分支语句}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \ifkw\; 1 = 2 \;\thenkw \;\beginkw\; \printkw\; 2 = 1; \;\endkw\; \elsekw\; 1 = 1
+  \]
+
+  \fig{width = 0.35\textwidth}{figs/blackboard}
+
+  \begin{center}
+    板书演示\blue{语法分析器}的工作过程
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.90\textwidth}{figs/ll-if-then-else-list}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
