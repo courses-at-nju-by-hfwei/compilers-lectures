@@ -380,111 +380,26 @@
     \red{\large 非递归的预测分析算法}
 
     \vspace{0.60cm}
-    \fig{width = 0.70\textwidth}{figs/ll1-iteration-alg}
+    \fig{width = 0.95\textwidth}{figs/ll1-iteration-alg}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.90\textwidth}{figs/cfg-if-then-else-list}
-
-  \vspace{0.30cm}
   \begin{center}
-    \red{\bf 顺序语句}、条件语句、打印语句
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
+    不是 $LL(1)$ 文法怎么办?
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
+    \vspace{0.60cm}
+    \red{\bf 改造它}
 
-  \vspace{0.60cm}
-  \begin{center}
-    \red{每个产生式都以一个终结符开头, 且这些终结符各不相同}
+    \vspace{0.80cm}
+
+    \blue{消除左递归}
 
     \vspace{0.30cm}
-    因此, 仅根据输入中的\blue{\bf 当前词法单元}, 就可以确定应该使用哪条产生式
+    \blue{提取左公因子}
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
-
-  \vspace{0.60cm}
-  \fig{width = 1.00\textwidth}{figs/ll-if-then-else-list-token}
-
-  \vspace{0.30cm}
-  \begin{center}
-    \textsl{getToken}: \blue{语法分析器}\red{\bf 按需}向\blue{词法分析器}索要下一个词法单元
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-list-First}
-
-  \fig{width = 1.00\textwidth}{figs/ll-if-then-else-list-advance-eat}
-
-  \begin{center}
-    \textsl{eat(t)}: 根据当前的产生式, \red{\bf 预期}的词法单元应该是 $t$
-
-    \vspace{0.30cm}
-    \red{\bf 匹配} $t$, 继续试图匹配下一个词法单元; 否则, 报错
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.70\textwidth}{figs/cfg-if-then-else-list-First}
-
-  \fig{width = 0.90\textwidth}{figs/ll-if-then-else-list-procedures}
-
-  \begin{center}
-    为每个\red{\bf 非终结符}写一个\blue{\bf 递归函数}
-
-    \vspace{0.20cm}
-    对于每个\red{\bf 产生式}, 写一个 \texttt{case} \blue{\bf 分支语句}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  % \[
-  %   \ifkw\; 1 = 2 \;\thenkw \;\beginkw\; \printkw\; 2 = 1; \;\endkw\; \elsekw\; 1 = 1
-  % \]
-  % \[
-  %   \blue{\ifkw\; \num = \num \;\thenkw \;\beginkw\; \printkw\; \num = \num; \;\endkw\; \elsekw\; \num = \num}
-  % \]
-
-  \pause
-  \fig{width = 0.35\textwidth}{figs/blackboard}
-
-  \begin{center}
-    板书演示这个\blue{语法分析器}的工作过程
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.90\textwidth}{figs/ll-if-then-else-list}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -492,20 +407,16 @@
 \begin{frame}{}
   \begin{center}
     \uncover<2->{
-        $E$ 在\purple{\bf 不消耗任何词法单元}的情况下, 直接递归调用 $E$, 造成\green{\bf 死循环}
+      $E$ 在\purple{\bf 不消耗任何词法单元}的情况下, 直接递归调用 $E$, 造成\green{\bf 死循环}
     }
     \input{cfg/cfg-expr-add-sub-mul-div-ETF}
 
-    \fig{width = 0.80\textwidth}{figs/ll-expr-E}
-
     \uncover<3->{
-        \vspace{0.30cm}
-        更重要的是, $E$与$T$ 的产生式所能生成的句子可能\purple{\bf 以相同的终结符开头}
-
-        \vspace{0.10cm}
-        因此, \blue{\bf 无法仅根据输入中当前的词法单元确定要使用的生成式}}
-    % \pause
-    % \fig{width = 0.60\textwidth}{figs/ll-expr-T}
+      \[
+        \first(E + T) \cap \first(T) \neq \emptyset
+      \]
+      \green{\bf 不是 $LL(1)$ 文法}
+    }
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -517,19 +428,13 @@
     \input{cfg/E-T-left-recursion}
 
     \pause
-    \vspace{0.30cm}
     \input{cfg/E-T-right-recursion}
     将左递归转为\blue{\bf 右递归}
+
+    \pause
+    \vspace{0.50cm}
+    (注: 右递归对应右结合; 需要在后续阶段进行额外处理)
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \input{cfg/cfg-expr-add-mul}
-
-  \pause
-  \input{cfg/cfg-expr-add-mul-no-left-recursion}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -547,11 +452,119 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \input{cfg/cfg-expr-add-mul-mul-first}
+
+  \pause
+  \input{cfg/cfg-expr-add-mul-no-left-recursion}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \input{cfg/cfg-S-A}
+
+    \vspace{-0.30cm}
+    \[
+      S \implies Aa \implies Sda
+    \]
+
+    \pause
+    \fig{width = 0.90\textwidth}{figs/left-recursion-alg}
+
+    \vspace{-1.00cm}
+    \[
+      A_{k} \to A_{l} \alpha \implies l > k
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-S-A}
+
+  \[
+    A \to Ac \mid Aad \mid bd \mid \epsilon
+  \]
+
+  \input{cfg/cfg-S-A-no-left-recursion}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.20\textwidth}
+        \input{cfg/cfg-expr-add-mul-no-left-recursion}
+      \column{0.80\textwidth}
+        \uncover<2->{\fig{width = 1.00\textwidth}{figs/ll1-table-expr}}
+    \end{columns}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \begin{align*}
+          \first(F) &= \set{(, \id} \\
+          \first(T) &= \set{(, \id} \\
+          \red{\first(E)} &= \set{(, \id} \\
+          \first(E') &= \set{+, \epsilon} \\
+          \first(T') &= \set{\ast, \epsilon}
+        \end{align*}
+      \column{0.50\textwidth}
+        \begin{align*}
+          \follow(E) &= \blue{\follow(E')} = \set{), \$} \\
+          \follow(T) &= \follow(T') = \set{+, ), \$} \\
+          \follow(F) &= \set{+, \ast, ), \$}
+        \end{align*}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/ll1-stack-expr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/cfg-if-then-else-short}
+
+    \vspace{0.50cm}
+    \red{\bf 提取左公因子}
+    \vspace{0.50cm}
+
+    \fig{width = 0.40\textwidth}{figs/cfg-if-then-else-short-left-factor}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg-if-then-else-short}
+
+  \fig{width = 0.90\textwidth}{figs/ll1-table-if-then-else-short}
+
+  \begin{center}
+    \red{\bf 解决二义性:} 选择 $S' \to eS$, 将 $\elsekw$ 与前面最近的 $\thenkw$ 关联起来
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    语法分析阶段的主题之三: \red{\bf 错误恢复}
+
+    \fig{width = 0.45\textwidth}{figs/keep-calm-recovery}
+
+    报错、\blue{\bf 恢复}、继续分析
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
