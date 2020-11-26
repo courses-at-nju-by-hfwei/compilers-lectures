@@ -254,9 +254,12 @@
       \first(\alpha) =
       \begin{cases}
         \first(X) & \epsilon \notin L(X) \\[6pt]
-        \first(X) \cup \first(\beta) & \epsilon \in L(X)
+        (\first(X) \;\teal{\setminus\; \set{\epsilon}}) \cup \first(\beta) & \epsilon \in L(X)
       \end{cases}
     \]
+
+    \vspace{0.60cm}
+    最后, 如果 $\epsilon \in L(\alpha)$, 则将 $\epsilon$ 加入 $\first(\alpha)$。
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -272,7 +275,7 @@
         \first(X) &= \set{a, c, \epsilon} \\
         \first(Y) &= \set{c, \epsilon} \\
         \first(Z) &= \set{a, c, d} \\[8pt]
-        \first(XYZ) &= \first(X) = \set{a, c}
+        \first(XYZ) &= \set{a, c, d}
       \end{align*}
   \end{columns}
 \end{frame}
@@ -298,7 +301,7 @@
     \column{0.50\textwidth}
       \pause
       \begin{align*}
-        \follow(X) &= \set{c, \$} \\
+        \follow(X) &= \set{a, c, d, \$} \\
         \follow(Y) &= \set{a, c, d, \$} \\
         \follow(Z) &= \emptyset
       \end{align*}
@@ -339,7 +342,7 @@
         \first(X) &= \set{a, c, \epsilon} \\
         \first(Y) &= \set{c, \epsilon} \\
         \first(Z) &= \set{a, c, d} \\[8pt]
-        \first(XYZ) &= \first(X) = \set{a, c}
+        \first(XYZ) &= \set{a, c, d}
       \end{align*}
       \begin{align*}
         \follow(X) &= \set{c, \$} \\

@@ -11,10 +11,10 @@
 
     \hStatex
     \For{\red{$X \to Y_{1} Y_{2} \dots Y_{k}$}} \Comment{\blue{规则2: $X$是非终结符}}
-      \State $\first(X) \gets \first(X) \cup \first(Y_{1})$
+      \State $\first(X) \gets \first(X) \cup \set{\first(Y_{1}) \;\teal{\setminus\; \set{\epsilon}}}$
       \For{$i \gets 2 \;\text{\bf to } k$}
           \If{$\epsilon \in L(Y_{1} \dots Y_{i-1})$}
-            \State $\first(X) \gets \first(X) \cup \first(Y_{i})$
+            \State $\first(X) \gets \first(X) \cup \set{\first(Y_{i}) \;\teal{\setminus\; \set{\epsilon}}}$
           \EndIf
       \EndFor
       \If{\red{$\epsilon \in L(Y_{1} \dots Y_{k})$}} \Comment{\blue{规则3: $X$ 可推导出空串}}
