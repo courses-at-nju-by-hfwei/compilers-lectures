@@ -71,6 +71,7 @@
         \impliedby \dots \impliedby r_{n} = w
     \]
 
+    \vspace{0.50cm}
     自底向上语法分析器为输入构造\red{\bf 反向推导}
   \end{center}
 \end{frame}
@@ -82,12 +83,18 @@
     {\large \red{\bf $LR(\ast)$ 语法分析器}}
 
     \vspace{0.80cm}
-    \begin{description}
-      \setlength{\itemsep}{15pt}
-      \item[$L:$] \purple{从左向右} (left-to-right) 扫描输入
-      \item[$R:$] 构建\purple{反向 (reverse) 最右 (leftmost) 推导}
-    \end{description}
+    \begin{columns}
+      \column{0.10\textwidth}
+      \column{0.80\textwidth}
+        \begin{description}
+          \setlength{\itemsep}{15pt}
+          \item[$L:$] \purple{\bf 从左向右} (left-to-right) 扫描输入
+          \item[$R:$] 构建\purple{\bf 反向 (reverse) 最右 (leftmost) 推导}
+        \end{description}
+      \column{0.10\textwidth}
+    \end{columns}
 
+    \vspace{0.80cm}
     在最右推导中, 最左叶节点最后才被处理
 
     \vspace{0.50cm}
@@ -98,19 +105,117 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-      \vspace{0.20cm}
-      (\red{$Q:$} 何时\red{\bf 移入}, 何时\red{\bf 归约})
+  \begin{center}
+    \input{cfg/cfg-S-L-x}
+    \[
+      w = \blue{(x, x, x)}
+    \]
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \input{cfg/cfg-S-L-x}
+    板书演示``\red{\bf 栈}''上操作: \red{\bf 移入}与\red{\bf 规约}
+
+    \fig{width = 0.70\textwidth}{figs/tree-S-L-x}
+    \vspace{-0.30cm}
     \[
-      (x, x, x)
+      w = \blue{(x, x, x)}
     \]
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    部分构建的语法分析树的\blue{\bf 上边缘}与\blue{\bf 剩余的输入}构成当前句型
+
+    \vspace{0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/tree-S-L-x-partial.png}
+      \column{0.50\textwidth}
+        \fig{width = 0.70\textwidth}{figs/stack-S-L-x}
+    \end{columns}
+
+    \vspace{0.60cm}
+    \red{\bf 栈}刻画了语法分析器目前所知的所有信息, \red{隐含}了语法分析器的当前状态
+
+    \vspace{0.60cm}
+    $LR(\ast)$语法分析器根据\red{\bf 当前状态}以及\blue{\bf 若干向前看输入符号}, \\[6pt]
+    确定\purple{\bf 移入}与\purple{\bf 归约}动作
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-S-L-x}
+
+    \vspace{0.60cm}
+    \purple{\bf $LR(0)$ 分析表}指导$LR(0)$语法分析器 \\[6pt]
+    在\red{\bf 当前状态(编号)}下, 面对\blue{\bf 当前文法符号}时, 该采取什么\brown{\bf 动作}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-S-L-x}
+
+    \vspace{0.30cm}
+    \input{tables/lr-actions}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    再次板书演示``\red{\bf 栈}''上操作: \red{\bf 移入}与\red{\bf 规约}
+
+    \begin{columns}
+      \column{0.40\textwidth}
+        \input{cfg/cfg-S-L-x}
+      \column{0.60\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr0-table-S-L-x}
+    \end{columns}
+
+    \[
+      w = \blue{(x, x, x)}
+    \]
+
+    这一次, \red{\bf 栈}中\red{明确}包含了语法分析器的状态 \\[6pt]
+    (文法符号与状态都会经历入栈、出栈操作)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    % \red{\bf $LR(\ast)$语法分析器框架}
+
+    \input{algs/lr-framework}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 如何构造 $LR(0)$ 分析表?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 

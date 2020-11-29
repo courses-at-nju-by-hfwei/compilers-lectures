@@ -1,0 +1,31 @@
+% lr-framework.tex
+
+\begin{algorithm}[H]
+% \caption{}
+% \label{alg:S}
+\begin{algorithmic}[1]
+  \Procedure{\blue{$LR$}}{\null}
+    \State $\Call{Push}{S, \$}$ \qquad $\Call{Push}{S, s_{0}}$
+
+    \hStatex
+    \State $t \gets \Call{\purple{next-token}}{\null}$
+    \While{$1$}
+      \State $s \gets \Call{Top}{S}$  \Comment{\blue{$s$一定是某个状态编号, 而不是文法符号}}
+
+      \hStatex
+      \If{\red{$\action[s, t] = s_{i}$}} \Comment{\brown{移入}}
+        \State $\Call{Push}{S, t}$ \qquad $\Call{Push}{S, i}$
+        \State $t \gets \Call{\purple{next-token}}{\null}$
+      \ElsIf{\red{$\action[s, t] = r_{j}$}} \Comment{\brown{规约; $j: A \to \alpha$}}
+        \State $2 \times |\alpha|$ 次 $\Call{Pop}{S}$
+        \State $s \gets \Call{Top}{S}$  \Comment{\blue{$s$一定是某个状态编号, 而不是文法符号}}
+        \State $\Call{Push}{S, A}$ \qquad $\Call{Push}{S, \cyan{\goto[s, A]}}$ \Comment{\brown{转换状态}}
+      \ElsIf{\red{$\action[s, t] = a$}} \Comment{\brown{接受}}
+        \State {\bf break}
+      \Else
+        \State $\Call{\teal{error}}{\dots}$
+      \EndIf
+    \EndWhile
+  \EndProcedure
+\end{algorithmic}
+\end{algorithm}
