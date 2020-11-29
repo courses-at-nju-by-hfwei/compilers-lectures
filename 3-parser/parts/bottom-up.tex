@@ -1,1 +1,130 @@
 % bottom-up.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    只考虑\red{\bf 无二义性}的文法 \\[4pt]
+    这意味着, 每个句子对应唯一的一棵语法分析树
+
+    \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
+
+    今日份主题: \red{\bf $LR(1)$ ($LR(0)$) 语法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    自顶向下的、\\[15pt]
+    不断规约的、\\[15pt]
+    基于句柄查找自动机的、\\[15pt]
+    适用于\red{\bf $LR(1)$ ($LR(0)$) 文法}的、\\[15pt]
+    $LR(1)$ ($LR(0)$) 语法分析器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large \red{\bf 自底向上}构建语法分析树}
+
+    \vspace{0.60cm}
+    \blue{\bf 根节点}是文法的起始符号 $S$
+
+    \vspace{1.00cm}
+    \uncover<2->{
+      每个\blue{\bf 中间非终结符节点}表示\purple{\bf 使用它的某条产生式进行归约}
+    }
+
+    \vspace{1.00cm}
+    \blue{\bf 叶节点}是词法单元流 $w\$$ \\[8pt]
+    仅包含终结符号与特殊的\teal{\bf 文件结束符$\$$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf ``推导''与``归约''}
+
+    \vspace{0.60cm}
+    从\blue{\bf 产生式}的角度看, 是``推导''
+    \[
+      A \to \alpha
+    \]
+
+    从\blue{\bf 输入}的角度看, 是``归约''
+    \[
+      A \gets \alpha
+    \]
+    \[
+      S \triangleq \gamma_{0} \implies \dots
+        \red{\gamma_{i-1} \implies \gamma_{i} \implies \gamma_{r+1}}
+        \implies \dots \implies r_{n} = w
+    \]
+    \[
+      S \triangleq \gamma_{0} \impliedby \dots
+        \red{\gamma_{i-1} \impliedby \gamma_{i} \impliedby \gamma_{r+1}}
+        \impliedby \dots \impliedby r_{n} = w
+    \]
+
+    自底向上语法分析器为输入构造\red{\bf 反向推导}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large \red{\bf $LR(\ast)$ 语法分析器}}
+
+    \vspace{0.80cm}
+    \begin{description}
+      \setlength{\itemsep}{15pt}
+      \item[$L:$] \purple{从左向右} (left-to-right) 扫描输入
+      \item[$R:$] 构建\purple{反向 (reverse) 最右 (leftmost) 推导}
+    \end{description}
+
+    在最右推导中, 最左叶节点最后才被处理
+
+    \vspace{0.50cm}
+    在反向最右推导中, 最左叶节点最先被处理 (与从左到右扫描一致)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+      \vspace{0.20cm}
+      (\red{$Q:$} 何时\red{\bf 移入}, 何时\red{\bf 归约})
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{cfg/cfg-S-L-x}
+    \[
+      (x, x, x)
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
