@@ -104,11 +104,22 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \input{cfg/cfg-S-L-x}
+%     \[
+%       w = \blue{(x, x, x)}
+%     \]
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \input{cfg/cfg-S-L-x}
+    \input{cfg/cfg-expr-add-mul-mul-first-numbering}
     \[
-      w = \blue{(x, x, x)}
+      w = \blue{\id \ast \id}
     \]
   \end{center}
 \end{frame}
@@ -119,34 +130,28 @@
   \begin{center}
     板书演示``\red{\bf 栈}''上操作: \red{\bf 移入}与\red{\bf 规约}
 
-    \fig{width = 0.70\textwidth}{figs/tree-S-L-x}
+    \fig{width = 0.30\textwidth}{figs/tree-expr-add-mul}
     \vspace{-0.30cm}
     \[
-      w = \blue{(x, x, x)}
+      w = \blue{\id \ast \id}
     \]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
+% \fig{width = 0.80\textwidth}{figs/tree-S-L-x-partial.png}
+% \fig{width = 0.70\textwidth}{figs/stack-S-L-x}
+
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    部分构建的语法分析树的\blue{\bf 上边缘}与\blue{\bf 剩余的输入}构成当前句型
-
-    \vspace{0.30cm}
-    \begin{columns}
-      \column{0.50\textwidth}
-        \fig{width = 0.80\textwidth}{figs/tree-S-L-x-partial.png}
-      \column{0.50\textwidth}
-        \fig{width = 0.70\textwidth}{figs/stack-S-L-x}
-    \end{columns}
+    部分构建的语法分析树的\red{\bf 上边缘}与\blue{\bf 剩余的输入}构成当前句型
 
     \vspace{0.60cm}
-    \red{\bf 栈}刻画了语法分析器目前所知的所有信息, \red{隐含}了语法分析器的当前状态
+    \fig{width = 0.90\textwidth}{figs/lr-tree-expr-add-mul}
 
     \vspace{0.60cm}
-    $LR(\ast)$语法分析器根据\red{\bf 当前状态}以及\blue{\bf 若干向前看输入符号}, \\[6pt]
-    确定\purple{\bf 移入}与\purple{\bf 归约}动作
+    $LR$ 语法分析器使用\purple{\bf 栈}存储语法分析树的\purple{\bf 上边缘}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -154,7 +159,81 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.60\textwidth}{figs/lr0-table-S-L-x}
+    \begin{definition}[句柄 (Handle)]
+      在输入串的(唯一)反向最右推导中, \purple{\bf 如果}下一步是逆用产生式 $A \to \alpha$
+      将$\alpha$规约为$A$, 则称 $\alpha$ 是\blue{当前句型的}\red{\bf 句柄}。
+    \end{definition}
+
+    \vspace{0.30cm}
+    \fig{width = 0.80\textwidth}{figs/lr-expr-handle}
+
+    \vspace{0.30cm}
+    $LR$语法分析器的关键就是高效\red{\bf 寻找每个归约步骤所使用的句柄}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 句柄可能在哪里?}
+
+    \begin{theorem}
+      \red{\bf 存在}一种$LR$语法分析方法, 保证\blue{\bf 句柄总是出现在栈顶}。
+    \end{theorem}
+
+    \pause
+    \fig{width = 0.80\textwidth}{figs/rm-two-steps}
+
+    \vspace{-0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \[
+          S \dstarrm \alpha Az \dstarrm \alpha\blue{\beta By}z
+            \dstarrm \alpha\beta\blue{\gamma} yz
+        \]
+      \column{0.50\textwidth}
+        \[
+          S \dstarrm \alpha BxAz \dstarrm \alpha Bx\blue{y}z \dstarrm \alpha\blue{\gamma} xyz
+        \]
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{theorem}
+      \red{\bf 存在}一种$LR$语法分析方法, 保证\blue{\bf 句柄总是出现在栈顶}。
+    \end{theorem}
+
+    \vspace{0.60cm}
+    $LR$语法分析器在进行一次归约后, 接着移入零个或多个符号, 继续寻找下一个句柄
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    为什么第一个 $F$ 被直接归约为 $T$, \\[6pt]
+    而第二个 $F$ 则与 $T \ast F$ 一起被归约为 $T$?
+
+    \fig{width = 0.25\textwidth}{figs/tree-expr-add-mul}
+
+    \pause
+    \vspace{0.30cm}
+    \red{\bf 栈}刻画了语法分析器目前所知的所有信息, \\[6pt]
+    \red{隐含}了语法分析器的当前状态
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
 
     \vspace{0.60cm}
     \purple{\bf $LR(0)$ 分析表}指导$LR(0)$语法分析器 \\[6pt]
@@ -166,11 +245,22 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.60\textwidth}{figs/lr0-table-S-L-x}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
 
     \vspace{0.30cm}
     \input{tables/lr-actions}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[$LR(0)$文法]
+    如果文法 $G$ 的\red{\bf $LR(0)$分析表}是\blue{\bf 无冲突}的,
+    则 $G$ 是 $LR(0)$ 文法。
+  \end{definition}
+
+  \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -181,17 +271,16 @@
 
     \begin{columns}
       \column{0.40\textwidth}
-        \input{cfg/cfg-S-L-x}
+        \input{cfg/cfg-expr-add-mul-mul-first-numbering}
       \column{0.60\textwidth}
-        \fig{width = 1.00\textwidth}{figs/lr0-table-S-L-x}
+        \fig{width = 1.00\textwidth}{figs/lr0-table-expr-add-mul}
     \end{columns}
 
     \[
       w = \blue{(x, x, x)}
     \]
 
-    这一次, \red{\bf 栈}中\red{明确}包含了语法分析器的状态 \\[6pt]
-    (文法符号与状态都会经历入栈、出栈操作)
+    \red{\bf 栈}中\red{明确}包含了语法分析器的状态
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -208,24 +297,117 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/lr0-id-star-id}
+
   \begin{center}
-    \red{\bf 如何构造 $LR(0)$ 分析表?}
+    $w = \id \ast \id \$$ 的分析过程
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \red{\bf 如何构造 $LR(0)$ 分析表?}
+
+    \vspace{0.30cm}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
+
+    \vspace{0.30cm}
+    \purple{\bf $LR(0)$ 分析表}指导$LR(0)$语法分析器 \\[6pt]
+    在\red{\bf 当前状态(编号)}下, 面对\blue{\bf 当前文法符号}时, 该采取什么\brown{\bf 动作}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    $LR(0)$句柄寻找自动机
+    \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{definition}[$LR(0)$项 (Item)]
+    一个文法 $G$ 的一个 \red{\bf $LR(0)$} 项是 $G$ 的一个产生式再加上一个位于体部某处的点。
+  \end{definition}
+
+  \[
+    A \to XYZ
+  \]
+  \begin{align*}
+    A &\to \cdot XYZ \\[6pt]
+    A &\to X \cdot YZ \\[6pt]
+    A &\to XY \cdot Z \\[6pt]
+    A &\to XYZ \cdot
+  \end{align*}
+
+  \begin{center}
+    产生式 $A \epsilon$ 只有一个项 \blue{$A \to \cdot$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{align*}
+    A &\to \cdot XYZ \\[6pt]
+    A &\to X \cdot YZ \\[6pt]
+    A &\to XY \cdot Z \\[6pt]
+    A &\to XYZ \cdot
+  \end{align*}
+
+  \vspace{0.30cm}
+  \begin{center}
+    项指明了语法分析器已经看到了一个产生式的哪些部分
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[项集]
+  \end{definition}
+
+  \pause
+  \begin{definition}[项集族]
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[增广文法 (Augmented Grammar)]
+      文法 $G$ 的\red{\bf 增广文法}是在 $G$ 中加入产生式 \blue{$S' \to S$} 得到的文法。
+    \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    板书演示 $LR(0)$ 句柄寻找自动机
+    \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \[
+      \textsc{closure}(I)
+    \]
+
+    \[
+      \textsc{goto}(I, X)
+    \]
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
