@@ -8,7 +8,7 @@
 
     \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 
-    今日份主题: \red{\bf $LR(1)$ ($LR(0)$) 语法分析器}
+    今日份主题: \red{\bf $LR$ 语法分析器}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -16,11 +16,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    自顶向下的、\\[15pt]
+    自底向上的、\\[15pt]
     不断归约的、\\[15pt]
     基于句柄识别自动机的、\\[15pt]
-    适用于\red{\bf $LR(\ast)$ 文法}的、\\[15pt]
-    $LR(\ast)$ 语法分析器
+    适用于\red{\bf $LR$ 文法}的、\\[15pt]
+    $LR$ 语法分析器
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -209,7 +209,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \purple{\bf $LR(0)$ 分析表}指导$LR(0)$语法分析器
+    \purple{\bf $LR$ 分析表}指导$LR$语法分析器
 
     \vspace{0.30cm}
     \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
@@ -230,24 +230,6 @@
 
     \vspace{0.30cm}
     \input{tables/lr-actions}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{definition}[$LR(0)$文法]
-    如果文法 $G$ 的\red{\bf $LR(0)$分析表}是\blue{\bf 无冲突}的,
-    则 $G$ 是 $LR(0)$ 文法。
-  \end{definition}
-
-  \vspace{0.30cm}
-  \begin{center}
-    \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
-
-    \fig{width = 0.50\textwidth}{figs/lr0-table-expr-add-mul}
-
-    \blue{\bf 两类可能的冲突:} ``移入/归约''冲突、``归约/归约''冲突
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -296,7 +278,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 如何构造 $LR(0)$ 分析表?}
+    \red{\bf 如何构造 $LR$ 分析表?}
 
     \vspace{0.30cm}
     \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
@@ -332,7 +314,7 @@
     \blue{\bf 必要条件:} 当前状态中, 已观察到\blue{某个产生式的完整右部}
 
     \vspace{0.30cm}
-    对于 $LR(0)$ 文法, 这是当前\purple{\bf 唯一}的选择
+    对于 $LR$ 文法, 这是当前\purple{\bf 唯一}的选择
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -375,7 +357,7 @@
           S \dstarrm \alpha Az \dstarrm \alpha\blue{\beta By}z
             \dstarrm \alpha\beta\blue{\gamma} yz
         \]
-      \column{0.50\textwidth}
+      \column{0.52\textwidth}
         \[
           S \dstarrm \alpha BxAz \dstarrm \alpha Bx\blue{y}z \dstarrm \alpha\blue{\gamma} xyz
         \]
@@ -406,6 +388,9 @@
   \begin{center}
     $LR(0)$ \red{\bf 句柄识别有穷状态自动机} (Handle-Finding Automaton)
     \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
+
+    \vspace{0.10cm}
+    红色框中的状态为 \red{\bf 接受状态}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -603,17 +588,16 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    将\red{\bf $LR(0)$ 自动机} 表示成 \blue{\bf $LR(0)$ 分析表}
+    \blue{\bf $LR(0)$ 分析表}
 
-    \vspace{0.30cm}
     \begin{columns}
       \column{0.50\textwidth}
         \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr}
       \column{0.50\textwidth}
-        \fig{width = 0.95\textwidth}{figs/lr0-table-expr-add-mul}
+        \input{tables/lr0-table-expr}
     \end{columns}
 
-    \vspace{0.50cm}
+    \vspace{0.20cm}
     \red{\bf \goto{} 函数}被拆分成 \blue{\action{} 表} {\small (针对终结符)}
     与 \blue{\goto{} 表} {\small (针对非终结符)}
   \end{center}
@@ -623,21 +607,103 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    将\red{\bf $LR(0)$ 自动机} 表示成 \blue{\bf $LR(0)$ 分析表}
+    \begin{enumerate}[(1)]
+      \centering
+      \item $[A \to \alpha \cdot a \beta] \land a \in T
+        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
+    \end{enumerate}
 
-    \vspace{0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.70\textwidth}{figs/lr0-automaton-expr-4}
+      \column{0.50\textwidth}
+        \input{tables/lr0-table-expr}
+    \end{columns}
+
+    \vspace{0.20cm}
+    \begin{enumerate}[(2)]
+      \centering
+      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     \begin{columns}
       \column{0.50\textwidth}
         \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr-2-10}
       \column{0.50\textwidth}
-        \fig{width = 0.95\textwidth}{figs/lr0-table-expr-add-mul-reduce}
+        \input{tables/lr0-table-expr}
     \end{columns}
 
-    \vspace{0.80cm}
-    \blue{\bf 归约动作:} $A \to \alpha \cdot \in s$, 则有 $\action[s, \red{\bf a}] = r\_$
+    \vspace{0.20cm}
+    \begin{enumerate}[(3)]
+      \centering
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
+        \forall t \in T \cup \set{\$}.\; \action[i, t] = rk$
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \vspace{0.30cm}
-    \red{\bf $a$:} 除了已经填入 $\action[s, \_] = s\_$ 的其余所有终结符
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.50\textwidth}{figs/lr0-automaton-expr-1}
+      \column{0.50\textwidth}
+        \input{tables/lr0-table-expr}
+    \end{columns}
+
+    \vspace{0.20cm}
+    \begin{enumerate}[(4)]
+      \centering
+      \item $[S' \to S \cdot] \in I_{i} \implies \action[i, \$] \gets acc$
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf $LR(0)$ 分析表}
+
+    \vspace{0.60cm}
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{25pt}
+      \item $[A \to \alpha \cdot a \beta] \land a \in T
+        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
+        \forall t \in T \cup \set{\$}.\; \action[i, t] = rk$
+      \item $[S' \to S \cdot] \in I_{i} \implies \action[i, \$] \gets acc$
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[$LR(0)$文法]
+    如果文法 $G$ 的\red{\bf $LR(0)$分析表}是\blue{\bf 无冲突}的,
+    则 $G$ 是 $LR(0)$ 文法。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
+
+    \begin{table}
+      \centering
+      \resizebox{0.45\width}{!}{\input{tables/lr0-table-expr}}
+    \end{table}
+
+    \blue{\bf 两类可能的冲突:} ``移入/归约''冲突、``归约/归约''冲突
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -647,8 +713,13 @@
   \begin{center}
     $LR(0)$ 分析表每一行 (状态) \red{\bf 所选用的归约产生式是相同的}
 
-    \fig{width = 0.70\textwidth}{figs/lr0-table-expr-add-mul-reduce-same}
+    \vspace{0.20cm}
+    \begin{table}
+      \centering
+      \resizebox{0.60\width}{!}{\input{tables/lr0-table-expr}}
+    \end{table}
 
+    \vspace{0.20cm}
     \red{\bf 归约}时不需要向前看, 这就是 \red{\bf ``$0$''} 的含义
   \end{center}
 \end{frame}
@@ -696,12 +767,62 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     $LR(0)$ \red{\bf 句柄识别自动机}
+%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
+%
+%     \blue{\bf $Q:$ 为什么是个有穷状态自动机?}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    $LR(0)$ \red{\bf 句柄识别自动机}
-    \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
+    \red{$SLR(1)$ 分析表}
 
-    \blue{\bf $Q:$ 为什么是个有穷状态自动机?}
+    \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
+
+    \blue{\bf 归约:}
+    \begin{enumerate}[(3)]
+      \centering
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
+        \forall t \in \red{\follow(A)}.\; \action[i, t] = rk$
+    \end{enumerate}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[$SLR(1)$文法]
+    如果文法 $G$ 的\red{\bf $SLR(1)$分析表}是\blue{\bf 无冲突}的,
+    则 $G$ 是 $SLR(1)$ 文法。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
+
+    \fig{width = 0.50\textwidth}{figs/lr0-table-expr-add-mul}
+
+    \blue{\bf 两类可能的冲突:} ``移入/归约''冲突、``归约/归约''冲突
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
