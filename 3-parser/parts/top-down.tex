@@ -315,7 +315,6 @@
     \red{\large 如何根据\teal{\first{}与\follow{}集合}计算给定文法$G$的预测分析表?}
 
     \vspace{0.80cm}
-
     按照以下规则, 在表格 $[A, t]$ 中填入生成式 $A \to \alpha$ (编号):
 
     \begin{gather}
@@ -328,6 +327,26 @@
       如果文法 $G$ 的\red{\bf 预测分析表}是\blue{\bf 无冲突}的,
       则 $G$ 是 $LL(1)$ 文法。
     \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{``你是电, 你是光, 你是\red{\bf 唯一}的神话''}
+
+    \vspace{0.80cm}
+    按照以下规则, 在表格 $[A, t]$ 中填入生成式 $A \to \alpha$ (编号):
+
+    \setcounter{equation}{0}
+    \begin{gather}
+      t \in \first(\alpha) \\[6pt]
+      \alpha \dstar \epsilon \land t \in \follow(A)
+    \end{gather}
+
+    \vspace{0.60cm}
+    \blue{\bf 因其``唯一'', 必要变充分}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -541,7 +560,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.80\textwidth}{figs/ll1-stack-expr}
+    \blue{\bf 文件结束符 $\$$的必要性}
+
+    \fig{width = 0.70\textwidth}{figs/ll1-stack-expr}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -581,15 +602,5 @@
 
     报错、\blue{\bf 恢复}、继续分析
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

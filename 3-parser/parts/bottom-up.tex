@@ -17,8 +17,8 @@
 \begin{frame}{}
   \begin{center}
     自顶向下的、\\[15pt]
-    不断规约的、\\[15pt]
-    基于句柄查找自动机的、\\[15pt]
+    不断归约的、\\[15pt]
+    基于句柄识别自动机的、\\[15pt]
     适用于\red{\bf $LR(\ast)$ 文法}的、\\[15pt]
     $LR(\ast)$ 语法分析器
   \end{center}
@@ -180,7 +180,7 @@
     \red{$Q_{1}:$} 何时归约? \gray{(何时移入?)}
 
     \vspace{0.80cm}
-    \red{$Q_{2}:$} 按哪条产生式进行规约?
+    \red{$Q_{2}:$} 按哪条产生式进行归约?
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -344,7 +344,7 @@
 
     \begin{definition}[句柄 (Handle)]
       在输入串的(唯一)反向最右推导中, \purple{\bf 如果}下一步是逆用产生式 $A \to \alpha$
-      将$\alpha$规约为$A$, 则称 $\alpha$ 是\blue{当前句型的}\red{\bf 句柄}。
+      将$\alpha$归约为$A$, 则称 $\alpha$ 是\blue{当前句型的}\red{\bf 句柄}。
     \end{definition}
 
     \vspace{0.50cm}
