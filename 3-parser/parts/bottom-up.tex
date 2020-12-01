@@ -603,6 +603,101 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    将\red{\bf $LR(0)$ 自动机} 表示成 \blue{\bf $LR(0)$ 分析表}
+
+    \vspace{0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr}
+      \column{0.50\textwidth}
+        \fig{width = 0.95\textwidth}{figs/lr0-table-expr-add-mul}
+    \end{columns}
+
+    \vspace{0.50cm}
+    \red{\bf \goto{} 函数}被拆分成 \blue{\action{} 表} {\small (针对终结符)}
+    与 \blue{\goto{} 表} {\small (针对非终结符)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    将\red{\bf $LR(0)$ 自动机} 表示成 \blue{\bf $LR(0)$ 分析表}
+
+    \vspace{0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr-2-10}
+      \column{0.50\textwidth}
+        \fig{width = 0.95\textwidth}{figs/lr0-table-expr-add-mul-reduce}
+    \end{columns}
+
+    \vspace{0.80cm}
+    \blue{\bf 归约动作:} $A \to \alpha \cdot \in s$, 则有 $\action[s, \red{\bf a}] = r\_$
+
+    \vspace{0.30cm}
+    \red{\bf $a$:} 除了已经填入 $\action[s, \_] = s\_$ 的其余所有终结符
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(0)$ 分析表每一行 (状态) \red{\bf 所选用的归约产生式是相同的}
+
+    \fig{width = 0.70\textwidth}{figs/lr0-table-expr-add-mul-reduce-same}
+
+    \red{\bf 归约}时不需要向前看, 这就是 \red{\bf ``$0$''} 的含义
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf $LR(0)$ 语法分析器}
+
+    \vspace{0.80cm}
+    \begin{columns}
+      \column{0.10\textwidth}
+      \column{0.80\textwidth}
+        \begin{description}
+          \setlength{\itemsep}{15pt}
+          \item[$L:$] \purple{\bf 从左向右} (Left-to-right) 扫描输入
+          \item[$R:$] 构建\purple{\bf 反向} (Reverse) \purple{\bf 最右推导}
+          \item[$0:$] \purple{\bf 归约}时无需向前看
+        \end{description}
+      \column{0.10\textwidth}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf $LR(0)$ 自动机}与\blue{\bf 栈}之间的互动关系
+
+    \vspace{0.80cm}
+    向前走 $\Leftrightarrow$ 移入
+
+    \vspace{0.50cm}
+    回溯   $\Leftrightarrow$ 归约
+
+    \vspace{1.00cm}
+    \purple{\bf 自动机才是本质, 栈是实现方式}
+
+    \vspace{0.20cm}
+    (用栈记住``来时的路'', 以便回溯)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     $LR(0)$ \red{\bf 句柄识别自动机}
     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
 
