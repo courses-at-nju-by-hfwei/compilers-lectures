@@ -415,7 +415,7 @@
     $LR(0)$ \red{\bf 句柄识别自动机}
     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
 
-    \red{\bf 状态}是什么? 状态之间如何\red{\bf 转移}?
+    \blue{\bf 状态是什么?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -443,11 +443,24 @@
   \begin{center}
     (产生式 $A \epsilon$ 只有一个项 \blue{$A \to \cdot$})
 
+    \pause
     \vspace{0.30cm}
     \blue{\bf 项}指明了语法分析器已经观察到了某个产生式的哪些部分
 
     \vspace{0.20cm}
-    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号}
+    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 状态}刻画了``当前观察到的\purple{\bf 针对所有}\blue{\bf 产生式的右部的前缀}''
+
+    \fig{width = 0.50\textwidth}{figs/lr0-automaton-expr-0-4-8}
+
+    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -500,7 +513,8 @@
     \vspace{0.80cm}
     当语法分析器\red{\bf 面对$\$$}且\red{\bf 要使用 $S' \to S$ 进行归约}时, 输入符号串被接受
 
-    \vspace{0.20cm}
+    \pause
+    \vspace{0.30cm}
     \teal{注: 此``接受'' (输入串) 非彼``接受'' (句柄识别自动机)}
   \end{center}
 \end{frame}
@@ -527,9 +541,6 @@
 
     \vspace{0.30cm}
     \blue{\bf 初始状态是什么?}
-
-    \vspace{0.30cm}
-    \blue{\bf 状态之间如何转移?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -537,13 +548,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号}
+    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
 
     \begin{columns}
       \column{0.50\textwidth}
         \input{cfg/cfg-expr-add-mul-mul-first-aug-numbering}
       \column{0.50\textwidth}
-        \fig{width = 0.55\textwidth}{figs/lr-expr-init-state}
+        \fig{width = 0.50\textwidth}{figs/lr-expr-init-state}
     \end{columns}
 
     \[
@@ -556,8 +567,25 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    $LR(0)$ \red{\bf 句柄识别自动机}
+
+    \vspace{0.30cm}
+    \fig{width = 0.55\textwidth}{figs/dao}
+
+    \vspace{0.30cm}
+    \blue{\bf 状态之间如何转移?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     板书演示 $LR(0)$ \red{\bf 句柄识别自动机}的构造过程
-    \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
+    \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
+
+    \vspace{0.20cm}
+    状态编号约定
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -568,9 +596,9 @@
     \fig{width = 0.70\textwidth}{figs/lr-closure-alg}
 
     \begin{align*}
-      \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
-          \blue{[A \to \alpha X \cdot \beta]}
-        \Big\lvert \red{[A \to \alpha \cdot X \beta]} \in I \Big\}\Big)
+      J = \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
+            \blue{[A \to \alpha X \cdot \beta]}
+          \Big\lvert \red{[A \to \alpha \cdot X \beta]} \in I \Big\}\Big)
     \end{align*}
     \[
       (X \in N \cup T \cup \set{\$})
@@ -598,8 +626,8 @@
     \end{columns}
 
     \vspace{0.20cm}
-    \red{\bf \goto{} 函数}被拆分成 \blue{\action{} 表} {\small (针对终结符)}
-    与 \blue{\goto{} 表} {\small (针对非终结符)}
+    \red{\goto{}函数}被拆分成 \blue{\action{}表} {\small (针对终结符)}
+    与 \blue{\goto{}表} {\small (针对非终结符)}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -609,7 +637,7 @@
   \begin{center}
     \begin{enumerate}[(1)]
       \centering
-      \item $[A \to \alpha \cdot a \beta] \land a \in T
+      \item $[A \to \alpha \cdot a \beta] \in I_{i} \land a \in T
         \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
     \end{enumerate}
 
@@ -642,8 +670,8 @@
     \vspace{0.20cm}
     \begin{enumerate}[(3)]
       \centering
-      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
-        \forall t \in T \cup \set{\$}.\; \action[i, t] = rk$
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
+        \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk$
     \end{enumerate}
   \end{center}
 \end{frame}
@@ -676,11 +704,11 @@
     \vspace{0.60cm}
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{25pt}
-      \item $[A \to \alpha \cdot a \beta] \land a \in T
+      \item $[A \to \alpha \cdot a \beta] \in I_{i} \land a \in T
         \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
       \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
-      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
-        \forall t \in T \cup \set{\$}.\; \action[i, t] = rk$
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
+        \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk$
       \item $[S' \to S \cdot] \in I_{i} \implies \action[i, \$] \gets acc$
     \end{enumerate}
   \end{center}
@@ -787,7 +815,7 @@
     \blue{\bf 归约:}
     \begin{enumerate}[(3)]
       \centering
-      \item $[k: A \to \alpha \cdot] \in I_{i} \land k > 0 \implies
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
         \forall t \in \red{\follow(A)}.\; \action[i, t] = rk$
     \end{enumerate}
   \end{center}
@@ -814,15 +842,403 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    非 $SLR(1)$ 文法举例
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.60\textwidth}{figs/cfg-LR}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/lr0-automaton-LR-2}
+  \end{columns}
+
+  \vspace{0.30cm}
+  \[
+    [S \to L \cdot = R] \in I_{2} \implies \action(I_{2}, =) \gets s6
+  \]
+
+  \[
+    =\; \in \follow(R) \implies \action(I_{2}, =) \gets r5
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    即使考虑了\red{$=\; \in \follow(A)$}, 对该文法来说仍然不够
+
+    \vspace{0.20cm}
+    因为, 这仅仅说明在\red{\bf 某个}句型中, $a$可以跟在$A$后面
+
+    \fig{width = 0.80\textwidth}{figs/lr0-automaton-SLR}
+
+    该文法没有\blue{\bf 以 $R = \cdots$ 开头}的最右句型
+    % \pause
+    % \vspace{0.20cm}
+    % 不仅要考虑\red{$a \in \follow(A)$}, 还要考虑``\blue{$Aa$}''所处的当前状态 ($\blue{\beta} Aa$)
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    希望$LR$语法分析器的每个状态能\blue{\bf 尽可能精确}地
+
+    \vspace{0.30cm}
+    指明\red{\bf 哪些输入符号可以跟在句柄$A \to \alpha$的后面}
+
+    \pause
+    \vspace{1.00cm}
+    在 $LR(0)$ 自动机中, 某个项集 \purple{$I_{j}$} 中包含 \purple{$[A \to \alpha \cdot]$}
+
+    \vspace{0.50cm}
+    则在之前的某个项集 \teal{$I_{i}$} 中包含 \teal{$[B \to \beta \cdot A \gamma]$}
+
+    \vspace{0.50cm}
+    \red{\fbox{这表明只有$a \in \first(\gamma)$时, 才可以进行 $A \to \alpha$ 归约}}
+
+    \pause
+    \vspace{0.80cm}
+    但是, 对$I_{i}$求闭包时, 仅得到 $[A \to \cdot \alpha]$, 丢失了 $\first(\gamma)$ 信息
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[$LR(1)$项 (Item)]
+      \[
+        [A \to \alpha \cdot \beta, \red{a}] \qquad (a \in T \cup \set{\$})
+      \]
+
+      此处, $a$ 是\red{\bf 向前看符号}, 数量为 \red{\bf 1}.
+    \end{definition}
+
+    \pause
+    \vspace{0.80cm}
+    思想: $\alpha$ 在栈顶, 且输入中开头的是可以从$\beta a$推导出的符号串
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$\red{\bf 句柄识别自动机}
+
+    \[
+      [A \to \alpha \cdot B \beta, \red{a}] \in I \qquad (a \in T \cup \set{\$})
+    \]
+
+    \fig{width = 0.80\textwidth}{figs/lr1-closure}
+    \[
+      \forall \blue{b \in \first(\beta a)}.\; [B \to \cdot \gamma, b] \in I
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$\red{\bf 句柄识别自动机}
+
+    \vspace{0.60cm}
+    \fig{width = 0.80\textwidth}{figs/lr1-goto}
+    \begin{align*}
+      J = \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
+            \blue{[A \to \alpha X \cdot \beta]}
+            \Big\lvert \red{[A \to \alpha \cdot X \beta]} \in I \Big\}\Big)
+    \end{align*}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$\red{\bf 句柄识别自动机}
+
+    \vspace{0.60cm}
+    \fig{width = 0.80\textwidth}{figs/lr1-items}
+
+    \vspace{0.60cm}
+    初始状态: $\closure({[S' \to \cdot S, \red{\$}]})$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    板书演示: $LR(1)$自动机的构造过程
+
+    \begin{columns}
+      \column{0.30\textwidth}
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \uncover<2->{
+        \begin{table}
+          \begin{tabular}{c|c|c}
+            \hline
+              & \first & \follow \\ \hline \hline
+            $S$ & $\set{c, d}$ & $\$$ \\ \hline
+            $C$ & $\set{c, d}$ & $\set{c, d, \$}$ \\ \hline
+          \end{tabular}}
+    \end{table}
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$自动机构建$LR(1)$分析表
+
+    \vspace{0.60cm}
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{25pt}
+      \item $[A \to \alpha \cdot a \beta, \purple{b}] \in I_{i} \land a \in T
+        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+      \item $[k: A \to \alpha \cdot, \red{a}] \in I_{i} \land \blue{A \neq S'} \implies
+        \action[i, \red{a}] = rk$
+      \item $[S' \to S \cdot, \purple{\$}] \in I_{i} \implies \action[i, \$] \gets acc$
+    \end{enumerate}
+
+    \pause
+    \vspace{0.20cm}
+    \begin{definition}[$LR(1)$文法]
+      如果文法 $G$ 的\red{\bf $LR(1)$分析表}是\blue{\bf 无冲突}的,
+      则 $G$ 是 $LR(1)$ 文法。
+    \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.60\textwidth}
+        \fig{width = 1.10\textwidth}{figs/lr1-automaton-SCC}
+      \column{0.40\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-table-SCC}
+    \end{columns}
+
+    \vspace{0.60cm}
+    $LR(1)$ 通过\red{\bf 不同的向前看符号}, 区分了状态对 $(3, 6)$, $(4, 7)$ 与 $(8, 9)$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(0)$、$SLR(1)$、$LR(1)$ 的\red{\bf 归约}条件
+
+    \[
+      [k: A \to \alpha \cdot] \in I_{i} \land A \neq S' \implies
+        \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk
+    \]
+
+    \[
+      [k: A \to \alpha \cdot] \in I_{i} \land A \neq S' \implies
+        \forall t \in \red{\follow(A)}.\; \action[i, t] = rk
+    \]
+
+    \[
+      [k: A \to \alpha \cdot, \red{a}] \in I_{i} \land A \neq S' \implies
+        \action[i, \red{a}] = rk
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$虽然强大, 但是生成的$LR(1)$分析表可能过大, 状态过多
+
+    \begin{columns}
+      \column{0.60\textwidth}
+        \fig{width = 1.10\textwidth}{figs/lr1-automaton-SCC}
+      \column{0.40\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-table-SCC}
+    \end{columns}
+
+    \pause
+    \vspace{0.10cm}
+    \red{$LALR(1):$} 合并具有相同\blue{\bf 核心 $LR(0)$}项的状态 (忽略不同的向前看符号)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/lr1-table-SCC}
+      \column{0.50\textwidth}
+        \fig{width = 0.95\textwidth}{figs/lalr-table-SCC}
+    \end{columns}
+
+    \pause
+    \vspace{0.60cm}
+    \red{$Q:$ \goto{}函数怎么办?}
+
+    \pause
+    \vspace{0.50cm}
+    \teal{$A:$ 可以合并的状态的\goto{}目标(状态)一定也是可以合并的}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 对于 $LR(1)$ 文法, 合并得到的$LALR(1)$ 分析表是否会引入冲突?}
+
+    \begin{theorem}
+      $LALR(1)$ 分析表\blue{\bf 不会}引入移入/归约冲突。
+    \end{theorem}
+
+    \pause
+    \vspace{0.50cm}
+    \purple{\bf 反证法}
+
+    \vspace{0.30cm}
+    假设合并后出现 $[A \to \alpha \cdot, a]$ 与 $[B \to \beta \cdot a \gamma, b]$
+
+    \vspace{0.60cm}
+    则在$LR(1)$自动机中,
+
+    \vspace{0.20cm}
+    存在某状态同时包含 $[A \to \alpha \cdot, a]$ 与 $[B \to \beta \cdot a \gamma, c]$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 对于 $LR(1)$ 文法, 合并得到的$LALR(1)$ 分析表是否会引入冲突?}
+
+    \begin{theorem}
+      $LALR(1)$ 分析表\blue{\bf 可能会}引入归约/归约冲突。
+    \end{theorem}
+
+    \[
+      L(G) = \set{acd, ace, bcd, bce}
+    \]
+    \fig{width = 0.50\textwidth}{figs/lalr-rr-conflict}
+
+    \pause
+    \vspace{-0.30cm}
+    \begin{gather*}
+      \set{[A \to c \cdot, d], [B \to c \cdot, e]} \\
+      \set{[A \to c \cdot, e], [B \to c \cdot, d]} \\[5pt]
+      \set{[A \to c \cdot, \red{d/e}], [B \to c \cdot, \red{d/e}]} \\
+    \end{gather*}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 好消息:} 善用 $LR$ 语法分析器, 处理\blue{\bf 二义性}文法
+
+    \fig{width = 0.50\textwidth}{figs/girl-woman}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 表达式文法}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \input{cfg/cfg-expr-add-mul}
+      \column{0.50\textwidth}
+        \input{cfg/cfg-expr-add-mul-mul-first}
+    \end{columns}
+
+    \input{cfg/cfg-expr-add-mul-no-left-recursion}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 表达式文法:} 使用 $SLR(1)$ 语法分析方法
+
+    \vspace{-0.50cm}
+    \input{cfg/cfg-expr-add-mul}
+
+    \vspace{-0.60cm}
+    \begin{columns}
+      \column{0.60\textwidth}
+        \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr-E}
+      \column{0.45\textwidth}
+        \[
+          \set{+, \ast} \subseteq \follow(E)
+        \]
+
+        \pause
+        \begin{center}
+          考虑到\blue{\bf 结合性与优先级}:
+          \fig{width = 1.00\textwidth}{figs/slr-table-expr-E}
+        \end{center}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 条件语句文法}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/cfg-if-then-else}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-short-2}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 条件语句文法:} 使用$SLR(1)$语法分析方法
+    \fig{width = 0.30\textwidth}{figs/cfg-if-then-else-short-2}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr0-items-if-then-else}
+        \[
+          e \in \follow(S)
+        \]
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/slr-table-if-then-else-short-2}
+        \[
+          \action[4, e] = s5
+        \]
+    \end{columns}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
