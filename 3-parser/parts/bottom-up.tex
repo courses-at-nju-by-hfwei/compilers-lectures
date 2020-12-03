@@ -376,9 +376,9 @@
       \red{\bf 存在}一种$LR$语法分析方法, 保证\blue{\bf 句柄总是出现在栈顶}。
     \end{theorem}
 
+    \pause
     \vspace{0.80cm}
-    在自动机的当前状态识别可能的句柄 (观察到的\purple{完整右部}) \\[5pt]
-    (\blue{自动机的当前状态 $\Leftrightarrow$ 栈顶})
+    希望能够在自动机的当前状态识别可能的句柄
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -387,37 +387,37 @@
 \begin{frame}{}
   \begin{center}
     $LR(0)$ \red{\bf 句柄识别有穷状态自动机} (Handle-Finding Automaton)
-    \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
-
-    \vspace{0.10cm}
-    红色框中的状态为 \red{\bf 接受状态}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    $LR(0)$ \red{\bf 句柄识别自动机}
-
-    \vspace{0.80cm}
-    为给定的\red{\bf 文法$G$}构造相应的句柄识别自动机
-
-    \vspace{0.80cm}
-    该自动机用于识别该\blue{\bf 文法$G$所允许的所有可能的句柄}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    $LR(0)$ \red{\bf 句柄识别自动机}
     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
 
+    \vspace{0.10cm}
     \blue{\bf 状态是什么?}
   \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     $LR(0)$ \red{\bf 句柄识别自动机}
+%
+%     \vspace{0.80cm}
+%     为给定的\red{\bf 文法$G$}构造相应的句柄识别自动机
+%
+%     \vspace{0.80cm}
+%     该自动机用于识别该\blue{\bf 文法$G$所允许的所有可能的句柄}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     $LR(0)$ \red{\bf 句柄识别自动机}
+%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
+%
+%     \blue{\bf 状态是什么?}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -430,25 +430,25 @@
     文法 $G$ 的一个 \blue{\bf $LR(0)$ 项}是 $G$ 的某个产生式加上一个位于体部的\blue{\bf 点}。
   \end{definition}
 
-  \[
-    A \to XYZ
-  \]
-  \begin{align*}
-    A &\to \cdot XYZ \\[6pt]
-    A &\to X \cdot YZ \\[6pt]
-    A &\to XY \cdot Z \\[6pt]
-    A &\to XYZ \cdot
-  \end{align*}
-
   \begin{center}
-    (产生式 $A \epsilon$ 只有一个项 \blue{$A \to \cdot$})
+    \blue{\bf 项}指明了语法分析器已经观察到了某个产生式的某个前缀
 
     \pause
-    \vspace{0.30cm}
-    \blue{\bf 项}指明了语法分析器已经观察到了某个产生式的哪些部分
+    \[
+      A \to XYZ
+    \]
+    \begin{align*}
+      [A &\to \cdot XYZ] \\[6pt]
+      [A &\to X \cdot YZ] \\[6pt]
+      [A &\to XY \cdot Z] \\[6pt]
+      [A &\to XYZ \cdot]
+    \end{align*}
 
-    \vspace{0.20cm}
-    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
+    (产生式 $A \to \epsilon$ 只有一个项 \blue{$[A \to \cdot]$})
+
+    % \pause
+    % \vspace{0.20cm}
+    % \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -456,10 +456,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 状态}刻画了``当前观察到的\purple{\bf 针对所有}\blue{\bf 产生式的右部的前缀}''
-
+    % \red{\bf 状态}刻画了``当前观察到的\purple{\bf 针对所有}\blue{\bf 产生式的右部的前缀}''
     \fig{width = 0.50\textwidth}{figs/lr0-automaton-expr-0-4-8}
 
+    \vspace{0.30cm}
     \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
   \end{center}
 \end{frame}
@@ -504,7 +504,7 @@
 \begin{frame}{}
   \begin{center}
     \begin{definition}[增广文法 (Augmented Grammar)]
-      文法 $G$ 的\red{\bf 增广文法}是在 $G$ 中加入产生式 \blue{$S' \to S$} 得到的文法。
+      文法 $G$ 的\red{\bf 增广文法} $G'$ 是在 $G$ 中加入产生式 \blue{$S' \to S$} 得到的文法。
     \end{definition}
 
     \vspace{0.50cm}
@@ -512,23 +512,19 @@
 
     \vspace{0.80cm}
     当语法分析器\red{\bf 面对$\$$}且\red{\bf 要使用 $S' \to S$ 进行归约}时, 输入符号串被接受
-
-    \pause
-    \vspace{0.30cm}
-    \teal{注: 此``接受'' (输入串) 非彼``接受'' (句柄识别自动机)}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    $LR(0)$ \red{\bf 句柄识别自动机}
-    \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
-
-    \teal{注: 此``接受'' (输入串) 非彼``接受'' (句柄识别自动机)}
-  \end{center}
-\end{frame}
+% \begin{frame}{}
+%   \begin{center}
+%     $LR(0)$ \red{\bf 句柄识别自动机}
+%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
+%
+%     \teal{注: 此``接受'' (输入串) 非彼``接受'' (句柄识别自动机)}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -592,8 +588,14 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/lr0-closure-alg}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
-    \fig{width = 0.70\textwidth}{figs/lr-closure-alg}
+    % \fig{width = 0.70\textwidth}{figs/lr-goto-alg}
 
     \begin{align*}
       J = \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
@@ -601,7 +603,7 @@
           \Big\lvert \red{[A \to \alpha \cdot X \beta]} \in I \Big\}\Big)
     \end{align*}
     \[
-      (X \in N \cup T \cup \set{\$})
+      (X \in N \cup T)
     \]
   \end{center}
 \end{frame}
@@ -609,7 +611,23 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/lr-items}
+  \fig{width = 0.80\textwidth}{figs/lr0-items}
+
+  \pause
+  \vspace{0.50cm}
+  \begin{center}
+    接受状态: $F = \set{I \in C \mid \exists k.\; [k: A \to \alpha \cdot] \in I}$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
+
+    红色框中的状态为 \red{\bf 接受状态}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -637,8 +655,7 @@
   \begin{center}
     \begin{enumerate}[(1)]
       \centering
-      \item $[A \to \alpha \cdot a \beta] \in I_{i} \land a \in T
-        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
     \end{enumerate}
 
     \begin{columns}
@@ -651,7 +668,7 @@
     \vspace{0.20cm}
     \begin{enumerate}[(2)]
       \centering
-      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \action[i, A] \gets gj$
     \end{enumerate}
   \end{center}
 \end{frame}
@@ -699,14 +716,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{\bf $LR(0)$ 分析表}
+    \blue{\bf $LR(0)$ 分析表构建规则}
 
     \vspace{0.60cm}
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{25pt}
-      \item $[A \to \alpha \cdot a \beta] \in I_{i} \land a \in T
-        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
-      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \action[i, A] \gets gj$
       \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
         \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk$
       \item $[S' \to S \cdot] \in I_{i} \implies \action[i, \$] \gets acc$
@@ -955,6 +971,9 @@
             \blue{[A \to \alpha X \cdot \beta]}
             \Big\lvert \red{[A \to \alpha \cdot X \beta]} \in I \Big\}\Big)
     \end{align*}
+    \[
+      (X \in N \cup T)
+    \]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -1001,14 +1020,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    $LR(1)$自动机构建$LR(1)$分析表
+    \red{\bf $LR(1)$分析表构建规则}
 
     \vspace{0.60cm}
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{25pt}
-      \item $[A \to \alpha \cdot a \beta, \purple{b}] \in I_{i} \land a \in T
-        \land \goto(I_{i}, a) = I_{j} \implies \action[i, a] \gets sj$
-      \item $\goto(I_{i}, A) = I_{j} \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in T \implies \action[i, A] \gets gj$
       \item $[k: A \to \alpha \cdot, \red{a}] \in I_{i} \land \blue{A \neq S'} \implies
         \action[i, \red{a}] = rk$
       \item $[S' \to S \cdot, \purple{\$}] \in I_{i} \implies \action[i, \$] \gets acc$
@@ -1043,7 +1061,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    $LR(0)$、$SLR(1)$、$LR(1)$ 的\red{\bf 归约}条件
+    总结: $LR(0)$、$SLR(1)$、$LR(1)$ 的\red{\bf 归约}条件
 
     \[
       [k: A \to \alpha \cdot] \in I_{i} \land A \neq S' \implies
@@ -1108,6 +1126,7 @@
   \begin{center}
     \red{$Q:$ 对于 $LR(1)$ 文法, 合并得到的$LALR(1)$ 分析表是否会引入冲突?}
 
+    \pause
     \begin{theorem}
       $LALR(1)$ 分析表\blue{\bf 不会}引入移入/归约冲突。
     \end{theorem}
@@ -1137,6 +1156,7 @@
       $LALR(1)$ 分析表\blue{\bf 可能会}引入归约/归约冲突。
     \end{theorem}
 
+    \pause
     \[
       L(G) = \set{acd, ace, bcd, bce}
     \]
