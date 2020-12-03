@@ -258,8 +258,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    % \red{\bf $LR(\ast)$语法分析器框架}
-
     \input{algs/lr-framework}
   \end{center}
 \end{frame}
@@ -396,31 +394,6 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     $LR(0)$ \red{\bf 句柄识别自动机}
-%
-%     \vspace{0.80cm}
-%     为给定的\red{\bf 文法$G$}构造相应的句柄识别自动机
-%
-%     \vspace{0.80cm}
-%     该自动机用于识别该\blue{\bf 文法$G$所允许的所有可能的句柄}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     $LR(0)$ \red{\bf 句柄识别自动机}
-%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
-%
-%     \blue{\bf 状态是什么?}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
     \red{\bf 状态}刻画了``当前观察到的\purple{\bf 针对所有}\blue{\bf 产生式的右部的前缀}''
@@ -445,22 +418,6 @@
     \end{align*}
 
     (产生式 $A \to \epsilon$ 只有一个项 \blue{$[A \to \cdot]$})
-
-    % \pause
-    % \vspace{0.20cm}
-    % \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    % \red{\bf 状态}刻画了``当前观察到的\purple{\bf 针对所有}\blue{\bf 产生式的右部的前缀}''
-    \fig{width = 0.50\textwidth}{figs/lr0-automaton-expr-0-4-8}
-
-    \vspace{0.30cm}
-    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -514,17 +471,6 @@
     当语法分析器\red{\bf 面对$\$$}且\red{\bf 要使用 $S' \to S$ 进行归约}时, 输入符号串被接受
   \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     $LR(0)$ \red{\bf 句柄识别自动机}
-%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
-%
-%     \teal{注: 此``接受'' (输入串) 非彼``接受'' (句柄识别自动机)}
-%   \end{center}
-% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -595,8 +541,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    % \fig{width = 0.70\textwidth}{figs/lr-goto-alg}
-
     \begin{align*}
       J = \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
             \blue{[A \to \alpha X \cdot \beta]}
@@ -627,6 +571,17 @@
     \fig{width = 0.60\textwidth}{figs/lr0-automaton-expr}
 
     红色框中的状态为 \red{\bf 接受状态}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.50\textwidth}{figs/lr0-automaton-expr-0-4-8}
+
+    \vspace{0.30cm}
+    \fbox{\blue{\bf 点}指示了\purple{\bf 栈顶}, 左边(与路径)是栈中内容, 右边是期望看到的文法符号串}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -716,7 +671,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{\bf $LR(0)$ 分析表构建规则}
+    \blue{\bf $LR(0)$ 分析表构造规则}
 
     \vspace{0.60cm}
     \begin{enumerate}[(1)]
@@ -812,17 +767,6 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     $LR(0)$ \red{\bf 句柄识别自动机}
-%     \fig{width = 0.55\textwidth}{figs/lr0-automaton-expr}
-%
-%     \blue{\bf $Q:$ 为什么是个有穷状态自动机?}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
     \red{$SLR(1)$ 分析表}
@@ -892,9 +836,6 @@
     \fig{width = 0.80\textwidth}{figs/lr0-automaton-SLR}
 
     该文法没有\blue{\bf 以 $R = \cdots$ 开头}的最右句型
-    % \pause
-    % \vspace{0.20cm}
-    % 不仅要考虑\red{$a \in \follow(A)$}, 还要考虑``\blue{$Aa$}''所处的当前状态 ($\blue{\beta} Aa$)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -1020,7 +961,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf $LR(1)$分析表构建规则}
+    \red{\bf $LR(1)$分析表构造规则}
 
     \vspace{0.60cm}
     \begin{enumerate}[(1)]
