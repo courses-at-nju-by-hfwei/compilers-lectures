@@ -722,16 +722,16 @@
     则 $G$ 是 $LR(0)$ 文法。
   \end{definition}
 
-  \vspace{0.30cm}
   \begin{center}
-    \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
+    \begin{columns}
+      \column{0.25\textwidth}
+      \column{0.50\textwidth}
+        \input{tables/lr0-table-expr}
+      \column{0.25\textwidth}
+    \end{columns}
 
-    \begin{table}
-      \centering
-      \resizebox{0.45\width}{!}{\input{tables/lr0-table-expr}}
-    \end{table}
-
-    \blue{\bf 两类可能的冲突:} ``移入/归约''冲突、``归约/归约''冲突
+    \vspace{0.20cm}
+    非$LR(0)$分析表/文法
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -741,11 +741,12 @@
   \begin{center}
     $LR(0)$ 分析表每一行 (状态) \red{\bf 所选用的归约产生式是相同的}
 
-    \vspace{0.20cm}
-    \begin{table}
-      \centering
-      \resizebox{0.60\width}{!}{\input{tables/lr0-table-expr}}
-    \end{table}
+    \begin{columns}
+      \column{0.25\textwidth}
+      \column{0.50\textwidth}
+        \input{tables/lr0-table-expr}
+      \column{0.25\textwidth}
+    \end{columns}
 
     \vspace{0.20cm}
     \red{\bf 归约}时不需要向前看, 这就是 \red{\bf ``$0$''} 的含义
@@ -1240,5 +1241,11 @@
         \]
     \end{columns}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
