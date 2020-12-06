@@ -623,7 +623,7 @@
     \vspace{0.20cm}
     \begin{enumerate}[(2)]
       \centering
-      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \goto[i, A] \gets gj$
     \end{enumerate}
   \end{center}
 \end{frame}
@@ -677,7 +677,7 @@
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{25pt}
       \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
-      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \goto[i, A] \gets gj$
       \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
         \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk$
       \item $[S' \to S \cdot] \in I_{i} \implies \action[i, \$] \gets acc$
@@ -854,6 +854,7 @@
 
     \vspace{0.50cm}
     则在之前的某个项集 \teal{$I_{i}$} 中包含 \teal{$[B \to \beta \cdot A \gamma]$}
+    与 \teal{$[A \to \cdot \alpha]$}
 
     \vspace{0.50cm}
     \red{\fbox{这表明只有$a \in \first(\gamma)$时, 才可以进行 $A \to \alpha$ 归约}}
@@ -878,7 +879,14 @@
 
     \pause
     \vspace{0.80cm}
-    思想: $\alpha$ 在栈顶, 且输入中开头的是可以从$\beta a$推导出的符号串
+    思想: $\alpha$ 在栈顶, 且剩余输入中\red{\bf 开头}的是可以从$\beta a$推导出的符号串
+
+    \pause
+    \vspace{0.50cm}
+    \[
+      \blue{[A \to \alpha \cdot, a]}
+    \]
+    只有下一个输入符号为 $a$ 时, 才可以按照 $A \to \alpha$ 进行归约
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -967,7 +975,7 @@
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{25pt}
       \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
-      \item $\goto(I_{i}, A) = I_{j} \land A \in T \implies \action[i, A] \gets gj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in T \implies \goto[i, A] \gets gj$
       \item $[k: A \to \alpha \cdot, \red{a}] \in I_{i} \land \blue{A \neq S'} \implies
         \action[i, \red{a}] = rk$
       \item $[S' \to S \cdot, \purple{\$}] \in I_{i} \implies \action[i, \$] \gets acc$
@@ -995,6 +1003,25 @@
 
     \vspace{0.60cm}
     $LR(1)$ 通过\red{\bf 不同的向前看符号}, 区分了状态对 $(3, 6)$, $(4, 7)$ 与 $(8, 9)$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \uncover<3->{\teal{$w = ccdcd\$$}}
+
+    \begin{columns}
+      \column{0.30\textwidth}
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \[
+          \blue{L(G) = \uncover<2->{c^{\ast}dc^{\ast}d}}
+        \]
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -1037,6 +1064,72 @@
     \pause
     \vspace{0.10cm}
     \red{$LALR(1):$} 合并具有相同\blue{\bf 核心 $LR(0)$}项的状态 (忽略不同的向前看符号)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{$w = ccdcd\$$}
+
+    \begin{columns}
+      \column{0.30\textwidth}
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \[
+          \blue{L(G) = c^{\ast}dc^{\ast}d}
+        \]
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+
+    \vspace{0.20cm}
+    \red{\bf $Q:$ 合并 $I_{4}$ 与 $I_{7}$ 为 $I_{47}$
+      (\blue{$\set{[C \to d \cdot, c/d/\$]}$}), 会怎样?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{theorem}
+      如果合并后的语法分析器\blue{\bf 无冲突}, 则它的行为与原分析器\red{\bf 一致}。
+    \end{theorem}
+
+    \vspace{0.80cm}
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{15pt}
+      \item \purple{\bf 接受}原分析器所接受的句子, 且状态转移相同
+      \item \purple{\bf 拒绝}原分析器所拒绝的句子, 但可能多一些不必要的\teal{\bf 归约}动作
+
+        \pause
+        \vspace{0.50cm}
+        (``实际上, 这个错误会在移入任何新的输入符号之前就被发现'')
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{$w = ccd\$$}
+
+    \begin{columns}
+      \column{0.30\textwidth}
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \[
+          \blue{L(G) = c^{\ast}dc^{\ast}d}
+        \]
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+
+    \vspace{0.20cm}
+    \red{\bf 继续合并 $(I_{8}, I_{9})$ 以及 $(I_{3}, I_{6})$}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -1111,6 +1204,26 @@
       \set{[A \to c \cdot, \red{d/e}], [B \to c \cdot, \red{d/e}]} \\
     \end{gather*}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf $LALR(1)$语法分析器的优点}
+
+    \vspace{0.80cm}
+    状态数量与$SLR(1)$语法分析器的状态数量相同
+
+    \vspace{0.80cm}
+    对于$LR(1)$文法, 不会产生移入/归约冲突
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -1202,11 +1315,5 @@
         \]
     \end{columns}
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
