@@ -1,1 +1,162 @@
 % sdt.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}[b]
+    \column{0.25\textwidth}
+      \fig{width = 0.80\textwidth}{figs/1}
+      \vspace{-0.50cm}
+      \begin{center}
+        \blue{一对概念}
+      \end{center}
+    \column{0.25\textwidth}
+      \fig{width = 0.85\textwidth}{figs/2}
+      \vspace{-0.60cm}
+      \begin{center}
+        \blue{两类属性定义}
+      \end{center}
+    \column{0.25\textwidth}
+      \fig{width = 0.65\textwidth}{figs/3}
+      \begin{center}
+        \blue{三种实现方式}
+      \end{center}
+    \column{0.25\textwidth}
+      \fig{width = 0.65\textwidth}{figs/4}
+      \begin{center}
+        \blue{四大应用}
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[语法制导的翻译方案 (Syntax-Directed Translation Scheme; SDT)]
+    SDT 是在其产生式体中嵌入\red{\bf 语义动作}的上下文无关文法。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 语义动作可以嵌入在产生式体中的任何地方}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/SDD-expr-left-recursion}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/SDT-expr-left-recursion}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    时机 (Timing; タイミング)
+
+    \fig{width = 0.60\textwidth}{figs/timing}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$} 如何将 SDD 中的\blue{\bf 语义规则}转换为带有\blue{\bf 语义动作}的 SDT
+
+    \vspace{0.60cm}
+    \input{tables/sdt}
+
+    \vspace{0.60cm}
+    \red{$Q:$} 如何以三种方式实现 SDT?
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.50\textwidth}{figs/dfs}
+
+    \vspace{0.80cm}
+    按照\red{\bf 从左到右}的\red{\bf 深度优先}顺序遍历语法分析树
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/SDT-expr-prefix}
+    \vspace{-0.50cm}
+    \[
+      3 \ast 5 + 4 \implies \pause + \ast 3 5 4
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    嵌入语义动作\red{\bf 虚拟节点}的语法分析树
+
+    \fig{width = 0.80\textwidth}{figs/offline-expr-prefix}
+    \[
+      3 \ast 5 + 4 \implies + \ast 3 5 4
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{tables/sdt-offline}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 是否所有的 SDT 都可以在 $LL/LR$ 语法分析过程中实现?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 如何判断某 SDT 是否可以在 $LL/LR$ 语法分析过程中实现?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
