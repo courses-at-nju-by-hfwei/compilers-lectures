@@ -268,20 +268,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    (左递归) $S$属性文法
-    \begin{alignat*}{3}
-      A &\to A_{1} Y \qquad && A.a = g(A_{1}.a, Y.y) \\[8pt]
-      A &\to X && A.a = f(X.x)
-    \end{alignat*}
+    (左递归) $S$属性定义
+    \vspace{-0.50cm}
+    \input{eq/left-recursion-S-SDD}
 
     \pause
     \vspace{0.80cm}
-    (右递归) $L$属性文法
-    \begin{alignat*}{3}
-      A &\to XR \qquad && \red{R.i} = f(X.x);\quad A.a = R.s \\[8pt]
-      R &\to YR_{1} && \red{R_{1}.i} = g(R.i, Y.y);\quad R.s = R_{1}.s \\[8pt]
-      R &\to \epsilon && \blue{R.s = R.i}
-    \end{alignat*}
+    (右递归) $L$属性定义
+    \vspace{-0.50cm}
+    \input{eq/right-recursion-L-SDD}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
