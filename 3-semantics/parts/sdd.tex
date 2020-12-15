@@ -404,11 +404,6 @@
     \[
       \teal{a - 4 + c}
     \]
-    % \begin{columns}
-    %   \column{0.50\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/SDD-expr-ast-L}
-    %   \column{0.55\textwidth}
-    % \end{columns}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -418,11 +413,11 @@
   \begin{definition}[后缀表示 (Postfix Notation)]
     \begin{enumerate}[(1)]
       \setlength{\itemsep}{8pt}
-      \item 如果$E$是一个变量或常量, 则$E$的后缀表示是$E$本身;
-      \item 如果$E$是形如 $E_{1} \;\text{\bf op}\; E_{2}$的表达式,
+      \item 如果$E$是一个 \red{\bf 变量或常量}, 则$E$的后缀表示是$E$本身;
+      \item 如果$E$是形如 \red{$E_{1} \;\text{\bf op}\; E_{2}$} 的表达式,
         则$E$的后缀表示是$E'_{1} E'_{2} \text{\bf op}$,
         这里 $E'_{1}$ 和 $E'_{2}$ 分别是 $E_{1}$ 与 $E_{2}$ 的后缀表达式;
-      \item 如果$E$是形如$(E_{1})$的表达式, 则$E$的后缀表示是$E_{1}$的后缀表示。
+      \item 如果$E$是形如 \red{$(E_{1})$} 的表达式, 则$E$的后缀表示是$E_{1}$的后缀表示。
     \end{enumerate}
   \end{definition}
 
@@ -470,7 +465,7 @@
 
     \fig{width = 0.90\textwidth}{figs/cfg-signed-binary}
     \[
-      \teal{-101}
+      \teal{-101}_{2} = \blue{-5}_{10}
     \]
   \end{center}
 \end{frame}
@@ -490,10 +485,13 @@
 \begin{frame}{}
   \begin{center}
     \fig{width = 0.70\textwidth}{figs/anno-signed-binary}
-    \vspace{-0.50cm}
+    \vspace{-0.60cm}
     \[
-      \teal{-101}
+      \teal{-101}_{2} = \blue{-5}_{10}
     \]
+
+    \pause
+    \red{$Q$: 可否不用 $Bit.pos$ 继承属性?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
