@@ -1,0 +1,71 @@
+% tac.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[三地址代码 (Three-Address Code (TAC; 3AC))]
+      每个 \red{\bf TAC} 指令\blue{\bf 最多}包含三个操作数。
+    \end{definition}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \begin{align}
+          x &= y \;\op\; z \\
+          x &= \op\; y \\
+          x &= y
+        \end{align}
+      \column{0.50\textwidth}
+    \end{columns}
+    \begin{align}
+      x = y \;\op\; z \\
+      x = \op\; y \\
+      x = y \\
+      \pause
+      \goto\; L \\
+      \ifkw\; x \;\goto\; L \\
+      \ifkw\; \False{} x \;\goto\; L \\
+      \ifkw\; x \;\relop\; y \;\goto\; L \\
+      \pause
+      \param\; x \\
+      \call\; p, n \\
+      y = \call\; p, n \\
+      \return\; y
+    \end{align}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
