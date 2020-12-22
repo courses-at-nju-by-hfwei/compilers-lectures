@@ -257,15 +257,22 @@
     \red{\bf 结构等价}中的``结构''又是什么意思?
 
     \vspace{0.60cm}
-    array(\blue{n}, t)  \qquad array(\blue{m}, t)
+    $array(\blue{n}, t)  \qquad array(\blue{m}, t)$
 
+    \pause
     \vspace{0.80cm}
-    record($\langle \text{\red{a} : int} \rangle$) \qquad
-    record($\langle \text{\red{b} : int} \rangle$)
+    % record($\langle \text{\red{a} : int} \rangle$) \qquad
+    % record($\langle \text{\red{b} : int} \rangle$)
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/record-ab}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/record-ba}
+    \end{columns}
 
     \pause
     \vspace{1.00cm}
-    \blue{\bf 取决于语言设计者的``大局观''}
+    \blue{\bf 不同的语言有不同的设计方案}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
