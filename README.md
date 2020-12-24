@@ -30,12 +30,16 @@ Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/org
 | 14 | 2020-12-10 (周四) | [3-semantics (1)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-semantics) | 5.1, 5.2, 5.3 |
 | | | |
 | | | |
-| 15 | 2020-12-15 (周二) | [3-semantics (2)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-semantics) | 5.4, 5.5 |
-| 15 | 2020-12-17 (周四) | [3-semantics (3)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-semantics) | 2.7, 6.3, 6.5 |
+| 15 | 2020-12-15 (周二) | [3-semantics (2)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-semantics) | 5.4, 5.5 (1, 2) |
+| 15 | 2020-12-17 (周四) | [3-semantics (3)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/3-semantics) | 2.7, 6.3, 6.5 (1, 2, 3, 4) |
 | | | |
 | | | |
-| 16 | 2020-12-22 (周二) | [4-ir (1)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | 6.1, 6.2, 6.4 |
-| 16 | 2020-12-24 (周四) | [4-ir (2)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | |
+| 16 | 2020-12-22 (周二) | [4-ir (1)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | 6.1 (1), 6.2 (1, 2), 6.4 |
+| 16 | 2020-12-24 (周四) | [4-ir (2)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | 6.6 (1, 2, 3, 4, 6) |
+| | | |
+| | | |
+| 17 | 2020-12-29 (周二) | [4-ir (3)](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | 6.7 (1, 2, 3), 6.9 |
+| 17 | 2020-12-31 (周四) | [5-code](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/4-ir) | 7 (1, 2, 3), 8 (1, 2, 3, 6, 8) |
 
 ## Next year, I may try
 - [ ] PL/0
