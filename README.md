@@ -4,10 +4,6 @@ Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/org
 
 ## 周历
 
-**以下周历可能会随具体授课情况进行调整:**
-
-(TODO: 重新组织中)
-
 | 周次 | 日期 | 主题 | 阅读材料 (龙书; 原版第二版) |
 | :---: | :---: | :---: | :---: |
 | 10 | 2020-11-10 (周二) | [0-overview](https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/1-overview) | 1.1, 1.2 |
