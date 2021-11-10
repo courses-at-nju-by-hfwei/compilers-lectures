@@ -12,3 +12,6 @@
 - [lex.c](https://github.com/gcc-mirror/gcc/blob/master/libcpp/lex.c)
 
 具体是如何实现的?
+
+## TODO
+- int, real, sci 识别代码 (附录 A)
