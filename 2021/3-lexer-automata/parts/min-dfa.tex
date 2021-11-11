@@ -1,0 +1,303 @@
+% min-dfa.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    DFA 最小化
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/dfa-abb}
+
+  \[
+    \blue{L(\mathcal{A}) = L((a|b)^{\ast}abb)}
+  \]
+
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \begin{center}
+    子集构造法得到的 DFA
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf DFA 最小化算法}基本思想: \blue{\bf 等价}的状态可以合并
+
+    \vspace{0.30cm}
+    \fig{width = 0.30\textwidth}{figs/Hopcroft}
+    \teal{John Hopcroft (1939 $\sim$)}
+
+    \vspace{0.30cm}
+    \begin{quote}
+      \centering
+      ``for fundamental achievements in the design and analysis \\
+      of \red{\emph{\textbf{algorithms and data structures}}}'' \\
+      \hfill --- Turing Award, 1986
+    \end{quote}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如何定义\red{\bf 等价}状态?
+
+    \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+    \[
+      s \sim t \iff \forall a \in \Sigma.\; 
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
+    \]
+
+    \pause
+    但是, 这个定义是错误的
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    s \sim t \iff \forall a \in \Sigma.\; 
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
+  \]
+  
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \vspace{-0.30cm}
+  \[
+    A \sim C \sim E
+  \]
+
+  \pause
+  \vspace{0.20cm}
+  \begin{center}
+    但是, 接受状态与非接受状态必定不等价
+
+    \vspace{0.30cm}
+    空串 $\epsilon$ {\bf 区分}了这两类状态
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    s \sim t \iff \forall a \in \Sigma.\; 
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
+  \]
+  \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-before}
+  \[
+    c \sim d \sim e \qquad \red{a \nsim b}
+  \]
+  \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-after}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如何定义\red{\bf 等价}状态?
+  \end{center}
+
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \[
+    s \sim t \iff \forall a \in \Sigma.\; 
+      \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' \sim t'}).
+  \]
+
+  \pause
+  \[
+    s \nsim t \iff \exists a \in \Sigma.\;
+      (s \rel{a} s') \land (t \rel{a} t') \land (\red{s' \nsim t'})
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \[
+      s \sim t \iff \forall a \in \Sigma.\; 
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
+    \]
+
+    基于该定义, 不断\red{\bf 合并}等价的状态, 直到无法合并为止
+
+    \pause
+    \vspace{0.80cm}
+    \red{\bf 但是, 这是一个递归定义, 从哪里开始呢?}
+
+    \pause
+    \vspace{0.80cm}
+    \blue{$Q:$ 所有接受状态都是等价的吗?}
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.60\textwidth}{figs/a-ab}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \[
+      s \sim t \iff \forall a \in \Sigma.\; 
+        \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
+    \]
+
+    缺少基础情况, 不知从何下手
+
+    \pause
+    \[
+      s \nsim t \iff \exists a \in \Sigma.\;
+        (s \rel{a} s') \land (t \rel{a} t') \land (s' \nsim t')
+    \]
+
+    \pause
+    \red{\bf 划分, 而非合并}
+  \end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \[
+      s \nsim t \iff \exists a \in \Sigma.\;
+        (s \rel{a} s') \land (t \rel{a} t') \land (s' \nsim t')
+    \]
+
+    \pause
+    \vspace{0.30cm}
+    \red{\bf 从哪里开始呢?}
+  \end{center}
+
+  \pause
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/dfa-abb-subset}
+    \column{0.50\textwidth}
+      \[
+        \Pi = \set{F, S \setminus F}
+      \]
+
+      \vspace{0.30cm}
+      \begin{center}
+        接受状态与非接受状态必定不等价
+
+        \pause
+        \vspace{0.50cm}
+        空串 $\epsilon$ {\bf 区分}了这两类状态
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/blackboard}
+
+    \vspace{0.30cm}
+    板书演示算法过程
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{align*}
+    \Pi_{0} &= \set{\set{A, B, C, D}, \set{E}} \\[10pt]
+    \Pi_{1} &= \set{\set{A, B, C}, \set{D}, \set{E}} \\[10pt]
+    \Pi_{2} &= \set{\set{A, C}, \set{B}, \set{D}, \set{E}} \\[10pt]
+    \Pi_{3} &= \Pi_{2}
+  \end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+
+  \begin{center}
+    \blue{\bf 合并}等价状态 $A \sim C$
+  \end{center}
+
+  \fig{width = 0.50\textwidth}{figs/dfa-abb}
+
+  \pause
+  \begin{center}
+    \red{$Q:$ 合并后是否一定还是 DFA?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    DFA 最小化\red{\bf 等价状态划分}方法
+  \end{center}
+
+  \[
+    \Pi = \set{F, S \setminus F}
+  \]
+  
+  \fig{width = 0.85\textwidth}{figs/partition}
+
+  \begin{center}
+    直到再也无法\blue{\bf 划分}为止 \quad (\purple{不动点!})
+
+    \vspace{0.40cm}
+    然后, 将同一等价类里的状态\blue{\bf 合并}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如何分析DFA最小化算法的\red{\bf 复杂度}?
+
+    \pause
+    \vspace{0.60cm}
+    为什么 DFA 最小化算法是\red{\bf 正确}的?
+
+    \pause
+    \vspace{0.60cm}
+    最小化DFA是\red{\bf 唯一}的吗?
+
+    \pause
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/report}
+    \teal{可选报告 (1)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     如何定义\red{\bf 等价}状态?
+% 
+%   \end{center}
+% 
+%   \pause
+%   \begin{definition}[等价状态]
+%     两个状态是等价的当且仅当它们对任何相同输入串的行为是相同的。
+%   \end{definition}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,215 @@
+% re-to-nfa.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{RE $\implies$ NFA}
+    \[
+      \boxed{r \implies N(r)}
+    \]
+    \[
+      \text{要求}: \red{L(N(r)) = L(r)}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    从 RE 到 NFA: \red{\bf Thompson 构造法}
+  \end{center}
+
+  \pause
+  \vspace{0.20cm}
+  \fig{width = 0.60\textwidth}{figs/Thompson-Ritchie-Unix}
+  \begin{center}
+    Turing Award, 1983
+  \end{center}
+
+  % \begin{columns}
+  %   \column{0.50\textwidth}
+  %     \fig{width = 0.50\textwidth}{figs/Thompson}
+  %     \begin{center}
+  %       Ken Thompson (1943 $\sim$)
+  %     \end{center}
+  %   \column{0.50\textwidth}
+  %     \fig{width = 0.50\textwidth}{figs/Ritchie}
+  %     \begin{center}
+  %       Dennis Ritchie (1941 $\sim$ 2011)
+  %     \end{center}
+  % \end{columns}
+
+  % \begin{quote}
+  %   \centering
+  %   {\small ``For their development of generic operating systems theory \\
+  %   and specifically for the implementation of the \red{UNIX} operating system.''
+  %   \hfill --- Turing Award, 1983}
+  % \end{quote}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Thompson 构造法的基本思想: \red{\bf 按结构归纳}
+  \end{center}
+
+  \begin{definition}[正则表达式]
+    给定字母表 $\Sigma$, $\Sigma$ 上的正则表达式\red{\bf 由且仅由}以下规则定义:
+    \begin{enumerate}[(1)]
+      \item $\epsilon$ 是正则表达式;
+      \item $\forall a \in \Sigma$, $a$ 是正则表达式;
+      \item 如果 $s$ 是正则表达式, 则 $(s)$ 是正则表达式;
+      \item 如果 $s$ 与 $t$ 是正则表达式, 则 $s|t$, $st$, $s^{\ast}$ 也是正则表达式。
+    \end{enumerate}
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $\epsilon$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.40\textwidth}{figs/epsilon-nfa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $a \in \Sigma$ 是正则表达式。
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.40\textwidth}{figs/symbol-nfa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$ 是正则表达式, 则 $(s)$ 是正则表达式;
+
+    \pause
+    \vspace{0.60cm}
+    \[
+      N((s)) = N(s).
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$, $t$ 是正则表达式, 则 $s | t$ 是正则表达式。
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/or-nfa}
+
+    \pause
+    \vspace{0.50cm}
+    \red{$Q:$ 如果 $N(s)$ 或 $N(t)$ 的开始状态或接受状态不唯一, 怎么办?}
+
+    \pause
+    \vspace{0.50cm}
+    根据\blue{\bf 归纳假设}, $N(s)$ 与 $N(t)$ 的开始状态与接受状态均\blue{\bf 唯一}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$, $t$ 是正则表达式, 则 $st$ 是正则表达式。
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.60\textwidth}{figs/concat-nfa}
+
+    \pause
+    \vspace{0.50cm}
+    根据\blue{\bf 归纳假设}, $N(s)$ 与 $N(t)$ 的开始状态与接受状态均\blue{\bf 唯一}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    如果 $s$ 是正则表达式, 则 $s^{\ast}$ 是正则表达式。
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.60\textwidth}{figs/kleene-star-nfa}
+
+    \pause
+    \vspace{0.50cm}
+    根据\blue{\bf 归纳假设}, $N(s)$ 的开始状态与接受状态\blue{\bf 唯一}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $N(r)$ 的\red{\bf 性质}以及 Thompson 构造法\red{\bf 复杂度分析}
+  \end{center}
+
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.10\textwidth}
+    \column{0.80\textwidth}
+      \begin{enumerate}
+        \setlength{\itemsep}{8pt}
+        \item $N(r)$ 的开始状态与接受状态均\blue{\bf 唯一}。
+        \item 开始状态没有入边, 接受状态没有出边。
+        \pause
+        \item $N(r)$ 的\blue{\bf 状态数} $|S| \le$ $2 \times |r|$。\\
+          ($|r|:$ $r$ 中运算符与运算分量的总和)
+        \pause
+        \item 每个状态最多有两个$\epsilon$-入边与两个$\epsilon$-出边。
+        \item $\forall a \in \Sigma$, 每个状态最多有一个$a$-入边与一个$a$-出边。
+      \end{enumerate}
+    \column{0.10\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    r = (a | b)^{\ast} abb
+  \]
+
+  \pause
+  \begin{columns}
+    \column{0.30\textwidth}
+      \fig{width = 0.80\textwidth}{figs/r1-nfa-ex}
+    \column{0.30\textwidth}
+      \fig{width = 0.80\textwidth}{figs/r2-nfa-ex}
+    \column{0.40\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/r3-nfa-ex}
+  \end{columns}
+
+  \begin{columns}
+    \column{0.45\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/r5-nfa-ex}
+    \column{0.55\textwidth}
+      \pause
+      \fig{width = 1.00\textwidth}{figs/re-nfa-abb}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

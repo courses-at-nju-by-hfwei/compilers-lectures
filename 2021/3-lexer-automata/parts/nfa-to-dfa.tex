@@ -1,0 +1,319 @@
+% nfa-to-dfa.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{NFA $\implies$ DFA}
+    \[
+      \boxed{N \implies D}
+    \]
+    \[
+      \text{要求}: \red{L(D) = L(N)}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    从 NFA 到 DFA 的转换: \red{\bf 子集构造法} (Subset/Powerset Construction)
+
+    \vspace{0.50cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.45\textwidth}{figs/rabin}
+        \begin{center}
+          \teal{Michael O. Rabin (1931 $\sim$)}
+        \end{center}
+      \column{0.50\textwidth}
+        \fig{width = 0.50\textwidth}{figs/scott}
+        \begin{center}
+          \teal{Dana Scott (1932 $\sim$)}
+        \end{center}
+    \end{columns}
+  \end{center}
+
+  \vspace{0.20cm}
+  \begin{center}
+    \blue{\bf 思想: 用 DFA 模拟 NFA}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \red{\bf 用 DFA 模拟 NFA}
+%
+%     \fig{width = 0.50\textwidth}{figs/nfa-abb}
+%     \[
+%       \blue{L(\mathcal{A}) = L((a|b)^{\ast}abb)}
+%     \]
+%     \fig{width = 0.50\textwidth}{figs/dfa-abb}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 用 DFA 模拟 NFA}
+
+    \fig{width = 0.75\textwidth}{figs/nfa-abb-epsilon}
+    \vspace{-0.20cm}
+    \[
+      \blue{L(\mathcal{A}) = L((a|b)^{\ast}abb)}
+    \]
+    \vspace{-0.30cm}
+    \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.90\textwidth}{figs/re-nfa-abb-A}
+%   \[
+%     A \triangleq \epsilon\text{-closure}(0) = \set{0, 1, 2, 4, 7}
+%   \]
+%
+%   \begin{center}
+%     DFA $D$ 的\purple{\bf 初始状态} $d_{0} = \epsilon\text{-closure}(n_{0})$
+%   \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
+%
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.90\textwidth}{figs/re-nfa-abb-B}
+%
+%   \[
+%     A = \set{0, 1, 2, 4, 7}
+%   \]
+%   \[
+%     B \triangleq \delta_{D}(A, a) = \epsilon\text{-closure}(\set{3, 8})
+%     = \set{1, 2, 3, 4, 6, 7, 8}
+%   \]
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
+%
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.90\textwidth}{figs/re-nfa-abb-C}
+%
+%   \[
+%     A = \set{0, 1, 2, 4, 7}
+%   \]
+%   \[
+%     C \triangleq \delta_{D}(A, b) = \epsilon\text{-closure}(5)
+%     = \set{1, 2, 4, 5, 6, 7}
+%   \]
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
+%
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
+%
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.90\textwidth}{figs/re-nfa-abb-D}
+%
+%   \[
+%     B = \set{1, 2, 4, 5, 6, 7}
+%   \]
+%   \[
+%     D \triangleq \delta_{D}(B, b) = \epsilon\text{-closure}(\set{5, 9})
+%     = \set{1, 2, 4, 5, 6, 7, 9}
+%   \]
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/blackboard}
+
+    \vspace{0.30cm}
+    板书演示算法过程
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/nfa-dfa-table}
+  \fig{width = 0.60\textwidth}{figs/dfa-abb-subset}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    从状态 $s$ 开始, 只通过 $\epsilon$-转移可达的状态集合
+    \[
+      \epsilon\text{-closure}(s) = \set{t \in S_{N} | s \rel{\epsilon^{\ast}} t}
+    \]
+
+    \pause
+    \vspace{0.30cm}
+    \[
+      \epsilon\text{-closure}(T) = \bigcup_{s \in T} \epsilon\text{-closure}(s)
+    \]
+
+    \pause
+    \vspace{0.30cm}
+    \[
+      \text{move}(T, a) = \bigcup_{s \in T} \delta(s, a)
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    子集构造法 ($N \implies D$) 的\red{\bf 原理}:
+  \end{center}
+  \[
+    \blue{N}: (\Sigma_{N}, S_{N}, n_{0}, \delta_{N}, F_{N})
+  \]
+  \[
+    \red{D}: (\Sigma_{D}, S_{D}, d_{0}, \delta_{D}, F_{D})
+  \]
+
+  \pause
+  \[
+    \Sigma_{D} = \Sigma_{N}
+  \]
+
+  \pause
+  \[
+    S_{D} \subseteq 2^{S_{N}} \qquad (\forall s_{D} \in S_{D}: \blue{s_{D} \subseteq S_{N}})
+  \]
+
+  \pause
+  \[
+    \text{\purple{\bf 初始状态}}\;
+    {d_{0} = \epsilon\text{-closure}(n_{0})}
+  \]
+  \pause
+  \vspace{-0.30cm}
+  \[
+    \text{\purple{\bf 转移函数}}\;
+    \forall a \in \Sigma_{D}:
+    {\delta_{D}(s_{D}, a) = \epsilon\text{-closure}(\text{move}(s_{D}, a))}
+  \]
+  \pause
+  \vspace{-0.30cm}
+  \[
+    \text{\purple{\bf 接受状态集}}\;
+    F_{\mathcal{D}} = \set{s_{D} \in S_{\mathcal{D}} \mid
+      \exists f \in F_{\mathcal{N}}.\; f \in s_{D}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    消除\red{\bf ``死状态 $\emptyset$''}
+
+    \[
+      \text{move}(T, a) = \emptyset
+        \implies \delta(T, a) = \emptyset
+    \]
+
+    \[
+      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
+    \]
+
+    需要消除死状态, 避免词法分析器进入$\emptyset$状态
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    子集构造法 ($N \implies D$) 的\red{\bf 实现}:
+    使用\blue{\bf 栈}实现\blue{$\epsilon\text{-closure}(T)$}
+
+    \fig{width = 0.90\textwidth}{figs/epsilon-closure-impl}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    子集构造法 ($N \implies D$) 的\red{\bf 实现}:
+    使用\blue{\bf 标记搜索}过程构造\blue{\bf 状态集}
+
+    \fig{width = 0.90\textwidth}{figs/subset-construction}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    子集构造法的\red{\bf 复杂度分析}: \\
+    ($|S_{N}| = n$)
+
+    \[
+      |S_{D}| = \Theta(2^n)
+    \]
+
+    \vspace{0.30cm}
+    最坏情况下, $|S_{D}| = \Omega(2^n)$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``长度为 $m \ge n$个字符的$a$, $b$串, 且倒数第$n$个字符是$a$''
+
+    \pause
+    \[
+      L_{n} = (a | b)^{\ast} a (a | b)^{n-1}
+    \]
+
+    \pause
+    \fig{width = 0.80\textwidth}{figs/nfa-Ln}
+
+    \pause
+    \vspace{0.30cm}
+    \blue{\bf 练习(非作业):} $m = n = 3$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 闭包 (Closure):} $f\text{-closure}(T)$
+
+    \pause
+    \[
+      \epsilon\text{-closure}(T) \qquad \pause
+      R^{+}: \text{传递闭包}
+    \]
+
+    \pause
+    \[
+      T \implies f(T) \implies f(f(T)) \implies f(f(f(T))) \implies \dots
+    \]
+
+    \pause
+    直到找到 $x$ 使得 $f(x) = x$ ($x$ 称为 $f$ 的\red{\bf 不动点})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

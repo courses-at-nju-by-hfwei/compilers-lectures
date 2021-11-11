@@ -1,0 +1,210 @@
+% nfa-dfa.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[NFA (Nondeteministic Finite Automaton)]
+    非确定性有穷自动机 $\mathcal{A}$ 是一个五元组
+    \red{$\mathcal{A} = (\Sigma, S, s_{0}, \delta, F)$}:
+
+    \vspace{0.30cm}
+    \begin{enumerate}[(1)]
+      \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
+      \item \red{\bf 有穷}的状态集合 $S$
+      \item \purple{唯一}的初始状态 $s_{0} \in S$
+      \item 状态转移\red{\bf 函数} $\delta$
+        \[
+          \delta: S \times (\Sigma \cup \set{\blue{\epsilon}}) \to \blue{2^{S}}
+        \]
+      \item 接受状态集合 $F \subseteq S$
+    \end{enumerate}
+  \end{definition}
+
+  \fig{width = 0.60\textwidth}{figs/nfa-abb}
+
+  \pause
+  \begin{center}
+    \purple{\bf 约定:} 所有没有对应出边的字符默认指向一个不存在的{\bf ``空状态'' $\emptyset$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.33\textwidth}
+      \fig{width = 0.55\textwidth}{figs/rabin}
+      \begin{center}
+        \teal{Michael O. Rabin (1931 $\sim$)}
+      \end{center}
+    \column{0.34\textwidth}
+      \fig{width = 1.20\textwidth}{figs/fa-paper}
+      \begin{center}
+        发表于 1959 年; \\[6pt]
+        1976年, 共享图灵奖 \\
+      \end{center}
+    \column{0.33\textwidth}
+      \fig{width = 0.60\textwidth}{figs/scott}
+      \begin{center}
+        \teal{Dana Scott (1932 $\sim$)}
+      \end{center}
+  \end{columns}
+
+  \vspace{0.60cm}
+  \begin{center}
+    \begin{quote}
+    ``which introduced the idea of \red{\emph{\textbf{nondeterministic machines}}}, \\[6pt]
+      which has proved to be an enormously valuable concept.''
+    \end{quote}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    (非确定性)有穷自动机是一类极其简单的\red{\bf 计算}装置
+
+    \vspace{0.60cm}
+    它可以\red{\bf 识别} (接受/拒绝) $\Sigma$ 上的字符串
+
+    \vspace{0.50cm}
+    \begin{definition}[接受 (Accept)]
+      (非确定性)有穷自动机 $\mathcal{A}$ 接受字符串$x$,
+      当且仅当\red{\bf 存在}一条从开始状态 $s_{0}$ 到\red{\bf 某个}接受状态 $f \in F$、
+      标号为 $x$ 的路径。
+    \end{definition}
+
+    \vspace{0.80cm}
+    因此, \purple{$\mathcal{A}$ 定义了一种{\bf 语言} $L(\mathcal{A})$}:
+    它能接受的所有字符串构成的集合
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/nfa-abb}
+
+  \[
+    aabb \in L(\mathcal{A}) \qquad ababab \notin L(\mathcal{A})
+  \]
+
+  \pause
+  \[
+    L(\mathcal{A}) = \pause L((a|b)^{\ast}abb)
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    关于自动机 $\mathcal{A}$ 的\red{\bf 两个基本问题}:
+  \end{center}
+
+  \vspace{0.60cm}
+  \begin{columns}
+    \column{0.10\textwidth}
+    \column{0.80\textwidth}
+      \begin{itemize}
+        \setlength{\itemsep}{15pt}
+        \item \blue{\bf Membership 问题:}
+          \text{给定字符串 $x$}, $x \in L(\mathcal{A})$?
+        \item \blue{$L(\mathcal{A})$} 究竟是什么?
+      \end{itemize}
+    \column{0.10\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.45\textwidth}{figs/nfa-aa-bb}
+  \[
+    aaa \in \mathcal{A}? \qquad aab \in \mathcal{A}?
+  \]
+
+  \[
+    \red{L(\mathcal{A})} = \pause L((aa^{\ast}|bb^{\ast}))
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/nfa-even-01}
+
+  \vspace{-0.50cm}
+  \[
+    1011 \in L(\mathcal{A})? \qquad 0011 \in L(\mathcal{A})?
+  \]
+
+  \pause
+  \vspace{-0.30cm}
+  \[
+    L(\mathcal{A}) = \set{\text{包含偶数个1或偶数个0的01串}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[DFA (Deterministic Finite Automaton)]
+    确定性有穷自动机 $\mathcal{A}$ 是一个五元组
+    \red{$\mathcal{A} = (\Sigma, S, s_{0}, \delta, F)$}:
+
+    \vspace{0.30cm}
+    \begin{enumerate}[(1)]
+      \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
+      \item \red{\bf 有穷}的状态集合 $S$
+      \item \red{\bf 唯一}的初始状态 $s_{0} \in S$
+      \item 状态转移\red{\bf 函数} $\delta$
+        \[
+          \delta: S \times \blue{\Sigma} \to \blue{S}
+        \]
+      \item 接受状态集合 $F \subseteq S$
+    \end{enumerate}
+  \end{definition}
+
+  \fig{width = 0.50\textwidth}{figs/dfa-abb}
+
+  \pause
+  \begin{center}
+    \purple{\bf 约定:} 所有没有对应出边的字符默认指向一个不存在的{\bf ``死状态''}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/dfa-abb}
+
+  \[
+    aabb \in L(\mathcal{A}) \qquad ababab \notin L(\mathcal{A})
+  \]
+
+  \pause
+  \[
+    L(\mathcal{A}) = \pause L((a|b)^{\ast}abb)
+  \]
+
+  \pause
+  \fig{width = 0.50\textwidth}{figs/nfa-abb}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    NFA 简洁易于理解, 方面描述语言 \blue{$L(\mathcal{A})$}
+
+    \vspace{0.30cm}
+    DFA 易于判断 \blue{$x \in L(\mathcal{A})$}, 适合产生词法分析器
+
+    \pause
+    \vspace{1.20cm}
+    用 NFA 描述语言, 用 DFA 实现词法分析器
+
+    \vspace{0.30cm}
+    \purple{RE $\implies$ NFA $\implies$ DFA $\implies$ 词法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
