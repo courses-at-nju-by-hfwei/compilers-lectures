@@ -39,7 +39,7 @@
     \vspace{0.30cm}
     \begin{quote}
       \centering
-      ``for fundamental achievements in the design and analysis \\
+      ``With \blue{Robert E. Tarjan}, for fundamental achievements in the design and analysis
       of \red{\emph{\textbf{algorithms and data structures}}}'' \\
       \hfill --- Turing Award, 1986
     \end{quote}
@@ -55,7 +55,7 @@
     \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
 
     \[
-      s \sim t \iff \forall a \in \Sigma.\; 
+      s \sim t \iff \forall a \in \Sigma.\;
         \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
     \]
 
@@ -68,10 +68,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \[
-    s \sim t \iff \forall a \in \Sigma.\; 
+    s \sim t \iff \forall a \in \Sigma.\;
       \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
   \]
-  
+
   \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
 
   \vspace{-0.30cm}
@@ -85,7 +85,7 @@
     但是, 接受状态与非接受状态必定不等价
 
     \vspace{0.30cm}
-    空串 $\epsilon$ {\bf 区分}了这两类状态
+    空串 $\epsilon$ \red{\bf 区分}了这两类状态
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -93,7 +93,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \[
-    s \sim t \iff \forall a \in \Sigma.\; 
+    s \sim t \iff \forall a \in \Sigma.\;
       \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' = t'}).
   \]
   \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-before}
@@ -113,7 +113,7 @@
   \fig{width = 0.50\textwidth}{figs/dfa-abb-subset}
 
   \[
-    s \sim t \iff \forall a \in \Sigma.\; 
+    s \sim t \iff \forall a \in \Sigma.\;
       \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (\red{s' \sim t'}).
   \]
 
@@ -129,7 +129,7 @@
 \begin{frame}{}
   \begin{center}
     \[
-      s \sim t \iff \forall a \in \Sigma.\; 
+      s \sim t \iff \forall a \in \Sigma.\;
         \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
     \]
 
@@ -154,7 +154,7 @@
 \begin{frame}{}
   \begin{center}
     \[
-      s \sim t \iff \forall a \in \Sigma.\; 
+      s \sim t \iff \forall a \in \Sigma.\;
         \left((s \rel{a} s') \land (t \rel{a} t')\right) \implies (s' \sim t').
     \]
 
@@ -255,7 +255,7 @@
   \[
     \Pi = \set{F, S \setminus F}
   \]
-  
+
   \fig{width = 0.85\textwidth}{figs/partition}
 
   \begin{center}
@@ -292,9 +292,9 @@
 % \begin{frame}{}
 %   \begin{center}
 %     如何定义\red{\bf 等价}状态?
-% 
+%
 %   \end{center}
-% 
+%
 %   \pause
 %   \begin{definition}[等价状态]
 %     两个状态是等价的当且仅当它们对任何相同输入串的行为是相同的。
