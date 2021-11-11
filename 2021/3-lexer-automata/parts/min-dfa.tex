@@ -100,6 +100,7 @@
   \[
     c \sim d \sim e \qquad \red{a \nsim b}
   \]
+  \pause
   \fig{width = 0.60\textwidth}{figs/min-dfa-wiki-after}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -224,7 +225,7 @@
     \Pi_{0} &= \set{\set{A, B, C, D}, \set{E}} \\[10pt]
     \Pi_{1} &= \set{\set{A, B, C}, \set{D}, \set{E}} \\[10pt]
     \Pi_{2} &= \set{\set{A, C}, \set{B}, \set{D}, \set{E}} \\[10pt]
-    \Pi_{3} &= \Pi_{2}
+    \Pi_{3} &= \Pi_{2} \;\blue{= \Pi_{\text{final}}}
   \end{align*}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -241,7 +242,7 @@
 
   \pause
   \begin{center}
-    \red{$Q:$ 合并后是否一定还是 DFA?}
+    \red{$Q:$ 合并后是否一定还是 DFA?} \blue{初始状态、接受状态是哪些?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -281,23 +282,25 @@
     最小化DFA是\red{\bf 唯一}的吗?
 
     \pause
-    \vspace{0.30cm}
-    \fig{width = 0.50\textwidth}{figs/report}
-    \teal{可选报告 (1)}
+    \vspace{0.80cm}
+	\href{https://en.wikipedia.org/wiki/DFA_minimization}{DFA Minimization @ wiki}
+    % \fig{width = 0.50\textwidth}{figs/report}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     如何定义\red{\bf 等价}状态?
-%
-%   \end{center}
-%
-%   \pause
-%   \begin{definition}[等价状态]
-%     两个状态是等价的当且仅当它们对任何相同输入串的行为是相同的。
-%   \end{definition}
-% \end{frame}
+\begin{frame}{}
+  \begin{definition}[字符串 $s$ 区分状态 $s$ 与 $t$]
+	如果分别从 $s$ 与 $t$ 出发, 沿着标号为 $s$ 的路径到达的两个状态中
+	只有一个是接受状态, 则称 $s$ \red{\bf 区分}了状态 $s$ 与 $t$。
+  \end{definition}
+
+  \pause
+  \vspace{1.00cm}
+  \begin{definition}[可区分的 (Distinguishable)]
+	如果存在某个能区分状态 $s$ 与 $t$ 的字符串,
+	则称 $s$ 与 $t$ 是\red{\bf 可区分的}。
+  \end{definition}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%

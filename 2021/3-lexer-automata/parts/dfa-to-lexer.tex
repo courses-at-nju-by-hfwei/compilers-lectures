@@ -14,6 +14,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.70\textwidth}{figs/3-regex}
+
+  \vspace{0.60cm}
+  \begin{center}
+    最前优先匹配: $abb$ \\[10pt]
+    最长优先匹配: $aabbb$
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -61,14 +67,17 @@
     \pause
     若 $s$ 为\blue{\bf 接受状态}, 则识别成功;
 
+    \pause
     \vspace{0.30cm}
     否则, \blue{\bf 回溯} (\teal{包括状态与输入流})至最近一次经过的接受状态, 识别成功;
 
+    \pause
     \vspace{0.30cm}
     若没有经过任何接受状态, 则\red{\bf 报错} (\teal{忽略第一个字符})
 
+    \pause
     \vspace{0.30cm}
-    无论成功还是失败, 都从{\bf 初始状态}开始继续识别下一个词法单元
+    无论成功还是失败, 都从\green{\bf 初始状态}开始继续识别下一个词法单元
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -84,7 +93,7 @@
   \pause
   \vspace{-0.40cm}
   \[
-    x = abba \qquad \text{状态无转移; 接受; 识别出 $abb$}
+    x = abba \qquad \text{状态无转移; 回溯成功; 识别出 $abb$}
   \]
 
   \pause
@@ -113,15 +122,35 @@
 
     \vspace{-0.50cm}
     \[
-      \Pi_{0} = \set{\set{0137, 7}, \red{\set{247}, \set{8, 58}, \set{68}}}
+      \Pi_{0} = \set{\set{0137, 7}, \red{\set{247}, \set{8, 58}, \set{68}},
+        \green{\set{\emptyset}}}
     \]
 
     \pause
     \vspace{-1.00cm}
     \[
-      \Pi_{1} = \set{\blue{\set{0137}, \set{7}}, \set{247}, \blue{\set{8}, \set{58}}, 
+      \Pi_{1} = \set{\blue{\set{0137}, \set{7}}, \set{247}, \blue{\set{8}, \set{58}},
         \set{68}}
     \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    特殊处理 \red{\bf ``死状态 $\emptyset$''}
+
+    \[
+      \blue{\text{move}(T, a) = \emptyset
+        \implies \delta(T, a) = \emptyset}
+    \]
+    \fig{width = 0.60\textwidth}{figs/empty-state}
+    \[
+      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
+    \]
+
+    需要判断是否进入死状态, 避免词法分析器徒劳消耗输入流
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

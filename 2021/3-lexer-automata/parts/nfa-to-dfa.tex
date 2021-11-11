@@ -222,25 +222,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    消除\red{\bf ``死状态 $\emptyset$''}
-
-    \[
-      \text{move}(T, a) = \emptyset
-        \implies \delta(T, a) = \emptyset
-    \]
-
-    \[
-      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
-    \]
-
-    需要消除死状态, 避免词法分析器进入$\emptyset$状态
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
     子集构造法 ($N \implies D$) 的\red{\bf 实现}:
     使用\blue{\bf 栈}实现\blue{$\epsilon\text{-closure}(T)$}
 

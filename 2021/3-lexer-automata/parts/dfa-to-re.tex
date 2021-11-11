@@ -90,7 +90,7 @@
 
       \fig{width = 0.60\textwidth}{figs/i-j-no-edge}
       \[
-        R^{-1}_{ij} = \red{\emptyset}
+        R^{-1}_{ij} = \red{\emptyset}\; \blue{\text{(``无路可走'')}}
       \]
     \column{0.50\textwidth}
       \pause
@@ -101,7 +101,7 @@
 
       \fig{width = 0.15\textwidth}{figs/i}
       \[
-        R^{-1}_{ii} = \red{\epsilon}
+        R^{-1}_{ii} = \red{\epsilon}\; \blue{\text{(``无需走路'')}}
       \]
   \end{columns}
 \end{frame}
@@ -133,7 +133,7 @@
     \pause
     \vspace{0.50cm}
     \[
-      r = |_{s_{j} \in F_{D}} R^{|S_{D}| - 1}_{0j}
+      r = |_{\red{s_{j} \in F_{D}}} R^{\blue{|S_{D}| - 1}}_{0j}
     \]
   \end{center}
 \end{frame}
@@ -178,9 +178,12 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \[
+	a^{\ast}b(a(a|b)|b)^{\ast}
+  \]
   \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
 
   \vspace{-0.50cm}
-  \fig{width = 0.95\textwidth}{figs/dfa-re-step-2}
+  \fig{width = 0.90\textwidth}{figs/dfa-re-step-2}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
