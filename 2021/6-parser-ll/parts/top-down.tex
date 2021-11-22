@@ -3,6 +3,30 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    \blue{带记忆功能的}\purple{可回溯的}\red{递归下降}语法分析器
+
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/antlr-logo}
+    \vspace{0.50cm}
+
+    甚至可以使用\violet{谓词解析器}处理\green{上下文相关文法}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/exprpred}
+
+  \begin{center}
+    \texttt{tpdsl/ExprPred.g4}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     只考虑\red{\bf 无二义性}的文法 \\[4pt]
     这意味着, 每个句子对应唯一的一棵语法分析树
 
@@ -42,7 +66,26 @@
 
     \vspace{0.80cm}
     \blue{\bf 叶节点}是词法单元流 $w\$$ \\[8pt]
-    仅包含终结符号与特殊的\teal{\bf 文件结束符$\$$}
+    仅包含终结符号与特殊的\teal{\bf 文件结束符$\$$ (\texttt{EOF})}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    每个\blue{\bf 中间节点}表示\purple{\bf 对某个非终结符应用某个产生式进行推导}
+
+    \vspace{0.50cm}
+    \red{$Q:$} 选择哪个非终结符, 以及选择哪个产生式
+
+    \pause
+    \vspace{1.50cm}
+    在推导的每一步, $L\red{L}(1)$ 总是选择\red{\bf 最左边的非终结符进行展开}
+
+    \pause
+    \vspace{1.60cm}
+    $\red{L}L(1)$: 从左向右读入字符串
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -76,7 +119,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    演示\red{\bf 递归下降}过程
+    演示\red{\bf 递归下降}过程 (\texttt{jflap: SFa.jff})
 
     \begin{columns}
       \column{0.50\textwidth}
@@ -154,7 +197,7 @@
 
     \vspace{0.60cm}
     对于当前选择的\blue{非终结符}, \\[4pt]
-    仅根据输入中\red{当前的词法单元}即可确定需要使用哪条\teal{产生式}
+    仅根据输入中\red{当前的词法单元} ($LL(\red{1})$) 即可确定需要使用哪条\teal{产生式}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -173,6 +216,33 @@
         \only<1>{\input{algs/ll1-s-f-a-S}}
         \only<2>{\input{algs/ll1-s-f-a-F}}
     \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    再次演示\red{\bf 递归下降}过程 (\texttt{jflap: SFa.jff})
+
+    \vspace{0.30cm}
+    \fig{width = 0.80\textwidth}{figs/jflap-aaa}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{tpdsl/OptionalInit.g4}
+    \fig{width = 0.60\textwidth}{figs/optional-init}
+
+    \pause
+    \texttt{int x = y; \qquad int x;}
+
+    \pause
+    \vspace{0.20cm}
+    \texttt{f(int x = y) \qquad f(int x)}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -233,11 +303,8 @@
 
     \input{algs/first-X}
 
+    \pause
     \purple{不断应用上面的规则, 直到每个 $\first(X)$ 都不再变化 ({\bf 闭包!!!})}
-    % \begin{enumerate}[(1)]
-    %   \item 如果 $X$ 是终结符, 则 $\first(X) = X$;
-    %   \item 如果 $X$ 是非终结符, 且 $X \to Y_{1} Y_{2} \dots Y_{k}$ 是一个产生式
-    % \end{enumerate}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -269,6 +336,9 @@
   \begin{columns}
     \column{0.50\textwidth}
       \input{cfg/cfg-XYZ}
+      \begin{center}
+        \texttt{jflap: XYZ.jff}
+      \end{center}
     \column{0.50\textwidth}
       \pause
       \begin{align*}
@@ -288,6 +358,7 @@
 
     \input{algs/follow-X}
 
+    \pause
     \purple{不断应用上面的规则, 直到每个 $\follow(X)$ 都不再变化 ({\bf 闭包!!!})}
   \end{center}
 \end{frame}
@@ -298,6 +369,9 @@
   \begin{columns}
     \column{0.50\textwidth}
       \input{cfg/cfg-XYZ}
+      \begin{center}
+        \texttt{jflap: XYZ.jff}
+      \end{center}
     \column{0.50\textwidth}
       \pause
       \begin{align*}
@@ -334,9 +408,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{``你是电, 你是光, 你是\red{\bf 唯一}的神话''}
-
-    \vspace{0.80cm}
     按照以下规则, 在表格 $[A, t]$ 中填入生成式 $A \to \alpha$ (编号):
 
     \setcounter{equation}{0}
