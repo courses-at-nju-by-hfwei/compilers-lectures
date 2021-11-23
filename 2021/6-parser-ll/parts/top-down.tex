@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{带记忆功能的}\purple{可回溯的}\red{递归下降}语法分析器
+    \blue{带记忆功能的}\purple{可回溯的}\red{递归下降的}语法分析器
 
     \vspace{0.50cm}
     \fig{width = 0.50\textwidth}{figs/antlr-logo}
@@ -19,7 +19,7 @@
   \fig{width = 1.00\textwidth}{figs/exprpred}
 
   \begin{center}
-    \texttt{tpdsl/ExprPred.g4}
+    \texttt{6-parser-ll/ExprPred.g4}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -234,7 +234,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \texttt{tpdsl/OptionalInit.g4}
+    \texttt{6-parser-ll/OptionalInit.g4}
     \fig{width = 0.60\textwidth}{figs/optional-init}
 
     \pause
@@ -417,7 +417,7 @@
     \end{gather}
 
     \vspace{0.60cm}
-    \blue{\bf 因其``唯一'', 必要变充分}
+    \blue{\bf 因其``唯一'' (\purple{无冲突}), 必要变充分}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -463,6 +463,16 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
+
+  \begin{center}
+    \red{What is $LL(0)$?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \red{\large {\bf 非递归}的预测分析算法}
 
@@ -475,7 +485,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\large 非递归的预测分析算法}
+    \red{\large {\bf 非递归}的预测分析算法}
 
     \vspace{0.60cm}
     \fig{width = 0.95\textwidth}{figs/ll1-iteration-alg}
@@ -522,85 +532,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 消除左递归}
-    \input{cfg/E-T-left-recursion}
-
-    \pause
-    \input{cfg/E-T-right-recursion}
-    将左递归转为\blue{\bf 右递归}
-
-    \pause
-    \vspace{0.50cm}
-    (注: 右递归对应右结合; 需要在后续阶段进行额外处理)
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \input{cfg/cfg-A-left-recursion}
-    其中, $\beta_{i}$ 都不以 $A$ 开头
-
-    \vspace{0.30cm}
-    \input{cfg/cfg-A-right-recursion}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \input{cfg/cfg-expr-add-mul-mul-first}
-
-  \pause
-  \input{cfg/cfg-expr-add-mul-no-left-recursion}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \red{\bf 非直接左递归}
-
-    \vspace{-0.30cm}
-    \input{cfg/cfg-S-A}
-
-    \vspace{-0.30cm}
-    \[
-      S \implies Aa \implies Sba
-    \]
-
-    \pause
-    \fig{width = 0.90\textwidth}{figs/left-recursion-alg}
-
-    \vspace{-1.00cm}
-    \[
-      \blue{\boxed{A_{k} \to A_{l} \alpha \implies l > k}}
-    \]
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \input{cfg/cfg-S-A}
-
-  \[
-    A \to Ac \mid Aad \mid bd \mid \epsilon
-  \]
-
-  \input{cfg/cfg-S-A-no-left-recursion}
-
-  \vspace{0.30cm}
-  \[
-      \blue{\boxed{A_{k} \to A_{l} \alpha \implies l > k}}
-  \]
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
     \begin{columns}
       \column{0.28\textwidth}
         \input{cfg/cfg-expr-add-mul-no-left-recursion}
@@ -614,7 +545,7 @@
           \first(F) &= \set{(, \id} \\
           \first(T) &= \set{(, \id} \\
           \red{\first(E)} &= \set{(, \id} \\
-          \first(E') &= \set{+, \epsilon} \\
+          \first(E') &= \set{+, \blue{\epsilon}} \\
           \first(T') &= \set{\ast, \epsilon}
         \end{align*}
       \column{0.50\textwidth}
@@ -641,6 +572,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    ANTLR4 可以处理直接左递归文法, \red{\bf 不要}改写文法
+
+    \vspace{0.50cm}
+    \texttt{5-parser-antlr/Expr.g4}
+
+    \vspace{0.50cm}
+    \fig{width = 0.30\textwidth}{figs/stay-tuned}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     \fig{width = 0.60\textwidth}{figs/cfg-if-then-else-short}
 
     \vspace{0.50cm}
@@ -654,12 +599,31 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.60\textwidth}{figs/cfg-if-then-else-short}
+  \fig{width = 0.30\textwidth}{figs/cfg-if-then-else-short-left-factor}
 
   \fig{width = 0.90\textwidth}{figs/ll1-table-if-then-else-short}
 
+  \pause
+  \[
+    \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2}
+  \]
+
   \begin{center}
     \red{\bf 解决二义性:} 选择 $S' \to eS$, 将 $\elsekw$ 与前面最近的 $\thenkw$ 关联起来
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ANTLR4 可以处理有左公因子的文法, \red{\bf 不要}改写文法 (\gray{暂时存疑})
+
+    \vspace{0.50cm}
+    \texttt{6-parser-ll/IfStat.g4}
+
+    \vspace{0.80cm}
+    \texttt{if a then if a then if a then b else c else c else c}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
