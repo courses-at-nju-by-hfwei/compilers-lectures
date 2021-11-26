@@ -605,7 +605,7 @@
 
   \pause
   \[
-    \ifkw\; E_{1} \;\thenkw\; \ifkw\; E_{2} \;\thenkw\; S_{1} \;\elsekw\; S_{2}
+    \ifkw\; b \;\thenkw\; \ifkw\; b \;\thenkw\; a \;\elsekw\; a
   \]
 
   \begin{center}
@@ -617,13 +617,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    ANTLR4 可以处理有左公因子的文法, \red{\bf 不要}改写文法 (\gray{暂时存疑})
+    ANTLR4 可以处理有左公因子的文法, \red{\bf 不要}改写文法
 
     \vspace{0.50cm}
-    \texttt{6-parser-ll/IfStat.g4}
+    \texttt{parserll/IfStat.g4}
 
     \vspace{0.80cm}
-    \texttt{if a then if a then if a then b else c else c else c}
+    \[
+      \ifkw\; a \;\thenkw\; \ifkw\; a \;\thenkw\; \ifkw\; a \;\thenkw\; b \;\elsekw\; c \;\elsekw\; c \;\elsekw\; c
+    \]
+
+    \pause
+    \[
+      (\ifkw\; a \;\thenkw\; (\ifkw\; a \;\thenkw\; (\ifkw\; a \;\thenkw\; b \;\elsekw\; c) \;\elsekw\; c) \;\elsekw\; c)
+    \]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
