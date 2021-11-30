@@ -3,13 +3,21 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 输入:} 词法单元流 \& \blue{\bf 语言的语法规则}
+    只考虑\red{\bf 无二义性}的文法 \\[4pt]
+    这意味着, 每个句子对应唯一的一棵语法分析树
 
-    \vspace{0.50cm}
-    \fig{width = 0.90\textwidth}{figs/lexer-parser}
+    \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 
-    \vspace{0.30cm}
-    \red{\bf 输出:} 语法分析树 (Parse Tree)
+    今日份主题: \red{\bf $LR$ 语法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/danazhina}
+  \begin{center}
+    \blue{\bf ``打哪指哪''}的思维方式
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -17,9 +25,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    语法分析\blue{\bf 举例}
-
-    \fig{width = 0.95\textwidth}{figs/statement-wiki}
+    自顶向下的、\\[15pt]
+    递归下降的、\\[15pt]
+    预测分析的、\\[15pt]
+    适用于\red{\bf $LL(1)$文法}的、\\[15pt]
+    $LL(1)$语法分析器
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -27,31 +37,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    语法分析阶段的主题之一: \red{\bf 上下文无关文法}
+    $LL(k)$ 的\red{\bf 弱点}: \\[10pt]
+    在仅看到\violet{右部的前 $k$ 个词法单元}时就必须预测要使用哪条产生式
 
-    \fig{width = 0.55\textwidth}{figs/cfg-statement-wiki}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    语法分析阶段的主题之二: \red{\bf 构建语法分析树}
-
-    \fig{width = 0.85\textwidth}{figs/tree-statement-wiki}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    语法分析阶段的主题之三: \red{\bf 错误恢复}
-
-    \fig{width = 0.45\textwidth}{figs/keep-calm-recovery}
-
-    报错、\blue{\bf 恢复}、继续分析
+    \pause
+    \vspace{1.50cm}
+    $LR(k)$ 的\blue{\bf 优点}: \\[10pt]
+    看到\purple{与正在考虑的这个产生式}的\violet{整个右部}对应的词法单元之后再决定
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
