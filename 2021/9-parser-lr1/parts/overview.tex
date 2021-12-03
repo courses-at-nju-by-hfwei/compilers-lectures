@@ -15,9 +15,12 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.60\textwidth}{figs/danazhina}
   \begin{center}
-    \blue{\bf ``打哪指哪''}的思维方式
+    自底向上的、\\[15pt]
+    不断归约的、\\[15pt]
+    基于句柄识别自动机的、\\[15pt]
+    适用于\red{\bf $LR$ 文法}的、\\[15pt]
+    $LR$ 语法分析器
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -25,25 +28,46 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    自顶向下的、\\[15pt]
-    递归下降的、\\[15pt]
-    预测分析的、\\[15pt]
-    适用于\red{\bf $LL(1)$文法}的、\\[15pt]
-    $LL(1)$语法分析器
+    \red{\bf $LR(0)$ 语法分析器}
+
+    \vspace{0.80cm}
+    \begin{columns}
+      \column{0.10\textwidth}
+      \column{0.80\textwidth}
+        \begin{description}
+          \setlength{\itemsep}{15pt}
+          \item[$L:$] \purple{\bf 从左向右} (Left-to-right) 扫描输入
+          \item[$R:$] 构建\purple{\bf 反向} (Reverse) \purple{\bf 最右推导}
+          \item[$0:$] \purple{\bf 归约}时无需向前看
+        \end{description}
+      \column{0.10\textwidth}
+    \end{columns}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    $LL(k)$ 的\red{\bf 弱点}: \\[10pt]
-    在仅看到\violet{右部的前 $k$ 个词法单元}时就必须预测要使用哪条产生式
+\begin{frame}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr}
+    \column{0.50\textwidth}
+      \input{tables/lr0-table-expr}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \pause
-    \vspace{1.50cm}
-    $LR(k)$ 的\blue{\bf 优点}: \\[10pt]
-    看到\purple{与正在考虑的这个产生式}的\violet{整个右部}对应的词法单元之后再决定
-  \end{center}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \[
+    \id \qquad + \qquad \ast \qquad ( \qquad ) \qquad \$
+  \]
+
+  \input{cfg/cfg-expr-add-mul-mul-first-numbering}
+
+  \pause
+  \[
+    \red{\follow(E) = \pause \set{+, ), \$}}
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
