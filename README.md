@@ -12,6 +12,7 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] LLVM (IR)
 - [ ] Clang
 - [ ] stack machine
+- [ ] MMIX
 
 ### Languages
 - [ ] PL/0
