@@ -13,8 +13,17 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] Clang
 - [ ] stack machine
 - [ ] MMIX
+- [ ] [LSP (Language Sever Protocol)](https://langserver.org/)
+
+
+### Parsers
+- [ ] Ocamlyacc
+- [ ] [yecc](https://www.erlang.org/doc/man/yecc.html)
+- [ ] [PLY (Python Lex-Yacc)](https://www.dabeaz.com/ply/ply.htm	l)
+- [ ] [Parser Tools: lex and yacc-style Parsing on Racket](https://docs.racket-lang.org/parser-tools/index.html)
 
 ### Languages
 - [ ] PL/0
 - [ ] tiny-c
 - [ ] FPs
+- [ ] Web Assembly
