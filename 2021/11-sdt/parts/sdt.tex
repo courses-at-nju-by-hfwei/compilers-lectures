@@ -2,35 +2,6 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{columns}[b]
-    \column{0.25\textwidth}
-      \fig{width = 0.80\textwidth}{figs/1}
-      \vspace{-0.50cm}
-      \begin{center}
-        \blue{\bf 一对概念}
-      \end{center}
-    \column{0.25\textwidth}
-      \fig{width = 0.85\textwidth}{figs/2}
-      \vspace{-0.60cm}
-      \begin{center}
-        \blue{两类属性定义}
-      \end{center}
-    \column{0.25\textwidth}
-      \fig{width = 0.65\textwidth}{figs/3}
-      \begin{center}
-        \blue{\bf 三种实现方式}
-      \end{center}
-    \column{0.25\textwidth}
-      \fig{width = 0.65\textwidth}{figs/4}
-      \begin{center}
-        \blue{四大应用}
-      \end{center}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
   \begin{definition}[语法制导的翻译方案 (Syntax-Directed Translation Scheme; SDT)]
     \purple{\bf SDT} 是在其产生式体中嵌入\red{\bf 语义动作}的上下文无关文法。
   \end{definition}
@@ -116,10 +87,6 @@
 \begin{frame}{}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/SDT-expr-prefix}
-    \vspace{-0.50cm}
-    \[
-      3 \ast 5 + 4 \implies \pause + \ast 3 5 4
-    \]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -358,7 +325,7 @@
 
     \vspace{-0.60cm}
     \[
-      \teal{\boxed{X Y Y}}
+      \teal{\boxed{X Y^{\ast}}}
     \]
 
     (右递归) $L$属性定义
@@ -442,20 +409,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.60\textwidth}{figs/SDT-postfix}
-
-    \vspace{0.50cm}
-    \blue{\bf 特例:} 语义动作不涉及属性的计算
-
-    \vspace{0.50cm}
-    \fig{width = 0.60\textwidth}{figs/SDT-postfix-no-left-recursion}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
     \input{tables/sdt-L-SDD-LL}
   \end{center}
 \end{frame}
@@ -465,9 +418,28 @@
 \begin{frame}{}
   \begin{center}
     \input{tables/sdt-question}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{tables/sdt-S-SDD-LL}
 
     \vspace{0.60cm}
-    \blue{\bf Additional Report (PPT + Video)}
+    \[
+      A \to \red{\set{B.i = f(A.i)}} B C
+    \]
+    \blue{}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{tables/sdt-S-SDD-LL-book}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
