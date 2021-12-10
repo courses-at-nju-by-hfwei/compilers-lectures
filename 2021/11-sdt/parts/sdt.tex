@@ -7,10 +7,6 @@
   \end{definition}
 
   \vspace{0.30cm}
-  \begin{center}
-    \blue{\bf 语义动作可以嵌入在产生式体中的任何位置}
-  \end{center}
-
   \begin{columns}
     \column{0.50\textwidth}
       \fig{width = 1.00\textwidth}{figs/SDD-expr-left-recursion-rule}
@@ -28,13 +24,48 @@
     \fig{width = 0.80\textwidth}{figs/SDT-expr-prefix}
     \teal{前缀表达式 SDT}
 
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    B \to \blue{X} \red{\set{a}} Y
+  \]
+
+  \vspace{0.30cm}
+  \begin{center}
     \pause
-    \vspace{0.50cm}
+    \red{$Q$: 如何在{\bf 语法分析过程中}\violet{\bf 自动}实现属性文法?}
+
+    \pause
+    \vspace{1.00cm}
     语义动作嵌入的位置决定了\red{\bf 何时}执行该动作
 
-    \vspace{0.30cm}
+    \vspace{0.60cm}
     \red{\bf 基本思想:} 一个动作在它\blue{\bf 左边的}所有文法符号都\blue{\bf 处理}过之后立刻执行
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    B \to \blue{X} \red{\set{a}} Y
+  \]
+
+  \vspace{0.30cm}
+  \red{\bf 基本思想:} 一个动作在它\blue{\bf 左边的}所有文法符号都\blue{\bf 处理}过之后立刻执行
+
+  \pause
+  \vspace{0.80cm}
+  \begin{description}
+    \setlength{\itemsep}{20pt}
+    \item[自底向上:] 移入 $X$ 或归约为 $X$ \red{之后} (即, $X$ 位于栈顶) 执行动作 $a$
+    \pause
+    \item[自顶向下:] 对 $Y$ 进行展开或者匹配\red{之前}执行动作 $a$
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -46,7 +77,7 @@
     \fig{width = 0.60\textwidth}{figs/timing-japanese}
 
     \vspace{0.30cm}
-    \red{\bf 语义动作嵌入在什么地方? 何时执行语义动作?}
+    \red{\bf 语义动作嵌入在什么地方? 这决定了何时执行语义动作。}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -54,7 +85,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{$Q:$} 如何将 SDD 中的\blue{\bf 语义规则}转换为带有\blue{\bf 语义动作}的 SDT
+    \red{$Q:$} 如何将带有\blue{\bf 语义规则}的 SDD 转换为带有\blue{\bf 语义动作}的 SDT
 
     \vspace{0.60cm}
     \input{tables/sdt}
@@ -107,6 +138,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \input{tables/sdt-offline}
+
+  \pause
+  \vspace{0.60cm}
+  \begin{center}
+    \blue{ANTLR4} 使用该方法, 将文法与语义分开, 易于开发, 易于维护。
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -128,10 +165,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    该 SDT \red{\bf 无法}在 \blue{$LL(1)/LR(1)$} 中实现
+    该 SDT \red{\bf 无法}在 \blue{$\gray{LL(1)}/LR(1)$} 中实现
 
     \fig{width = 0.80\textwidth}{figs/SDT-expr-prefix}
-    \teal{前缀表达式 SDT}
 
     \pause
     \vspace{0.50cm}
@@ -164,8 +200,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \teal{前缀表达式 SDT}
-
     \fig{width = 0.80\textwidth}{figs/SDT-expr-prefix-marker}
     \begin{align*}
       M_{2} &\to \epsilon \\
@@ -219,6 +253,9 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \blue{哪些 SDT 可以在 $LL/LR$ 中实现? 如何实现?}
+  \end{center}
   \input{tables/sdt-online}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -427,11 +464,13 @@
   \begin{center}
     \input{tables/sdt-S-SDD-LL}
 
+    \pause
     \vspace{0.60cm}
     \[
       A \to \red{\set{B.i = f(A.i)}} B C
     \]
-    \blue{}
+    \pause
+    \red{一般而言, $L$-属性文法无法在 $LR$ 中实现。}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -440,6 +479,65 @@
 \begin{frame}{}
   \begin{center}
     \input{tables/sdt-S-SDD-LL-book}
+
+    \vspace{0.50cm}
+    \href{https://en.wikipedia.org/wiki/LR-attributed_grammar}{\blue{\bf LR-attributed Grammar}}
+
+    \pause
+    \vspace{0.20cm}
+    可以在 $LR$ 中实现的 $L$属性文法
+
+    \pause
+    \vspace{0.20cm}
+    \begin{align*}
+      S\texttt{属性文法} \subseteq LR\texttt{属性文法} \subseteq L\texttt{属性文法}
+    \end{align*}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.50\textwidth}{figs/bison}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/antlr-logo}
+  \end{columns}
+
+  \vspace{0.60cm}
+  \begin{center}
+    GNU Bison 与 \green{ANTLR3} 支持 SDT
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.26\textwidth}{figs/bison-ag}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://github.com/antlr/antlr4/blob/master/doc/faq/general.md\#what-is-the-difference-between-antlr-3-and-4}{What is the difference between ANTLR 3 and 4?
+}
+
+    \vspace{0.30cm}
+    \fig{width = 1.00\textwidth}{figs/antlr4-actions}
+    \pause
+    \fig{width = 1.00\textwidth}{figs/antlr4-design}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/yacc-ag}
+
+  \begin{center}
+    Yacc (Bison): $LALR$ parsers
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
