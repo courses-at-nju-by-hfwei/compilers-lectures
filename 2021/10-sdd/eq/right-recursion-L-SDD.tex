@@ -1,7 +1,0 @@
-% right-recursion-L-SDD.tex
-
-\begin{alignat*}{3}
-  A &\to XR \qquad && \red{R.i} = f(X.x);\quad A.a = R.s \\[8pt]
-  R &\to YR_{1} && \red{R_{1}.i} = g(R.i, Y.y);\quad R.s = R_{1}.s \\[8pt]
-  R &\to \epsilon && \blue{R.s = R.i}
-\end{alignat*}
