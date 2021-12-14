@@ -3,6 +3,31 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    \fig{width = 0.80\textwidth}{figs/type-systems}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.48\textwidth}{figs/js-eq}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.75\textwidth}{figs/js-table}
+  \end{center}
+  \begin{center}
+    \href{https://thomas-yang.me/projects/oh-my-dear-js/}{\textsc{Oh My Dear JavaScript}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     \fig{width = 0.80\textwidth}{figs/dynamic-static-weak-strong}
 
     \vspace{0.30cm}
@@ -33,22 +58,13 @@
 \begin{frame}{}
   \begin{center}
     \begin{definition}[结构等价 (Structurally Equivalent)]
-      两种类型\red{\bf 结构等价}当且仅当以下任一条件为真:
-      \begin{itemize}
-        \item 它们是相同的基本类型;
-        \item 它们是将相同的类型构造算子应用于结构等价的类型而构造得到;
-        \item \purple{\bf 一个类型是另一个类型表达式的名字}。
-      \end{itemize}
     \end{definition}
 
-    \pause
     \vspace{0.80cm}
+    此处不作严格定义
+    \vspace{0.80cm}
+
     \begin{definition}[名等价 (Name Equivalent)]
-      两种类型\blue{\bf 名等价}当且仅当以下任一条件为真:
-      \begin{itemize}
-        \item 它们是相同的基本类型;
-        \item 它们是将相同的类型构造算子应用于结构等价的类型而构造得到。
-      \end{itemize}
     \end{definition}
   \end{center}
 \end{frame}
@@ -134,8 +150,8 @@
     \pause
     \vspace{0.50cm}
     \fig{width = 1.00\textwidth}{figs/type-int-float}
+
     \pause
-    \vspace{-0.50cm}
     \red{\bf 不要写这样的代码!!!}
   \end{center}
 \end{frame}
@@ -145,6 +161,9 @@
 \begin{frame}{}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/widen-narrow}
+
+    \vspace{0.60cm}
+    \href{https://en.cppreference.com/w/c/language/conversion}{Conversion@cppreference.com}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
