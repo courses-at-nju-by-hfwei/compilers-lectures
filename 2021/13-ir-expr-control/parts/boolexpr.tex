@@ -113,8 +113,10 @@
 
     \pause
     \vspace{0.50cm}
+    根据 $E$ 所处的上下文判断 $E$ 所扮演的角色, 调用不同的代码生成函数 \\[15pt]
+
     函数 \blue{$jump(t, f)$}: 生成控制流代码 \\[6pt]
-    函数 \blue{$rvalue()$}: 生成计算布尔值的代码, 并将结果存储在临时变量中
+    函数 \red{$rvalue()$}: 生成计算布尔值的代码, 并将结果存储在临时变量中
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -140,6 +142,25 @@
     \teal{\texttt{\Large x = a < b \&\& c < d}}
 
     \fig{width = 0.70\textwidth}{figs/boolexpr-value-tac}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\Large \purple{\bf 布尔表达式}的作用: \red{\bf 布尔值} \emph{vs.} \blue{\bf 控制流跳转}}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/boolexpr-value}
+
+    \pause
+    \vspace{0.80cm}
+    为什么要区分布尔表达式的这两种角色?
+
+    \pause
+    \vspace{0.80cm}
+    可以不区分布尔表达式的这两种角色吗?
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
