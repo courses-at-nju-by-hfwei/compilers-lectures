@@ -41,7 +41,25 @@
     {\Large 分工明确 \qquad 各司其职}
 
     \vspace{0.30cm}
-    \fig{width = 0.50\textwidth}{figs/fengong}
+    \fig{width = 0.45\textwidth}{figs/fengong}
+  \end{center}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{center}
+    \red{父节点}为子节点准备跳转指令的目标标签 \\[5pt]
+    子节点通过\blue{\bf 继承属性}确定跳转目标
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    在自顶向下的分析过程中 \\[15pt]
+
+    为右部的每个 $B$ 计算 $B.\text{true}$ 与 $B.\text{false}$ \\[10pt]
+    为右部的每个 $S$ 计算 $S.\text{next}$
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
