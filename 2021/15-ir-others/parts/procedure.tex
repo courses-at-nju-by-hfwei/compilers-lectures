@@ -2,6 +2,43 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \setcounter{equation}{7}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{align}
+        \param\; x \\
+        \call\; p, n \\
+        y = \call\; p, n \\
+        \return\; y
+      \end{align}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/param-call}
+      \[
+        \teal{p(x_{1}, x_{2}, \dots, x_{n})}
+      \]
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{align*}
+%     \param\; u \\
+%     \param\; v \\
+%     \param\; w \\
+%     \call\; f \\
+%     \call\; g
+%   \end{align*}
+
+%   \pause
+%   \[
+%     g(u, v, f(w)) \qquad g(u, f(v, w))
+%   \]
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \red{\bf 函数/过程的中间代码翻译}
 
@@ -60,6 +97,45 @@
 
     C 语言并未规定参数计算的顺序
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    g(u, v, f(w)) \qquad g(u, f(v, w))
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{align*}
+        \text{计算实参 $x_{1}$ 的中间代码} \\
+        \param\; x_{1} \\
+        \text{计算实参 $x_{2}$ 的中间代码} \\
+        \param\; x_{2} \\
+        \ldots \\
+        \text{计算实参 $x_{m}$ 的中间代码} \\
+        \param\; x_{n} \\
+        \call\; p, n
+      \end{align*}
+    \column{0.50\textwidth}
+      \pause
+      \begin{align*}
+        \text{计算实参 $x_{1}$ 的中间代码} \\
+        \text{计算实参 $x_{2}$ 的中间代码} \\
+        \ldots \\
+        \text{计算实参 $x_{m}$ 的中间代码} \\
+        \param\; x_{1} \\
+        \param\; x_{2} \\
+        \ldots \\
+        \param\; x_{n} \\
+        \call\; p, n
+      \end{align*}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
