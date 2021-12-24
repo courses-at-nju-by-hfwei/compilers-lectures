@@ -43,10 +43,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    在自底向上的分析过程中 \\[15pt]
-    为左部非终结符 $B$ 计算 $B.\text{truelist}$ 与 $B.\text{falselist}$ \\[10pt]
-    为左部非终结符 $S$ 计算 $S.\text{nextlist}$ \\[10pt]
-    并为已能确定目标地址的跳转指令进行回填
+    在自底向上的分析过程中 \\[20pt]
+    为左部非终结符 \red{$B$} 计算综合属性 $B.\text{truelist}$ 与 $B.\text{falselist}$ \\[10pt]
+    为左部非终结符 \blue{$S/L$} 计算综合属性 $S/L.\text{nextlist}$ \\[15pt]
+    并为已能确定目标地址的跳转指令进行\purple{回填} (考虑每个综合属性)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -179,12 +179,12 @@
   \begin{center}
     \fig{width = 1.00\textwidth}{figs/if-backpatch}
 
-    \vspace{0.80cm}
+    \vspace{0.40cm}
     \fig{width = 0.80\textwidth}{figs/M-backpatch-2}
 
     \pause
     \vspace{0.80cm}
-    \fig{width = 0.90\textwidth}{figs/SDD-if}
+    \fig{width = 0.95\textwidth}{figs/if-SDD}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -194,12 +194,12 @@
   \begin{center}
     \fig{width = 1.00\textwidth}{figs/if-else-backpatch}
 
-    \vspace{0.50cm}
+    \vspace{0.30cm}
     \fig{width = 0.80\textwidth}{figs/M-N-backpatch}
 
     \pause
-    \vspace{0.50cm}
-    \fig{width = 0.70\textwidth}{figs/SDD-if-else}
+    \vspace{0.20cm}
+    \fig{width = 0.75\textwidth}{figs/if-else-SDD}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -209,12 +209,12 @@
   \begin{center}
     \fig{width = 1.00\textwidth}{figs/while-backpatch}
 
-    \vspace{0.50cm}
+    \vspace{0.30cm}
     \fig{width = 0.90\textwidth}{figs/M-backpatch-2}
 
     \pause
     \vspace{0.50cm}
-    \fig{width = 0.80\textwidth}{figs/SDD-while}
+    \fig{width = 0.85\textwidth}{figs/while-SDD}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -222,7 +222,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 1.00\textwidth}{figs/S-L-backpatch}
+    \fig{width = 1.00\textwidth}{figs/L-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/S-backpatch}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -234,5 +242,38 @@
   \begin{center}
     只有 (3) 与 (7) 生成了新的代码, 控制流语句的主要目的是\red{``控制''流}。
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{}
+  \begin{columns}
+    \column{0.20\textwidth}
+    \column{0.60\textwidth}
+      \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+          \Procedure{AreYouOK}{\text{score}}
+            \If{$\text{score} \ge 60$}
+              \While{\text{true}}
+                \State \text{\bf print} ``Happy New Year''
+              \EndWhile
+            \Else
+              \State \text{\bf print} ``Sad''
+            \EndIf
+          \EndProcedure
+        \end{algorithmic}
+      \end{algorithm}
+    \column{0.20\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/ifelse-while-backpatch}
+  \pause
+  \fig{width = 0.80\textwidth}{figs/MN-backpatch}
+  \pause
+  \fig{width = 0.80\textwidth}{figs/true-backpatch}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
