@@ -8,13 +8,13 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 
 ## In the following years, I may try
 ### Tools
+- [x] ANTLR (2021)
 - [ ] Lark
 - [ ] LLVM (IR)
 - [ ] Clang
 - [ ] stack machine
 - [ ] MMIX
 - [ ] [LSP (Language Sever Protocol)](https://langserver.org/)
-
 
 ### Parsers
 - [ ] Ocamlyacc
