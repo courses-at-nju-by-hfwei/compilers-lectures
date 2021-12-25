@@ -27,3 +27,6 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] tiny-c
 - [ ] FPs
 - [ ] Web Assembly
+
+### Labs
+- [ ] [编译原理系统竞赛](https://compiler.educg.net/)
