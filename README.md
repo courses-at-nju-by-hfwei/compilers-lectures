@@ -30,3 +30,7 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 
 ### Labs
 - [ ] [编译原理系统竞赛](https://compiler.educg.net/)
+
+### Platforms
+- [ ] [头歌](https://www.educoder.net/)
+  - [ ] Chinasoft2022 程序设计教育论坛
