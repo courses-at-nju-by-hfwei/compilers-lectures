@@ -4,7 +4,7 @@ Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/org
 
 ## 周历
 
-| 周次 | 日期 | 主题 | 阅读材料 (龙书; 原版第二版) |
+| 周次 | 日期 | 主题 | 阅读材料 (龙书; 原书第二版; 本科教学版) |
 | :---: | :---: | :---: | :---: |
 | 10 | 2020-11-10 (周二) | [0-overview](/0-overview) | 1.1, 1.2 |
 | 10 | 2020-11-12 (周四) | [1-lexer (1)](/1-lexer) | 2.6, 3.1, 3.3, 3.4, Flex |

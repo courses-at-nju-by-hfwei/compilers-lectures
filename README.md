@@ -21,15 +21,22 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] [yecc](https://www.erlang.org/doc/man/yecc.html)
 - [ ] [PLY (Python Lex-Yacc)](https://www.dabeaz.com/ply/ply.htm	l)
 - [ ] [Parser Tools: lex and yacc-style Parsing on Racket](https://docs.racket-lang.org/parser-tools/index.html)
+- [ ] [javaparser](https://javaparser.org/)
 
 ### Languages
 - [ ] PL/0
 - [ ] tiny-c
+- [ ] SQL
+  - [ ] DuSQL
+  - [ ] [mysql-workbench](https://github.com/mysql/mysql-workbench)
 - [ ] FPs
 - [ ] Web Assembly
+- [ ] TLA+
+- [ ] PlusCal
 
 ### Labs
 - [ ] [编译原理系统竞赛](https://compiler.educg.net/)
+- [ ] [RISC-V](https://en.wikipedia.org/wiki/RISC-V)
 
 ### Platforms
 - [ ] [头歌](https://www.educoder.net/)
