@@ -22,6 +22,8 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] [PLY (Python Lex-Yacc)](https://www.dabeaz.com/ply/ply.htm	l)
 - [ ] [Parser Tools: lex and yacc-style Parsing on Racket](https://docs.racket-lang.org/parser-tools/index.html)
 - [ ] [javaparser](https://javaparser.org/)
+- [ ] [tree-sitter](https://github.com/tree-sitter/tree-sitter)
+  > An incremental parsing system for programming tools
 
 ### Languages
 - [ ] PL/0
@@ -32,7 +34,11 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] FPs
 - [ ] Web Assembly
 - [ ] TLA+
+  - [ ] [TLA+ Web UI Prototype](https://github.com/will62794/tla-web)
+  - [ ] [tree-sitter-tlaplus](https://github.com/tlaplus-community/tree-sitter-tlaplus)
 - [ ] PlusCal
+- [ ] TLAPS
+- [ ] Mathematica
 
 ### Labs
 - [ ] [编译原理系统竞赛](https://compiler.educg.net/)
