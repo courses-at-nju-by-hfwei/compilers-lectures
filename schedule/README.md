@@ -1,0 +1,25 @@
+# Schedule
+
+- Project: RE => NFA => DFA => Min-DFA
+  - Features:
+	- Visualization
+	- Step-by-step Animation (Building Process)
+	- Interactive UI
+	- `.dot`, `.tikz`, `.tex` (table)
+  - References:
+    - [regex](https://github.com/courses-at-nju-by-hfwei/compilers-resources/tree/master/tools/grammar/regex)
+    - [automata](https://github.com/courses-at-nju-by-hfwei/compilers-resources/tree/master/tools/automata/README.md)
+- [ ] Survey: 国内外编译原理课程 (共享腾讯文档)
+  - Tools
+  - Lectures
+  - Labs
+- ***Lab***
+  - Step-by-step (OJ supported)
+  - [《自制编译器》by 青木峰郎](https://github.com/courses-at-nju-by-hfwei/compilers-resources/tree/master/books)
+  - SysY 语言
+- Study: LLVM
+  - [LLVM Tutorial](https://llvm.org/docs/tutorial/)
+  - [LLVM Tutor](https://github.com/banach-space/llvm-tutor)
+  - bilibili
+- Survey: [编译原理大赛](https://github.com/courses-at-nju-by-hfwei/compilers-resources/tree/master/competitions)
+  - SysY 语言
