@@ -5,12 +5,13 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 ## Lectures
 - [2020](./2020/)
 - [2021](./2021/)
+- [2022](./2022/)
 
 ## In the following years, I may try
 ### Tools
 - [x] ANTLR (2021)
 - [ ] Lark
-- [ ] LLVM (IR)
+- [x] LLVM (IR)
 - [ ] Clang
 - [ ] stack machine
 - [ ] MMIX
@@ -41,7 +42,7 @@ Lectures on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-n
 - [ ] Mathematica
 
 ### Labs
-- [ ] [编译原理系统竞赛](https://compiler.educg.net/)
+- [x] [编译原理系统竞赛](https://compiler.educg.net/)
 - [ ] [RISC-V](https://en.wikipedia.org/wiki/RISC-V)
 
 ### Platforms

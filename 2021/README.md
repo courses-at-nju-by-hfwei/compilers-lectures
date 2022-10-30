@@ -1,4 +1,4 @@
-# compilers-lectures
+# 2021
 
 Lectures for the class on [Compilers@software.nju.edu.cn](https://github.com/orgs/courses-at-nju-by-hfwei/teams/compilers-course-at-nju-software/repositories).
 
