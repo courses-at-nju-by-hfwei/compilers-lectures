@@ -1,0 +1,233 @@
+% re.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \id: \red{L(L \cup D)^{\ast}}
+  \]
+
+  \begin{center}
+    该如何告诉 ANTLR v4 $:$ 这个集合就是 \id{} 呢?
+  \end{center}
+
+  \pause
+  \fig{width = 0.50\textwidth}{figs/regex}
+  \begin{center}
+    下面向大家隆重介绍简洁、优雅、强大的\red{\bf 正则表达式}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    每个正则表达式 $r$ 对应一个正则语言 $L(r)$
+
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/syntax-semantics}
+
+    \vspace{0.30cm}
+    正则表达式是\red{\bf 语法}, 正则语言是\red{\bf 语义}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[正则表达式]
+    给定字母表 $\Sigma$, $\Sigma$ 上的正则表达式\red{\bf 由且仅由}以下规则定义:
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{8pt}
+      \item $\epsilon$ 是正则表达式;
+      \item $\forall a \in \Sigma$, $a$ 是正则表达式;
+      \item 如果 $r$ 是正则表达式, 则 $(r)$ 是正则表达式;
+      \item 如果 $r$ 与 $s$ 是正则表达式, 则 $r|s$, $rs$, $r^{\ast}$ 也是正则表达式。
+    \end{enumerate}
+
+    \vspace{0.30cm}
+    \begin{center}
+      运算优先级: $()\; \purple{\succ} \ast\; \purple{\succ} \text{ 连接 }\; \purple{\succ}\; |$
+    \end{center}
+    \[
+      (a) | ((b)^{\ast}(c)) \equiv a | b^{\ast} c
+    \]
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    每个正则表达式 $r$ 对应一个正则语言 $L(r)$
+  \end{center}
+
+  \begin{definition}[正则表达式对应的正则语言]
+    \begin{gather}
+      L(\epsilon) = \set{\epsilon} \\[8pt]
+      L(a) = \set{a}, \forall a \in \Sigma \\[8pt]
+      L((r)) = L(r) \\[8pt]
+      \red{L(r|s) = L(r) \cup L(s) \quad L(rs) = L(r)L(s)
+      \quad L(r^{\ast}) = (L(r))^{\ast}}
+    \end{gather}
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \Sigma = \set{a, b}
+  \]
+
+  \[
+    L(a | b) = \set{a, b}
+  \]
+
+  \pause
+  \[
+    L((a | b) (a | b))
+  \]
+
+  \pause
+  \[
+    L(a^{\ast})
+  \]
+
+  \pause
+  \[
+    L((a | b)^{\ast})
+  \]
+
+  \pause
+  \[
+    L(a | a^{\ast}b)
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/so-easy}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.75\textwidth}{figs/regex-extended}
+  \pause
+  \[
+    [0-9] \quad [a-zA-Z] \qquad \red{\hat\qquad \$}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\bf 正则定义}与简记法
+  \end{center}
+
+  \fig{width = 0.92\textwidth}{figs/regex-shorthand}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.40\textwidth}{figs/tiger-hello-kitty}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     C 语言中的{\bf 标识符}?
+%   \end{center}
+
+%   \pause
+%   \fig{width = 0.35\textwidth}{figs/regex-101-c-id}
+%   \begin{center}
+%     \teal{\url{https://regex101.com/r/lVoghd/1}}
+%   \end{center}
+% \end{frame}{}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     整数部分$.$小数部分\texttt{E/e}指数部分
+%   \end{center}
+%
+%   \pause
+%   \fig{width = 0.95\textwidth}{figs/regex101-number}
+% \end{frame}{}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     C 语言中{\bf 单行注释}对应的正则表达式?
+
+%     \pause
+%     \fig{width = 0.70\textwidth}{figs/regex101-single-line-comment}
+%     \teal{\url{https://regex101.com/r/ED4qgC/2}}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     C 语言中{\bf 多行注释}对应的正则表达式?
+%
+%     \pause
+%     \fig{width = 0.70\textwidth}{figs/regex101-multi-line-comment}
+%     \teal{\url{https://regex101.com/r/ED4qgC/3}}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     如何满足 $L1$ 关于{\bf 多行注释}的要求?
+
+%     \vspace{0.50cm}
+%     \fig{width = 0.95\textwidth}{figs/multi-line-comment-spec}
+
+%     \pause
+%     \vspace{0.50cm}
+%     \fig{width = 0.95\textwidth}{figs/antlr-lexer-comments}
+
+%     \pause
+%     \vspace{0.50cm}
+%     在 antlr4 中, \texttt{'.'} 可匹配任意字符 (\red{包括换行符})
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \Big(0|\big(1(01^{\ast}0)^{\ast}1\big)\Big)^{\ast}
+  \]
+  \fig{width = 0.40\textwidth}{figs/sha}
+
+  \begin{center}
+    \teal{\url{https://regex101.com/r/ED4qgC/1}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.60\textwidth}
+      \fig{width = 0.40\textwidth}{figs/regex101-multiple-3}
+    \column{0.40\textwidth}
+      \pause
+      \begin{center}
+        3的倍数 (二进制表示)
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
