@@ -49,20 +49,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    先: \ws \quad \ifkw \quad \elsekw \quad \id \quad \intnum
-
-    \vspace{1.00cm}
-    然后: \relop
-
-    \vspace{1.00cm}
-    最后: \floatnum \quad \scinum
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
     用于识别 \blue{\ws} 的状态转移图
     \fig{width = 0.50\textwidth}{figs/ws}
 
@@ -206,7 +192,7 @@
     \ws \quad \ifkw \quad \elsekw \quad \id \quad \intnum \quad \relop
 
     \vspace{0.80cm}
-    根据\purple{\bf 下一个字符}即可判定词法单元的类型
+    根据\purple{\bf 下一个/两个字符}即可判定词法单元的类型
 
     \vspace{0.50cm}
     每个状态转移图的每个状态要么是\purple{\bf 接受状态}, 要么带有 \purple{\bf \texttt{other}边}
@@ -272,11 +258,6 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{center}
-    识别字符串$s$中符合\red{\bf 某种词法单元模式}的{\bf 前缀词素}
-    \blue{($\Call{scan}{\null}$)}
-  \end{center}
-
   \begin{columns}
     \column{0.50\textwidth}
       \begin{center}
