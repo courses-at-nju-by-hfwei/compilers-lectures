@@ -2,16 +2,6 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.60\textwidth}{figs/by-hand}
-
-  \begin{center}
-    手写词法分析器
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/tokens}
 
@@ -25,18 +15,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    识别字符串$s$中符合\red{\bf 特定}词法单元模式的\blue{\bf 前缀}词素
+    \uncover<2->{识别字符串$s$中符合\red{\bf 特定}词法单元模式的\blue{\bf 前缀}词素}
 
     \vspace{0.80cm}
-    \uncover<2->{
+    \uncover<4->{
       \blue{\fbox{\red{\bf 分支:} 先判断属于哪一类, 然后进入特定词法单元的前缀词素匹配流程}}
+    }
 
       \vspace{0.80cm}
+    \uncover<3->{
       识别字符串$s$中符合\red{\bf 某种}词法单元模式的\blue{\bf 前缀}词素
     }
 
     \vspace{0.80cm}
-    \uncover<3->{
+    \uncover<5->{
       \blue{\fbox{\red{\bf 循环:} 返回当前识别出来的词法单元与词素, 继续识别下一个前缀词素}}
     }
 
