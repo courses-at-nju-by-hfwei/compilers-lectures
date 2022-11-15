@@ -17,7 +17,7 @@
 
   \vspace{0.60cm}
   \begin{center}
-    最前优先匹配: $a$、$abb$ (比如 \blue{\bf 关键字}) \\[10pt]
+    最前优先匹配: $abb$ (比如 \blue{\bf 关键字}) \\[10pt]
     最长优先匹配: $aabbb$
   \end{center}
 \end{frame}
@@ -150,7 +150,7 @@
       \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
     \]
 
-    需要判断是否进入死状态, 避免词法分析器徒劳消耗输入流
+    需要\red{\bf 消除} ``死状态'', 避免词法分析器徒劳消耗输入流
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
