@@ -59,6 +59,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    \fig{width = 0.60\textwidth}{figs/empty-state}
+
+    \[
+      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
+    \]
+
+    需要\red{\bf 消除} ``死状态'', 避免词法分析器徒劳消耗输入流
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     模拟运行该 DFA, \red{直到无法继续为止} (\teal{输入结束或状态无转移}); \\[3pt]
     假设此时状态为 $s$
 
@@ -132,25 +146,6 @@
       \Pi_{1} = \set{\blue{\set{0137}, \set{7}}, \set{247}, \blue{\set{8}, \set{58}},
         \set{68}}
     \]
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    特殊处理 \red{\bf ``死状态''}
-
-    \[
-      \blue{\text{move}(T, a) = \emptyset
-        \implies \delta(T, a) = \emptyset}
-    \]
-    \fig{width = 0.60\textwidth}{figs/empty-state}
-    \[
-      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
-    \]
-
-    需要\red{\bf 消除} ``死状态'', 避免词法分析器徒劳消耗输入流
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
