@@ -3,37 +3,21 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{带记忆功能的}\purple{可回溯的}\red{递归下降的}语法分析器
-
-    \vspace{0.50cm}
-    \fig{width = 0.50\textwidth}{figs/antlr-logo}
-    \vspace{0.50cm}
-
-    甚至可以使用\violet{谓词解析器}处理\green{上下文相关文法}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 1.00\textwidth}{figs/exprpred}
-
-  \begin{center}
-    \texttt{6-parser-ll/ExprPred.g4}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
     只考虑\red{\bf 无二义性}的文法 \\[4pt]
     这意味着, 每个句子对应唯一的一棵语法分析树
 
     \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
 
-    今日份主题: \red{\bf $LL(1)$ 语法分析器}
+    今日主题: \red{\bf $LL(1)$ 语法分析器}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/antlr-logo}
+
+  \fig{width = 0.65\textwidth}{figs/antlr-allstar-paper}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -85,7 +69,7 @@
 
     \pause
     \vspace{1.60cm}
-    $\red{L}L(1)$: 从左向右读入字符串
+    $\red{L}L(1)$: 从左向右读入词法单元
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -93,14 +77,14 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    {\large \red{\bf 递归下降}的实现框架}
+    {\large \red{\bf 递归}\blue{\bf 下降}的典型实现框架}
 
     \fig{width = 0.90\textwidth}{figs/recursive-descent}
 
-    为每个\blue{\bf 非终结符}写一个\teal{\bf 递归函数}
+    为每个\red{\bf 非终结符}写一个\red{\bf 递归函数}
 
     \vspace{0.20cm}
-    内部按需调用其它非终结符对应的递归函数
+    内部按需调用其它非终结符对应的递归函数, \blue{\bf 下降}一层
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -173,7 +157,7 @@
 
     \input{tables/table-s-f-a}
     指明了每个\blue{\bf 非终结符}在面对不同的\red{\bf 词法单元或文件结束符}时, \\[4pt]
-    该选择哪个\teal{\bf 产生式} (按编号进行索引) 或者\teal{\bf 报错}
+    该选择哪个\teal{\bf 产生式} (按编号进行索引) 或者\cyan{\bf 报错} (空单元格)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -234,6 +218,18 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    自顶向下的、\\[15pt]
+    递归下降的、\\[15pt]
+    预测分析的、\\[15pt]
+    适用于\red{\bf $LL(1)$文法}的、\\[15pt]
+    $LL(1)$语法分析器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     \texttt{6-parser-ll/OptionalInit.g4}
     \fig{width = 0.60\textwidth}{figs/optional-init}
 
@@ -267,7 +263,7 @@
     考虑非终结符 $A$ 的所有产生式
     $A \to \alpha_{1}, A \to \alpha_{2}, \dots, A \to \alpha_{m}$, \\[4pt]
     如果\red{它们对应的 $\first(\alpha_{i})$ 集合互不相交}, \\[4pt]
-    则只需查看当前输入词法单元, 即可确定选择哪个产生式 (\teal{或报错})
+    则只需查看当前输入词法单元, 即可确定选择哪个产生式 (\cyan{或报错})
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
