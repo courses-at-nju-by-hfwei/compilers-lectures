@@ -26,7 +26,7 @@
   \begin{center}
     自顶向下的、\\[15pt]
     递归下降的、\\[15pt]
-    预测分析的、\\[15pt]
+    基于预测分析表的、\\[15pt]
     适用于\red{\bf $LL(1)$文法}的、\\[15pt]
     $LL(1)$语法分析器
   \end{center}
@@ -103,7 +103,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    演示\red{\bf 递归下降}过程 (\texttt{jflap: SFa.jff})
+    演示\red{\bf 递归下降}过程
 
     \begin{columns}
       \column{0.50\textwidth}
@@ -207,10 +207,16 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    再次演示\red{\bf 递归下降}过程 (\texttt{jflap: SFa.jff})
+    再次演示\red{\bf 递归下降}过程
 
-    \vspace{0.30cm}
-    \fig{width = 0.80\textwidth}{figs/jflap-aaa}
+    \fig{width = 0.50\textwidth}{figs/tree-s-f-a}
+
+    \vspace{-0.80cm}
+    \[
+      \red{w = ((a + a) + a)}
+    \]
+    % \vspace{0.30cm}
+    % \fig{width = 0.80\textwidth}{figs/jflap-aaa}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -220,7 +226,7 @@
   \begin{center}
     自顶向下的、\\[15pt]
     递归下降的、\\[15pt]
-    预测分析的、\\[15pt]
+    基于预测分析表的、\\[15pt]
     适用于\red{\bf $LL(1)$文法}的、\\[15pt]
     $LL(1)$语法分析器
   \end{center}
@@ -230,13 +236,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \texttt{6-parser-ll/OptionalInit.g4}
     \fig{width = 0.60\textwidth}{figs/optional-init}
 
     \pause
+    \vspace{0.30cm}
     \texttt{int x = y; \qquad int x;}
 
-    \pause
     \vspace{0.20cm}
     \texttt{f(int x = y) \qquad f(int x)}
   \end{center}
@@ -300,7 +305,7 @@
     \input{algs/first-X}
 
     \pause
-    \purple{不断应用上面的规则, 直到每个 $\first(X)$ 都不再变化 ({\bf 闭包!!!})}
+    \purple{不断应用上面的规则, 直到每个 $\first(X)$ 都不再变化 \pause ({\bf 闭包!!!})}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -332,9 +337,9 @@
   \begin{columns}
     \column{0.50\textwidth}
       \input{cfg/cfg-XYZ}
-      \begin{center}
-        \texttt{jflap: XYZ.jff}
-      \end{center}
+      % \begin{center}
+      %   \texttt{jflap: XYZ.jff}
+      % \end{center}
     \column{0.50\textwidth}
       \pause
       \begin{align*}
@@ -362,12 +367,26 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/optional-init}
+
+    \vspace{0.30cm}
+    \texttt{int x = y; \qquad int x;}
+
+    \vspace{0.20cm}
+    \texttt{f(int x = y) \qquad f(int x)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
       \input{cfg/cfg-XYZ}
-      \begin{center}
-        \texttt{jflap: XYZ.jff}
-      \end{center}
+      % \begin{center}
+      %   \texttt{jflap: XYZ.jff}
+      % \end{center}
     \column{0.50\textwidth}
       \pause
       \begin{align*}
@@ -409,11 +428,11 @@
     \setcounter{equation}{0}
     \begin{gather}
       t \in \first(\alpha) \\[6pt]
-      \alpha \dstar \epsilon \land t \in \follow(A)
+      \red{\epsilon \in \first(\alpha)} \land t \in \follow(A)
     \end{gather}
 
     \vspace{0.60cm}
-    \blue{\bf 因其``唯一'' (\purple{无冲突}), 必要变充分}
+    \blue{\bf 当下的选择未必正确, 但``你别无选择''。}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -494,11 +513,12 @@
   \begin{center}
     不是 $LL(1)$ 文法怎么办?
 
+    \pause
     \vspace{0.60cm}
     \red{\bf 改造它}
 
+    \pause
     \vspace{0.80cm}
-
     \blue{消除左递归}
 
     \vspace{0.30cm}
@@ -513,6 +533,7 @@
     \uncover<2->{
       $E$ 在\purple{\bf 不消耗任何词法单元}的情况下, 直接递归调用 $E$, 造成\green{\bf 死循环}
     }
+    \input{cfg/cfg-expr-add-sub-mul-div}
     \input{cfg/cfg-expr-add-sub-mul-div-ETF}
 
     \uncover<3->{

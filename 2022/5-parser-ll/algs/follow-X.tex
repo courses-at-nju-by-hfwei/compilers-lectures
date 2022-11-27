@@ -12,13 +12,13 @@
 
     \pause
     \hStatex
-    \For{\red{$A \to \alpha X$}} \Comment{\blue{规则3: $X$ 是某产生式右部的最后一个符号}}
+    \For{\red{$A \to \alpha X$}} \Comment{\blue{规则2: $X$ 是某产生式右部的最后一个符号}}
       \State $\follow(X) \gets \follow(X) \cup \follow(A)$
     \EndFor
 
     \pause
     \hStatex
-    \For{\red{$A \to \alpha X \beta$}} \Comment{\blue{规则2: $X$ 是某产生式右部中间的一个符号}}
+    \For{\red{$A \to \alpha X \beta$}} \Comment{\blue{规则3: $X$ 是某产生式右部中间的一个符号}}
       \State $\follow(X) \gets \follow(X) \cup (\first(\beta) \setminus \set{\epsilon})$
       \If{\red{$\epsilon \in \first(\beta)$}}
         \State $\follow(X) \gets \follow(X) \cup \follow(A)$
