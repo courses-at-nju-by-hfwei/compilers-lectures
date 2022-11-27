@@ -1,0 +1,63 @@
+% left-recursion-prec.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \Large{ANTLR4 是如何处理\red{\bf 左递归与优先级}的?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\texttt{parserllantlr/LRExpr.g4} \\[30pt]
+	\pause
+	\texttt{antlr4 LRExpr -Xlog} \\[20pt]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	Grammar Rewriting
+	\fig{width = 1.00\textwidth}{figs/LRExprXlog}
+
+	\fig{width = 0.30\textwidth}{figs/LRExpr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/LRExprPrec}
+
+  \begin{center}
+	\texttt{expr[int \_p]}
+  \end{center}
+
+  \fig{width = 0.30\textwidth}{figs/LRExpr}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/LRExprPrec}
+
+  \[
+	1 + 2 + 3 \qquad 1 + 2 \ast 3 \qquad 1 * 2 + 3
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\texttt{parserllantlr/LRExprParen.g4}
+	\fig{width = 0.30\textwidth}{figs/LRExprParen}
+	\pause
+	\texttt{antlr4 LRExprParen -Xlog}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,103 @@
+% error.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \Large{ANTLR4 是如何进行\purple{\bf 错误报告与恢复}的?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    语法分析阶段的主题之三: \red{\bf 错误恢复}
+
+    \fig{width = 0.45\textwidth}{figs/keep-calm-recovery}
+
+    报错、\blue{\bf 恢复}、继续分析
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/panic}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 恐慌/应急(Panic)模式:} 假装成功、调整状态、继续进行
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/RecognitionException}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \red{InputMismatchException}} \\[20pt]
+
+    \pause
+    如果下一个词法单元符合预期, \\[5pt]
+    则采用``\blue{单词法符号移除}'' 或 ``\blue{单词法符号补全}'' 策略
+
+    \pause
+    \vspace{1.00cm}
+    \texttt{Class.g4} \\[15pt]
+    \texttt{Class-RemoveToken.txt} \\[10pt]
+    \texttt{Class-AddToken.txt} \\[10pt]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \red{NoViableAltException}} \\[20pt]
+
+    \pause
+    采用 ``\blue{同步-返回 (sync-and-return)}'' 策略, \\[5pt]
+    从当前非终结符中恢复
+
+    \pause
+    \vspace{1.00cm}
+    \texttt{Group.g4} \\[15pt]
+    \texttt{Group-Sync.txt}
+
+    \pause
+    \vspace{1.00cm}
+    \purple{注意 \textsc{Follow} (静态)集合与 \textsc{Following} (动态)集合的区别}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 如何从子规则中优雅地恢复出来?} \\[20pt]
+
+    \texttt{Class.g4} (\texttt{\blue{member+}}) \\[20pt]
+    \pause
+    \texttt{Class-Subrule-Start.txt} (\blue{``单词法符号移除''}) \\[10pt]
+    \pause
+    \texttt{Class-Subrule-Loop.txt} (\blue{``另一次\texttt{member}迭代''}) \\[10pt]
+    \pause
+    \texttt{Class-Subrule-End.txt} (\blue{``退出当前\texttt{classDef}规则''})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/antlr4-book}
+
+  \begin{center}
+    第 9 章: 错误报告与恢复
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

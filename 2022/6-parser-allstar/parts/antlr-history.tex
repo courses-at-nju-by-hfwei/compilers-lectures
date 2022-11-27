@@ -1,0 +1,76 @@
+% antlr-history.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/antlr95}
+  \fig{width = 0.60\textwidth}{figs/antlr11}
+  \fig{width = 0.60\textwidth}{figs/antlr14}
+
+  \begin{center}
+	\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/tree/master/parsing}
+	{courses-at-nju-by-hfwei/compilers-papers-we-love}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ANTLR 3: \blue{带记忆功能的}\purple{可回溯的}\red{递归下降的}语法分析器
+
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/antlr-logo}
+    \vspace{0.60cm}
+
+    可以使用\violet{谓词解析器}处理\green{上下文相关文法}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\red{$LL(1)$} \\[20pt]
+	\texttt{tpdsl: rd/NameList.g4}  \\[40pt]
+	\pause
+	\texttt{tpdsl: rd/ListParser.java}
+	\\ (\texttt{\blue{elements()}}) \\[30pt]
+	\pause
+	\texttt{tpdsl: rd/NameListParser.java}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\red{$LL(k = 2)$} \\[20pt]
+	\texttt{tpdsl: multi/NameListWithAssign.g4}  \\[40pt]
+	\pause
+	\texttt{tpdsl: multi/LAParser.java}
+	\\(\texttt{\blue{element()}}) \\[30pt]
+	\pause
+	\texttt{tpdsl: multi/NameListWithAssignParser.java}
+	\\(\texttt{\purple{.adaptivePredict()}})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\red{Backtrack (回溯)} \\[20pt]
+	\texttt{tpdsl: backtrack/NameListWithParallelAssign.g4}  \\[40pt]
+	\pause
+	\texttt{tpdsl: backtrack/BacktrackParser.java}
+	\\(\texttt{\blue{stat()}}) \\[30pt]
+	\pause
+	\texttt{tpdsl: backtrack/NameListWithParallelAssignParser.java}
+	\\(\texttt{\purple{.adaptivePredict()}})
+
+	\pause
+	\vspace{20pt}
+	\violet{\bf ANTLR4 不需要回溯, 这是 ANTLR4 的一大创新之处}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
