@@ -6,7 +6,7 @@ In the following years, I may try
 - [x] Adaptive LL(star) algorithm (2022)
 
 ## Projects
-- [ ] [CompCert](https://www.absint.com/compcert/)
+- [ ] [CompCert](https://compcert.org/)
 
 ## Tools
 - [x] ANTLR (2021)

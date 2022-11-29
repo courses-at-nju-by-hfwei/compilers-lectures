@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \Large{ANTLR4 是如何处理\red{\bf 左递归与优先级}的?}
+    \Large{ANTLR 4 是如何处理\red{\bf 直接左递归与优先级}的?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -11,9 +11,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-	\texttt{parserllantlr/LRExpr.g4} \\[30pt]
-	\pause
-	\texttt{antlr4 LRExpr -Xlog} \\[20pt]
+    \texttt{parser-allstar/LRExpr.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExpr}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -21,9 +22,23 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-	Grammar Rewriting
+    \red{\bf 根本原因:} \\[10pt]
+    究竟是在 \texttt{expr} 的\blue{\bf 当前调用}中匹配下一个运算符, \\[15pt]
+    还是让 \texttt{expr} 的\blue{\bf 调用者}匹配下一个运算符。
+
+    \pause
+    \vspace{0.80cm}
+    \texttt{antlr4 LRExpr -Xlog}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
 	\fig{width = 1.00\textwidth}{figs/LRExprXlog}
 
+  \pause
 	\fig{width = 0.30\textwidth}{figs/LRExpr}
   \end{center}
 \end{frame}
@@ -54,10 +69,33 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-	\texttt{parserllantlr/LRExprParen.g4}
-	\fig{width = 0.30\textwidth}{figs/LRExprParen}
-	\pause
-	\texttt{antlr4 LRExprParen -Xlog}
+    \texttt{parser-allstar/LRExprParen.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExprParen}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{parser-allstar/LRExprUS.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExprUS}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/LRExprUSPrec}
+  \end{center}
+
+  \[
+    \text{--}a!! \qquad \text{-}a+b!
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

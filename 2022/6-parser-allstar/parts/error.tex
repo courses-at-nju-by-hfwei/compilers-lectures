@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \Large{ANTLR4 是如何进行\purple{\bf 错误报告与恢复}的?}
+    \Large{ANTLR 4 是如何进行\purple{\bf 错误报告与恢复}的?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -11,10 +11,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    语法分析阶段的主题之三: \red{\bf 错误恢复}
-
     \fig{width = 0.45\textwidth}{figs/keep-calm-recovery}
 
+    \vspace{0.20cm}
     报错、\blue{\bf 恢复}、继续分析
   \end{center}
 \end{frame}
@@ -32,25 +31,23 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/RecognitionException}
-\end{frame}
+% \begin{frame}{}
+%   \fig{width = 0.80\textwidth}{figs/RecognitionException}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \texttt{\bf \red{InputMismatchException}} \\[20pt]
+    % \texttt{\bf \red{InputMismatchException}} \\[20pt]
 
-    \pause
-    如果下一个词法单元符合预期, \\[5pt]
-    则采用``\blue{单词法符号移除}'' 或 ``\blue{单词法符号补全}'' 策略
+    % \pause
+    如果\red{\bf 下一个词法单元}符合预期, \\[8pt]
+    则采用``\blue{单词法符号移除} (single-token deletion)'' \\[8pt]
+    或``\blue{单词法符号补全} (single-token insertion)''策略
 
-    \pause
     \vspace{1.00cm}
-    \texttt{Class.g4} \\[15pt]
-    \texttt{Class-RemoveToken.txt} \\[10pt]
-    \texttt{Class-AddToken.txt} \\[10pt]
+    \texttt{Class.g4}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -58,19 +55,53 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \texttt{\bf \red{NoViableAltException}} \\[20pt]
+    \texttt{Class-DeleteToken.txt}
 
-    \pause
-    采用 ``\blue{同步-返回 (sync-and-return)}'' 策略, \\[5pt]
-    从当前非终结符中恢复
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/class-parse-tree-deletetoken}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \pause
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{Class-AddToken.txt}
+
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/class-parse-tree-addtoken}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    采用``\red{\bf 同步-返回 (sync-and-return)}'' 策略, \\[5pt]
+    使用``\blue{重新同步集合 (resynchronization set)}''从\purple{当前规则}中恢复
+
     \vspace{1.00cm}
     \texttt{Group.g4} \\[15pt]
-    \texttt{Group-Sync.txt}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \pause
-    \vspace{1.00cm}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \following(\set{\texttt{expr}, \texttt{atom}}) = \set{\hat{\quad}, \texttt{]}} \qquad
+    \following(\set{\texttt{expr}}) = \set{\texttt{]}}
+  \]
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.50\textwidth}{figs/group-parse-tree-i^2}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/group-parse-tree-[]}
+  \end{columns}
+
+  \pause
+  \vspace{0.60cm}
+  \begin{center}
     \purple{注意 \textsc{Follow} (静态)集合与 \textsc{Following} (动态)集合的区别}
   \end{center}
 \end{frame}
@@ -82,11 +113,8 @@
     \red{\bf 如何从子规则中优雅地恢复出来?} \\[20pt]
 
     \texttt{Class.g4} (\texttt{\blue{member+}}) \\[20pt]
-    \pause
     \texttt{Class-Subrule-Start.txt} (\blue{``单词法符号移除''}) \\[10pt]
-    \pause
     \texttt{Class-Subrule-Loop.txt} (\blue{``另一次\texttt{member}迭代''}) \\[10pt]
-    \pause
     \texttt{Class-Subrule-End.txt} (\blue{``退出当前\texttt{classDef}规则''})
   \end{center}
 \end{frame}
