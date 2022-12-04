@@ -1,0 +1,227 @@
+% symtab.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.95\textwidth}{figs/front-end}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.50\textwidth}{figs/back-end}
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[符号表 (Symbol Table)]
+      \red{\bf 符号表}是用于保存\blue{\bf 各种信息}的\purple{\bf 数据结构}。
+    \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``领域特定语言'' (DSL) 通常只有\blue{\bf 单作用域} (全局作用域)
+  \end{center}
+  \fig{width = 0.60\textwidth}{figs/config-file}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``通用程序设计语言'' (GPL) 通常需要\blue{\bf 嵌套作用域}
+  \end{center}
+  \fig{width = 0.40\textwidth}{figs/vars}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.65\textwidth}{figs/vars}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/vars-symtable}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \red{\bf \texttt{struct}}: 类型作用域
+%   \end{center}
+%   \begin{columns}
+%     \column{0.40\textwidth}
+%       \fig{width = 0.90\textwidth}{figs/struct-code}
+%     \column{0.60\textwidth}
+%       \fig{width = 1.00\textwidth}{figs/struct-tree}
+%   \end{columns}
+%   \begin{center}
+%     \blue{\bf $d.i$ \qquad $a.b.y$}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    声明: 添加符号与作用域 (``\blue{def}'')
+
+    \vspace{1.00cm}
+    使用: 解析符号 (``\blue{ref}'')
+
+    \pause
+    \vspace{1.50cm}
+    \purple{先声明后使用} \emph{vs.} \purple{前向引用}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[类型表达式 (Type Expressions)]
+      \begin{itemize}
+        \setlength{\itemsep}{12pt}
+        \item \blue{\bf 基本类型}是类型表达式;
+          \begin{itemize}
+            \item char, bool, int, float, double, void, $\dots$
+          \end{itemize}
+        \item \blue{\bf 类名}是类型表达式;
+        \pause
+        \item 如果 $t$ 是类型表达式, 则 \red{\bf array(num, t)} 是类型表达式;
+        \item \red{\bf record($\langle \text{id : t}, \dots \rangle$)} 是类型表达式 (C 结构体);
+        \pause
+        \item 如果 $s$ 和 $t$ 是类型表达式, 则 \purple{$s \times t$} 是类型表达式;
+        \item 如果 $s$ 和 $t$ 是类型表达式, 则 \purple{$s \to t$} 是类型表达式;
+      \end{itemize}
+    \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 类型声明}
+
+    \fig{width = 0.80\textwidth}{figs/decl-code}
+
+    \vspace{0.60cm}
+    \blue{\bf \purple{\bf 符号表}中记录标识符的类型、宽度 (width)、偏移地址 (offset)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/cfg-decl}
+
+    \vspace{0.80cm}
+    需要为每个 \red{\bf record} 生成单独的符号表
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 全局变量 $t$ 与 $w$} 将 $B$ 的\blue{\bf 类型与宽度}信息传递给产生式 \purple{\bf $C \to \epsilon$} \\[5pt]
+    (在语法制导定义中, $t$ 与 $w$ 是 $C$ 的\green{\bf 继承属性})
+
+    \vspace{0.30cm}
+    \fig{width = 0.90\textwidth}{figs/SDT-type}
+
+    \vspace{-0.80cm}
+    \[
+      \teal{\texttt{float x}}: \text{目前仅关心类型声明 (\teal{\texttt{float}})}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.95\textwidth}{figs/anno-type-width}
+    \vspace{-0.50cm}
+    \[
+      \teal{\texttt{int[2][3]}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 全局变量 offset 表示变量的相对地址}
+
+    \vspace{0.20cm}
+    \blue{\bf 全局变量 top 表示当前的符号表}
+
+    \fig{width = 0.95\textwidth}{figs/SDT-offset}
+
+    \vspace{-0.80cm}
+    \[
+      \teal{\texttt{float x; float y;}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.95\textwidth}{figs/SDT-record}
+
+    \pause
+    \vspace{0.60cm}
+    \red{\bf record 类型表达式: \texttt{record(top)}} \\[6pt]
+    字段名的偏移量是\red{相对}地址
+
+    \pause
+    \vspace{0.30cm}
+    \blue{\bf 全局变量 top 表示当前的符号表}
+
+    \pause
+    \vspace{0.30cm}
+    \green{\bf 全局变量 Env 表示符号表栈}
+
+    \pause
+    \vspace{-0.60cm}
+    \[
+      \teal{\texttt{record \{ float x; float y; \} p;}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.90\textwidth}{figs/decl-code}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://github.com/antlr/symtab}{symtab @ antlr by parrt}
+
+    \vspace{0.80cm}
+    \href{https://github.com/parrt/cs652/tree/master/lectures/code/symtab/src}{symtab @ cs652 by parrt}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

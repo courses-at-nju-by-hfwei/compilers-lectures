@@ -16,6 +16,8 @@ In the following years, I may try
 - [ ] stack machine
 - [ ] MMIX
 - [ ] [LSP (Language Sever Protocol)](https://langserver.org/)
+- [ ] [Python Language Services](https://docs.python.org/3/library/language.html)
+  - Python provides a number of modules to assist in working with the Python language. These modules support tokenizing, parsing, syntax analysis, bytecode disassembly, and various other facilities.
 
 ## Parsers
 - [ ] [javaparser](https://javaparser.org/)
