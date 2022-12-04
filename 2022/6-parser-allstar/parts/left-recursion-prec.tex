@@ -99,3 +99,41 @@
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssoc}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssocPrec}
+  \end{columns}
+
+  \vspace{0.80cm}
+  \[
+    1 \;\hat{\;}\; 2 \;\hat{\;}\; 3 + 4
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    For \blue{\emph{left-associative}} operators, the right operand
+    gets \blue{\bf one more} precedence level than the operator itself.
+  \end{center}
+
+  \vspace{0.30cm}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+  \begin{center}
+    \teal{\small Appendix C: Left-recursion Elimination}
+  \end{center}
+
+  \vspace{0.10cm}
+  \begin{center}
+    For \red{\emph{right-associative}} operators, the right operand
+    gets \red{\bf the same} precedence level as the current operand.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
