@@ -71,6 +71,118 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf Offline 方式计算属性值:} 已有语法分析树
+
+    \vspace{0.50cm}
+    \fig{width = 0.50\textwidth}{figs/dfs}
+
+    \vspace{0.50cm}
+    按照\red{\bf 从左到右}的\red{\bf 深度优先}顺序遍历语法分析树
+
+    \vspace{0.50cm}
+    \red{\bf 关键:} 在合适的时机执行合适的动作，计算相应的属性值
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    在\blue{\bf 语法分析过程中}实现属性文法
+  \end{center}
+
+  \[
+    B \to \blue{X} \red{\set{a}} Y
+  \]
+
+  \vspace{0.30cm}
+  \begin{center}
+    语义动作嵌入的位置决定了\red{\bf 何时}执行该动作
+
+    \vspace{0.60cm}
+    \red{\bf 基本思想:} 一个动作在它\blue{\bf 左边的}所有文法符号都\blue{\bf 处理}过之后立刻执行
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 时机} (Timing; タイミング)
+
+    \fig{width = 0.60\textwidth}{figs/timing-japanese}
+
+    \vspace{0.30cm}
+    \red{\bf 语义动作嵌入在什么地方? 这决定了何时执行语义动作。}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.45\textwidth}{figs/antlr4-book-ch}
+  \begin{center}
+    \blue{\bf 第 10 章: 属性和动作}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/calculator}
+  \begin{center}
+    \blue{\bf (交互式) 迷你计算器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.20\textwidth}{figs/calc-input}
+    \column{0.50\textwidth}
+      \fig{width = 0.15\textwidth}{figs/calc-output}
+  \end{columns}
+
+  \fig{width = 1.00\textwidth}{figs/parsetree-calc}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/csv}
+  \begin{center}
+    \blue{\bf Comma-Separated Values}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 0.80\textwidth}{figs/csv-scores-input}
+    \column{0.60\textwidth}
+      \fig{width = 0.90\textwidth}{figs/csv-scores-output}
+  \end{columns}
+
+  \vspace{0.30cm}
+  \fig{width = 1.00\textwidth}{figs/parsetree-csv-scores}
+
+  \fig{width = 0.50\textwidth}{figs/csv-g4}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}{}
 %   \begin{center}
 %     \begin{columns}[b]
