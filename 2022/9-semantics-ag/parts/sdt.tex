@@ -56,7 +56,6 @@
       \teal{3 \ast 5}
     \]
 
-    \pause
     \vspace{-0.50cm}
     \[
       \blue{A \to X_{1} \cdots X_{i} \cdots X_{n}}
@@ -81,9 +80,26 @@
       \setlength{\itemsep}{15pt}
       \item 在调用 $X_{i}$ 子过程之前, 计算 $X_{i}$ 的\red{\bf 继承属性}
       \item 以 $X_{i}$ 的继承属性为\blue{\bf 参数}调用 $X_{i}$ 子过程
+      \vspace{10pt}
       \item 在 $X_{i}$ 子过程返回之前, 计算 $X_{i}$ 的\red{\bf 综合属性}
-      \item 在 $X_{i}$ 子过程中\blue{\bf 返回} $X_{i}$ 的综合属性
+      \item 在 $X_{i}$ 子过程结束时\blue{\bf 返回} $X_{i}$ 的综合属性
     \end{itemize}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.45\textwidth}
+      \fig{width = 1.00\textwidth}{figs/csv-file-rule}
+    \column{0.55\textwidth}
+      \fig{width = 1.00\textwidth}{figs/csv-row-rule}
+  \end{columns}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \teal{\texttt{CSVAGParser.java}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -161,21 +177,21 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \blue{\bf $L$ 属性定义转换为 SDT}
+% \begin{frame}{}
+%   \begin{center}
+%     \blue{\bf $L$ 属性定义转换为 SDT}
 
-    \[
-      A \to X_{1} \cdots X_{i} \cdots X_{n}
-    \]
+%     \[
+%       A \to X_{1} \cdots X_{i} \cdots X_{n}
+%     \]
 
-    \vspace{0.80cm}
-    计算 $X_{i}$ \red{\bf 继承属性}的动作放在产生式体中 $X_{i}$ 的\blue{\bf 左边}
+%     \vspace{0.80cm}
+%     计算 $X_{i}$ \red{\bf 继承属性}的动作放在产生式体中 $X_{i}$ 的\blue{\bf 左边}
 
-    \vspace{0.30cm}
-    计算产生式头部 $A$ \red{\bf 综合属性}的动作放在产生式体的\blue{\bf 最右边}
-  \end{center}
-\end{frame}
+%     \vspace{0.30cm}
+%     计算产生式头部 $A$ \red{\bf 综合属性}的动作放在产生式体的\blue{\bf 最右边}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%

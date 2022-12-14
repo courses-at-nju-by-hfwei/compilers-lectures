@@ -38,6 +38,8 @@
 \begin{frame}{}
   \begin{center}
     \red{\bf 注释(annotated)语法分析树:} 显示了各个属性值的语法分析树
+    \vspace{0.30cm}
+    \cyan{\texttt{ParseTreeProperty<Integer>} \qquad \texttt{put(ctx, ...)}, \texttt{get(ctx, ...)}}
 
     \fig{width = 0.60\textwidth}{figs/anno-expr-left-recursion}
     \[
@@ -91,9 +93,8 @@
         \fig{width = 1.00\textwidth}{figs/anno-expr-left-recursion}
     \end{columns}
 
-    \pause
     \vspace{0.80cm}
-    \teal{\bf $S$ 属性定义}的依赖图描述了属性实例之间\teal{\bf 自底向上}的信息流
+    \teal{\bf $S$ 属性定义}的依赖图刻画了属性实例之间\teal{\bf 自底向上}的信息流动
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -119,11 +120,11 @@
     \teal{\bf $S$ 属性定义}的依赖图描述了属性实例之间\teal{\bf 自底向上}的信息流
 
     \vspace{0.80cm}
-    此类属性值的计算可以在\purple{自顶向下}的语法分析\red{\bf 过程中}实现
+    此类属性值的计算可以在\purple{自顶向下}的 $LL$ 语法分析\red{\bf 过程中}实现
 
     \pause
     \vspace{0.80cm}
-    在 $LL$ 语法分析器中, 递归下降函数 $A$ \red{\bf 返回}时, \\
+    在 $LL$ 语法分析器中, 递归下降函数 $A$ \red{\bf 返回} 时, \\[3pt]
     计算相应节点 $A$ 的综合属性值
   \end{center}
 \end{frame}
@@ -149,22 +150,19 @@
     继承属性 \red{$T'.inh$} 用于在表达式中从左向右传递中间计算结果
 
     \vspace{0.50cm}
-    \fig{width = 0.80\textwidth}{figs/anno-expr-no-left-recursion}
-    \[
-        \teal{3 \ast 5}
-    \]
+    \begin{columns}
+      \column{0.45\textwidth}
+        \fig{width = 1.00\textwidth}{figs/SDD-expr-no-left-recursion}
+      \column{0.55\textwidth}
+        \fig{width = 1.00\textwidth}{figs/anno-expr-no-left-recursion}
 
-    % \begin{columns}
-    %   \column{0.45\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/SDD-expr-no-left-recursion}
-    %   \column{0.55\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/anno-expr-no-left-recursion}
-    %     \[
-    %       \teal{3 \ast 5}
-    %     \]
-    % \end{columns}
+        \[
+            \teal{3 \ast 5}
+        \]
+    \end{columns}
 
     \pause
+    \vspace{0.40cm}
     \blue{在右递归文法下实现了左结合}
   \end{center}
 \end{frame}
@@ -224,7 +222,7 @@
     \fig{width = 0.60\textwidth}{figs/not-L-attribute}
 
     \vspace{0.80cm}
-    $B.i$ 依赖了右边的 $C.c$ 属性与头部 $A.s$ 综合属性
+    $B.i$ 依赖了右兄弟节点的 $C.c$ 属性
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -380,7 +378,6 @@
     \end{enumerate}
   \end{definition}
 
-  \pause
   \begin{center}
     \[
       (9-5)+2 \implies 95-2+
