@@ -2,5 +2,158 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+	\fig{width = 0.50\textwidth}{figs/llvm-ir}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.70\textwidth}{figs/f0-opt0}
+
+		\vspace{0.20cm}
+		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \teal{\texttt{factorial0.c f0-opt0.ll}}
+
+		\pause
+		\vspace{0.20cm}
+		\teal{\texttt{clang -S -emit-llvm factorial0.c f0-opt1.ll}} \red{\texttt{-O1 -g0}}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.50\textwidth}{figs/f1-callgraph}
+	\begin{center}
+		\texttt{factorial1.c}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f1-opt0-main-cfg-only}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/f1-opt0-main-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial1.c (opt0)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.35\textwidth}
+			\fig{width = 0.95\textwidth}{figs/f1-opt0-factorial-cfg-only}
+		\column{0.65\textwidth}
+			\fig{width = 1.00\textwidth}{figs/f1-opt0-factorial-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial1.c (opt0)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.50\textwidth}{figs/terminator}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.50\textwidth}{figs/f1-opt1-main-cfg-only}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/f1-opt1-main-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial1.c (opt1)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f1-opt1-factorial-cfg-only}
+		\column{0.60\textwidth}
+			\fig{width = 1.00\textwidth}{figs/f1-opt1-factorial-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial1.c (opt1)}
+
+		\pause
+		\vspace{0.30cm}
+		\href{https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/control-structures/ssa-phi.html}{Single-Static Assignment Form and PHI}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f2-opt0-main-cfg-only}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/f2-opt0-main-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial2.c (opt0)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.35\textwidth}
+			\fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg-only}
+		\column{0.65\textwidth}
+			\fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial2.c (opt0)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% 	\fig{width = 0.75\textwidth}{figs/f2-opt0-factorial-cfg}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg-only}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial2.c (opt1)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f2-opt1-factorial-cfg-only}
+		\column{0.60\textwidth}
+			\fig{width = 1.00\textwidth}{figs/f2-opt1-factorial-cfg}
+	\end{columns}
+	\begin{center}
+		\texttt{factorial2.c (opt1)}
+	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
