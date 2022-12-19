@@ -2,7 +2,50 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\fig{width = 0.50\textwidth}{figs/llvm-ir}
+	\begin{center}
+		\fig{width = 0.50\textwidth}{figs/llvm-ir}
+
+		\vspace{0.50cm}
+		IR: Intermediate Representation
+
+		\vspace{0.50cm}
+		LLVM IR: 带有类型的、介于高级程序设计语言与汇编语言之间
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/FZ-Compiler}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/FZ-Compiler-book}
+	\end{columns}
+
+	\vspace{0.50cm}
+	\begin{center}
+		8 章技术内容, 其中 4 章介绍 Maple IR, 另外 4 章基于 Maple IR
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.60\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.60\textwidth}{figs/factorial0}
+		\vspace{0.30cm}
+		\texttt{factorial0.c}
+
+		\vspace{0.80cm}
+		注意: SysY 中没有函数声明语句。
+	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -11,11 +54,18 @@
 	\begin{center}
 		\fig{width = 0.70\textwidth}{figs/f0-opt0}
 
-		\vspace{0.20cm}
+		\vspace{0.30cm}
 		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \teal{\texttt{factorial0.c f0-opt0.ll}}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-		\pause
-		\vspace{0.20cm}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.80\textwidth}{figs/f0-opt1}
+
+		\vspace{0.30cm}
 		\teal{\texttt{clang -S -emit-llvm factorial0.c f0-opt1.ll}} \red{\texttt{-O1 -g0}}
 	\end{center}
 \end{frame}
@@ -23,7 +73,12 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\fig{width = 0.50\textwidth}{figs/f1-callgraph}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f1}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/f1-callgraph}
+	\end{columns}
 	\begin{center}
 		\texttt{factorial1.c}
 	\end{center}
@@ -34,21 +89,41 @@
 \begin{frame}{}
 	\begin{columns}
 		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f1-opt0-main-cfg-only}
+		  \fig{width = 0.80\textwidth}{figs/Allen}
+		  \begin{center}
+			Frances Elizabeth Allen ($1932 \sim 2020$; \blue{2006 Turing Award})
+		  \end{center}
 		\column{0.50\textwidth}
-			\fig{width = 0.90\textwidth}{figs/f1-opt0-main-cfg}
+		  \fig{width = 0.60\textwidth}{figs/cfg-wiki}
 	\end{columns}
+
+	\vspace{0.30cm}
 	\begin{center}
-		\texttt{factorial1.c (opt0)}
+		(Intra-procedure) Control Flow Graph (CFG)
 	\end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% 	\begin{columns}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.80\textwidth}{figs/f1-opt0-main-cfg-only}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.90\textwidth}{figs/f1-opt0-main-cfg}
+% 	\end{columns}
+% 	\begin{center}
+% 		\texttt{factorial1.c (opt0)}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
 		\column{0.35\textwidth}
-			\fig{width = 0.95\textwidth}{figs/f1-opt0-factorial-cfg-only}
+			% \fig{width = 0.95\textwidth}{figs/f1-opt0-factorial-cfg-only}
+			\fig{width = 1.00\textwidth}{figs/factorial1}
 		\column{0.65\textwidth}
 			\fig{width = 1.00\textwidth}{figs/f1-opt0-factorial-cfg}
 	\end{columns}
@@ -65,24 +140,25 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{columns}
-		\column{0.50\textwidth}
-			\fig{width = 0.50\textwidth}{figs/f1-opt1-main-cfg-only}
-		\column{0.50\textwidth}
-			\fig{width = 0.90\textwidth}{figs/f1-opt1-main-cfg}
-	\end{columns}
-	\begin{center}
-		\texttt{factorial1.c (opt1)}
-	\end{center}
-\end{frame}
+% \begin{frame}{}
+% 	\begin{columns}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.50\textwidth}{figs/f1-opt1-main-cfg-only}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.90\textwidth}{figs/f1-opt1-main-cfg}
+% 	\end{columns}
+% 	\begin{center}
+% 		\texttt{factorial1.c (opt1)}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
 		\column{0.40\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f1-opt1-factorial-cfg-only}
+			% \fig{width = 0.80\textwidth}{figs/f1-opt1-factorial-cfg-only}
+			\fig{width = 1.00\textwidth}{figs/factorial1}
 		\column{0.60\textwidth}
 			\fig{width = 1.00\textwidth}{figs/f1-opt1-factorial-cfg}
 	\end{columns}
@@ -91,36 +167,48 @@
 
 		\pause
 		\vspace{0.30cm}
-		\href{https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/control-structures/ssa-phi.html}{Single-Static Assignment Form and PHI}
+		\href{https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/control-structures/ssa-phi.html}{Single-Static Assignment Form and \red{PHI}}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{columns}
-		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f2-opt0-main-cfg-only}
-		\column{0.50\textwidth}
-			\fig{width = 0.90\textwidth}{figs/f2-opt0-main-cfg}
-	\end{columns}
 	\begin{center}
-		\texttt{factorial2.c (opt0)}
+		\fig{width = 0.18\textwidth}{figs/f1-opt3-factorial-cfg-only}
+
+		\texttt{factorial1 (opt3)}
 	\end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% 	\begin{columns}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.80\textwidth}{figs/f2-opt0-main-cfg-only}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.90\textwidth}{figs/f2-opt0-main-cfg}
+% 	\end{columns}
+% 	\begin{center}
+% 		\texttt{factorial2.c (opt0)}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
 		\column{0.35\textwidth}
-			\fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg-only}
+			% \fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg-only}
+			\fig{width = 1.00\textwidth}{figs/factorial2}
+
+			\begin{center}
+				\texttt{factorial2.c (opt0)}
+			\end{center}
 		\column{0.65\textwidth}
-			\fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg}
+			\fig{width = 0.90\textwidth}{figs/f2-opt0-factorial-cfg.pdf}
 	\end{columns}
-	\begin{center}
-		\texttt{factorial2.c (opt0)}
-	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -131,29 +219,41 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{columns}
-		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg-only}
-		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg}
-	\end{columns}
-	\begin{center}
-		\texttt{factorial2.c (opt1)}
-	\end{center}
-\end{frame}
+% \begin{frame}{}
+% 	\begin{columns}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg-only}
+% 		\column{0.50\textwidth}
+% 			\fig{width = 0.80\textwidth}{figs/f2-opt1-main-cfg}
+% 	\end{columns}
+% 	\begin{center}
+% 		\texttt{factorial2.c (opt1)}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
 		\column{0.40\textwidth}
-			\fig{width = 0.80\textwidth}{figs/f2-opt1-factorial-cfg-only}
+			\fig{width = 0.80\textwidth}{figs/factorial2}
+			% \fig{width = 0.80\textwidth}{figs/f2-opt1-factorial-cfg-only}
+
+			\begin{center}
+				\texttt{factorial2.c (opt1)}
+			\end{center}
 		\column{0.60\textwidth}
-			\fig{width = 1.00\textwidth}{figs/f2-opt1-factorial-cfg}
+			\fig{width = 0.95\textwidth}{figs/f2-opt1-factorial-cfg.pdf}
 	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 	\begin{center}
-		\texttt{factorial2.c (opt1)}
+		\fig{width = 0.18\textwidth}{figs/f2-opt3-factorial-cfg-only}
+
+		\texttt{factorial2 (opt3)}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
