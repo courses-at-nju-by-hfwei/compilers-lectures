@@ -55,7 +55,7 @@
 		\fig{width = 0.70\textwidth}{figs/f0-opt0}
 
 		\vspace{0.30cm}
-		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \teal{\texttt{factorial0.c f0-opt0.ll}}
+		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \teal{\texttt{factorial0.c -o f0-opt0.ll}}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -66,7 +66,26 @@
 		\fig{width = 0.80\textwidth}{figs/f0-opt1}
 
 		\vspace{0.30cm}
-		\teal{\texttt{clang -S -emit-llvm factorial0.c f0-opt1.ll}} \red{\texttt{-O1 -g0}}
+		\teal{\texttt{clang -S -emit-llvm factorial0.c -o f0-opt1.ll}} \red{\texttt{-O1 -g0}}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-1}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-2}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-3}
+	\end{columns}
+
+	\pause
+	\vspace{0.30cm}
+	\begin{center}
+		$\phi$ 函数根据控制流决定选择 $y_{1}$ 还是 $y_{2}$
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
