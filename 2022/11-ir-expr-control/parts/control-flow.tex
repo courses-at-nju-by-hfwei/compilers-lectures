@@ -3,40 +3,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \begin{center}
-    \red{\Large \bf 控制流语句与布尔表达式的中间代码翻译}
+    \red{\large \bf 控制流语句与布尔表达式的中间代码翻译}
 
-    \vspace{0.50cm}
-    \fig{width = 0.45\textwidth}{figs/cfg-S-if-while}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
+    \fig{width = 0.60\textwidth}{figs/cfg-S}
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\Large \purple{\bf 布尔表达式}的作用: \red{\bf 布尔值} \emph{vs.} \blue{\bf 控制流跳转}}
-
-    \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/boolexpr-value}
-
-    \vspace{0.30cm}
-    {\large 我们先关注``控制流跳转''}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \begin{center}
-    \red{\Large \bf 控制流语句与布尔表达式的中间代码翻译}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-  \begin{center}
-    \fig{width = 0.70\textwidth}{figs/cfg-S}
+    \blue{\bf 继承属性 $B.true$, $B.false$, $S.next$ 指明了控制流跳转目标}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -48,14 +19,12 @@
 
     \fig{width = 0.90\textwidth}{figs/SDD-S}
 
-    \vspace{0.80cm}
+    \vspace{0.50cm}
     \blue{\bf $S.next$ 为语句 $S$ 指明了``跳出'' $S$ 的目标}
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
+  \pause
+  \vspace{0.60cm}
   \begin{center}
     \fig{width = 0.90\textwidth}{figs/SDD-assign}
 
@@ -70,28 +39,18 @@
   \begin{center}
     \fig{width = 1.00\textwidth}{figs/SDD-if}
 
-    \pause
     \vspace{0.80cm}
-    \begin{columns}
-      \column{0.50\textwidth}
-        \fig{width = 0.90\textwidth}{figs/if-code-block}
-      \column{0.50\textwidth}
-        \pause
-        \texttt{if (true)} \\
-        \quad \texttt{\blue{if (false) \text{\bf assign}}}
-    \end{columns}
-
-    \begin{columns}
-      \pause
-      \column{0.30\textwidth}
-        \[
-          P \to S
-        \]
-      \column{0.70\textwidth}
-        \pause
-        \fig{width = 0.80\textwidth}{figs/SDD-true-false}
-    \end{columns}
+    \fig{width = 0.40\textwidth}{figs/if-code-block}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+% \texttt{if (true)} \\
+% \quad \texttt{\blue{if (false) \text{\bf assign}}}
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.90\textwidth}{figs/if-c-ir}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -99,20 +58,25 @@
 \begin{frame}
   \begin{center}
     \fig{width = 0.90\textwidth}{figs/SDD-if-else}
-
-    \pause
-    \vspace{0.50cm}
-    \begin{columns}
-      \column{0.50\textwidth}
-        \fig{width = 0.70\textwidth}{figs/if-else-code-block}
-      \column{0.50\textwidth}
-        \pause
-        \texttt{if (true)} \\
-        \quad \texttt{\blue{if (true) \text{\bf assign} else \text{\bf assign}}} \\
-        \texttt{else} \\
-        \quad \text{\bf assign}
-    \end{columns}
+    \fig{width = 0.35\textwidth}{figs/if-else-code-block}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+    % \begin{columns}
+    %   \column{0.50\textwidth}
+    %     \fig{width = 0.70\textwidth}{figs/if-else-code-block}
+    %   \column{0.50\textwidth}
+    %     \pause
+    %     \texttt{if (true)} \\
+    %     \quad \texttt{\blue{if (true) \text{\bf assign} else \text{\bf assign}}} \\
+    %     \texttt{else} \\
+    %     \quad \text{\bf assign}
+    % \end{columns}
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.85\textwidth}{figs/ifelse-ir}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -145,12 +109,4 @@
     \texttt{\blue{if (true) {\bf assign} else {\bf assign} \teal{{\bf assign}}}}
   \end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-%   \begin{center}
-%     \fig{width = 0.70\textwidth}{figs/SDD-P}
-%   \end{center}
-% \end{frame}
 %%%%%%%%%%%%%%%%%%%%

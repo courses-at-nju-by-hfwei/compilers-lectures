@@ -95,11 +95,42 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \teal{\texttt{\Large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
+    \teal{\texttt{\large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
+
+    \fig{width = 1.00\textwidth}{figs/if-boolexpr-ir}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{\texttt{\large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
 
     \vspace{0.30cm}
-    \fig{width = 0.60\textwidth}{figs/if-tac}
+    \fig{width = 0.50\textwidth}{figs/if-tac}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\teal{clang} -S -emit-llvm if-boolexpr.c -o if-boolexpr-opt0.ll}
+
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/if-boolexpr-c}
+    \vspace{0.20cm}
+
+    \texttt{\teal{opt} -dot-cfg if-boolexpr-opt0.ll} \\[5pt]
+    \texttt{\teal{dot} -Tpdf .main.dot -o if-boolexpr-opt0-cfg.pdf}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/if-boolexpr-opt0-cfg}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -124,24 +155,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.70\textwidth}{figs/SDD-expr-tac}
-    \vspace{-0.50cm}
+    \teal{\texttt{\Large x = a < b \&\& c < d}}
+
+    \fig{width = 0.70\textwidth}{figs/boolexpr-value-tac}
     \[
       \teal{E \to E_{1} \&\& E_{2}}
     \]
 
     为 $E$ 生成\blue{\bf 跳转代码},
     在\purple{\bf 真假出口处}将 {\bf true} 或 {\bf false} 存储到临时变量
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \teal{\texttt{\Large x = a < b \&\& c < d}}
-
-    \fig{width = 0.70\textwidth}{figs/boolexpr-value-tac}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
