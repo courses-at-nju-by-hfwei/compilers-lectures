@@ -16,3 +16,11 @@
 ## clang
 - [Introduction to Clang](https://youtu.be/vQ0vPGMPVn8)
   - clang AST
+
+## TODO
+- [ ] type system of LLVM IR
+  - https://zhuanlan.zhihu.com/p/163063995
+  - [getelementptr](https://llvm.org/docs/GetElementPtr.html)
+- [ ] API of LLVM IR
+- [ ] SSA: theory, implementation, and applications
+- [ ] Clang
