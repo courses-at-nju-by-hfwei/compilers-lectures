@@ -24,3 +24,4 @@
 - [ ] API of LLVM IR
 - [ ] SSA: theory, implementation, and applications
 - [ ] Clang
+- [ ] automatically generate programs for LLVM IRs
