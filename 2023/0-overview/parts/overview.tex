@@ -2,7 +2,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/welcome-again}
+  \fig{width = 0.50\textwidth}{figs/get-started}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -68,7 +68,7 @@
     \fig{width = 0.40\textwidth}{figs/video}
 
     \vspace{0.50cm}
-    \href{https://youtu.be/QeiuVNDQg4k}{``I got a job at the end of my senior year
+    \href{https://youtu.be/QeiuVNDQg4k}{``I got a job at the end of my senior year (大四)
     \\ to write a compiler for Burroughs''}
   \end{center}
 \end{frame}
@@ -103,7 +103,12 @@
 
     \pause
     \vspace{0.80cm}
-    \red{\bf 作业 (P1 $\sim$ P8):} \teal{\url{https://www.bilibili.com/video/BV1EW411u7th}}
+    \red{\bf 作业 (P1 $\sim$ P9):} \teal{\url{https://www.bilibili.com/video/BV1EW411u7th}} \\[8pt]
+    (计算机科学速成课 $40$ 集全 Crash Course Computer Science)
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.25\textwidth}{figs/insight}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -133,7 +138,6 @@
         \item 排版工具 (\href{https://github.com/courses-at-nju-by-hfwei/compilers-lectures/blob/master/2021/0-overview/parts/overview.tex}{\LaTeX})
         \item 绘图工具 (\href{https://www.overleaf.com/learn/latex/TikZ_package}{TikZ},
           \href{https://renenyffenegger.ch/notes/tools/Graphviz/examples/index}{Dot/Graphviz})
-        \pause
         \item L-System (\href{https://en.wikipedia.org/wiki/L-system\#Example_3:_Cantor_set}{Cantor Set})
       \end{itemize}
     \column{0.15\textwidth}
@@ -143,32 +147,7 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.85\textwidth}{figs/FT-blog}
-
   \begin{center}
-    \href{https://tomassetti.me/}{tomassetti.me}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \href{https://alda.io/}{alda.io}
-
-    \fig{width = 0.90\textwidth}{figs/alda}
-
-    \href{https://www.zhihu.com/zvideo/1467997225217908736}{alda @ 知乎}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\large 两个月的``编译器设计原理''之旅}
-
-    \vspace{0.30cm}
     \begin{columns}
       \column{0.50\textwidth}
         \fig{width = 0.85\textwidth}{figs/compiler-blackbox}
@@ -207,11 +186,61 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.90\textwidth}{figs/clang-homepage}
+
+    \vspace{0.30cm}
+    \url{https://clang.llvm.org/}\\[5pt]
+    (\texttt{factorial.c})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/optimizer}
 
     \vspace{0.50cm}
     机器无关的中间表示优化
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.90\textwidth}{figs/clang-homepage}
+
+    \vspace{0.30cm}
+    \url{https://clang.llvm.org/}\\[5pt]
+    (\texttt{factorial.c})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    在设计实际生产环境中的编译器时, {\bf 优化}通常占用了大多数时间
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/FZ-Compiler}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/FZ-Compiler-book}
+  \end{columns}
+
+  \vspace{0.50cm}
+  \begin{center}
+    Maple IR 及其各种优化技术
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -236,35 +265,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{\bf 时间苦短, 来不及优化}
-  \end{center}
+    \fig{width = 0.90\textwidth}{figs/clang-homepage}
 
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 0.95\textwidth}{figs/front-end}
-    \column{0.50\textwidth}
-       \fig{width = 0.50\textwidth}{figs/back-end}
-  \end{columns}
-
-  \vspace{0.30cm}
-  \begin{center}
-    在设计实际生产环境中的编译器时, {\bf 优化}通常占用了大多数时间
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 1.00\textwidth}{figs/FZ-Compiler}
-    \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/FZ-Compiler-book}
-  \end{columns}
-
-  \vspace{0.50cm}
-  \begin{center}
-    Maple IR 及其各种优化技术
+    \vspace{0.30cm}
+    \url{https://clang.llvm.org/}\\[5pt]
+    (\texttt{naming.c})
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -441,26 +446,5 @@
   \end{center}
 
   \fig{width = 0.50\textwidth}{figs/nested-symbol-tables}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/in-action}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \texttt{Hello.g4}
-
-    \vspace{0.80cm}
-    \texttt{IntExpr.g4}
-
-    % \pause
-    % \vspace{1.50cm}
-    % \href{https://github.com/antlr/grammars-v4}{grammars-v4 @ github}
-  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
