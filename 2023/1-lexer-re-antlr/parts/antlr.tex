@@ -1,0 +1,86 @@
+% antlr.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/antlr-logo}
+  \begin{center}
+    词法分析器生成器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 输入:} 词法单元的规约
+
+    \vspace{0.50cm}
+    \texttt{\blue{SimpleExpr.g4}}
+
+    \vspace{1.00cm}
+    \red{\bf 输出:} 词法分析器
+
+    \begin{columns}
+      \column{0.30\textwidth}
+      \column{0.40\textwidth}
+        \begin{itemize}
+          \setlength{\itemsep}{8pt}
+          \item \texttt{SimpleExpr.tokens}
+          \item \texttt{\teal{SimpleExprLexer.java}}
+        \end{itemize}
+      \column{0.30\textwidth}
+    \end{columns}
+
+    % \pause
+    % \vspace{1.00cm}
+    % \texttt{\purple{javac} SimpleExpr*.java}
+
+    % \vspace{0.20cm}
+    % \texttt{\purple{grun} simpleexpr.SimpleExpr prog -tokens}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{lexer grammar} \\[10pt]
+
+    Section 4.1 (1) of ``ANTLR 4 权威指南''
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ANTLR v4 中两大\red{\bf 冲突解决}规则
+
+    \vspace{1.20cm}
+	\begin{columns}[]
+	  \column{0.15\textwidth}
+	  \column{0.70\textwidth}
+	  \begin{description}
+		\setlength{\itemsep}{15pt}
+		\item[最前优先匹配:] 关键字 \emph{vs.} 标识符
+		\item[最长优先匹配:] \texttt{>=}, \texttt{ifhappy}, \texttt{thenext}, \texttt{1.23}
+	  \end{description}
+	  \column{0.15\textwidth}
+	\end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    You can learn a lot from \href{https://github.com/antlr/grammars-v4/tree/master/c}{grammars-v4/c}.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
