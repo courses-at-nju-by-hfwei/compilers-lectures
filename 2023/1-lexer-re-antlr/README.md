@@ -65,3 +65,6 @@
 - [lex.c](https://github.com/gcc-mirror/gcc/blob/master/libcpp/lex.c)
 
 具体是如何实现的?
+
+## TODO
+- [ ] `-` 三种用途：减法、取反、负数（如何区分它们；如何区分词法分析部分与语法分析部分）
