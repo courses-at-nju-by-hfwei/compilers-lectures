@@ -1,0 +1,135 @@
+% antlr.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/antlr-logo}
+  \begin{center}
+    词法分析器生成器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 输入:} 词法单元的规约
+
+    \vspace{0.50cm}
+    \texttt{\blue{SimpleExpr.g4}}
+
+    \vspace{1.00cm}
+    \red{\bf 输出:} 词法分析器
+
+    \begin{columns}
+      \column{0.30\textwidth}
+      \column{0.40\textwidth}
+        \begin{itemize}
+          \setlength{\itemsep}{8pt}
+          \item \texttt{SimpleExpr.tokens}
+          \item \texttt{\teal{SimpleExprLexer.java}}
+        \end{itemize}
+      \column{0.30\textwidth}
+    \end{columns}
+
+    % \pause
+    % \vspace{1.00cm}
+    % \texttt{\purple{javac} SimpleExpr*.java}
+
+    % \vspace{0.20cm}
+    % \texttt{\purple{grun} simpleexpr.SimpleExpr prog -tokens}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ANTLR v4 中的\red{\bf 冲突解决}规则
+
+  \vspace{1.20cm}
+	\begin{columns}[]
+	  \column{0.15\textwidth}
+	  \column{0.70\textwidth}
+	  \begin{description}[最前优先匹配:]
+		\setlength{\itemsep}{15pt}
+      \item[最前优先匹配:] 关键字 \emph{vs.} 标识符
+      \item[最长优先匹配:] \texttt{1.23}, \texttt{>=}, \texttt{ifhappy}
+      \item[非贪婪匹配:] \texttt{*?},\quad \texttt{+?},\quad \texttt{\{n, \}?}
+	  \end{description}
+	  \column{0.15\textwidth}
+	\end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.25\textwidth}{figs/ChatGPT}
+  \begin{center}
+    {\large Let Us Ask \red{ChatGPT} to Write a Lexer Using ANTLR 4}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    以编程的方式使用 ANTLR 4 生成的 \texttt{xxxLexer.java}
+  \end{center}
+
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 0.60\textwidth}{figs/antlr-header-package}
+    \column{0.60\textwidth}
+      \fig{width = 1.00\textwidth}{figs/antlr-lexer-java}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{lexer grammar} \\[10pt]
+
+    Section 4.1 (1) of ``ANTLR 4 权威指南''
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/simpleexpr-lexer-grammar}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/simpleexpr-lexer-grammar-import}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    You can learn a lot from \href{https://github.com/antlr/grammars-v4/tree/master/c}{grammars-v4/c}.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 0.80\textwidth}{figs/antlr4-book-ch}
+    \column{0.60\textwidth}
+      \begin{description}
+        \setlength{\itemsep}{8pt}
+        \item[5.5:] 识别常见的语法结构
+        \item[15.5:] 词法规则
+        \item[15.6:] 通配符与非贪婪子规则
+        \item[\red{12:}] 掌握词法分析的``黑魔法''
+      \end{description}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
