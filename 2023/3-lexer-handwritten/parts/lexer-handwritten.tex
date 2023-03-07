@@ -5,7 +5,6 @@
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/tokens}
 
-    \pause
     \vspace{0.60cm}
     \texttt{\teal{DragonLexerGrammar.g4}}
   \end{center}
@@ -15,107 +14,58 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \uncover<2->{识别字符串$s$中符合\red{\bf 特定}词法单元模式的\blue{\bf 前缀}词素}
+    \red{\bf 向前看、向前走、调整状态、记录关键点、侍机回头}
+  \end{center}
 
-    \vspace{0.80cm}
-    \uncover<4->{
-      \blue{\fbox{\red{\bf 分支:} 先判断属于哪一类, 然后进入特定词法单元的前缀词素匹配流程}}
-    }
+  \fig{width = 0.80\textwidth}{figs/jiangwen}
 
-      \vspace{0.80cm}
-    \uncover<3->{
-      识别字符串$s$中符合\red{\bf 某种}词法单元模式的\blue{\bf 前缀}词素
-    }
+  \begin{center}
+    妹妹\quad 你大胆地往前走\quad 往前走\quad 莫回呀头
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-    \vspace{0.80cm}
-    \uncover<5->{
-      \blue{\fbox{\red{\bf 循环:} 返回当前识别出来的词法单元与词素, 继续识别下一个前缀词素}}
-    }
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf \texttt{nextToken()}}
 
     \vspace{0.60cm}
-    \uncover<1->{识别字符串$s$中符合\red{\bf 某种}词法单元模式的\blue{\bf 所有}词素}
+    \blue{\bf \texttt{while (nextToken())}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{center}
-    用于识别 \blue{\ws} 的状态转移图
-    \fig{width = 0.50\textwidth}{figs/ws}
-
-    \pause
-    \vspace{0.60cm}
-    \red{$\ast$:} 识别出的空白符\blue{\bf 不包含}当前\texttt{peek}指向的字符
-
-    \pause
-    \vspace{0.40cm}
-    \red{$22:$} 碰到\texttt{other}怎么办?
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    用于识别 \blue{\id} 的状态转移图
-
-    \vspace{0.60cm}
-    \fig{width = 0.60\textwidth}{figs/id}
-
-    \pause
-    \vspace{0.40cm}
-    \red{$9:$} 碰到\texttt{other}怎么办?
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    用于识别 \blue{\intnum} 的状态转移图
-    \fig{width = 0.40\textwidth}{figs/intnum}
-
-    \pause
-    \vspace{0.40cm}
-    \red{$12:$} 碰到\texttt{other}怎么办?
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    识别字符串$s$中符合\red{\bf 某种}词法单元模式的\blue{\bf 前缀}词素
-    \blue{($\Call{nextToken}{\null}$)}
-  \end{center}
-
   \begin{columns}
     \column{0.45\textwidth}
       \begin{center}
-        \fig{width = 0.80\textwidth}{figs/ws}
+        \fig{width = 0.90\textwidth}{figs/ws}
         \ws: 空白符
 
-        \vspace{0.20cm}
-        \fig{width = 0.60\textwidth}{figs/intnum}
-        \intnum: 整数
+        \vspace{0.40cm}
+        \uncover<3->{\fig{width = 0.70\textwidth}{figs/intnum}
+        \intnum: 整数}
       \end{center}
     \column{0.55\textwidth}
       \begin{center}
-        \fig{width = 1.00\textwidth}{figs/id}
-        \id: 标识符
+        \uncover<2->{
+        \fig{width = 0.80\textwidth}{figs/id}
+        \id: 标识符}
 
         \vspace{0.40cm}
+        \uncover<4->{
         \fig{width = 0.60\textwidth}{figs/error-code}
-        错误处理模块
+        错误处理模块}
       \end{center}
   \end{columns}
 
-  \pause
   \vspace{0.30cm}
   \begin{center}
+    \uncover<5->{
     \red{\bf 关键点:} 合并$22, 12, 9$, 根据\purple{\bf 下一个字符}即可判定词法单元的类型 \\[8pt]
-    否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 并忽略该字符
+    否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 并忽略该字符}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -125,14 +75,6 @@
   \begin{center}
     用于识别 \blue{\relop} 的状态转移图
     \fig{width = 0.50\textwidth}{figs/relop}
-
-    \pause
-    \vspace{0.30cm}
-    \blue{\bf ``最长优先原则'':} 例如, 识别出\texttt{<=}, 而不是\texttt{<}与\texttt{=}
-
-    \pause
-    \vspace{0.30cm}
-    \red{$0:$} 碰到\texttt{other}怎么办?
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -140,58 +82,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    识别字符串$s$中符合\red{\bf 某种}词法单元模式的\blue{\bf 前缀}词素
-    \blue{($\Call{nextToken}{\null}$)}
-  \end{center}
-
-  \begin{columns}
-    \column{0.45\textwidth}
-      \begin{center}
-        \fig{width = 0.80\textwidth}{figs/ws}
-        \fig{width = 0.60\textwidth}{figs/intnum}
-        \fig{width = 0.80\textwidth}{figs/id}
-      \end{center}
-    \column{0.55\textwidth}
-      \begin{center}
-        \fig{width = 0.70\textwidth}{figs/relop}
-        \fig{width = 0.60\textwidth}{figs/error-code}
-      \end{center}
-  \end{columns}
-
-  \pause
-  \vspace{0.30cm}
-  \begin{center}
-    \red{\bf 关键点:} 合并$22, 12, 9, 0$, 根据\purple{\bf 下一个字符}即可判定词法单元的类型 \\[8pt]
-    否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 并忽略该字符
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    但是, 词法分析器的设计并没有这么容易
-
-    \vspace{0.50cm}
-    \fig{width = 0.50\textwidth}{figs/life-always-hard}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \ws \quad \ifkw \quad \elsekw \quad \id \quad \intnum \quad \relop
-
-    \vspace{0.80cm}
-    根据\purple{\bf 下一个/两个字符}即可判定词法单元的类型
-
-    \vspace{0.50cm}
-    每个状态转移图的每个状态要么是\purple{\bf 接受状态}, 要么带有 \purple{\bf \texttt{other}边}
-
-    \pause
-    \vspace{1.20cm}
-    \red{如何同时识别\; \intnum{}、\floatnum{} 与 \scinum?}
+    \red{{\bf 难点:} 如何区分\; \intnum{}、\floatnum{} 与 \scinum?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -229,18 +120,12 @@
     \num:
     整数部分\blue{[\texttt{.}可选的小数部分]}\purple{[\texttt{E}[可选的\texttt{+-}]可选的指数部分]}
 
-    \pause
     \vspace{0.60cm}
     \fig{width = 0.80\textwidth}{figs/number}
     \red{$19, 20, 21:$} 代表了不同的数字类型
 
     \pause
     \vspace{0.80cm}
-    \red{$12:$} 碰到\texttt{other}怎么办?
-    \pause {\hfill \small (尝试其它词法单元或进入错误处理模块)}
-
-    \pause
-    \vspace{0.30cm}
     \red{$14, 16, 17:$} 碰到\texttt{other}怎么办?
     \pause
     {\hfill (回退, 寻找\red{\bf 最长匹配})}
@@ -270,6 +155,20 @@
     \red{\bf 关键点:} 合并$22, 12, 9, 0$, 根据\purple{\bf 下一个字符}即可判定词法单元的类型 \\[4pt]
     否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 忽略该字符。 \\[4pt]
     注意, 在 \floatnum{} 与 \scinum{}中, 有时需要\purple{\bf 回退}, 寻找最长匹配。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 向前看、向前走、调整状态、记录关键点、侍机回头}
+  \end{center}
+
+  \fig{width = 0.80\textwidth}{figs/jiangwen}
+
+  \begin{center}
+    妹妹\quad 你大胆地往前走\quad 往前走\quad 莫回呀头
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
