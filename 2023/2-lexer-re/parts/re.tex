@@ -124,7 +124,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    {\bf 正则定义}与简记法
+    正则表达式\red{\bf 简记法}
   \end{center}
 
   \fig{width = 0.92\textwidth}{figs/regex-shorthand}
@@ -132,77 +132,9 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \fig{width = 0.40\textwidth}{figs/tiger-hello-kitty}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     C 语言中的{\bf 标识符}?
-%   \end{center}
-
-%   \pause
-%   \fig{width = 0.35\textwidth}{figs/regex-101-c-id}
-%   \begin{center}
-%     \teal{\url{https://regex101.com/r/lVoghd/1}}
-%   \end{center}
-% \end{frame}{}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     整数部分$.$小数部分\texttt{E/e}指数部分
-%   \end{center}
-%
-%   \pause
-%   \fig{width = 0.95\textwidth}{figs/regex101-number}
-% \end{frame}{}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     C 语言中{\bf 单行注释}对应的正则表达式?
-
-%     \pause
-%     \fig{width = 0.70\textwidth}{figs/regex101-single-line-comment}
-%     \teal{\url{https://regex101.com/r/ED4qgC/2}}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     C 语言中{\bf 多行注释}对应的正则表达式?
-%
-%     \pause
-%     \fig{width = 0.70\textwidth}{figs/regex101-multi-line-comment}
-%     \teal{\url{https://regex101.com/r/ED4qgC/3}}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     如何满足 $L1$ 关于{\bf 多行注释}的要求?
-
-%     \vspace{0.50cm}
-%     \fig{width = 0.95\textwidth}{figs/multi-line-comment-spec}
-
-%     \pause
-%     \vspace{0.50cm}
-%     \fig{width = 0.95\textwidth}{figs/antlr-lexer-comments}
-
-%     \pause
-%     \vspace{0.50cm}
-%     在 antlr4 中, \texttt{'.'} 可匹配任意字符 (\red{包括换行符})
-%   \end{center}
-% \end{frame}
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/too-easy}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -211,23 +143,104 @@
     \Big(0|\big(1(01^{\ast}0)^{\ast}1\big)\Big)^{\ast}
   \]
   \fig{width = 0.40\textwidth}{figs/sha}
-
-  \begin{center}
-    \teal{\url{https://regex101.com/r/ED4qgC/1}}
-  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{columns}
-    \column{0.60\textwidth}
-      \fig{width = 0.40\textwidth}{figs/regex101-multiple-3}
-    \column{0.40\textwidth}
+    \column{0.50\textwidth}
+      \fig{width = 0.50\textwidth}{figs/regex101-multiple-3}
+    \column{0.50\textwidth}
+      \begin{center}
+        {\small \teal{\url{https://regex101.com/r/ED4qgC/1}}}
+      \end{center}
+      \fig{width = 0.70\textwidth}{figs/regex101}
       \pause
       \begin{center}
         3的倍数 (二进制表示)
       \end{center}
   \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.25\textwidth}{figs/ChatGPT}
+  \begin{center}
+    {\large Let Us Ask \red{ChatGPT} Again}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/bg-color}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/KyXmxc/1}} \quad (\texttt{regex/bg-color})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.20\textwidth}{figs/date}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/X1Q6DG/1}} \quad (\texttt{regex/date})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.30\textwidth}{figs/dollar}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/dSKeBr/1}} \quad (\texttt{regex/dollar})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.70\textwidth}{figs/cat}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/K5MCMZ/1}} \quad (\texttt{regex/cat})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.70\textwidth}{figs/html-head}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/Z6IWGL/1}} \quad (\texttt{regex/html-head})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.70\textwidth}{figs/html-head-lookaround}
+
+    \vspace{0.20cm}
+    \teal{\url{https://regex101.com/r/mFt85G/1}} \quad (\texttt{regex/html-head-lookaround})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/book-learn-re}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
