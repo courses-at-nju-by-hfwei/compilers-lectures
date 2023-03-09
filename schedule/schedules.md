@@ -12,6 +12,14 @@
 - 以 LLVM 为例介绍……
   - [2019 LLVM Developers’ Meeting: E. Christopher & J. Doerfert Introduction to LLVM](https://youtu.be/J5xExRGaIIY)
 
-## Lexer in ANTLR4
+## Lexer in ANTLR 4
 
 ## Regular Expressions
+
+## Lexer by Hand
+- `UNKNOWN` token types should not include `+` etc
+
+
+# TO Be Determined
+- MMA Compiler
+- AI Compilers

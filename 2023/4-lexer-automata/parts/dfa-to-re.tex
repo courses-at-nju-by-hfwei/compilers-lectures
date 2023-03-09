@@ -1,0 +1,189 @@
+% dfa-to-re.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{DFA $\implies$ RE}
+    \[
+      \boxed{D \implies r}
+    \]
+    \[
+      \text{要求}: \red{L(r) = L(D)}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+    \pause
+    \vspace{-0.30cm}
+    \[
+      L(D) = \set{x \mid \exists f \in F_{D}.\; s_{0} \rel{x} f}
+    \]
+    \pause
+    \vspace{-0.30cm}
+    \[
+      r = \red{\mid}_{x \in L(D)}\;\; x
+    \]
+
+    \pause
+    \vspace{0.30cm}
+    字符串 $x$ 对应于有向图中的路径
+
+    \pause
+    \vspace{0.30cm}
+    求有向图中所有 (从初始状态到接受状态的) 路径
+
+    \pause
+    \vspace{0.30cm}
+    \red{但是, 如果有向图中含有{\bf 环}, 则存在无穷多条路径}
+
+    \pause
+    \vspace{0.30cm}
+    \blue{不要怕, 我们有 Kleene 闭包}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    假设有向图中节点编号为 $0$ \purple{(初始状态)} 到 $n - 1$
+
+    \vspace{0.50cm}
+    $R^{k}_{ij}:$ 从节点 $i$ 到节点 $j$、且\red{\bf 中间节点}编号 \red{\bf $\le k$} 的所有路径
+
+    \pause
+    \fig{width = 0.50\textwidth}{figs/dfa-re-kleene}
+    \[
+      R^{k}_{ij} = R_{ik}^{k-1} \blue{(R^{k-1}_{kk})^{\ast}} R^{k-1}_{kj}
+        \mid R_{ij}^{k-1}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 如何初始化?}
+
+    \vspace{0.30cm}
+    $R^{-1}_{ij}:$ \pause 从节点 $i$ 到节点 $j$、且\red{\bf 不经过中间节点}的所有路径
+  \end{center}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/i-j}
+      \[
+        R^{-1}_{ij} = a_{1} | a_{2} | \dots | a_{m}
+      \]
+
+      \fig{width = 0.60\textwidth}{figs/i-j-no-edge}
+      \[
+        R^{-1}_{ij} = \red{\emptyset}\; \blue{\text{(``无路可走'')}}
+      \]
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.60\textwidth}{figs/i-loop}
+      \[
+        R^{-1}_{ii} = a_{1} | a_{2} | \dots | a_{m} | \red{\epsilon}
+      \]
+
+      \fig{width = 0.15\textwidth}{figs/i}
+      \[
+        R^{-1}_{ii} = \red{\epsilon}\; \blue{\text{(``无需走路'')}}
+      \]
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    关于 \red{$\emptyset$} (注意: 它不是正则表达式) 的规定
+    \[
+      \emptyset r = r \emptyset = \emptyset
+    \]
+
+    \[
+      \emptyset | r = r
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ $r$ 的最终结果是什么?}
+
+    \vspace{0.50cm}
+    求有向图中所有 (从初始状态到接受状态的) 路径
+
+    \pause
+    \vspace{0.50cm}
+    \[
+      r = |_{\red{s_{j} \in F_{D}}} R^{\blue{|S_{D}| - 1}}_{0j}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/dfa-re-alg}
+
+  \begin{center}
+    $|D|$: 状态数 ($|S_{D}|$); \qquad $D_{A}$: 接受状态集合 ($F_{D}$)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.12\textwidth}{figs/dfa-re-init}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.65\textwidth}{figs/dfa-re-step-0}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.70\textwidth}{figs/dfa-re-step-1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+	  a^{\ast}b(a(a|b)|b)^{\ast}
+  \]
+  \fig{width = 0.30\textwidth}{figs/dfa-re-wiki}
+
+  \vspace{-0.50cm}
+  \fig{width = 0.90\textwidth}{figs/dfa-re-step-2}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
