@@ -3,87 +3,37 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/compilers-antlr/blob/main/src/main/antlr/cymbol/Cymbol.g4}{Cymbol.g4}}
-
-    \vspace{0.30cm}
-    \begin{columns}
-      \column{0.30\textwidth}
-        \fig{width = 0.80\textwidth}{figs/call-graph}
-        \begin{center}
-          函数调用图
-        \end{center}
-      \column{0.33\textwidth}
-        \fig{width = 1.00\textwidth}{figs/talk-cheap}
-      \column{0.30\textwidth}
-        \fig{width = 0.80\textwidth}{figs/calculator}
-        \begin{center}
-          迷你计算器
-        \end{center}
-    \end{columns}
+    \blue{\bf 时机} (Timing; タイミング)
+    \fig{width = 0.50\textwidth}{figs/timing-japanese}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/compilers-antlr/blob/main/src/main/antlr/if-stat/IfStat.g4}{IfStat.g4}}
-  \end{center}
+  \fig{width = 0.40\textwidth}{figs/call-graph}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/calculator}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/Node}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{columns}
-	\column{0.40\textwidth}
-	  \fig{width = 0.80\textwidth}{figs/girl-woman}
-    \begin{center}
-      二义性文法
-    \end{center}
-	\column{0.60\textwidth}
-	  \fig{width = 0.90\textwidth}{figs/ifstat-g4}
-
-    \pause
-    \vspace{0.30cm}
-	  \fig{width = 1.00\textwidth}{figs/ifstat-open-matched-g4}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    Left-Factoring
-
-    \vspace{0.30cm}
-    \begin{columns}
-      \column{0.50\textwidth}
-        \fig{width = 0.90\textwidth}{figs/ifstat-g4}
-      \column{0.50\textwidth}
-        \fig{width = 0.90\textwidth}{figs/ifstat-factor-g4}
-    \end{columns}
-
-    \vspace{0.80cm}
-    很明显, 提取左公因子无助于消除文法二义性 \\[12pt]
-    而且, ANTLR 4 可以处理有左公因子的文法
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/compilers-antlr/blob/main/src/main/antlr/expr/Expr.g4}{Expr.g4}}
-  \end{center}
-
-  \vspace{-0.30cm}
-  \begin{columns}
-	\column{0.40\textwidth}
-	  \fig{width = 0.80\textwidth}{figs/girl-woman}
-    \begin{center}
-      二义性文法
-    \end{center}
-	\column{0.60\textwidth}
-	  \fig{width = 0.40\textwidth}{figs/expr-g4}
-    \begin{center}
-      结合性、优先级 \pause ({$-, \quad \hat{}\;$})
-    \end{center}
+    \column{0.40\textwidth}
+      \fig{width = 0.80\textwidth}{figs/NodeHierarchy}
+    \column{0.60\textwidth}
+      \fig{width = 1.00\textwidth}{figs/NodeVisitor}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -91,47 +41,16 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{columns}
-    \column{0.30\textwidth}
-    \uncover<2->{
-      \fig{width = 0.80\textwidth}{figs/expr-lr-g4}
-      \begin{center}
-        左递归 (左结合)
-      \end{center}
-    }
-    \column{0.30\textwidth}
-      \fig{width = 0.80\textwidth}{figs/expr-g4}
-      \vspace{0.20cm}
-      \begin{center}
-        ANTLR 4 可以处理 (直接) 左递归
-      \end{center}
-    \column{0.30\textwidth}
-    \uncover<3->{
-      \fig{width = 1.00\textwidth}{figs/expr-rr-g4}
-      \begin{center}
-        右递归 (右结合)
-      \end{center}
-    }
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/NodeVisitor}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/Accept}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/compilers-antlr/tree/main/src/main/java/cymbol/callgraph}{Call Graphs}}
-  \end{center}
-
-  \vspace{-0.80cm}
-	\fig{width = 0.40\textwidth}{figs/call-graph}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/compilers-antlr/tree/main/src/main/java/cymbol/calc}{Calculator}}
-  \end{center}
-
-	\fig{width = 0.40\textwidth}{figs/calculator}
+  Visitor in ANTLR 4?
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

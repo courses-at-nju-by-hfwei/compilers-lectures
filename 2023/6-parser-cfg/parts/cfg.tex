@@ -18,9 +18,10 @@
 
     \begin{itemize}
       \setlength{\itemsep}{8pt}
-      \item $T$ 是\red{\bf 终结符号} (\teal{Terminal}) 集合, 对应于词法分析器产生的词法单元;
-      \item $N$ 是\red{\bf 非终结符号} (\teal{Non-terminal}) 集合;
-      \item $P$ 是\red{\bf 产生式} (\teal{Production}) 集合;
+      \item $T$ 是\red{\bf 终结符号} (\teal{Terminal}) 集合, 对应于词法分析器产生的词法单元
+      \item $N$ 是\red{\bf 非终结符号} (\teal{Non-terminal}) 集合
+      \item $S$ 是\red{\bf 开始} (\teal{Start}) 符号 ($S \in N$且唯一)
+      \item $P$ 是\red{\bf 产生式} (\teal{Production}) 集合
         \[
           \boxed{A \in N \longrightarrow \alpha \in (T \cup N)^{\ast}}
         \]
@@ -30,7 +31,6 @@
           \item[头部/左部 (Head) $A$:] \purple{\bf 单个}非终结符
           \item[体部/右部 (Body) $\alpha$:] 终结符与非终结符构成的串, 也可以是空串 $\epsilon$
         \end{description}
-      \item $S$ 为\red{\bf 开始} (\teal{Start}) 符号。要求 $S \in N$且唯一。
     \end{itemize}
   \end{definition}
 \end{frame}
@@ -39,7 +39,19 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    Context-Sensitive Grammar (CSG)
+  \end{center}
+  \input{cfg/csg-anbncn}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     \red{[Extended] Backus-Naur form ([E]BNF)}
+    \[
+      \blue{+ \quad \ast \quad ?}
+    \]
   \end{center}
 
   \begin{columns}
@@ -109,7 +121,8 @@
 
   \vspace{-0.50cm}
   \[
-    E \implies -E \implies -(E) \implies -(E + E) \implies -(\id + E) \implies -(\id + \id)
+    E \implies -E \implies -(E) \implies -(E + E)
+      \implies \purple{-(\id + E)} \implies -(\id + \id)
   \]
 
   \pause
@@ -125,6 +138,11 @@
   \[
     E \implies -E \implies -(E) \implies -(E + E) \implies \blue{-(E + \id)} \implies -(\id + \id)
   \]
+
+  \pause
+  \begin{center}
+    \purple{Leftmost (最左) Derivation} \quad \blue{Rightmost (最右) Derivation}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -283,11 +301,15 @@
       \input{cfg/cfg-unequal-number-a-b}
     \column{0.25\textwidth}
   \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/csg-anbncn}
   \pause
-  \vspace{0.30cm}
-  \begin{center}
-    Let me know if you have a proof.
-  \end{center}
+  \[
+    L = \set{a^nb^nc^n \mid n \ge 1}
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

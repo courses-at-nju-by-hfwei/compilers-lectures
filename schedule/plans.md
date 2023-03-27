@@ -46,6 +46,7 @@ In the following years, I may try
 ## Labs
 - [x] [编译原理系统竞赛](https://compiler.educg.net/) (2022)
 - [ ] [RISC-V](https://en.wikipedia.org/wiki/RISC-V)
+- [ ] 树莓派
 
 ## Platforms
 - [ ] [头歌](https://www.educoder.net/)
