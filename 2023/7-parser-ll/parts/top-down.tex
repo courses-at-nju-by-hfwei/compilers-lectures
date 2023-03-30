@@ -305,7 +305,7 @@
     \input{algs/first-X}
 
     \pause
-    \purple{不断应用上面的规则, 直到每个 $\first(X)$ 都不再变化 \pause ({\bf 闭包!!!})}
+    \purple{不断应用上面的规则, 直到每个 $\first(X)$ 都不再变化 \pause ({\bf 不动点!!!})}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -360,7 +360,7 @@
     \input{algs/follow-X}
 
     \pause
-    \purple{不断应用上面的规则, 直到每个 $\follow(X)$ 都不再变化 ({\bf 闭包!!!})}
+    \purple{不断应用上面的规则, 直到每个 $\follow(X)$ 都不再变化 ({\bf 不动点!!!})}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -403,15 +403,18 @@
   \begin{center}
     \red{\large 如何根据\teal{\first{}与\follow{}集合}计算给定文法$G$的预测分析表?}
 
+    \pause
     \vspace{0.80cm}
-    按照以下规则, 在表格 $[A, t]$ 中填入生成式 $A \to \alpha$ (编号):
-
+    对应每条产生式 \purple{$A \to \alpha$} 与终结符 \blue{$t$}, 如果
     \begin{gather}
       t \in \first(\alpha) \\[6pt]
       \alpha \dstar \epsilon \land t \in \follow(A)
     \end{gather}
 
+    则在表格 $[\purple{A}, \blue{t}]$ 中填入 $A \to \alpha$ (编号)。
+
     \pause
+    \vspace{0.80cm}
     \begin{definition}[$LL(1)$文法]
       如果文法 $G$ 的\red{\bf 预测分析表}是\blue{\bf 无冲突}的,
       则 $G$ 是 $LL(1)$ 文法。
@@ -423,8 +426,6 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    按照以下规则, 在表格 $[A, t]$ 中填入生成式 $A \to \alpha$ (编号):
-
     \setcounter{equation}{0}
     \begin{gather}
       t \in \first(\alpha) \\[6pt]
@@ -549,15 +550,18 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    改写成\red{\bf ``右递归''}文法
     \begin{columns}
-      \column{0.28\textwidth}
+      \column{0.26\textwidth}
         \input{cfg/cfg-expr-add-mul-no-left-recursion}
-      \column{0.72\textwidth}
-        \uncover<2->{\fig{width = 1.00\textwidth}{figs/ll1-table-expr}}
+      \column{0.70\textwidth}
+        \uncover<3->{\fig{width = 1.00\textwidth}{figs/ll1-table-expr}}
     \end{columns}
 
+    \vspace{-0.30cm}
     \begin{columns}
       \column{0.50\textwidth}
+        \pause
         \begin{align*}
           \first(F) &= \set{(, \id} \\
           \first(T) &= \set{(, \id} \\
@@ -579,9 +583,112 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{\bf 文件结束符 $\$$的必要性}
+    \blue{\bf 文件结束符 $\$$的用处}
 
     \fig{width = 0.70\textwidth}{figs/ll1-stack-expr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 直接左递归 (Direct Left Recursion)}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \[
+        A \to A \alpha \mid \beta
+      \]
+    \column{0.50\textwidth}
+      \begin{align*}
+        A &\to \beta A' \\[5pt]
+        A' &\to \alpha A' \mid \epsilon
+      \end{align*}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{cfg/cfg-A-left-recursion}
+    其中, $\beta_{i}$ 都不以 $A$ 开头
+
+    \vspace{0.30cm}
+    \input{cfg/cfg-A-right-recursion}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 间接左递归 (Indirect Left Recursion)}
+
+    \vspace{-0.30cm}
+    \input{cfg/cfg-S-A}
+
+    \vspace{-0.30cm}
+    \[
+      S \implies Aa \implies Sba
+    \]
+
+    \pause
+    \[
+      \red{\boxed{A_{i} \to A_{j} \alpha \implies i < j}}
+    \]
+
+    \pause
+    \fig{width = 0.90\textwidth}{figs/left-recursion-alg}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/cfg-S-A}
+
+  \begin{align*}
+    S &\to A a \mid b \\
+    A &\to Ac \mid \blue{Aad} \mid \blue{bd} \mid \epsilon
+  \end{align*}
+
+  \input{cfg/cfg-S-A-no-left-recursion}
+
+  \vspace{0.30cm}
+  \[
+    \red{\boxed{A_{i} \to A_{j} \alpha \implies i < j}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 提取左公因子 (Left-Factoring)}
+
+    \vspace{0.30cm}
+    \fig{width = 0.55\textwidth}{figs/optional-init-left-refactoring}
+
+    \cyan{ANTLR 4 可以处理有左公因子的文法}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/ifstat-g4}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/ifstat-factor-g4}
+    \end{columns}
+
+    \vspace{1.00cm}
+    很明显, 提取左公因子无助于消除文法二义性
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
