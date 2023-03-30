@@ -1,0 +1,118 @@
+% allstar.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/allstar-nba}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/S-A}
+
+  \vspace{0.20cm}
+  \begin{center}
+	不是 $LL(1)$ 文法，也不是 $LL(k)$ 文法 ($\forall k \ge 1$)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/S-A}
+
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \vspace{0.50cm}
+  \begin{center}
+	ATN: Augmented Transition Network
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \pause
+  \vspace{0.20cm}
+  \begin{center}
+	\red{Incrementally and dynamically build up a \textit{\textbf{lookahead DFA}} \\
+	that map lookahead phrases to predicated productions.}
+  \end{center}
+
+  \pause
+  \fig{width = 0.60\textwidth}{figs/S-lookahead-DFA}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \vspace{0.50cm}
+	{\small
+  \begin{itemize}[<+->]
+	\setlength{\itemsep}{8pt}
+	\item \red{Launch subparsers at a decision point, one per alternative productions.}
+	\item \teal{These subparsers run in pseudo-parallel to explore all possible paths.}
+	\item \blue{Subparsers die off as their paths fail to match the remaining input.}
+	\item \purple{Ambiguity: Multiple subparsers coalesce together or reach EOF.}
+	\item \cyan{Resolution: The first production associated with a surviving subparser.}
+  \end{itemize}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \pause
+  \vspace{0.60cm}
+  \fig{width = 0.60\textwidth}{figs/S-lookahead-DFA}
+  \begin{center}
+	Upon $bc$ and then $bd$
+
+	\pause
+	\vspace{0.30cm}
+	\red{\bf move-closure!!!}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+
+  \begin{center}
+	\pause
+	\vspace{0.30cm}
+	\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/tree/master/parsing}{附加作业: paper @ compilers-papers-we-love}
+
+	\pause
+	\vspace{0.30cm}
+	\fig{width = 0.40\textwidth}{figs/not-easy}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

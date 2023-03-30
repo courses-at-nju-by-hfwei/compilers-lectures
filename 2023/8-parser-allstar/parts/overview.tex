@@ -1,0 +1,36 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.35\textwidth}{figs/antlr4-book}
+  \end{center}
+
+  \begin{enumerate}[(1)]
+    \setlength{\itemsep}{8pt}
+    \pause
+    \item ANTLR 4 自动将类似 \texttt{expr} 的\red{左递归}规则重写成非左递归形式
+    \pause
+    \item ANTLR 4 提供优秀的\red{错误报告}功能和复杂的\red{错误恢复}机制
+    \pause
+    \item ANTLR 4 使用了一种名为 \red{Adaptive $LL(\ast)$} 的新技术
+    \pause
+    \item ANTLR 4 几乎能处理\red{任何文法} (二义性文法\cmark \;\; 间接左递归\xmark)
+  \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{columns}
+%     \column{0.80\textwidth}
+%     \begin{enumerate}[(1)]
+%       \setlength{\itemsep}{15pt}
+%       \item ANTLR 4 是如何处理\blue{\bf 直接左递归}的?
+%       \item ANTLR 4 是如何进行\purple{\bf 错误报告与恢复}的?
+%       \item ANTLR 4 使用的 \red{\bf $ALL(\ast)$} 算法是如何工作的?
+%       \item ANTLR 4 是如何判断并消解\cyan{\bf 二义性输入/文法}的?
+%     \end{enumerate}
+%   \end{columns}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%

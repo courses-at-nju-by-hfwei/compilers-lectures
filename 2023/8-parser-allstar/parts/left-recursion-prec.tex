@@ -1,0 +1,139 @@
+% left-recursion-prec.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \Large{ANTLR 4 是如何处理\red{\bf 直接左递归与优先级}的?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{parser-allstar/LRExpr.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExpr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 根本原因:} \\[10pt]
+    究竟是在 \texttt{expr} 的\blue{\bf 当前调用}中匹配下一个运算符, \\[15pt]
+    还是让 \texttt{expr} 的\blue{\bf 调用者}匹配下一个运算符。
+
+    \pause
+    \vspace{0.80cm}
+    \texttt{antlr4 LRExpr -Xlog}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	\fig{width = 1.00\textwidth}{figs/LRExprXlog}
+
+  \pause
+	\fig{width = 0.30\textwidth}{figs/LRExpr}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/LRExprPrec}
+
+  \begin{center}
+	\texttt{expr[int \_p]}
+  \end{center}
+
+  \fig{width = 0.30\textwidth}{figs/LRExpr}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/LRExprPrec}
+
+  \[
+	1 + 2 + 3 \qquad 1 + 2 \ast 3 \qquad 1 * 2 + 3
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{parser-allstar/LRExprParen.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExprParen}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{parser-allstar/LRExprUS.g4}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/LRExprUS}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/LRExprUSPrec}
+  \end{center}
+
+  \[
+    \text{--}a!! \qquad \text{-}a+b!
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssoc}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssocPrec}
+  \end{columns}
+
+  \vspace{0.80cm}
+  \[
+    1 \;\hat{\;}\; 2 \;\hat{\;}\; 3 + 4
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    For \blue{\emph{left-associative}} operators, the right operand
+    gets \blue{\bf one more} precedence level than the operator itself.
+  \end{center}
+
+  \vspace{0.30cm}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+  \begin{center}
+    \teal{\small Appendix C: Left-recursion Elimination}
+  \end{center}
+
+  \vspace{0.10cm}
+  \begin{center}
+    For \red{\emph{right-associative}} operators, the right operand
+    gets \red{\bf the same} precedence level as the current operand.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
