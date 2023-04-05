@@ -15,16 +15,6 @@
 
     \vspace{0.30cm}
     \fig{width = 0.40\textwidth}{figs/LRExpr}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \red{\bf 根本原因:} \\[10pt]
-    究竟是在 \texttt{expr} 的\blue{\bf 当前调用}中匹配下一个运算符, \\[15pt]
-    还是让 \texttt{expr} 的\blue{\bf 调用者}匹配下一个运算符。
 
     \pause
     \vspace{0.80cm}
@@ -58,10 +48,14 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \purple{\bf 对应于一段递归函数 \texttt{expr(int \_p)}}
+  \end{center}
+
   \fig{width = 0.60\textwidth}{figs/LRExprPrec}
 
   \[
-	1 + 2 + 3 \qquad 1 + 2 \ast 3 \qquad 1 * 2 + 3
+    1 + 2 + 3 \qquad 1 + 2 \ast 3 \qquad 1 * 2 + 3
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -69,11 +63,27 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \texttt{parser-allstar/LRExprParen.g4}
-
-    \vspace{0.30cm}
-    \fig{width = 0.40\textwidth}{figs/LRExprParen}
+    \red{\bf 根本问题:} \\[10pt]
+    究竟是在 \texttt{expr} 的\blue{\bf 当前调用}中匹配下一个运算符, \\[15pt]
+    还是让 \texttt{expr} 的\blue{\bf 调用者}匹配下一个运算符。
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{parser-allstar/LRExprParen.g4}
+  \end{center}
+
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/LRExprParen}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/LRExprParenPrec}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 

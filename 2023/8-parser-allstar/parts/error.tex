@@ -31,17 +31,50 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \fig{width = 0.80\textwidth}{figs/RecognitionException}
-% \end{frame}
+\begin{frame}{}
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    % \texttt{\bf \red{InputMismatchException}} \\[20pt]
+    四类词法、语法错误 \\[8pt]
 
-    % \pause
+    \fig{width = 0.95\textwidth}{figs/RecognitionException}
+
+    \texttt{NoViableAltException} \qquad \texttt{InputMismatchException}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \red{LexerNoViableAltException}} \\[20pt]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \texttt{\bf \red{NoViableAltException}} \\[20pt]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \texttt{\bf \red{InputMismatchException}} \\[20pt]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
     如果\red{\bf 下一个词法单元}符合预期, \\[8pt]
     则采用``\blue{单词法符号移除} (single-token deletion)'' \\[8pt]
     或``\blue{单词法符号补全} (single-token insertion)''策略
