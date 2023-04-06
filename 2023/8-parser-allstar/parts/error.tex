@@ -78,7 +78,13 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  % \fig{width = 0.50\textwidth}{figs/recovery}
+  \begin{center}
+    \purple{\bf 自定义错误报告消息}
+
+    \vspace{0.50cm}
+    \fig{width = 0.90\textwidth}{figs/ANTLRErrorListener}
+    \texttt{syntaxError()}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -111,8 +117,8 @@
   \end{center}
 
   \begin{columns}
-    \column{0.325\textwidth}
-    \column{0.35\textwidth}
+    \column{0.32\textwidth}
+    \column{0.36\textwidth}
       \begin{enumerate}[(1)]
         \setlength{\itemsep}{10pt}
         \item 特殊情况, 特殊处理
@@ -120,7 +126,7 @@
         \item 统一处理, 精细控制
         \item 自定义错误处理策略
       \end{enumerate}
-    \column{0.325\textwidth}
+    \column{0.32\textwidth}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -128,11 +134,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \purple{(1) 特殊情况, 特殊处理}
+    \purple{\bf (1) 特殊情况, 特殊处理}
 
     \vspace{0.80cm}
-    如果\red{\bf 下一个词法单元}符合预期, \\[8pt]
-    则采用``\blue{单词法符号移除} (single-token deletion)'' \\[8pt]
+    如果\red{\bf 下一个词法单元}符合预期, \\[10pt]
+    则采用``\blue{单词法符号移除} (single-token deletion)'' \\[10pt]
     或``\blue{单词法符号补全} (single-token insertion)''策略
 
     \vspace{1.00cm}
@@ -165,7 +171,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \purple{(2) 一般情况, 统一处理}
+    \purple{\bf (2) 一般情况, 统一处理}
 
     \vspace{0.80cm}
     采用``\red{\bf 同步-返回 (sync-and-return)}'' 策略, \\[5pt]
@@ -210,7 +216,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \purple{(3) 统一处理, 精细控制}
+    \purple{\bf (3) 统一处理, 精细控制}
 
     \vspace{0.80cm}
     \red{\bf 如何从子规则中优雅地恢复出来?} \\[20pt]
@@ -226,12 +232,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \purple{(4) 自定义错误处理策略}
+    \purple{\bf (4) 自定义错误处理策略}
 
-    \vspace{0.50cm}
+    \vspace{0.80cm}
     比如, (已知语法正确) 关闭默认错误处理功能, 提高运行效率
 
     \vspace{0.50cm}
+    \uncover<2->{\fig{width = 0.30\textwidth}{figs/ANTLRErrorStrategy}}
+    \vspace{0.50cm}
+
     比如, (出错代价太大) 在遇到第一个语法错误时, 就停止分析
   \end{center}
 \end{frame}

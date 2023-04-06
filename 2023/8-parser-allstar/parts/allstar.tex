@@ -48,17 +48,21 @@
   \pause
   \vspace{0.20cm}
   \begin{center}
-	\red{Incrementally and dynamically build up a \textit{\textbf{lookahead DFA}} \\
-	that map lookahead phrases to predicated productions.}
+	{\purple{\bf Incrementally and dynamically} build up a \red{\bf lookahead DFA} \\
+	that \blue{\bf map lookahead phrases to predicated productions}.}
   \end{center}
 
   \pause
   \fig{width = 0.60\textwidth}{figs/S-lookahead-DFA}
+  \begin{center}
+	Upon $bc$ and then $bd$
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/S-A}
   \begin{columns}
 	\column{0.50\textwidth}
 	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
@@ -72,15 +76,18 @@
 	\setlength{\itemsep}{8pt}
 	\item \red{Launch subparsers at a decision point, one per alternative productions.}
 	\item \teal{These subparsers run in pseudo-parallel to explore all possible paths.}
+	\vspace{10pt}
 	\item \blue{Subparsers die off as their paths fail to match the remaining input.}
+	\vspace{10pt}
 	\item \purple{Ambiguity: Multiple subparsers coalesce together or reach EOF.}
-	\item \cyan{Resolution: The first production associated with a surviving subparser.}
+	\item \purple{Resolution: The first production associated with a surviving subparser.}
   \end{itemize}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/S-A}
   \begin{columns}
 	\column{0.50\textwidth}
 	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
@@ -95,8 +102,8 @@
 	Upon $bc$ and then $bd$
 
 	\pause
-	\vspace{0.30cm}
-	\red{\bf move-closure!!!}
+	\vspace{0.20cm}
+	\red{{\bf Move} on terminals and {\bf Closure} over $\epsilon$ and non-terminals}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -108,7 +115,7 @@
   \begin{center}
 	\pause
 	\vspace{0.30cm}
-	\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/tree/master/parsing}{附加作业: paper @ compilers-papers-we-love}
+	\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/tree/master/parsing}{paper @ compilers-papers-we-love}
 
 	\pause
 	\vspace{0.30cm}
