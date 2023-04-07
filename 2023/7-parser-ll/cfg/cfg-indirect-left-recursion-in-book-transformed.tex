@@ -1,0 +1,8 @@
+% cfg-indirect-left-recursion-in-book-transformed.tex
+
+\begin{empheq}[box=\widefbox]{align*}
+	S &\to Ac \mid c \\[8pt]
+	A &\to Bb \mid b \\[8pt]
+	B &\to (bca \mid ca \mid a) B' \\[8pt]
+	B' &\to bcaB' \mid \epsilon
+\end{empheq}
