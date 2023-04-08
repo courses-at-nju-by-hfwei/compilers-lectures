@@ -1,0 +1,153 @@
+% symtab.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.95\textwidth}{figs/front-end}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.50\textwidth}{figs/back-end}
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[符号表 (Symbol Table)]
+      \red{\bf 符号表}是用于保存\blue{\bf 各种信息}的\purple{\bf 数据结构}。
+    \end{definition}
+  \end{center}
+
+  \pause
+  \input{tables/symtable}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``领域特定语言'' (DSL) 通常只有\blue{\bf 单作用域} (全局作用域)
+  \end{center}
+  \fig{width = 0.60\textwidth}{figs/config-file}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``通用程序设计语言'' (GPL) 通常需要\blue{\bf 嵌套作用域}
+  \end{center}
+
+  \fig{width = 0.60\textwidth}{figs/nested-symbol-tables}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.65\textwidth}{figs/vars}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 1.00\textwidth}{figs/vars-symtable}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.90\textwidth}{figs/scope-interface}
+
+    \vspace{0.60cm}
+    全局作用域、函数/方法作用域、局部作用域
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/talk-cheap}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.30\textwidth}
+      \fig{width = 0.80\textwidth}{figs/vars}
+    \column{0.35\textwidth}
+      \fig{width = 1.00\textwidth}{figs/vars-symtable}
+    \column{0.35\textwidth}
+      \fig{width = 1.00\textwidth}{figs/nested-dot}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/symtable-classes}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/scope-classes}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/scope-class}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 1.00\textwidth}{figs/symboltablelistener}
+    \column{0.60\textwidth}
+      \pause
+      \fig{width = 0.80\textwidth}{figs/symboltablelistener-field}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/symboltablelistener-class}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf \texttt{struct}}: 类型作用域
+  \end{center}
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 0.90\textwidth}{figs/struct-code}
+    \column{0.60\textwidth}
+      \fig{width = 1.00\textwidth}{figs/struct-tree}
+  \end{columns}
+  \begin{center}
+    \blue{\bf $d.i$ \qquad $a.b.y$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://github.com/antlr/symtab}{symtab @ antlr by parrt}
+
+    \vspace{0.80cm}
+    \href{https://github.com/parrt/cs652/tree/master/lectures/code/symtab/src}{symtab @ cs652 by parrt}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
