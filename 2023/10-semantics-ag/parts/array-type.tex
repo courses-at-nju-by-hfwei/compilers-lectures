@@ -1,0 +1,58 @@
+% array-type.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 数组类型}文法举例
+
+    \fig{width = 0.30\textwidth}{figs/SDD-type-array}
+    \[
+      \teal{\intkw[2][3]}
+    \]
+
+    \red{\bf 类型表达式} \blue{$array(2, array(3, integer))$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/parsetree-a[2][3]}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/TypeCheckingListener-Fields}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    继承属性 \red{$C.b$} 将一个基本类型沿着树向下传播
+
+    \fig{width = 0.80\textwidth}{figs/anno-type-array}
+    \[
+        \teal{\intkw[2][3]}
+    \]
+
+    % \begin{columns}
+    %   \column{0.40\textwidth}
+    %     \fig{width = 1.00\textwidth}{figs/SDD-type-array}
+    %   \column{0.60\textwidth}
+    % \end{columns}
+
+    \vspace{0.30cm}
+    综合属性 \blue{$C.t$} 收集最终得到的类型表达式
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.20\textwidth}{figs/types-a-input}
+  \fig{width = 1.00\textwidth}{figs/parsetree-types-a}
+  \fig{width = 0.50\textwidth}{figs/types-a-output}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

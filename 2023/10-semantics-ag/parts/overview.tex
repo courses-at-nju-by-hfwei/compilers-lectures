@@ -35,7 +35,7 @@
 
     \pause
     \vspace{1.00cm}
-    {什么样的文法刻画语言的\red{\bf 语义}?}
+    {用什么样的文法刻画语言的\red{\bf 语义}?}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -61,18 +61,6 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%     \begin{center}
-%       \red{\bf DFS (around $1972$)}
-
-%       \fig{width = 0.35\textwidth}{figs/Tarjan}
-
-%       Robert Tarjan ($1948 \sim$) \\[6pt]
-%     \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \fig{width = 0.60\textwidth}{figs/talk-cheap}
 \end{frame}
@@ -92,6 +80,9 @@
   \fig{width = 0.40\textwidth}{figs/calculator}
   \begin{center}
     \blue{\bf (交互式) 迷你计算器}
+
+    \vspace{0.50cm}
+    \teal{\texttt{Expr.g4}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -106,6 +97,17 @@
   \end{columns}
 
   \fig{width = 1.00\textwidth}{figs/parsetree-calc}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/mma-logo}
+
+    \vspace{0.50cm}
+    \blue{\bf 交互式}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -143,7 +145,18 @@
     语义动作嵌入的位置决定了\red{\bf 何时}执行该动作
 
     \vspace{0.60cm}
-    \red{\bf 基本思想:} 一个动作在它\teal{\bf 左边的}所有文法符号都\teal{\bf 处理}过之后立刻执行
+    \red{\bf 基本思想:} 一个动作在它\cyan{\bf 左边的}所有文法符号都\cyan{\bf 处理}过之后立刻执行
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/ExprAG-g4}
+
+    \vspace{0.30cm}
+    \teal{\texttt{ExprAG.g4}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -162,102 +175,14 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/csv}
   \begin{center}
-    \blue{\bf Comma-Separated Values}
+    ``源码面前, 了无秘密''
+
+    \fig{width = 0.50\textwidth}{figs/hj}
+
+    \teal{\texttt{ExprAGParser.java}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{columns}
-    \column{0.40\textwidth}
-      \fig{width = 0.80\textwidth}{figs/csv-scores-input}
-    \column{0.60\textwidth}
-      \fig{width = 0.90\textwidth}{figs/csv-scores-output}
-  \end{columns}
-
-  \vspace{0.30cm}
-  \fig{width = 1.00\textwidth}{figs/parsetree-csv-scores}
-
-  \fig{width = 0.50\textwidth}{figs/csv-g4}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     \begin{columns}[b]
-%       \column{0.25\textwidth}
-%         \fig{width = 0.80\textwidth}{figs/1}
-%         \vspace{-0.10cm}
-%         \begin{center}
-%           \blue{一对概念}
-%         \end{center}
-%       \column{0.25\textwidth}
-%         \fig{width = 0.85\textwidth}{figs/2}
-%         \vspace{-0.60cm}
-%         \begin{center}
-%           \blue{两类属性定义}
-%         \end{center}
-%       \column{0.25\textwidth}
-%         \fig{width = 0.65\textwidth}{figs/3}
-%         \begin{center}
-%           \blue{三种实现方式}
-%         \end{center}
-%       \column{0.25\textwidth}
-%         \fig{width = 0.65\textwidth}{figs/4}
-%         \begin{center}
-%           \blue{四大应用}
-%         \end{center}
-%     \end{columns}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     \fig{width = 0.30\textwidth}{figs/4}
-%     \vspace{0.30cm}
-%     \teal{\bf 表达式求值}
-
-%     \vspace{0.30cm}
-%     \red{\bf 类型系统} (语义分析)
-
-%     \vspace{0.30cm}
-%     抽象语法树
-
-%     \vspace{0.30cm}
-%     \blue{\bf 后缀表达式} (中间代码生成)
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    % \red{\bf 关键问题: 如何基于上下文无关文法做上下文相关分析?}
-
-    % \vspace{0.50cm}
-    \fig{width = 0.70\textwidth}{figs/info-flow}
-    \vspace{0.30cm}
-
-    \blue{\bf 语法分析树}上的\red{\bf 有序}信息流动
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \blue{\bf 时机} (Timing; タイミング)
-
-    \fig{width = 0.60\textwidth}{figs/timing-japanese}
-
-    \vspace{0.30cm}
-    \red{\bf 语义动作嵌入在什么地方? 这决定了何时执行语义动作。}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
+\input{parts/vars-decl}
