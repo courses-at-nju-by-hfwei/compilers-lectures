@@ -10,20 +10,8 @@
       \teal{\intkw[2][3]}
     \]
 
-    \red{\bf 类型表达式} \blue{$array(2, array(3, integer))$}
+    \red{\bf 类型表达式} \blue{$(2, (3, \textrm{int}))$}
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 1.00\textwidth}{figs/parsetree-a[2][3]}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.80\textwidth}{figs/TypeCheckingListener-Fields}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -37,12 +25,6 @@
         \teal{\intkw[2][3]}
     \]
 
-    % \begin{columns}
-    %   \column{0.40\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/SDD-type-array}
-    %   \column{0.60\textwidth}
-    % \end{columns}
-
     \vspace{0.30cm}
     综合属性 \blue{$C.t$} 收集最终得到的类型表达式
   \end{center}
@@ -51,8 +33,50 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.20\textwidth}{figs/types-a-input}
-  \fig{width = 1.00\textwidth}{figs/parsetree-types-a}
-  \fig{width = 0.50\textwidth}{figs/types-a-output}
+  \fig{width = 1.00\textwidth}{figs/ArrayType-g4}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayType-tree}
+  \[
+      \teal{\intkw[2][3]}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayTypeAG-g4}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    数组声明、数组引用、类型检查
+    \fig{width = 0.85\textwidth}{figs/Array-g4}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.50\textwidth}{figs/Array-g4-input}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/Array-g4-output}
+  \end{columns}
+
+  \vspace{0.80cm}
+  \fig{width = 1.00\textwidth}{figs/Array-tree}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/TypeCheckingListener-Fields}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
