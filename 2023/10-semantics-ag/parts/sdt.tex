@@ -104,33 +104,25 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    (左递归) $S$属性定义
-    \vspace{-0.50cm}
-    \input{eq/left-recursion-S-SDD}
-
-    \vspace{-0.60cm}
-    \[
-      \teal{\boxed{X Y^{\ast}}}
-    \]
-
-    (右递归) $L$属性定义
-    \vspace{-0.50cm}
-    \input{eq/right-recursion-L-SDD}
+    \fig{width = 0.90\textwidth}{figs/dep-expr-left-right-recursion}
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    继承属性 \blue{$R.i$} 用于计算并传递中间结果
+  \vspace{-1.00cm}
+  \[
+    \teal{\boxed{X Y^{\ast}}}
+  \]
 
-    \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/dep-expr-left-right-recursion}
-
-    \vspace{0.50cm}
-    \red{\bf 先计算继承属性, 再计算综合属性}
-  \end{center}
+  \begin{columns}
+    \column{0.35\textwidth}
+      \centerline{(左递归) $S$ 属性定义}
+      \vspace{-0.80cm}
+      \input{eq/left-recursion-S-SDD}
+    \column{0.65\textwidth}
+      \pause
+      \centerline{(右递归) $L$ 属性定义}
+      \vspace{-0.80cm}
+      {\input{eq/right-recursion-L-SDD}}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -174,32 +166,5 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-%   \begin{center}
-%     \blue{\bf $L$ 属性定义转换为 SDT}
-
-%     \[
-%       A \to X_{1} \cdots X_{i} \cdots X_{n}
-%     \]
-
-%     \vspace{0.80cm}
-%     计算 $X_{i}$ \red{\bf 继承属性}的动作放在产生式体中 $X_{i}$ 的\blue{\bf 左边}
-
-%     \vspace{0.30cm}
-%     计算产生式头部 $A$ \red{\bf 综合属性}的动作放在产生式体的\blue{\bf 最右边}
-%   \end{center}
-% \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \href{https://github.com/antlr/antlr4/blob/master/doc/faq/general.md\#what-is-the-difference-between-antlr-3-and-4}{What is the difference between ANTLR 3 and 4?
-}
-    \vspace{0.30cm}
-    \fig{width = 1.00\textwidth}{figs/antlr4-actions}
-    \pause
-    \fig{width = 1.00\textwidth}{figs/antlr4-design}
-  \end{center}
-\end{frame}
+\input{parts/csv}  % left as hw?
 %%%%%%%%%%%%%%%%%%%%
