@@ -3,17 +3,17 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \uncover<2->{
+    \uncover<3->{
       \href{https://github.com/antlr/antlr4/blob/master/doc/faq/general.md\#what-is-the-difference-between-antlr-3-and-4}{What is the difference between ANTLR 3 and 4?}
       \fig{width = 1.00\textwidth}{figs/antlr4-actions}}
 
     \vspace{0.20cm}
     Offline (\teal{\texttt{ParseTreeWalker}}) \\[5pt]
     Online (Attribute Grammar) \\[5pt]
-    Online (\teal{\texttt{addParseListener}})
+    \uncover<2->{Online (\teal{\texttt{addParseListener}})}
     \vspace{0.20cm}
 
-    \uncover<3->{\fig{width = 1.00\textwidth}{figs/antlr4-design}}
+    \uncover<4->{\fig{width = 1.00\textwidth}{figs/antlr4-design}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
