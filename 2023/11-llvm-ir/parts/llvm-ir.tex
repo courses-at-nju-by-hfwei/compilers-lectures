@@ -3,29 +3,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
+		{\href{https://llvm.org/docs/LangRef.html}{\bf LLVM Language Reference Manual}}
+
 		\fig{width = 0.50\textwidth}{figs/llvm-ir}
 
 		\vspace{0.50cm}
 		IR: Intermediate Representation
 
 		\vspace{0.50cm}
-		LLVM IR: 带有类型的、介于高级程序设计语言与汇编语言之间
-	\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{columns}
-		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/FZ-Compiler}
-		\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/FZ-Compiler-book}
-	\end{columns}
-
-	\vspace{0.50cm}
-	\begin{center}
-		8 章技术内容, 其中 4 章介绍 Maple IR, 另外 4 章基于 Maple IR
+		LLVM IR: 带类型的、介于高级程序设计语言与汇编语言之间
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -42,9 +28,6 @@
 		\fig{width = 0.60\textwidth}{figs/factorial0}
 		\vspace{0.30cm}
 		\texttt{factorial0.c}
-
-		\vspace{0.80cm}
-		注意: SysY 中没有函数声明语句。
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -52,9 +35,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\fig{width = 0.70\textwidth}{figs/f0-opt0}
+		\uncover<2->{\blue {Three Address Code (TAC)}}
+		\uncover<3->{\qquad \red{Static Single Assignment (SSA)}}
 
 		\vspace{0.30cm}
+		\fig{width = 0.95\textwidth}{figs/f0-opt0}
+
 		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \teal{\texttt{factorial0.c -o f0-opt0.ll}}
 	\end{center}
 \end{frame}
@@ -63,10 +49,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\fig{width = 0.80\textwidth}{figs/f0-opt1}
+		\blue{mem2reg}
+		\vspace{0.30cm}
+
+		\fig{width = 0.95\textwidth}{figs/f0-opt1}
 
 		\vspace{0.30cm}
-		\teal{\texttt{clang -S -emit-llvm factorial0.c -o f0-opt1.ll}} \red{\texttt{-O1 -g0}}
+		\teal{\texttt{clang -S -emit-llvm factorial0.c -o f0-opt1.ll \red{-O1} -g0}}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -74,32 +63,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
-		\column{0.33\textwidth}
-			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-1}
-		\column{0.33\textwidth}
-			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-2}
-		\column{0.33\textwidth}
-			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-3}
-	\end{columns}
-
-	\pause
-	\vspace{0.30cm}
-	\begin{center}
-		$\phi$ 函数根据控制流决定选择 $y_{1}$ 还是 $y_{2}$
-	\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{columns}
-		\column{0.50\textwidth}
+		\column{0.60\textwidth}
 			\fig{width = 0.80\textwidth}{figs/f1}
-		\column{0.50\textwidth}
+		\column{0.40\textwidth}
 			\fig{width = 0.80\textwidth}{figs/f1-callgraph}
 	\end{columns}
 	\begin{center}
-		\texttt{factorial1.c}
+		\teal{\texttt{factorial1.c}}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -110,7 +80,7 @@
 		\column{0.50\textwidth}
 		  \fig{width = 0.80\textwidth}{figs/Allen}
 		  \begin{center}
-			Frances Elizabeth Allen ($1932 \sim 2020$; \blue{2006 Turing Award})
+			  \href{https://en.wikipedia.org/wiki/Frances_Allen}{Frances Elizabeth Allen} ($1932 \sim 2020$; \blue{2006 Turing Award})
 		  \end{center}
 		\column{0.50\textwidth}
 		  \fig{width = 0.60\textwidth}{figs/cfg-wiki}
@@ -118,7 +88,31 @@
 
 	\vspace{0.30cm}
 	\begin{center}
-		(Intra-procedure) Control Flow Graph (CFG)
+		\red{(Intra-procedure)} \href{https://en.wikipedia.org/wiki/Control-flow_graph}{Control Flow Graph (CFG)}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\href{https://en.wikipedia.org/wiki/Control-flow_graph}{Control Flow Graph (CFG)}
+
+		\vspace{0.50cm}
+		\begin{definition}[CFG]
+			Each \teal{node} represents a \emph{\blue{basic block}},
+			i.e. a straight-line code sequence
+			with no \cyan{\bf branches/jumps} in except to the \purple{entry point} \\
+			and no \cyan{\bf branches/jumps} out except at the \purple{exit point}.
+
+			\vspace{0.80cm}
+			\pause
+			Jump targets start a block, and jumps end a block.
+
+			\vspace{0.80cm}
+			\pause
+			Directed \teal{edges} are used to represent jumps in the control flow.
+		\end{definition}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -139,15 +133,15 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{columns}
-		\column{0.35\textwidth}
-			% \fig{width = 0.95\textwidth}{figs/f1-opt0-factorial-cfg-only}
-			\fig{width = 1.00\textwidth}{figs/factorial1}
-		\column{0.65\textwidth}
-			\fig{width = 1.00\textwidth}{figs/f1-opt0-factorial-cfg}
-	\end{columns}
+	\fig{width = 0.60\textwidth}{figs/factorial1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 	\begin{center}
-		\texttt{factorial1.c (opt0)}
+		\uncover<2->{\blue{\texttt{\%2}: store the return value (in different branches)}}
+		\fig{width = 0.70\textwidth}{figs/f1-opt0-factorial-cfg}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -174,19 +168,32 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{columns}
-		\column{0.40\textwidth}
-			% \fig{width = 0.80\textwidth}{figs/f1-opt1-factorial-cfg-only}
-			\fig{width = 1.00\textwidth}{figs/factorial1}
-		\column{0.60\textwidth}
-			\fig{width = 1.00\textwidth}{figs/f1-opt1-factorial-cfg}
-	\end{columns}
+	\fig{width = 0.70\textwidth}{figs/f1-opt1-factorial-cfg}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
 	\begin{center}
-		\texttt{factorial1.c (opt1)}
+		$\phi$ 根据控制流决定选择 $y_{1}$ 还是 $y_{2}$
+	\end{center}
+	\begin{columns}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-1}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-2}
+		\column{0.33\textwidth}
+			\fig{width = 0.85\textwidth}{figs/ssa-wiki-example-3}
+	\end{columns}
+
+	\pause
+	\vspace{0.30cm}
+	\begin{center}
+		\href{https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/control-structures/ssa-phi.html}{How to implement $\phi$ instruction?}
 
 		\pause
 		\vspace{0.30cm}
-		\href{https://mapping-high-level-constructs-to-llvm-ir.readthedocs.io/en/latest/control-structures/ssa-phi.html}{Single-Static Assignment Form and \red{PHI}} (\purple{How to implement it?})
+		基本思想: 将 $\phi$ 指令转换成若干赋值指令, 上推至前驱基本块中
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -194,8 +201,35 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\fig{width = 0.18\textwidth}{figs/f1-opt3-factorial-cfg-only}
+		SSA 形式的构建与消去
+	\end{center}
 
+	\begin{columns}
+		\column{0.33\textwidth}
+		  \uncover<1->{\fig{width = 0.90\textwidth}{figs/BiSheng-book}
+			\begin{center}
+				Section 4.3
+			\end{center}}
+		\column{0.33\textwidth}
+		  \uncover<3->{\fig{width = 1.00\textwidth}{figs/TOPLAS1991}
+			\begin{center}
+				\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/blob/master/ir/TOPLAS1991\%20Efficiently\%20Computing\%20Static\%20Single\%20Assignment\%20Form\%20and\%20the\%20Control\%20Dependence\%20Graph.pdf}{\footnotesize TOPLAS1991 @ compilers-papers-we-love}
+			\end{center}}
+		\column{0.33\textwidth}
+		  \uncover<2->{\fig{width = 0.90\textwidth}{figs/Engineering-A-Compiler-book}
+			\begin{center}
+				Section 9.3
+			\end{center}}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.20\textwidth}{figs/f1-opt3-factorial-cfg-only}
+
+		\vspace{-0.30cm}
 		\texttt{factorial1 (opt3)}
 	\end{center}
 \end{frame}
@@ -217,17 +251,21 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{columns}
-		\column{0.35\textwidth}
-			% \fig{width = 1.00\textwidth}{figs/f2-opt0-factorial-cfg-only}
-			\fig{width = 1.00\textwidth}{figs/factorial2}
+	\fig{width = 0.60\textwidth}{figs/factorial2}
+	\begin{center}
+		\texttt{factorial2.c}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-			\begin{center}
-				\texttt{factorial2.c (opt0)}
-			\end{center}
-		\column{0.65\textwidth}
-			\fig{width = 0.90\textwidth}{figs/f2-opt0-factorial-cfg.pdf}
-	\end{columns}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\vspace{-0.80cm}
+	\fig{width = 0.70\textwidth}{figs/f2-opt0-factorial-cfg.pdf}
+
+	% \begin{center}
+	% 	\texttt{factorial2.c (opt0)}
+	% \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -253,25 +291,17 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{columns}
-		\column{0.40\textwidth}
-			\fig{width = 0.80\textwidth}{figs/factorial2}
-			% \fig{width = 0.80\textwidth}{figs/f2-opt1-factorial-cfg-only}
-
-			\begin{center}
-				\texttt{factorial2.c (opt1)}
-			\end{center}
-		\column{0.60\textwidth}
-			\fig{width = 0.95\textwidth}{figs/f2-opt1-factorial-cfg.pdf}
-	\end{columns}
+	\vspace{-0.50cm}
+	\fig{width = 0.70\textwidth}{figs/f2-opt1-factorial-cfg.pdf}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\fig{width = 0.18\textwidth}{figs/f2-opt3-factorial-cfg-only}
+		\fig{width = 0.20\textwidth}{figs/f2-opt3-factorial-cfg-only}
 
+		\vspace{-0.30cm}
 		\texttt{factorial2 (opt3)}
 	\end{center}
 \end{frame}
