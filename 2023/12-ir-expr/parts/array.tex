@@ -92,16 +92,64 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/array-c-type}
+  \uncover<2->{\fig{width = 0.50\textwidth}{figs/array-c-type}}
   \vspace{-0.20cm}
   \fig{width = 0.25\textwidth}{figs/array-c}
   \vspace{-0.20cm}
-  \fig{width = 0.85\textwidth}{figs/array-c-ll}
+  \uncover<3->{\fig{width = 0.85\textwidth}{figs/array-c-ll}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    GEP provides a way to \red{\bf access arrays and manipulate pointers}.
+
+    \vspace{1.00cm}
+    GEP abstract away details like \blue{\bf size of types}.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{getelementptr \\[5pt] \red{<base-type>}, <base-type>* \blue{<base-addr>}, \teal{[i32 <index>]+}}
+  \end{center}
 
   \pause
-  \vspace{-0.20cm}
+  \vspace{0.80cm}
+  \red{\texttt{<base-type>}}: base type used for \purple{\bf the first} index
+  \begin{itemize}
+    \setlength{\itemsep}{5pt}
+    \item It does \emph{not} change the pointer type.
+    \item It offsets by the \red{\texttt{<base-type>}}.
+  \end{itemize}
+
+  \pause
+  \vspace{0.80cm}
+  \teal{Further indices}:
+  \begin{itemize}
+    \setlength{\itemsep}{5pt}
+    \item Offset \teal{inside} arrays (aggregate types)
+    \item \emph{Change} the pointer type by removing one layer of ``aggregation''
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
-    \href{https://llvm.org/docs/GetElementPtr.html}{The Often Misunderstood GEP Instruction}
+    \href{https://llvm.org/docs/GetElementPtr.html}{The Often Misunderstood GEP Instruction @ LLVM Docs}
+  \end{center}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/llvm-ir-tutorial}
+
+    \vspace{0.30cm}
+    \href{https://www.bilibili.com/video/BV1oE411y711/?share_source=copy_web&vd_source=afddc1f6e07c3046ed07519aa34370fd}{LLVM IR Tutorial: Phis, GEPs and Other Things, Oh My! @ bilibili}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
