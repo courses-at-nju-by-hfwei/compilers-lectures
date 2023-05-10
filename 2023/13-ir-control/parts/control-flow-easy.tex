@@ -25,7 +25,7 @@
   \end{center}
 
   \begin{center}
-    为布尔表达式 $B$ 计算逻辑值 \\[5pt]
+    为布尔表达式 $B$ 计算逻辑值 (假设保存在临时变量 \texttt{t1} 中) \\[5pt]
     \texttt{\bf if}、\texttt{\bf while} 等语句
     根据 $B$ 的结果改变控制流
   \end{center}
@@ -34,6 +34,17 @@
   \[
     \texttt{\bf if}\; (B)\; S_{1}
   \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/talk-code}
+
+    \vspace{0.30cm}
+    \teal{\texttt{CodeGenVisitor.java}}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -54,17 +65,6 @@
 
   \begin{center}
     \blue{及时输出生成的中间代码, 避免频繁的字符串拼接操作}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \fig{width = 0.40\textwidth}{figs/talk-code}
-
-    \vspace{0.30cm}
-    \teal{\texttt{CodeGenVisitor.java}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
