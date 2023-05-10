@@ -2,6 +2,21 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/easy-mode}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \fig{width = 0.80\textwidth}{figs/daju}
+  \begin{center}
+    心中有``树'' (语法分析树)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     {\Large 分工 \qquad 合作}
 
@@ -11,8 +26,8 @@
 
   \begin{center}
     为布尔表达式 $B$ 计算逻辑值 \\[5pt]
-    \texttt{\bf if}、\texttt{\bf while} 语句根据 $B$
-    的结果改变控制流
+    \texttt{\bf if}、\texttt{\bf while} 等语句
+    根据 $B$ 的结果改变控制流
   \end{center}
 
   \vspace{-0.30cm}
@@ -23,26 +38,33 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.70\textwidth}{figs/grammar-boolexpr}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.70\textwidth}{figs/grammar-control}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \[
-    \texttt{\bf if}\; (B)\; S_{1}
-  \]
-
-  \vspace{1.00cm}
   \begin{center}
-    \textcolor<2->{lightgray}{\bf Listener} \pause \emph{vs.} \blue{\bf Visitors}
+    选择实现方式: \textcolor{lightgray}{Listeners},
+      \textcolor{blue}{Visitors},
+      \textcolor{lightgray}{Attributed Grammar}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/cfg-S-grammar}
+    \column{0.50\textwidth}
+      \fig{width = 0.35\textwidth}{figs/cfg-boolexpr-grammar}
+  \end{columns}
+
+  \begin{center}
+    \blue{及时输出生成的中间代码, 避免频繁的字符串拼接操作}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/talk-code}
+
+    \vspace{0.30cm}
+    \teal{\texttt{CodeGenVisitor.java}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -52,6 +74,7 @@
   \begin{center}
     \fig{width = 0.50\textwidth}{figs/break}
 
+    \vspace{0.50cm}
     How to implement ``\texttt{break}'' statements?
   \end{center}
 \end{frame}
@@ -60,17 +83,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \begin{center}
-    短路求值
+    \fig{width = 0.40\textwidth}{figs/ShortCircuit}
+
+    \vspace{0.20cm}
+    How to implement ``Short-Circuit'' evaluation?
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
