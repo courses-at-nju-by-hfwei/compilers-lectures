@@ -9,7 +9,6 @@
     \column{0.50\textwidth}
       \fig{width = 0.45\textwidth}{figs/cfg-S-grammar}
     \column{0.50\textwidth}
-      \pause
       \fig{width = 0.35\textwidth}{figs/cfg-boolexpr-grammar}
   \end{columns}
 \end{frame}
@@ -32,7 +31,51 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{\bf 生成更短、更高效的代码}
+    {\Large 分工 \qquad 合作}
+
+    \vspace{0.20cm}
+    \fig{width = 0.60\textwidth}{figs/team-work-fly}
   \end{center}
+
+  \begin{center}
+    为布尔表达式 $B$ 计算逻辑值 (假设保存在临时变量 \texttt{t1} 中) \\[5pt]
+    \texttt{\bf if}、\texttt{\bf while} 等语句
+    根据 $B$ 的结果改变控制流
+  \end{center}
+
+  \vspace{-0.30cm}
+  \[
+    \texttt{\bf if}\; (B)\; S_{1}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 如何生成更短、\textcolor{lightgray}{更高效}的代码?}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.60\textwidth}{figs/while-if-II}
+    \column{0.50\textwidth}
+      \fig{width = 0.85\textwidth}{figs/while-if-II-code}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 如何生成更短、\textcolor{lightgray}{更高效}的代码?}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/bool-short-circuit-II}
+    \column{0.50\textwidth}
+      \fig{width = 0.85\textwidth}{figs/bool-short-circuit-II-code}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

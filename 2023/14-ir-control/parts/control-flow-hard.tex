@@ -3,10 +3,14 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    直接\blue{\bf 用布尔表达式改变控制流} \\[5pt]
-    (使用控制流跳转间接表明布尔表达式的值)
+    直接\blue{\bf 用布尔表达式改变控制流}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/hard-mode}
+    \vspace{0.30cm}
+
+    使用控制流跳转间接表明布尔表达式的值
   \end{center}
-  \fig{width = 0.40\textwidth}{figs/hard-mode}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -34,7 +38,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \begin{center}
-    \blue{\bf 继承属性 $B.\mathit{true}$, $B.\mathit{false}$,
+    \blue{\bf \red{继承属性} $B.\mathit{true}$, $B.\mathit{false}$,
     $S.\mathit{next}$ 指明了控制流跳转目标}
 
     \fig{width = 0.60\textwidth}{figs/cfg-S}
@@ -52,9 +56,11 @@
     \vspace{0.50cm}
     \blue{\bf $S.next$ 为语句 $S$ 指明了``跳出'' $S$ 的目标}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-  \pause
-  \vspace{0.60cm}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
   \begin{center}
     \fig{width = 0.90\textwidth}{figs/SDD-assign}
 
