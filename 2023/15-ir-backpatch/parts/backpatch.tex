@@ -1,0 +1,294 @@
+% backpatch.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 为什么需要``回填技术''?}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/java-code}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.45\textwidth}{figs/java-bytecode}
+  \end{columns}
+
+  \pause
+  \begin{center}
+    \blue{\bf 回填技术: 在一趟 (one-pass) 中生成跳转目标地址 (而非目标标签)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/SDD-if}
+
+    \vspace{0.80cm}
+    \uncover<2->{\blue{\bf $B$ 可以自行计算 $B.\mathit{true}$ 对应的指令地址}}
+
+    \vspace{0.50cm}
+    \fig{width = 0.40\textwidth}{figs/if-code-block}
+    \vspace{0.50cm}
+
+    \uncover<3->{\red{\bf $B$ 计算不出 $B.\mathit{false}$ 对应的指令地址}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 回填 (Backpatching) 技术}
+
+    \vspace{0.30cm}
+    \blue{\bf 子节点挖坑、祖先节点填坑}
+    \fig{width = 0.60\textwidth}{figs/wakeng}
+
+    \pause
+    子节点暂时不指定跳转指令的目标地址 \\[5pt]
+    待祖先节点能够确定目标地址时回头填充
+
+    \pause
+    \vspace{0.50cm}
+    父节点通过\red{\bf 综合属性}收集子节点中具有相同目标的跳转指令
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    为左部非终结符 \red{$B$} 计算综合属性 $B.\text{truelist}$ 与 $B.\text{falselist}$ \\[10pt]
+    为左部非终结符 \blue{$S/L$} 计算综合属性 $S/L.\text{nextlist}$ \\[15pt]
+    并为已能确定目标地址的跳转指令进行\purple{回填} (考虑每个综合属性)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \begin{columns}
+%       \column{0.50\textwidth}
+%         \fig{width = 1.00\textwidth}{figs/xuzhou-dong}
+%       \column{0.50\textwidth}
+%         \fig{width = 0.80\textwidth}{figs/xuzhou-guanyin}
+%     \end{columns}
+%     \fig{width = 0.40\textwidth}{figs/daba}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.25\textwidth}{figs/bool-grammar-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}}
+    \fig{width = 0.90\textwidth}{figs/true-false-backpatch}
+    {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
+
+    \pause
+    \vspace{1.00cm}
+    \fig{width = 0.70\textwidth}{figs/true-false}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.95\textwidth}{figs/rel-backpatch}
+
+    \pause
+    \vspace{2.00cm}
+    \fig{width = 0.90\textwidth}{figs/rel}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/not-backpatch}
+
+    \pause
+    \vspace{2.00cm}
+    \fig{width = 0.50\textwidth}{figs/not}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/and-backpatch-color}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/M}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/and-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/or-backpatch-color}
+
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/M}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/or-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \vspace{1.50cm}
+    \fig{width = 1.00\textwidth}{figs/anno-boolexpr-backpatch}
+    \vspace{0.30cm}
+    \teal{\texttt{x < 100 || x > 200 \&\& x != y}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/backpatch-104}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/backpatch-102}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.35\textwidth}{figs/control-grammar-backpatch}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/if-backpatch}
+
+    \vspace{0.40cm}
+    \fig{width = 0.80\textwidth}{figs/M-backpatch-2}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.95\textwidth}{figs/if-SDD}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/if-else-backpatch}
+
+    \vspace{0.30cm}
+    \fig{width = 0.80\textwidth}{figs/M-N-backpatch}
+
+    \pause
+    \vspace{0.20cm}
+    \fig{width = 0.75\textwidth}{figs/if-else-SDD}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/while-backpatch}
+
+    \vspace{0.30cm}
+    \fig{width = 0.90\textwidth}{figs/M-backpatch-2}
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.85\textwidth}{figs/while-SDD}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/L-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/S-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cf-backpatch-gen}
+
+  \begin{center}
+    只有 (3) 与 (7) 生成了新的代码, 控制流语句的主要目的是\red{``控制''流}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{}
+  \begin{columns}
+    \column{0.20\textwidth}
+    \column{0.60\textwidth}
+      \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+          \Procedure{AreYouOK}{\text{score}}
+            \If{$\text{score} \ge 60$}
+              \While{\text{true}}
+                \State \text{\bf print} ``WanSui''
+              \EndWhile
+            \Else
+              \State \text{\bf print} ``Sad''
+            \EndIf
+          \EndProcedure
+        \end{algorithmic}
+      \end{algorithm}
+    \column{0.20\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/ifelse-while-backpatch}
+  \pause
+  \fig{width = 0.80\textwidth}{figs/MN-backpatch}
+  \pause
+  \fig{width = 0.80\textwidth}{figs/true-backpatch}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
