@@ -1,0 +1,95 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.65\textwidth}{figs/train-college-film}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.65\textwidth}{figs/train-college-cartoon}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		使用\blue{标签}标记跳转目标
+	\end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/bool-short-circuit-II}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/bool-short-circuit-II-hard-code}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		Java Bytecode: 使用\red{地址值}作为跳转目标
+	\end{center}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/java-code}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.45\textwidth}{figs/java-bytecode}
+  \end{columns}
+
+	\begin{center}
+		\red{$Q:$ 如何在一趟扫描中生成跳转目标的地址?}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/SDD-if}
+
+    \vspace{0.80cm}
+    \uncover<2->{\blue{$B$ 可以自行计算 $B.\mathit{true}$ 对应的指令地址}}
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/if-code-block}
+    \vspace{0.30cm}
+
+    \uncover<3->{\red{$B$ 计算不出 $B.\mathit{false}$ 对应的指令地址}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \blue{\bf 回填技术: 在一趟扫描中生成跳转目标地址 (而非目标标签)}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{回填 (Backpatching) 技术}: {子节点挖坑、祖先节点填坑}
+
+    \fig{width = 0.50\textwidth}{figs/wakeng}
+
+    \pause
+    子节点暂时不指定跳转指令的目标地址 \\[5pt]
+    待祖先节点能够确定目标地址时回头填充
+
+    \pause
+    \vspace{0.80cm}
+    父节点通过\red{综合属性}收集子节点中具有相同目标的跳转指令
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

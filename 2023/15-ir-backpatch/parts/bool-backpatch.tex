@@ -1,0 +1,110 @@
+% bool-backpatch.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.25\textwidth}{figs/bool-grammar-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}}
+    \fig{width = 0.90\textwidth}{figs/true-false-backpatch}
+    {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
+
+    \pause
+    \vspace{1.00cm}
+    \fig{width = 0.70\textwidth}{figs/true-false}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.95\textwidth}{figs/rel-backpatch}
+
+    \pause
+    \vspace{2.00cm}
+    \fig{width = 0.90\textwidth}{figs/rel}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/not-backpatch}
+
+    \pause
+    \vspace{2.00cm}
+    \fig{width = 0.50\textwidth}{figs/not}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/and-backpatch-color}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/M}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/and-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/or-backpatch-color}
+
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/M}
+
+    \pause
+    \vspace{0.80cm}
+    \fig{width = 0.80\textwidth}{figs/or-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\vspace{-2.00cm}
+	\begin{columns}
+		\column{0.75\textwidth}
+			\uncover<2->{\fig{width = 1.00\textwidth}{figs/and-or-backpatch}}
+			\vspace{-0.50cm}
+			\uncover<2->{\fig{width = 1.00\textwidth}{figs/rel-backpatch}}
+		\column{0.20\textwidth}
+	\end{columns}
+  \begin{center}
+    \fig{width = 0.75\textwidth}{figs/anno-boolexpr-backpatch}
+  \end{center}
+	\vspace{-3.00cm}
+	% \vspace{0.20cm}
+	% \teal{\texttt{x < 100 || x > 200 \&\& x != y}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/backpatch-104}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/backpatch-102}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
