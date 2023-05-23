@@ -1,0 +1,40 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    只考虑\red{\bf 无二义性}的文法 \\[4pt]
+    这意味着, 每个句子对应唯一的一棵语法分析树
+
+    \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
+
+    今日主题: \red{\bf $LR$ 语法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    自顶向下的、\\[15pt]
+    递归下降的、\\[15pt]
+    预测分析的、\\[15pt]
+    适用于\red{\bf $LL(1)$文法}的、\\[15pt]
+    $LL(1)$语法分析器
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LL(k)$ 的\red{\bf 弱点}: \\[10pt]
+    在仅看到\violet{右部的前 $k$ 个词法单元}时就必须预测要使用哪条产生式
+
+    \pause
+    \vspace{1.50cm}
+    $LR(k)$ 的\blue{\bf 优点}: \\[10pt]
+    看到\purple{与正在考虑的这个产生式}的\violet{整个右部}对应的词法单元之后再决定
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
