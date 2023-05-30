@@ -1,0 +1,652 @@
+% lr1.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$SLR(1)$ 分析表}
+
+    \fig{width = 0.60\textwidth}{figs/lr0-table-expr-add-mul}
+
+    \blue{\bf 归约:}
+    \begin{enumerate}[(3)]
+      \centering
+      \item $[k: A \to \alpha \cdot] \in I_{i} \land \blue{A \neq S'} \implies
+        \forall t \in \red{\follow(A)}.\; \action[i, t] = rk$
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[$SLR(1)$文法]
+    如果文法 $G$ 的\red{\bf $SLR(1)$分析表}是\blue{\bf 无冲突}的,
+    则 $G$ 是 $SLR(1)$ 文法。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 无冲突:} \action{}表中每个单元格最多只有一种动作 \\[8pt]
+
+    \fig{width = 0.50\textwidth}{figs/lr0-table-expr-add-mul}
+
+    \pause
+    \blue{\bf 两类可能的冲突:} ``移入/归约''冲突、``归约/归约''冲突
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    非 $SLR(1)$ 文法举例
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.60\textwidth}{figs/cfg-LR}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/lr0-automaton-LR-2}
+  \end{columns}
+
+  \vspace{0.30cm}
+  \[
+    [S \to L \cdot = R] \in I_{2} \implies \action(I_{2}, =) \gets s6
+  \]
+  \[
+    \red{=\; \in \follow(R)} \implies \action(I_{2}, =) \gets r5
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    即使考虑了\red{$=\; \in \follow(R)$}, 对该文法来说仍然不够
+
+    \vspace{0.20cm}
+    因为, 这仅仅说明 $=$ 可能跟在 $R$ 后面, 是一种``粗糙''的估计
+
+    \fig{width = 0.80\textwidth}{figs/lr0-automaton-SLR}
+
+    \pause
+    实际上, 该文法没有\blue{\bf 以 $R = \cdots$ 开头}的最右句型
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    希望$LR$语法分析器的每个状态能\blue{\bf 尽可能精确}地
+
+    \vspace{0.30cm}
+    指明\red{\bf 哪些输入符号可以跟在句柄$A \to \alpha$的后面}
+
+    \pause
+    \vspace{1.00cm}
+    在 $LR(0)$ 自动机中, 某个项集 \purple{$I_{j}$} 中包含 \purple{$[A \to \alpha \cdot]$}
+
+    \vspace{0.50cm}
+    则在之前的某个项集 \teal{$I_{i}$} 中包含 \teal{$[B \to \beta \cdot A \gamma]$}
+    与 \teal{$[A \to \cdot \alpha]$}
+
+    \vspace{0.50cm}
+    \red{\fbox{这表明只有$a \in \first(\gamma)$时, 才可以进行 $A \to \alpha$ 归约}}
+
+    \pause
+    \vspace{0.80cm}
+    但是, 对$I_{i}$求闭包时, 仅得到 $[A \to \cdot \alpha]$, 丢失了 $\first(\gamma)$ 信息
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{definition}[$LR(1)$项 (Item)]
+      \[
+        [A \to \alpha \cdot \beta, \red{a}] \qquad (a \in T \cup \set{\$})
+      \]
+
+      此处, $a$ 是\red{\bf 向前看符号}, 数量为 \red{\bf 1}.
+    \end{definition}
+
+    \pause
+    \vspace{0.80cm}
+    思想: $\alpha$ 在栈顶, 期望剩余输入中\red{\bf 开头}的是可以从$\beta \red{a}$推导出的符号串
+
+    \pause
+    \vspace{0.50cm}
+    \[
+      \blue{[A \to \alpha \cdot, a]}
+    \]
+    只有下一个输入符号为 $a$ 时, 才可以按照 $A \to \alpha$ 进行归约
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \[
+      [A \to \alpha \cdot B \beta, \red{a}] \in I \qquad (a \in T \cup \set{\$})
+    \]
+
+    % \fig{width = 0.80\textwidth}{figs/lr1-closure}
+
+    \pause
+    \[
+      \forall \blue{b \in \first(\beta a)}.\; [B \to \cdot \gamma, b] \in I
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    % \fig{width = 0.80\textwidth}{figs/lr1-goto}
+    \begin{align*}
+      J = \textsc{goto}(I, \red{X}) &= \closure\Big(\Big\{
+            \blue{[A \to \alpha X \cdot \beta, a]}
+            \Big\lvert \red{[A \to \alpha \cdot X \beta, a]} \in I \Big\}\Big)
+    \end{align*}
+    \[
+      (X \in N \cup T)
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    % \fig{width = 0.80\textwidth}{figs/lr1-items}
+
+    % \vspace{0.60cm}
+    初始状态: $\closure({[S' \to \cdot S, \red{\$}]})$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.25\textwidth}
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \uncover<2->{
+        \begin{table}
+          \footnotesize
+          \begin{tabular}{c|c|c}
+            \hline
+              & \first & \follow \\ \hline \hline
+            $S$ & $\set{c, d}$ & $\$$ \\ \hline
+            $C$ & $\set{c, d}$ & $\set{c, d, \$}$ \\ \hline
+          \end{tabular}}
+        \end{table}
+      \column{0.75\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf $LR(1)$分析表构造规则}
+
+    \vspace{0.60cm}
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{25pt}
+      \item $\goto(I_{i}, a) = I_{j} \land a \in T \implies \action[i, a] \gets sj$
+      \item $\goto(I_{i}, A) = I_{j} \land A \in N \implies \goto[i, A] \gets gj$
+      \item $[k: A \to \alpha \cdot, \red{a}] \in I_{i} \land \blue{A \neq S'} \implies
+        \action[i, \red{a}] = rk$
+      \item $[S' \to S \cdot, \purple{\$}] \in I_{i} \implies \action[i, \$] \gets acc$
+    \end{enumerate}
+
+    \pause
+    \vspace{0.20cm}
+    \begin{definition}[$LR(1)$文法]
+      如果文法 $G$ 的\red{\bf $LR(1)$分析表}是\blue{\bf 无冲突}的,
+      则 $G$ 是 $LR(1)$ 文法。
+    \end{definition}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+      \column{0.35\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-table-SCC}
+    \end{columns}
+
+    \vspace{0.60cm}
+    $LR(1)$ 通过\red{\bf 不同的向前看符号}, 区分了状态对 $(3, 6)$, $(4, 7)$ 与 $(8, 9)$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.30\textwidth}
+        \uncover<3->{
+          \[
+            w = ccdcd\$
+          \]}
+
+        \fig{width = 0.70\textwidth}{figs/cfg-SCC}
+
+        \[
+          \blue{L(G) = \uncover<2->{c^{\ast}dc^{\ast}d}}
+        \]
+      \column{0.80\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    总结: $LR(0)$、$SLR(1)$、$LR(1)$ 的\red{\bf 归约}条件
+
+    \[
+      [k: A \to \alpha \cdot] \in I_{i} \land A \neq S' \implies
+        \forall t \in \red{T \cup \set{\$}}.\; \action[i, t] = rk
+    \]
+
+    \[
+      [k: A \to \alpha \cdot] \in I_{i} \land A \neq S' \implies
+        \forall t \in \red{\follow(A)}.\; \action[i, t] = rk
+    \]
+
+    \[
+      [k: A \to \alpha \cdot, \red{a}] \in I_{i} \land A \neq S' \implies
+        \action[i, \red{a}] = rk
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $LR(1)$虽然强大, 但是生成的$LR(1)$分析表可能过大, 状态过多
+    \vspace{-0.30cm}
+
+    \begin{columns}
+      \column{0.70\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+      \column{0.35\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-table-SCC}
+    \end{columns}
+
+    \pause
+    \vspace{0.10cm}
+    \red{$LALR(1):$} 合并具有相同\blue{\bf 核心$LR(0)$}项的状态 (忽略不同的向前看符号)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.30\textwidth}
+        % \[
+        %   w = ccdcd\$
+        % \]
+
+        \fig{width = 0.60\textwidth}{figs/cfg-SCC}
+
+        \[
+          \blue{L(G) = c^{\ast}dc^{\ast}d}
+        \]
+      \column{0.75\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+    \end{columns}
+
+    \vspace{0.20cm}
+    \blue{合并 $I_{4}$ 与 $I_{7}$ 为 $I_{47}$
+      $\set{[C \to d \cdot, c/d/\$]}$},
+    \pause \blue{继续合并 $(I_{8}, I_{9})$ 以及 $(I_{3}, I_{6})$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     % \teal{$w = ccd\$ \qquad w = cdcdc\$$}
+
+%     \begin{columns}
+%       \column{0.30\textwidth}
+%         \fig{width = 0.60\textwidth}{figs/cfg-SCC}
+
+%         \[
+%           \blue{L(G) = c^{\ast}dc^{\ast}d}
+%         \]
+%       \column{0.75\textwidth}
+%         \fig{width = 1.00\textwidth}{figs/lr1-automaton-SCC}
+%     \end{columns}
+
+%     \pause
+%     \vspace{0.20cm}
+%     \blue{\bf 继续合并 $(I_{8}, I_{9})$ 以及 $(I_{3}, I_{6})$}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/lr1-table-SCC}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/lalr-table-SCC}
+  \end{columns}
+
+  % \pause
+  % \begin{center}
+  %   \vspace{0.60cm}
+  %   \red{$Q:$ \goto{}函数怎么办?}
+
+  %   \pause
+  %   \vspace{0.50cm}
+  %   \teal{$A:$ 可以合并的状态 $I, J$ 的\goto{}目标(状态)一定也是可以合并的}
+
+  %   \pause
+  %   \vspace{0.50cm}
+  %   ($I, J$ 出边集合相同, 且 $\goto(I, X)$ 与 $\goto(J, X)$ 具有相同的核心项)
+  % \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 对于 $LR(1)$ 文法, 合并得到的$LALR(1)$ 分析表是否会引入冲突?}
+
+    \pause
+    \begin{theorem}
+      $LALR(1)$ 分析表\red{\bf 不会}引入移入/归约冲突。
+    \end{theorem}
+
+    \pause
+    \vspace{0.50cm}
+    \purple{\bf 反证法}
+
+    \vspace{0.30cm}
+    假设合并后出现 $[A \to \alpha \cdot, a]$ 与 $[B \to \beta \cdot a \gamma, b]$
+
+    \pause
+    \vspace{0.60cm}
+    则在$LR(1)$自动机中,
+
+    \vspace{0.20cm}
+    存在某状态同时包含 $[A \to \alpha \cdot, a]$ 与 $[B \to \beta \cdot a \gamma, c]$ ($c \neq b$)
+
+    \pause
+    \vspace{0.60cm}
+    矛盾!
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$Q:$ 对于 $LR(1)$ 文法, 合并得到的$LALR(1)$ 分析表是否会引入冲突?}
+
+    \begin{theorem}
+      $LALR(1)$ 分析表\blue{\bf 可能会}引入归约/归约冲突。
+    \end{theorem}
+
+    \pause
+    \[
+      L(G) = \set{acd, ace, bcd, bce}
+    \]
+    \fig{width = 0.50\textwidth}{figs/lalr-rr-conflict}
+
+    \pause
+    \vspace{-0.30cm}
+    \begin{gather*}
+      \set{[A \to c \cdot, d], [B \to c \cdot, e]} \\
+      \set{[A \to c \cdot, e], [B \to c \cdot, d]} \\[5pt]
+      \set{[A \to c \cdot, \red{d/e}], [B \to c \cdot, \red{d/e}]} \\
+    \end{gather*}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \begin{theorem}
+%       如果合并后的语法分析器\blue{\bf 无冲突}, 则它的行为与原分析器本质上\red{\bf 一致}。
+%     \end{theorem}
+
+%     \vspace{0.80cm}
+%     \begin{enumerate}[(1)]
+%       \setlength{\itemsep}{15pt}
+%       \item \green{\bf 接受}原分析器所接受的句子, 且状态转移相同
+%       \item \purple{\bf 拒绝}原分析器所拒绝的句子, 但可能多一些不必要的\teal{\bf 归约}动作
+
+%         \begin{center}
+%           \pause
+%           \vspace{0.50cm}
+%           (``实际上, 这个错误会在移入任何新的输入符号之前就被发现'')
+
+%           \pause
+%           \vspace{0.50cm}
+%           (``两个分析器有相同的\red{\bf 移入}动作'')
+%         \end{center}
+%     \end{enumerate}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf $LALR(1)$语法分析器的优点}
+
+    \vspace{0.80cm}
+    状态数量与$SLR(1)$语法分析器的状态\purple{\bf 数量相同} \\[10pt]
+    \uncover<2->{($LALR(1)$ 与 $SLR(1)$ 都使用相同的 $LR(0)$ 核心项)}
+
+    \vspace{0.80cm}
+    对于$LR(1)$文法, \red{\bf 不会}产生移入/归约冲突
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{Q: 但是你却通过 $LR(1)$ 自动机构造$LALR(1)$ 项集族?}
+
+    \pause
+    \vspace{1.20cm}
+    第 \blue{\bf 4.7.5} 节 (本科教学版): 高效构造 $LALR(1)$ 语法分析表的方法
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
+
+  \pause
+  \vspace{0.20cm}
+  \begin{center}
+    ``除 $LR(0)$ 外, 以上各种 $LR$ 类\blue{\bf 文法}对应的\red{\bf 语言}是等价的''
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://en.wikipedia.org/wiki/Comparison_of_parser_generators\#Deterministic_context-free_languages}{List of Parser Generators}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/parser-generator-wiki}
+
+    \vspace{0.50cm}
+    Bison/Yacc/Lark
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.90\textwidth}{figs/python-peg}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/python-bison-yacc}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \green{\bf 好消息:} 善用 $LR$ 语法分析器, 处理\blue{\bf 二义性}文法
+
+    \pause
+    \vspace{1.00cm}
+    \red{\bf 坏消息:} 二义性表现为``冲突'', 需要根据某种规则进行消解
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 表达式文法}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \input{cfg/cfg-expr-add-mul}
+      \column{0.50\textwidth}
+        \input{cfg/cfg-expr-add-mul-mul-first}
+    \end{columns}
+
+    \input{cfg/cfg-expr-add-mul-no-left-recursion}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 表达式文法:} 使用 $SLR(1)$ 语法分析方法
+
+    \vspace{-0.50cm}
+    \input{cfg/cfg-expr-add-mul}
+
+    \vspace{-0.30cm}
+    \begin{columns}
+      \column{0.60\textwidth}
+        \fig{width = 0.65\textwidth}{figs/lr0-automaton-expr-E}
+      \column{0.45\textwidth}
+        \pause
+        \[
+          \set{+, \ast} \subseteq \follow(E)
+        \]
+
+        \pause
+        \begin{center}
+          考虑到\blue{\bf 结合性与优先级}:
+          \fig{width = 1.00\textwidth}{figs/slr-table-expr-E}
+        \end{center}
+    \end{columns}
+
+    \vspace{-0.30cm}
+    \pause
+    \[
+      \id + \id \red{\;\ast\; \id} \qquad \id + \id \red{\;+\; \id}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.80\textwidth}{figs/LRExprPrec}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 条件语句文法}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/cfg-if-then-else}
+      \column{0.50\textwidth}
+        \fig{width = 0.80\textwidth}{figs/cfg-if-then-else-short-2}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 条件语句文法:} 使用$SLR(1)$语法分析方法
+    \fig{width = 0.30\textwidth}{figs/cfg-if-then-else-short-2}
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/lr0-items-if-then-else}
+        \[
+          e \in \follow(S)
+        \]
+      \column{0.50\textwidth}
+        \fig{width = 1.00\textwidth}{figs/slr-table-if-then-else-short-2}
+        \[
+          \action[4, e] = s5
+        \]
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.30\textwidth}{figs/cfg-if-then-else-short-left-factor}
+
+%   \fig{width = 0.90\textwidth}{figs/ll1-table-if-then-else-short}
+
+%   \[
+%     \ifkw\; b \;\thenkw\; \ifkw\; b \;\thenkw\; a \;\elsekw\; a
+%   \]
+
+%   \begin{center}
+%     \red{\bf 解决二义性:} 选择 $S' \to eS$, 将 $\elsekw$ 与前面最近的 $\thenkw$ 关联起来
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.95\textwidth}{figs/IfStat}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
