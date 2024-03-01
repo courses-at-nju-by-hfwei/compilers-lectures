@@ -3,10 +3,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.50\textwidth, angle = 90}{figs/duoduo}
-
-    \vspace{0.50cm}
     {哦? 编译原理?}
+    \fig{width = 0.50\textwidth, angle = 90}{figs/duoduo}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -14,7 +12,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.45\textwidth}{figs/writing-a-c-compiler}
+    只学原理不行, 更重要的是 $\cdots$
+    \fig{width = 0.40\textwidth}{figs/writing-a-c-compiler}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -22,10 +21,20 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    编译器: 最熟悉的陌生人
     \fig{width = 0.50\textwidth}{figs/push-the-button}
 
-    \vspace{0.50cm}
-    \blue{\text{gcc factorial.c -o factorial}}
+    \vspace{0.30cm}
+    \blue{\texttt{gcc factorial.c -o factorial}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``蚂老师, 发生甚么事了?''
+    \fig{width = 0.40\textwidth}{figs/lang-processing-system}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -55,10 +64,69 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.40\textwidth}{figs/lang-processing-system}
+    ``还要学习汇编语言啊? 不都已经还给你们了吗?''
+  \end{center}
+
+  \begin{columns}
+    \column{0.40\textwidth}
+      \fig{width = 1.00\textwidth}{figs/riscv/riscv-logo}
+      {\small (Reduced Instruction Set Computer)}
+    \column{0.60\textwidth}
+      \pause
+      \begin{center}
+        \red{\bf 隆重推荐} \url{https://godbolt.org/}
+        \fig{width = 0.80\textwidth}{figs/compiler-explorer}
+        \url{https://godbolt.org/z/6f3o51oeh} (\texttt{factorial.c})
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/riscv/riscv-org}
+
+    \vspace{0.30cm}
+    \url{https://riscv.org/}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.80\textwidth}{figs/riscv/intro-riscv-book}
+
+        \vspace{0.30cm}
+        \url{https://riscv-programming.org/book.html}
+      \end{center}
+    \column{0.50\textwidth}
+      \pause
+      \begin{center}
+        \fig{width = 0.70\textwidth}{figs/riscv/riscv-reader}
+
+        \vspace{0.30cm}
+        \url{http://www.riscvbook.com/}
+      \end{center}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    你的笔记本很可能不是 RISC-V 架构, 需要使用模拟器
+    \fig{width = 0.80\textwidth}{figs/riscv/rars}
+
+    \vspace{0.30cm}
+    \url{https://github.com/TheThirdOne/rars}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
@@ -89,7 +157,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    ``我只想安静地做个码农, 你为什么要来强迫我?''
+    ``我只想安静地做个码农, 你为什么要来打扰我?''
   \end{center}
 
   \begin{columns}
@@ -110,14 +178,14 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \href{https://alda.io/}{alda.io}
+    \href{https://alda.io/}{alda.io} \quad (\url{https://alda.io})
 
     \fig{width = 0.90\textwidth}{figs/alda}
 
     \texttt{alda repl}
 
     \vspace{0.20cm}
-    \texttt{alda play -f .alda}
+    \texttt{alda play -f xxx.alda}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -140,7 +208,15 @@
     \fig{width = 0.50\textwidth}{figs/Dragon-Trees}
 
     \vspace{0.30cm}
-    \href{https://www.cs.unm.edu/~joel/PaperFoldingFractal/paper.html}{Fractal Grower (Try It!)}
+    \href{https://www.cs.unm.edu/~joel/PaperFoldingFractal/paper.html}{Fractal Grower (Play with It!)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/triangle-construction}
 
     \vspace{0.30cm}
     \href{https://en.wikipedia.org/wiki/Sierpi\%C5\%84ski\_triangle}{Sierpinski Triangle @ wiki}
@@ -176,7 +252,7 @@
         \item C/C++ 语言编译器
         \vspace{8pt}
         \pause
-        \item 排版工具 (\href{https://github.com/courses-at-nju-by-hfwei/compilers-lectures/blob/master/2021/0-overview/parts/overview.tex}{\LaTeX})
+        \item 排版工具 (\href{https://github.com/courses-at-nju-by-hfwei/compilers-lectures/blob/master/2024/0-overview/parts/course.tex}{\LaTeX})
         \item 绘图工具 (\href{https://www.overleaf.com/learn/latex/TikZ_package}{TikZ},
           \href{https://renenyffenegger.ch/notes/tools/Graphviz/examples/index}{Dot/Graphviz})
         \item L-System (\href{https://en.wikipedia.org/wiki/L-system\#Example_3:_Cantor_set}{Cantor Set})
@@ -188,6 +264,9 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    ``好吧, 我学, 我学, 可是到底难不难啊?''
+  \end{center}
   \fig{width = 0.60\textwidth}{figs/hard-to-learn}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -257,7 +336,7 @@
     \fig{width = 0.80\textwidth}{figs/huawei-bisheng}
 
     \vspace{0.30cm}
-    \red{\bf L0:} \red{\bf 环境配置} 本周五 18:00 发布
+    \red{\bf L0:} \red{\bf 环境配置} 预计本周五 16:00 发布
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -312,13 +391,44 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
+    这学期, 你将与它日夜相伴 $\cdots$ \\[3pt]
+    \url{https://oj.compilers.cpl.icu/}
+  \end{center}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/oj}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/oj-accounts}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Zulip 交流平台
+    \begin{columns}
+      \column{0.60\textwidth}
+        \fig{width = 1.00\textwidth}{figs/zulip}
+      \column{0.40\textwidth}
+        \fig{width = 1.00\textwidth}{figs/zulip-qrcode}
+    \end{columns}
+
+    \vspace{0.30cm}
+    {\small \url{https://2024-compilers-at-software-nju.zulipchat.com/join/wxwq3fib56ltlff2mk6qyrz5/}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{overview.pdf \qquad overview-handout.pdf}
+
     \fig{width = 1.00\textwidth}{figs/compilers-lectures-2024}
 
     \vspace{0.50cm}
     \url{https://github.com/courses-at-nju-by-hfwei/compilers-lectures/tree/master/2024}
-
-    \vspace{0.50cm}
-    \texttt{overview.pdf \qquad overview-handout.pdf}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
