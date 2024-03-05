@@ -1,0 +1,102 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 输入:} 程序文本/字符串 $s$ (\teal{\texttt{CharStream}}) \uncover<2>{+ \blue{\bf 词法单元 (token) 的规约}}
+
+    \vspace{0.50cm}
+    \fig{width = 0.65\textwidth}{figs/lexer}
+
+    \vspace{0.30cm}
+    \red{\bf 输出:} 词法单元流 (\teal{\texttt{TokenStream}})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \fig{width = 0.90\textwidth}{figs/antlr-lexer-parser}
+%   \begin{center}
+%     \texttt{SimpleExpr.g4}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \[
+%     \boxed{\text{token}: \langle \red{\text{token-class}}, \gray{\text{attribute-value}} \rangle}
+%   \]
+
+%   \fig{width = 0.80\textwidth}{figs/token-table}
+
+%   \pause
+%   \begin{center}
+%     \intkw/\ifkw \qquad 关键词 \\[8pt]
+%     \ws \qquad 空格、制表符、换行符  \\[8pt]
+%     \comment \qquad ``//'' 开头的一行注释或者``/* */'' 包围的多行注释
+%   \end{center}
+%   % \input{tables/token}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large 词法分析器的三种设计方法 (\green{由易到难})}
+  \end{center}
+
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.33\textwidth}
+      \pause
+      \fig{width = 0.90\textwidth}{figs/antlr-logo}
+      \begin{center}
+        词法分析器生成器
+      \end{center}
+    \column{0.34\textwidth}
+      \pause
+      \fig{width = 0.85\textwidth}{figs/by-hand}
+      \begin{center}
+        手写词法分析器
+      \end{center}
+    \column{0.33\textwidth}
+      \pause
+      \fig{width = 0.85\textwidth}{figs/dfa-lexer}
+      \begin{center}
+        自动化词法分析器
+      \end{center}
+  \end{columns}
+
+  \pause
+  \vspace{0.80cm}
+  \begin{center}
+    很多生产环境下的编译器(如 gcc)仍选择{\bf 手写词法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.20\textwidth}{figs/gcc-logo}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/gcc-c-lex}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/gcc-cpp-lex}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/mysql}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/sql-lex}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
