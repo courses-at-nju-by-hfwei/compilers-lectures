@@ -2,14 +2,9 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/dfa-lexer}
   \begin{center}
-    \red{\bf 输入:} 程序文本/字符串 $s$ + \blue{\bf 词法单元 (token) 的规约}
-
-    \vspace{0.50cm}
-    \fig{width = 0.65\textwidth}{figs/lexer}
-
-    \vspace{0.30cm}
-    \red{\bf 输出:} 词法单元流
+    自动化词法分析器
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -22,5 +17,60 @@
     \column{0.60\textwidth}
       \fig{width = 0.80\textwidth}{figs/simpleexpr-lexer-g4}
   \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.80\textwidth}{figs/ws}
+        \fig{width = 1.00\textwidth}{figs/number}
+        \fig{width = 0.80\textwidth}{figs/id}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.70\textwidth}{figs/relop}
+        \fig{width = 0.60\textwidth}{figs/error-code}
+      \end{center}
+  \end{columns}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \red{\bf 关键点:} 合并$22, 12, 9, 0$, 根据\purple{\bf 下一个字符}即可判定词法单元的类型 \\[4pt]
+    否则, 调用错误处理模块(对应\texttt{other}), 报告\purple{\bf 该字符有误}, 忽略该字符。 \\[4pt]
+    注意, 在 \floatnum{} 与 \scinum{} 中, 有时需要\purple{\bf 回退}, 寻找最长匹配。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\large 自动机} \\[5pt]
+    (Automaton; Automata)
+
+    \fig{width = 0.50\textwidth}{figs/off-on}
+    \vspace{-0.30cm}
+    ``开关''自动机
+
+    \vspace{0.80cm}
+    两大要素: {\bf 状态集} $S$ 以及{\bf 状态转移函数} $\delta$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 目标: 正则表达式 RE $\implies$ 词法分析器}
+
+    \vspace{0.30cm}
+    \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+    \vspace{0.50cm}
+    \purple{终点固然令人向往, 这一路上的风景更是美不胜收}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

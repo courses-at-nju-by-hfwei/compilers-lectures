@@ -1,70 +1,19 @@
-# 1-lexer-re-antlr
+# 3-lexer-re-automata
 
-## `SimpleExpr.g4`
-
-### EOF
-- EOF (left)
-
-### Grammar
-- `|`
-- `[a-z]` vs. `'a' .. 'z'` (范围运算符)
-- `+`, `*`
-- `?`
-  - no examples yet
-
-- play with it
-	- WS `-> skip`
-	- `fragment`: not lexer rules; cannot be used in grammar rules
-
-### gradle
-- Gradle `generateGrammarSource`
-	- `build/generated-src/antlr/main/simpleexpr/`
-	- `SimpleExprLexer`
-		- literal names vs. symbolic names
-	- `SimpleExpr.tokens`
-	- `Alt + Insert`: Generate Lexer Rules for Literals
-		- `if` vs. `ID`
-		- grammar rules => implicit lexer rules => explict lexer rules
-
-### non-greedy
-#### Comments
-- `.`: match any single character, including `\n`
-- `.*`: greedy
-  - till *the last* `\n`
-- `.*?`
-	- `+?`, `*?`, `??`
-
-### Matching Principles
-- longest
-  - `float`
-  - 3.1415926
-- priority:
-  - in this order: single-line comment, doc comment, multi-line comment
-- non-greedy
-
-#### Strings
-
-#### Testing
-- `@header`
-- error listener
-
-#### 
-- `lexer grammar`
-  - 4.1 (1) 语法导入
+## TODO 2025
 
 ## RE
 - [在 LaTeX 中书写正则表达式](https://stackoverflow.com/questions/2528797/writing-a-regex-in-latex/2528843)
 - 在工具中写，截图
 
 ## tools
-- try [Regulex](https://jex.im/regulex/)
+- [regex101](https://regex101.com/)
+  - [A Practical Guide to Regular Expressions – Learn RegEx with Real Life Examples](https://www.freecodecamp.org/news/practical-regex-guide-with-real-life-examples/)
+- try [Regulex: Visualise regular expressions as railroad diagrams](https://jex.im/regulex/)
+  - [https://yoobeewebtutors.github.io/javascript-manual/16-regular-expressions.html](JavaScript Manual: 16 – Regular Expressions)
 - try [Debuggex](https://www.debuggex.com/)
+  - [ParseHub: a free and powerful web scraping tool](https://www.parsehub.com/)
 
-## gcc
-- [c-lex.c](https://github.com/gcc-mirror/gcc/blob/master/gcc/c-family/c-lex.c)
-- [lex.c](https://github.com/gcc-mirror/gcc/blob/master/libcpp/lex.c)
-
-具体是如何实现的?
-
-## TODO
-- [ ] `-` 三种用途：减法、取反、负数（如何区分它们；如何区分词法分析部分与语法分析部分）
+## Learn Regular Expressions
+- [learn-regex @ github: Learn regex the easy way](https://github.com/ziishaned/learn-regex)
+- [RegexOne: Learn Regular Expressions with simple, interactive exercises](https://regexone.com/)

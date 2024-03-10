@@ -1,0 +1,151 @@
+% dfa-to-lexer.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.70\textwidth}{figs/re-dfa-lexer}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{DFA $\implies$ 词法分析器}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.15\textwidth}{figs/3-regex}
+
+  \vspace{0.60cm}
+  \begin{center}
+    最前优先匹配: $abb$ (比如 \blue{\bf 关键字}) \\[10pt]
+    最长优先匹配: $aabbb$
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    根据正则表达式构造相应的NFA
+  \end{center}
+
+  \fig{width = 0.60\textwidth}{figs/3-nfa}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    合并这三个NFA, 构造 $a | abb | a^{\ast}b^{+}$ 对应的 NFA
+  \end{center}
+
+  \fig{width = 0.70\textwidth}{figs/3-nfa-into-1}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    使用\blue{\bf 子集构造法}将NFA转化为等价的DFA (\teal{并消除``死状态''})
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \vspace{0.30cm}
+    \teal{注意: 要保留各个NFA的\red{\bf 接受状态}信息, 并采用\red{\bf 最前优先匹配}原则}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/empty-state}
+
+    \[
+      \forall a \in \Sigma.\; \delta(\emptyset, a) = \emptyset
+    \]
+
+    需要\red{\bf 消除} ``死状态'', 避免词法分析器徒劳消耗输入流
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    模拟运行该 DFA, \red{直到无法继续为止} (\teal{输入结束或状态无转移}); \\[3pt]
+    假设此时状态为 $s$
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \pause
+    若 $s$ 为\blue{\bf 接受状态}, 则识别成功;
+
+    \pause
+    \vspace{0.30cm}
+    否则, \blue{\bf 回溯} (\teal{包括状态与输入流})至最近一次经过的接受状态, 识别成功;
+
+    \pause
+    \vspace{0.30cm}
+    若没有经过任何接受状态, 则\red{\bf 报错} (\teal{忽略第一个字符})
+
+    \pause
+    \vspace{0.30cm}
+    无论成功还是失败, 都从\green{\bf 初始状态}开始继续识别下一个词法单元
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+  \[
+    x = a \qquad \text{输入结束; 接受; 识别出 $a$}
+  \]
+
+  \pause
+  \vspace{-0.40cm}
+  \[
+    x = abba \qquad \text{状态无转移; 回溯成功; 识别出 $abb$}
+  \]
+
+  \pause
+  \vspace{-0.40cm}
+  \[
+    x = aaaa \qquad \text{输入结束; 回溯成功; 识别出 $a$}
+  \]
+
+  \pause
+  \vspace{-0.40cm}
+  \[
+    x = cabb \qquad \text{状态无转移; 回溯失败; 报错 $c$}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    特定于词法分析器的DFA最小化方法
+
+    \fig{width = 0.70\textwidth}{figs/dfa-lexer-example}
+
+    \vspace{0.30cm}
+    初始划分需要考虑不同的\red{\bf 词法单元}
+
+    \vspace{-0.50cm}
+    \[
+      \Pi_{0} = \set{\set{0137, 7}, \red{\set{247}, \set{8, 58}, \set{68}},
+        \green{\set{\emptyset}}}
+    \]
+
+    \pause
+    \vspace{-1.00cm}
+    \[
+      \Pi_{1} = \set{\blue{\set{0137}, \set{7}}, \set{247}, \blue{\set{8}, \set{58}},
+        \set{68}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

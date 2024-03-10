@@ -1,5 +1,8 @@
 # 1-overview
 
+## TODO 2025
+- [ ] More optimizations in IR
+
 ## How Programs Run?
 - [How do computers read code? @ Youtube](https://youtu.be/QXjU9qTsYCc)
   - looking into assembly code
