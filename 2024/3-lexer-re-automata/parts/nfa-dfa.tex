@@ -9,9 +9,9 @@
     \vspace{0.30cm}
     \begin{enumerate}[(1)]
       \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
-      \item \red{\bf 有穷}的状态集合 $S$
+      \item 有穷的\red{\bf 状态集合} $S$
       \item \purple{唯一}的初始状态 $s_{0} \in S$
-      \item 状态转移\red{\bf 函数} $\delta$
+      \item \red{\bf 状态转移函数} $\delta$
         \[
           \delta: S \times (\Sigma \cup \set{\blue{\epsilon}}) \to \blue{2^{S}}
         \]
@@ -20,11 +20,6 @@
   \end{definition}
 
   \fig{width = 0.60\textwidth}{figs/nfa-abb}
-
-  \pause
-  \begin{center}
-    \purple{\bf 约定:} 所有没有对应出边的字符默认指向一个不存在的{\bf ``空状态'' $\emptyset$}
-  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -33,6 +28,10 @@
   \fig{width = 0.70\textwidth}{figs/nfa-abb}
 
   \fig{width = 0.50\textwidth}{figs/nfa-abb-table}
+
+  \begin{center}
+    \purple{\bf 约定:} 所有没有对应出边的字符默认指向\red{\bf ``空状态'' $\emptyset$}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -166,9 +165,9 @@
     \vspace{0.30cm}
     \begin{enumerate}[(1)]
       \item 字母表 $\Sigma$ ($\epsilon \notin \Sigma$)
-      \item \red{\bf 有穷}的状态集合 $S$
+      \item 有穷的\red{\bf 状态集合} $S$
       \item \red{\bf 唯一}的初始状态 $s_{0} \in S$
-      \item 状态转移\red{\bf 函数} $\delta$
+      \item \red{\bf 状态转移函数} $\delta$
         \[
           \delta: S \times \blue{\Sigma} \to \blue{S}
         \]
