@@ -271,14 +271,24 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.50\textwidth}{figs/warning}
-
-    \vspace{0.60cm}
     这是 \red{\bf DFA} 最小化算法
+
+    \fig{width = 0.50\textwidth}{figs/warning}
 
     \pause
     \vspace{0.60cm}
-    所以，要先检查是否需要补 ``死状态''
+    所以，要注意处理 ``死状态''
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/nfa-minimize}
+
+    \vspace{0.60cm}
+    不适用于 NFA 最小化; NFA 最小化问题是 \textsf{PSPACE}-complete 的
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -306,16 +316,17 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{definition}[字符串 $x$ 区分状态 $s$ 与 $t$]
-	如果分别从 $s$ 与 $t$ 出发, 沿着标号为 $x$ 的路径到达的两个状态中
-	只有一个是接受状态, 则称 $x$ \red{\bf 区分}了状态 $s$ 与 $t$。
+  \begin{definition}[可区分的 (Distinguishable); 等价的 (Equivalent)]
+    如果存在某个能区分状态 $s$ 与 $t$ 的字符串,
+    则称 $s$ 与 $t$ 是\red{\bf 可区分的};
+    否则, 称 $s$ 与 $t$ 是\purple{\bf 等价的}。
   \end{definition}
 
   \pause
   \vspace{1.00cm}
-  \begin{definition}[可区分的 (Distinguishable)]
-	如果存在某个能区分状态 $s$ 与 $t$ 的字符串,
-	则称 $s$ 与 $t$ 是\red{\bf 可区分的}。
+  \begin{definition}[字符串 $x$ 区分状态 $s$ 与 $t$]
+    如果分别从 $s$ 与 $t$ 出发, 沿着标号为 $x$ 的路径到达的两个状态中
+    只有一个是接受状态, 则称 $x$ \red{\bf 区分}了状态 $s$ 与 $t$。
   \end{definition}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
