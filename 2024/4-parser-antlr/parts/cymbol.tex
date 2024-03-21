@@ -1,17 +1,9 @@
-% antlr.tex
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/talk-cheap}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
+% cymbol.tex
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
     {\Large \href{https://github.com/courses-at-nju-by-hfwei/2023-compilers-coding/blob/main/src/main/antlr/cymbol/Cymbol.g4}{Cymbol.g4}}
-
-    \fig{width = 0.60\textwidth}{figs/factorial}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -19,9 +11,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \fig{width = 0.40\textwidth}{figs/call-graph}
-    \vspace{-0.60cm}
-    函数调用图 (Function Call Graph)
+	  \fig{width = 0.40\textwidth}{figs/girl-woman}
+    二义性 (ambiguous) 文法
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -30,18 +21,16 @@
 \begin{frame}{}
   \begin{center}
     {\Large \href{https://github.com/courses-at-nju-by-hfwei/2023-compilers-coding/blob/main/src/main/antlr/ifstat/IfStat.g4}{IfStat.g4}}
-  \end{center}
 
-  \begin{columns}
-	\column{0.40\textwidth}
-	  \fig{width = 0.70\textwidth}{figs/girl-woman}
-    \begin{center}
-      二义性文法
-    \end{center}
-	\column{0.60\textwidth}
-    \pause
-	  \fig{width = 1.00\textwidth}{figs/ifstat-g4}
-  \end{columns}
+    \vspace{0.20cm}
+    \fig{width = 0.70\textwidth}{figs/ifstat-g4}
+    \vspace{0.20cm}
+
+    \texttt{if a then if b then c else d}
+
+    \vspace{0.50cm}
+    \texttt{if a then if b then c else d}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -142,31 +131,5 @@
         右递归 (右结合)
       \end{center}
   \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\Large \href{https://github.com/courses-at-nju-by-hfwei/2023-compilers-coding/tree/main/src/main/java/callgraph}{Call Graphs}}
-  \end{center}
-
-  \vspace{-0.80cm}
-	\fig{width = 0.40\textwidth}{figs/call-graph}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \teal{\texttt{ParseTreeWalker}} 与 \teal{\texttt{Listener}}
-  \end{center}
-  \fig{width = 0.90\textwidth}{figs/ParseTreeWalker}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \fig{width = 0.65\textwidth}{figs/Visitor}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
