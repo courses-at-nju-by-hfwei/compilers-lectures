@@ -1,0 +1,315 @@
+% cfg.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/cfg}
+
+  \begin{center}
+    上下文无关文法
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[Context-Free Grammar (CFG); 上下文无关文法]
+    上下文无关文法 $G$ 是一个四元组 $G = (T, N, S, P)$:
+    \vspace{0.30cm}
+
+    \begin{itemize}
+      \setlength{\itemsep}{8pt}
+      \item $T$ 是\red{\bf 终结符号} (\teal{Terminal}) 集合, 对应于词法分析器产生的词法单元
+      \item $N$ 是\red{\bf 非终结符号} (\teal{Non-terminal}) 集合
+      \item $S$ 是\red{\bf 开始} (\teal{Start}) 符号 ($S \in N$且唯一)
+      \item $P$ 是\red{\bf 产生式} (\teal{Production}) 集合
+        \[
+          \boxed{A \in N \longrightarrow \alpha \in (T \cup N)^{\ast}}
+        \]
+        \vspace{-0.60cm}
+        \begin{description}
+          \setlength{\itemsep}{5pt}
+          \item[头部/左部 (Head) $A$:] \purple{\bf 单个}非终结符
+          \item[体部/右部 (Body) $\alpha$:] 终结符与非终结符构成的串, 也可以是空串 $\epsilon$
+        \end{description}
+    \end{itemize}
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Context-Sensitive Grammar (CSG)
+  \end{center}
+  \input{cfg/csg-anbncn}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{[Extended] Backus-Naur form ([E]BNF)}
+    \[
+      \blue{+ \quad \ast \quad ?}
+    \]
+  \end{center}
+
+  \begin{columns}
+    \column{0.33\textwidth}
+      \fig{width = 0.70\textwidth}{figs/Backus}
+      \begin{center}
+        \href{https://en.wikipedia.org/wiki/John_Backus}{John Backus ($1924 \sim 2007$)}
+      \end{center}
+    \column{0.34\textwidth}
+      \fig{width = 0.75\textwidth}{figs/Naur}
+      \begin{center}
+        \href{https://en.wikipedia.org/wiki/Peter_Naur}{Peter Naur ($1928 \sim 2016$)}
+      \end{center}
+    \column{0.34\textwidth}
+      \fig{width = 0.85\textwidth}{figs/Wirth}
+      \begin{center}
+        \href{https://en.wikipedia.org/wiki/Niklaus_Wirth}{Niklaus Wirth ($1934 \sim$)}
+      \end{center}
+  \end{columns}
+
+  \pause
+  \begin{center}
+    1977 (FORTRAN) \qquad 2005 (ALGOL60) \qquad 1984 (PLs; PASCAL)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/syntax-semantics}
+  \begin{center}
+    语义: 上下文无关文法 $G$ 定义了一个\red{\bf 语言} $L(G)$
+
+    \pause
+    \vspace{0.50cm}
+    语言是\blue{\bf 串}的集合
+
+    \vspace{0.30cm}
+    串从何来?
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large \red{\bf 推导}} (Derivation)
+
+    \input{cfg/cfg-expr-add-mul}
+
+    \vspace{0.50cm}
+    推导即是将某个产生式的左边\blue{\bf 替换}成它的右边
+
+    \vspace{1.00cm}
+    每一步推导需要选择\purple{\bf 替换哪个非终结符号}, 以及\purple{\bf 使用哪个产生式}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large \red{\bf 推导}} (Derivation)
+  \end{center}
+
+  \input{cfg/cfg-expr-add-mul}
+
+  \vspace{-0.50cm}
+  \[
+    E \implies -E \implies -(E) \implies -(E + E)
+      \implies \purple{-(\id + E)} \implies -(\id + \id)
+  \]
+
+  \pause
+  \vspace{-0.30cm}
+  \begin{align*}
+    &E \implies -E: \text{经过一步推导得出} \\
+    &E \dplus -(\id + E): \text{经过一步或多步推导得出} \\
+    &E \dstar -(\id + E): \text{经过零步或多步推导得出}
+  \end{align*}
+
+  \pause
+  \vspace{-0.50cm}
+  \[
+    E \implies -E \implies -(E) \implies -(E + E) \implies \blue{-(E + \id)} \implies -(\id + \id)
+  \]
+
+  \pause
+  \begin{center}
+    \purple{Leftmost (最左) Derivation} \quad \blue{Rightmost (最右) Derivation}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[Sentential Form; 句型]
+    如果 $S \dstar \alpha$, 且 $\alpha \in (T \cup N)^{\ast}$,
+    则称 $\alpha$ 是文法 $G$ 的一个\red{\bf 句型}。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \input{cfg/cfg-expr-add-mul}
+
+  \vspace{-0.80cm}
+  \[
+    E \implies -E \implies -(E) \implies -(E + E)
+      \implies \red{-(\id + E)} \implies \blue{-(\id + \id)}
+  \]
+
+  \pause
+  \begin{definition}[Sentence; 句子]
+    如果 $S \dstar w$, 且 $w \in T^{\ast}$,
+    则称 $w$ 是文法 $G$ 的一个\blue{\bf 句子}。
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[文法$G$生成的语言 $L(G)$]
+    文法 $G$ 的\red{\bf 语言} $L(G)$ 是它能推导出的\blue{\bf 所有句子}构成的集合。
+
+    \[
+      w \in L(G) \iff S \dstar w
+    \]
+  \end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    关于文法 $G$ 的\red{\bf 两个基本问题:}
+  \end{center}
+
+  \vspace{0.60cm}
+  \begin{columns}
+    \column{0.10\textwidth}
+    \column{0.80\textwidth}
+      \begin{itemize}
+        \setlength{\itemsep}{15pt}
+        \item \blue{\bf Membership 问题:}
+          给定字符串 $x \in \red{T^{\ast}}$, $x \in L(G)$?
+        \item \blue{$L(G)$} 究竟是什么?
+      \end{itemize}
+    \column{0.10\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{给定字符串 $x \in T^{\ast}$, $x \in L(G)$?}
+
+    \vspace{0.20cm}
+    (即, 检查$x$是否符合文法$G$)
+
+    \pause
+    \vspace{1.00cm}
+    这就是\red{\bf 语法分析器}的任务:
+
+    \vspace{0.30cm}
+    为输入的词法单元流寻找推导、\purple{\bf 构建语法分析树}, 或者报错
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{$L(G)$ 是什么?}
+
+    \vspace{0.60cm}
+    这是\red{\bf 程序设计语言设计者}需要考虑的问题
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \input{cfg/cfg-bp}
+
+      \[
+        L(G) = \pause \set{\text{良匹配括号串}}
+      \]
+    \column{0.50\textwidth}
+      \pause
+      \input{cfg/cfg-anbn}
+
+      \[
+        L(G) = \pause \set{a^{n}b^{n} \mid n \ge 0}
+      \]
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    字母表 $\Sigma = \set{a, b}$ 上的所有\blue{\bf 回文串} (Palindrome) 构成的语言
+
+    \pause
+    \vspace{0.30cm}
+    \input{cfg/cfg-palindrome}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \set{b^{n}a^{m}b^{2n} \mid n \ge 0, m \ge 0}
+  \]
+
+  \pause
+  \vspace{0.50cm}
+  \input{cfg/cfg-bn-am-b2n}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \set{x \in \set{a, b}^{\ast} \mid x \text{ 中 }\; a, b \text{ 个数\red{相同}}}
+  \]
+
+  \pause
+  \vspace{0.50cm}
+  \input{cfg/cfg-equal-number-a-b}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \set{x \in \set{a, b}^{\ast} \mid x \text{ 中 }\; a, b \text{ 个数\red{不同}}}
+  \]
+
+  \pause
+  \begin{columns}
+    \column{0.25\textwidth}
+    \column{0.50\textwidth}
+      \input{cfg/cfg-unequal-number-a-b}
+    \column{0.25\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/csg-anbncn}
+  \pause
+  \[
+    L = \set{a^nb^nc^n \mid n \ge 1}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
