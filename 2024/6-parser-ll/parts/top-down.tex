@@ -15,19 +15,11 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/antlr-logo}
-
-  \fig{width = 0.65\textwidth}{figs/antlr-allstar-paper}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
   \begin{center}
     自顶向下的、\\[15pt]
     递归下降的、\\[15pt]
     基于预测分析表的、\\[15pt]
-    适用于\red{\bf $LL(1)$文法}的、\\[15pt]
+    适用于\red{\bf $LL(1)$文法}的 \\[15pt]
     $LL(1)$语法分析器
   \end{center}
 \end{frame}
@@ -207,7 +199,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    再次演示\red{\bf 递归下降}过程
+    再次理解\red{\bf 递归下降}过程
 
     \fig{width = 0.50\textwidth}{figs/tree-s-f-a}
 
@@ -226,7 +218,7 @@
   \begin{center}
     自顶向下的、\\[15pt]
     递归下降的、\\[15pt]
-    基于预测分析表的、\\[15pt]
+    基于\green{预测分析表}的、\\[15pt]
     适用于\red{\bf $LL(1)$文法}的、\\[15pt]
     $LL(1)$语法分析器
   \end{center}
@@ -334,6 +326,20 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{center}
+    \fig{width = 0.60\textwidth}{figs/optional-init}
+
+    \vspace{0.30cm}
+    \texttt{int x = y; \qquad int x;}
+
+    \vspace{0.20cm}
+    \texttt{f(int x = y) \qquad f(int x)}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
       \input{cfg/cfg-XYZ}
@@ -433,7 +439,7 @@
     \end{gather}
 
     \vspace{0.60cm}
-    \blue{\bf 当下的选择未必正确, 但``你别无选择''。}
+    \blue{\bf 当下的选择未必正确, 但此刻``你别无选择''。}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -474,6 +480,13 @@
       \item[$1:$] 只需向前看\purple{一个输入符号}便可确定使用哪条产生式
     \end{description}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ll1-gpt}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
