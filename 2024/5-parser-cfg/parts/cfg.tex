@@ -2,10 +2,16 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/cfg}
+  \fig{width = 1.00\textwidth}{figs/antlr-grammar}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cfg}
 
   \begin{center}
-    上下文无关文法
+    上下文无关文法 (CFG)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -38,17 +44,29 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \begin{center}
-    Context-Sensitive Grammar (CSG)
-  \end{center}
-  \input{cfg/csg-anbncn}
+  \input{cfg/cfg-expr-add-mul}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \pause
+      \input{cfg/cfg-expr-add-mul-no-left-recursion}
+    \column{0.50\textwidth}
+      \pause
+      \input{cfg/cfg-palindrome}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/antlr-grammar-extended}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \red{[Extended] Backus-Naur form ([E]BNF)}
+    \href{https://en.wikipedia.org/wiki/Extended\_Backus\%E2\%80\%93Naur\_form}{\red{[Extended] Backus-Naur form ([E]BNF)}}
     \[
       \blue{+ \quad \ast \quad ?}
     \]
@@ -68,13 +86,26 @@
     \column{0.34\textwidth}
       \fig{width = 0.85\textwidth}{figs/Wirth}
       \begin{center}
-        \href{https://en.wikipedia.org/wiki/Niklaus_Wirth}{Niklaus Wirth ($1934 \sim$)}
+        \href{https://en.wikipedia.org/wiki/Niklaus_Wirth}{Niklaus Wirth ($1934 \sim 2024$)}
       \end{center}
   \end{columns}
 
   \pause
   \begin{center}
     1977 (FORTRAN) \qquad 2005 (ALGOL60) \qquad 1984 (PLs; PASCAL)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Context-Sensitive Grammar (CSG)
+    \input{cfg/csg-anbncn}
+
+    $\alpha \red{A} \beta \to \alpha \blue{\gamma} \beta
+      \qquad \red{A} \in N \quad \alpha, \beta \in (N \cup \Sigma \setminus \set{S})^{\ast}
+        \quad \blue{\gamma} \in (N \cup \Sigma \setminus \set{S})^{+}$
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -163,6 +194,7 @@
   \]
 
   \pause
+  \vspace{0.30cm}
   \begin{definition}[Sentence; 句子]
     如果 $S \dstar w$, 且 $w \in T^{\ast}$,
     则称 $w$ 是文法 $G$ 的一个\blue{\bf 句子}。
@@ -176,7 +208,7 @@
     文法 $G$ 的\red{\bf 语言} $L(G)$ 是它能推导出的\blue{\bf 所有句子}构成的集合。
 
     \[
-      w \in L(G) \iff S \dstar w
+      L(G) = \set{w \mid S \dstar w}
     \]
   \end{definition}
 \end{frame}
@@ -283,8 +315,15 @@
   \]
 
   \pause
-  \vspace{0.50cm}
+  \input{cfg/cfg-equal-number-a-b-wrong}
+  \vspace{0.20cm}
+  \pause
   \input{cfg/cfg-equal-number-a-b}
+  \pause
+  \vspace{0.20cm}
+  \input{cfg/cfg-equal-number-a-b-correct}
+  \pause
+  \centerline{\teal{(By 香港中文大学 (深圳) 华同学)}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 

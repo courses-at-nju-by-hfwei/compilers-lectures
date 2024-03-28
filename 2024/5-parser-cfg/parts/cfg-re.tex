@@ -56,15 +56,15 @@
 
     \pause
     \vspace{0.30cm}
-    假设存在正则表达式 $r$: $L(r) = L$
+    假设存在正则表达式 $r$: $L(r) = L = \set{a^{n} b^{n} \mid n \ge 0}$
 
     \pause
     \vspace{0.30cm}
-    则存在\blue{\bf 有限}状态自动机 $D(r)$: $L(D(r)) = L$; 设其状态数为 $k$
+    则存在\blue{\bf 有限}状态自动机 $D(r)$: $L(D(r)) = L$; 设其\purple{\bf 状态数}为 $k \ge 1$
 
     \pause
     \vspace{0.30cm}
-    \fbox{\red{考虑输入 $a^{m}\; (m > k)$}}
+    \fbox{\red{考虑输入 $a^{m}\; (m \ge k)$}}
     \fig{width = 0.90\textwidth}{figs/pumping-lemma-anbn}
 
     \pause
@@ -77,15 +77,88 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \[
-      L = \set{a^{n}b^{n} \mid n \ge 0}
-    \]
     \href{https://en.wikipedia.org/wiki/Pumping\_lemma\_for\_regular\_languages}{
-      \teal{Pumping Lemma for \red{Regular Languages}}}
+      \teal{Pumping Lemma for \red{Regular Languages} (@ wiki)}}
+  \end{center}
+
+  % \fig{width = 0.80\textwidth}{figs/Pumping-Lemma-xyz}
+  \fig{width = 0.50\textwidth}{figs/wiki-pumping-lemma}
+  \vspace{-0.30cm}
+
+  \pause
+  \begin{theorem}
+    \red{If} $L$ is a regular language,
+    \red{then} there exists a number \red{$p \ge 1$}
+    (pumping length) such that any string $s$ in $L$ of length $\ge p$
+    can be divided into three pieces, \green{$s = xyz$}, satisfying the following conditions:
+    \begin{enumerate}[(i)]
+      \item \purple{$|y| \ge 1$}
+      \item \violet{$|xy| \le p$}
+      \item \blue{$\forall i \ge 0: xy^{i}z \in L$}
+    \end{enumerate}
+  \end{theorem}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{example}
+    $D = \set{1^{n^{2}} \mid n \ge 0}$ is not regular.
+  \end{example}
+
+  \pause
+  \vspace{0.50cm}
+  \begin{center}
+    考虑 $s = 1^{p^{2}}$ \qquad ($p$ is the pumping length)
+  \end{center}
+
+  \pause
+  \[
+    |s| \ge p
+  \]
+
+  \pause
+  \[
+    s = xyz
+  \]
+
+  \pause
+  \[
+    \blue{xy^{2}z \in D}
+  \]
+
+  \pause
+  \[
+    p^2 < |xy^{2}z| = |xyz| + |y| \le p^2 + p < p^2 + 2p + 1 = (p + 1)^2
+  \]
+
+  \pause
+  \[
+    \red{xy^{2}z \notin D}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    $L = \set{a^{n}b^{n} \mid n \ge 0}$ 无法使用正则表达式描述
 
     \vspace{0.50cm}
-    \fig{width = 0.80\textwidth}{figs/Pumping-Lemma-xyz}
+    \fig{width = 0.40\textwidth}{figs/grammar-hierarchy}
+    \vspace{0.50cm}
+
+    \red{$Q:$ 上下文无关文法描述能力的界限在那里?}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \input{cfg/csg-anbncn}
+  \[
+    L = \set{a^nb^nc^n \mid n \ge 1}
+  \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -96,11 +169,10 @@
       L = \set{a^{n}b^{n}c^{n} \mid n \ge 0}
     \]
     \href{https://en.wikipedia.org/wiki/Pumping\_lemma\_for\_context-free\_languages}{
-      \teal{Pumping Lemma for \red{Context-free Languages}}}
+      \teal{Pumping Lemma for \red{Context-free Languages} (@ wiki)}}
 
     \vspace{0.30cm}
     \fig{width = 0.55\textwidth}{figs/Pumping-Lemma-uvwxy}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
-

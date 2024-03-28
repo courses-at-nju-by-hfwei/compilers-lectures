@@ -1,0 +1,222 @@
+% cfg-transform.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    不是 $LL(1)$ 文法怎么办?
+
+    \pause
+    \vspace{0.60cm}
+    \red{\bf 改造它}
+
+    \pause
+    \vspace{0.80cm}
+    \blue{消除左递归}
+
+    \vspace{0.30cm}
+    \blue{提取左公因子}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \uncover<2->{
+      $E$ 在\purple{\bf 不消耗任何词法单元}的情况下, 直接递归调用 $E$, 造成\green{\bf 死循环}
+    }
+    \input{cfg/cfg-expr-add-sub-mul-div}
+    \input{cfg/cfg-expr-add-sub-mul-div-ETF}
+
+    \uncover<3->{
+      \[
+        \first(E + T) \cap \first(T) \neq \emptyset
+      \]
+      \green{\bf 不是 $LL(1)$ 文法}
+    }
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    改写成\red{\bf ``右递归''}文法
+    \begin{columns}
+      \column{0.26\textwidth}
+        \input{cfg/cfg-expr-add-mul-no-left-recursion}
+      \column{0.70\textwidth}
+        \uncover<3->{\fig{width = 1.00\textwidth}{figs/ll1-table-expr}}
+    \end{columns}
+
+    \vspace{-0.30cm}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \pause
+        \begin{align*}
+          \first(F) &= \set{(, \id} \\
+          \first(T) &= \set{(, \id} \\
+          \red{\first(E)} &= \set{(, \id} \\
+          \first(E') &= \set{+, \blue{\epsilon}} \\
+          \first(T') &= \set{\ast, \epsilon}
+        \end{align*}
+      \column{0.50\textwidth}
+        \begin{align*}
+          \follow(E) &= \blue{\follow(E')} = \set{), \$} \\
+          \follow(T) &= \follow(T') = \set{+, ), \$} \\
+          \follow(F) &= \set{+, \ast, ), \$}
+        \end{align*}
+    \end{columns}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \blue{\bf 文件结束符 $\$$的用处}
+
+%     \fig{width = 0.70\textwidth}{figs/ll1-stack-expr}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 直接左递归 (Direct Left Recursion)}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \[
+        A \to A \alpha \mid \beta
+      \]
+    \column{0.50\textwidth}
+      \begin{align*}
+        A &\to \beta A' \\[5pt]
+        A' &\to \alpha A' \mid \epsilon
+      \end{align*}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{cfg/cfg-A-left-recursion}
+    其中, $\beta_{i}$ 都不以 $A$ 开头
+
+    \vspace{0.30cm}
+    \input{cfg/cfg-A-right-recursion}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 间接左递归 (Indirect Left Recursion)}
+
+    \vspace{-0.30cm}
+    \input{cfg/cfg-indirect-left-recursion-in-book}
+
+    \vspace{-0.30cm}
+    \[
+      S \implies Ac \implies Bbc \implies \red{S}abc
+    \]
+
+    \pause
+	\vspace{-0.30cm}
+    \[
+      \red{\boxed{A_{i} \to A_{j} \alpha \implies i < j}}
+    \]
+
+    \pause
+    \fig{width = 0.90\textwidth}{figs/left-recursion-alg}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \input{cfg/cfg-indirect-left-recursion-in-book}
+	\column{0.50\textwidth}
+	  \pause
+		\begin{align*}
+			B &\to \red{S}a \mid a \\[5pt]
+			  &\to (Ac \mid c) a \mid a \\[5pt]
+			&\to \red{A}ca \mid ca \mid a \\[5pt]
+			&\to (Bb \mid b) ca \mid ca \mid a \\[5pt]
+			&\to \red{B}bca \mid bca \mid ca \mid a \\[5pt]
+		\end{align*}
+  \end{columns}
+
+  \pause
+  \vspace{-0.50cm}
+  \input{cfg/cfg-indirect-left-recursion-in-book-transformed}
+
+  \pause
+  \[
+    \red{\boxed{A_{i} \to A_{j} \alpha \implies i < j}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 算法要求:}
+
+    \vspace{0.50cm}
+    文法中不存在环 (形如 $A \dstar A$ 的推导)
+
+    \vspace{0.50cm}
+	文法中不存在 $\epsilon$ 产生式 (形如 $A \to \epsilon$ 的产生式)
+  \end{center}
+
+  \pause
+  \input{cfg/cfg-S-A}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 提取左公因子 (Left-Factoring)}
+
+    \vspace{0.30cm}
+    \fig{width = 0.55\textwidth}{figs/optional-init-left-refactoring}
+
+    \cyan{ANTLR 4 可以处理有左公因子的文法}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/ifstat-g4}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/ifstat-factor-g4}
+    \end{columns}
+
+    \vspace{1.00cm}
+    很明显, 提取左公因子无助于消除文法二义性
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \pause
+  \fig{width = 1.00\textwidth}{figs/chatgpt-Q}
+
+  \pause
+  \fig{width = 1.00\textwidth}{figs/chatgpt-A}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
