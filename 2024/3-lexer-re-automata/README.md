@@ -5,6 +5,7 @@
 ## RE
 - [在 LaTeX 中书写正则表达式](https://stackoverflow.com/questions/2528797/writing-a-regex-in-latex/2528843)
 - 在工具中写，截图
+- [Comparison of regular expression engines @ wiki](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines)
 
 ## tools
 - [regex101](https://regex101.com/)
