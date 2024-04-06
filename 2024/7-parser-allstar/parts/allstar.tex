@@ -1,0 +1,133 @@
+% allstar.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/allstar-nba}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/S-A}
+
+	\pause
+  \begin{center}
+		$bc$ \quad \emph{vs.} \quad $bd$
+
+		\pause
+		\vspace{0.50cm}
+		不是 $LL(1)$ 文法，也不是 $LL(k)$ 文法 ($\forall k \ge 1$)
+
+		\pause
+		\vspace{1.00cm}
+		\fbox{动态分析, 而非静态分析: \red{{\bf Adaptive} $LL(\ast)$}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/S-A}
+
+	\vspace{0.30cm}
+  \begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/S-ATN}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \vspace{1.00cm}
+  \begin{center}
+	ATN: Augmented Transition Network
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \vspace{0.20cm}
+  \begin{center}
+	{\purple{\bf Incrementally and dynamically} build up a \red{\bf lookahead DFA} \\
+	that \blue{\bf map lookahead phrases to predicated productions}.}
+  \end{center}
+
+  \pause
+  \begin{center}
+		Upon $bc$ and then $bd$
+  \end{center}
+	\pause
+  \fig{width = 0.60\textwidth}{figs/S-lookahead-DFA}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/S-A}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \vspace{0.50cm}
+	{\small
+  \begin{itemize}[<+->]
+	\setlength{\itemsep}{8pt}
+	\item \red{Launch subparsers at a decision point, one per alternative productions.}
+	\item \teal{These subparsers run in pseudo-parallel to explore all possible paths.}
+	\vspace{10pt}
+	\item \blue{Subparsers die off as their paths fail to match the remaining input.}
+	\vspace{10pt}
+	\item \purple{Ambiguity: Multiple subparsers coalesce together or reach EOF.}
+	\item \purple{Resolution: The first production associated with a surviving subparser.}
+  \end{itemize}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/S-A}
+  \begin{columns}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/S-ATN-raw}
+	\column{0.50\textwidth}
+	  \fig{width = 0.90\textwidth}{figs/A-ATN}
+  \end{columns}
+
+  \pause
+  \vspace{0.60cm}
+  \fig{width = 0.60\textwidth}{figs/S-lookahead-DFA}
+  \begin{center}
+	Upon $bc$ and then $bd$
+
+	\pause
+	\vspace{0.20cm}
+	\red{{\bf Move} on terminals and {\bf Closure} over $\epsilon$ and non-terminals}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/antlr14}
+
+  \begin{center}
+	\pause
+	\vspace{0.30cm}
+	\href{https://github.com/courses-at-nju-by-hfwei/compilers-papers-we-love/tree/master/parsing}{paper @ compilers-papers-we-love}
+
+	\vspace{0.30cm}
+	\fig{width = 0.40\textwidth}{figs/not-easy}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

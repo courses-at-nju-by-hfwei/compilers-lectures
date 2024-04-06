@@ -1,0 +1,26 @@
+% lrec-iter.tex
+
+\begin{algorithm}[H]
+\caption{将左递归文法改写为等价的迭代版本}
+% \label{alg:lrec-iter}
+\begin{algorithmic}[1]
+  \Procedure{\purple{exp}}{\red{$p$}}
+    % \pause
+    \State \teal{\Call{match}{{\bf \texttt{ID}} $\mid$ {\bf \texttt{INT}}}}
+
+    % \pause
+    \hStatex
+    \While{$!\Call{eof}{\null}$}
+      % \pause
+      \If{\red{$4 \ge p$}}
+        \State \violet{\Call{match}{$\ast$}} \quad \violet{\Call{exp}{$5$}}
+        \State {\bf continue}
+      \EndIf
+      % \pause
+      \If{\red{$3 \ge p$}}
+        \State \cyan{\Call{match}{$+$}} \quad \cyan{\Call{exp}{$4$}}
+      \EndIf
+    \EndWhile
+  \EndProcedure
+\end{algorithmic}
+\end{algorithm}

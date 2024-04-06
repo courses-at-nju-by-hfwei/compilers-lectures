@@ -181,7 +181,22 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    {\large \red{\bf 递归下降的、预测分析}实现方法}
+    \red{\bf 非 $LL(1)$ 文法}
+
+    \pause
+    \input{cfg/cfg-ll2}
+
+    \pause
+    \vspace{0.30cm}
+    \fig{width = 0.80\textwidth}{figs/ifstat-g4}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\large \red{\bf 递归下降的、基于预测分析表的}实现方法}
 
     \begin{columns}
       \column{0.50\textwidth}
@@ -197,20 +212,20 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    再次理解\red{\bf 递归下降}过程
+% \begin{frame}{}
+%   \begin{center}
+%     再次理解\red{\bf 递归下降}过程
 
-    \fig{width = 0.50\textwidth}{figs/tree-s-f-a}
+%     \fig{width = 0.50\textwidth}{figs/tree-s-f-a}
 
-    \vspace{-0.80cm}
-    \[
-      \red{w = ((a + a) + a)}
-    \]
-    % \vspace{0.30cm}
-    % \fig{width = 0.80\textwidth}{figs/jflap-aaa}
-  \end{center}
-\end{frame}
+%     \vspace{-0.80cm}
+%     \[
+%       \red{w = ((a + a) + a)}
+%     \]
+%     % \vspace{0.30cm}
+%     % \fig{width = 0.80\textwidth}{figs/jflap-aaa}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -226,18 +241,18 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \fig{width = 0.60\textwidth}{figs/optional-init}
+% \begin{frame}{}
+%   \begin{center}
+%     \fig{width = 0.60\textwidth}{figs/optional-init}
 
-    \pause
-    \vspace{0.30cm}
-    \texttt{int x = y; \qquad int x;}
+%     \pause
+%     \vspace{0.30cm}
+%     \texttt{int x = y; \qquad int x;}
 
-    \vspace{0.20cm}
-    \texttt{f(int x = y) \qquad f(int x)}
-  \end{center}
-\end{frame}
+%     \vspace{0.20cm}
+%     \texttt{f(int x = y) \qquad f(int x)}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -319,23 +334,23 @@
     \]
 
     \vspace{0.60cm}
-    最后, 如果 $\epsilon \in L(\alpha)$, 则将 $\epsilon$ 加入 $\first(\alpha)$。
+    注意: 如果 $\epsilon \in L(\alpha)$, 则 $\epsilon \in \first(\alpha)$。
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \fig{width = 0.60\textwidth}{figs/optional-init}
+% \begin{frame}{}
+%   \begin{center}
+%     \fig{width = 0.60\textwidth}{figs/optional-init}
 
-    \vspace{0.30cm}
-    \texttt{int x = y; \qquad int x;}
+%     \vspace{0.30cm}
+%     \texttt{int x = y; \qquad int x;}
 
-    \vspace{0.20cm}
-    \texttt{f(int x = y) \qquad f(int x)}
-  \end{center}
-\end{frame}
+%     \vspace{0.20cm}
+%     \texttt{f(int x = y) \qquad f(int x)}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -372,17 +387,17 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \fig{width = 0.60\textwidth}{figs/optional-init}
+% \begin{frame}{}
+%   \begin{center}
+%     \fig{width = 0.60\textwidth}{figs/optional-init}
 
-    \vspace{0.30cm}
-    \texttt{int x = y; \qquad int x;}
+%     \vspace{0.30cm}
+%     \texttt{int x = y; \qquad int x;}
 
-    \vspace{0.20cm}
-    \texttt{f(int x = y) \qquad f(int x)}
-  \end{center}
-\end{frame}
+%     \vspace{0.20cm}
+%     \texttt{f(int x = y) \qquad f(int x)}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -507,6 +522,26 @@
 
     \vspace{0.60cm}
     \fig{width = 0.70\textwidth}{figs/ll1-iteration-model}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 非递归的 (栈)、基于预测分析表的}实现方法
+
+    \begin{columns}
+      \column{0.50\textwidth}
+        \input{cfg/cfg-s-f-a}
+      \column{0.50\textwidth}
+        \fig{width = 0.90\textwidth}{figs/tree-s-f-a}
+
+        \vspace{-0.80cm}
+        \[
+          \red{w = ((a + a) + a)}
+        \]
+    \end{columns}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

@@ -7,13 +7,14 @@
   \Procedure{\purple{first}}{$X$}
     \pause
     \If{\red{$X \in T$}}  \Comment{\blue{规则1: $X$是终结符}}
-      \State $\first(X) = X$
+      \State $\first(X) = \set{X}$
     \EndIf
 
     \pause
     \hStatex
     \For{\red{$X \to Y_{1} Y_{2} \dots Y_{k}$}} \Comment{\blue{规则2: $X$是非终结符}}
       \State $\first(X) \gets \first(X) \cup \set{\first(Y_{1}) \;\teal{\setminus\; \set{\epsilon}}}$
+      \pause
       \For{$i \gets 2 \;\text{\bf to } k$}
           \If{$\epsilon \in L(Y_{1} \dots Y_{i-1})$}
             \State $\first(X) \gets \first(X) \cup \set{\first(Y_{i}) \;\teal{\setminus\; \set{\epsilon}}}$

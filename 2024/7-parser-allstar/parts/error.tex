@@ -1,0 +1,260 @@
+% error.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \Large{ANTLR 4 是如何进行\purple{\bf 错误报告与恢复}的?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/error}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    共四类词法、语法错误 \\[8pt]
+
+    \fig{width = 1.00\textwidth}{figs/RecognitionException}
+
+    \texttt{NoViableAltException} \qquad \texttt{InputMismatchException}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{Class.g4}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \blue{LexerNoViableAltException}}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/Class-error-LexerNoViableAltException}
+
+    \vspace{0.30cm}
+    遇到未知字符, 出现词法错误
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \blue{InputMismatchException}}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/Class-error-InputMismatchException}
+
+    \vspace{0.30cm}
+    \cyan{输入流中的当前词法单元}与\cyan{当前规则所期望的词法单元}\red{不匹配}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \texttt{\bf \blue{NoViableAltException}}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/Class-error-NoViableAltException}
+
+    \vspace{0.30cm}
+    \cyan{剩余输入}不符合\cyan{当前规则的任何一个备选分支}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \purple{\bf 自定义错误报告消息}
+
+    \vspace{0.50cm}
+    \fig{width = 0.90\textwidth}{figs/ANTLRErrorListener}
+    \texttt{syntaxError()}
+
+    \vspace{0.80cm}
+    《ANTLR 4 权威指南》第 9.2 节: 修改和转发 ANTLR 的错误消息
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.45\textwidth}{figs/keep-calm-recovery}
+
+    \vspace{0.20cm}
+    报错、\blue{\bf 恢复}、继续分析
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/panic}
+
+  \vspace{0.30cm}
+  \begin{center}
+    \blue{\bf 恐慌/应急(Panic)模式:} 假装成功、调整状态、继续进行
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    \red{\bf 四项基本原则:} \\[10pt]
+  \end{center}
+
+  \begin{columns}
+    \column{0.32\textwidth}
+    \column{0.36\textwidth}
+      \begin{enumerate}[(1)]
+        \setlength{\itemsep}{10pt}
+        \item 特殊情况, 特殊处理
+        \item 一般情况, 统一处理
+        \item 统一处理, 精细控制
+        \item 自定义错误处理策略
+      \end{enumerate}
+    \column{0.32\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \purple{\bf (1) 特殊情况, 特殊处理}
+
+    \vspace{0.80cm}
+    如果\red{\bf 下一个词法单元}符合预期, \\[10pt]
+    则采用``\blue{单词法符号移除} (single-token deletion)'' \\[10pt]
+    或``\blue{单词法符号补全} (single-token insertion)''策略
+
+    \vspace{1.00cm}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{单词法符号移除}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/Class-DeleteToken}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{单词法符号补全}
+
+    \vspace{0.50cm}
+    \fig{width = 1.00\textwidth}{figs/Class-AddToken}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \purple{\bf (2) 一般情况, 统一处理}
+
+    \vspace{0.80cm}
+    采用``\red{\bf 同步-返回 (sync-and-return)}'' 策略, \\[5pt]
+    使用``\blue{重新同步集合 (resynchronization set)}''从{当前规则}中恢复
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \[
+    \following(\set{\texttt{expr}, \texttt{atom}}) = \set{\hat{\quad}, \texttt{]}} \qquad
+    \following(\set{\texttt{expr}}) = \set{\texttt{]}}
+  \]
+
+  \vspace{-0.20cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.70\textwidth}{figs/Group-g4}
+
+        \vspace{0.50cm}
+        \texttt{Group.g4} \\[15pt]
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.40\textwidth}{figs/group-parse-tree-[]}
+
+        \vspace{0.50cm}
+        \texttt{[]}
+      \end{center}
+  \end{columns}
+
+  \pause
+  \vspace{0.60cm}
+  \begin{center}
+    \purple{注意 \textsc{Follow} (静态)集合与 \textsc{Following} (动态)集合的区别}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \purple{\bf (3) 统一处理, 精细控制}
+
+    \vspace{0.80cm}
+    \red{\bf 如何从子规则中优雅地恢复出来?} \\[20pt]
+
+    \texttt{Class.g4} (\texttt{\blue{member+}}) \\[20pt]
+    \texttt{Class-Subrule-Start.txt} (\blue{``单词法符号移除''}) \\[10pt]
+    \texttt{Class-Subrule-Loop.txt} (\blue{``另一次\texttt{member}迭代''}) \\[10pt]
+    \texttt{Class-Subrule-End.txt} (\blue{``退出当前\texttt{classDef}规则''})
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \purple{\bf (4) 自定义错误处理策略}
+
+    \vspace{0.80cm}
+    比如, (已知语法正确) 关闭默认错误处理功能, 提高运行效率
+
+    \vspace{0.50cm}
+    \uncover<2->{\fig{width = 0.30\textwidth}{figs/ANTLRErrorStrategy}}
+    \vspace{0.50cm}
+
+    比如, (出错代价太大) 在遇到第一个语法错误时, 就停止分析
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.40\textwidth}{figs/antlr4-book}
+
+  \begin{center}
+    第 9 章: 错误报告与恢复
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
