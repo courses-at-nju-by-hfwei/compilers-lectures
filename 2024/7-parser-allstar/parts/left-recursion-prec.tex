@@ -105,6 +105,23 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssoc}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/LRExprRightAssocPrec}
+  \end{columns}
+
+  \vspace{0.80cm}
+  \[
+    1 \;\hat{\;}\; 2 \;\hat{\;}\; 3 + 4
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \texttt{parser-allstar/LRExprUS.g4}
 
@@ -122,23 +139,6 @@
 
   \[
     \text{--}a!! \qquad \text{-}a+b!
-  \]
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 0.95\textwidth}{figs/LRExprRightAssoc}
-    \column{0.50\textwidth}
-      \pause
-      \fig{width = 0.95\textwidth}{figs/LRExprRightAssocPrec}
-  \end{columns}
-
-  \vspace{0.80cm}
-  \[
-    1 \;\hat{\;}\; 2 \;\hat{\;}\; 3 + 4
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
