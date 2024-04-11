@@ -1,0 +1,516 @@
+1
+00:00:00,070 --> 00:00:04,960
+Few lessons ago we were talking about errors
+and how to deal with them.
+
+2
+00:00:04,960 --> 00:00:09,730
+There are different kinds of errors, and I
+want you to recall one particular kind.
+
+3
+00:00:09,730 --> 00:00:11,700
+Here is a little piece of that lesson:
+
+4
+00:00:11,700 --> 00:00:12,790
+The next kind of error is when you confuse
+one thing for another.
+
+5
+00:00:12,790 --> 00:00:13,790
+Look at this code:
+
+6
+00:00:13,790 --> 00:00:15,679
+First, we create a constant.
+
+7
+00:00:15,679 --> 00:00:19,680
+Remember, it's like giving a name to something,
+in this case — giving a name `length` to
+
+8
+00:00:19,680 --> 00:00:20,680
+a number 12.
+
+9
+00:00:20,680 --> 00:00:26,660
+Then, on the second line, we call a function
+`length` and pass an argument — number 54.
+
+10
+00:00:26,660 --> 00:00:29,380
+But wait! `length` is not a function!
+
+11
+00:00:29,380 --> 00:00:30,880
+It's a number.
+
+12
+00:00:30,880 --> 00:00:34,260
+Numbers are not functions, not boxes that
+do stuff.
+
+13
+00:00:34,260 --> 00:00:37,149
+And this is exactly how JavaScript will complain:
+
+14
+00:00:37,149 --> 00:00:40,989
+This is a **Type Error** — the type of the
+thing you've used is wrong.
+
+15
+00:00:40,989 --> 00:00:45,940
+JavaScript interpreter wouldn't tell you what
+the thing **is**, but it will tell you what
+
+16
+00:00:45,940 --> 00:00:49,190
+it **isn't**. `length` is not a function.
+
+17
+00:00:49,190 --> 00:00:52,590
+Type Error is like asking your cat to do the
+laundry.
+
+18
+00:00:52,590 --> 00:00:55,130
+You probably wanted to ask your roommate.
+
+19
+00:00:55,130 --> 00:00:59,320
+In programming "type" is a classification
+of information.
+
+20
+00:00:59,320 --> 00:01:04,570
+This is a general term, and different programming
+languages deal with types in different ways.
+
+21
+00:01:04,570 --> 00:01:09,659
+As you know by now, JavaScript somehow can
+see the difference between types.
+
+22
+00:01:09,659 --> 00:01:15,320
+Function is one type, Number is another type,
+and you can't just use a number as a function.
+
+23
+00:01:15,320 --> 00:01:20,710
+`typeof` is a special operator that returns
+a string indicating the type.
+
+24
+00:01:20,710 --> 00:01:28,939
+42 and 3.14 are obviously numbers, some combination
+of letters in quotation marks is a string,
+
+25
+00:01:28,939 --> 00:01:31,140
+and true and false are boolean.
+
+26
+00:01:31,140 --> 00:01:36,009
+These are some of the types in JavaScript
+— number, string, boolean.
+
+27
+00:01:36,009 --> 00:01:40,259
+NaN means "not a number", but the type of
+NaN is "number".
+
+28
+00:01:40,259 --> 00:01:42,320
+Yeah, I know.
+
+29
+00:01:42,320 --> 00:01:43,650
+Another JavaScript weirdness.
+
+30
+00:01:43,650 --> 00:01:46,840
+Those are the rules of this language.
+
+31
+00:01:46,840 --> 00:01:48,640
+Types are helpful.
+
+32
+00:01:48,640 --> 00:01:53,299
+When we've tried running a number as if it
+was a function, JavaScript started complaining
+
+33
+00:01:53,299 --> 00:01:55,659
+and we could see the problem and fix it.
+
+34
+00:01:55,659 --> 00:02:01,210
+If there wasn't any notion of types in JavaScript,
+we would either see some bizarre unexpected
+
+35
+00:02:01,210 --> 00:02:04,479
+behavior or some mystic error.
+
+36
+00:02:04,479 --> 00:02:10,640
+Instead of clear "length is not a function"
+we'd have something like "I'm sorry Dave,
+
+37
+00:02:10,640 --> 00:02:13,560
+I'm afraid I can't do that".
+
+38
+00:02:13,560 --> 00:02:17,080
+What if you create a variable, but don't give
+it any value?
+
+39
+00:02:17,080 --> 00:02:18,510
+What type would that be?
+
+40
+00:02:18,510 --> 00:02:21,760
+It's not a number, not a string, not... anything.
+
+41
+00:02:21,760 --> 00:02:23,400
+Because there is no value, right?
+
+42
+00:02:23,400 --> 00:02:26,730
+JavaScript does something behind your back
+in this case.
+
+43
+00:02:26,730 --> 00:02:31,340
+The variable without a value actually has
+a special value — 'undefined'.
+
+44
+00:02:31,340 --> 00:02:34,140
+And the type of this variable is called 'undefined'.
+
+45
+00:02:34,140 --> 00:02:43,160
+So, for example, type `number` has lots of
+potential values: 1, 2, -10, 69000, and other
+
+46
+00:02:43,160 --> 00:02:44,160
+numbers.
+
+47
+00:02:44,160 --> 00:02:47,350
+But type `undefined` has only one value — `undefined`.
+
+48
+00:02:47,350 --> 00:02:53,600
+There are two important things to understand
+when it comes to types in programming: dynamics
+
+49
+00:02:53,600 --> 00:02:56,420
+vs static and weak vs strong.
+
+50
+00:02:56,420 --> 00:03:01,270
+In order to understand the difference between
+dynamic and static typing, we first have to
+
+51
+00:03:01,270 --> 00:03:06,000
+look at how written programs become actual
+running programs.
+
+52
+00:03:06,000 --> 00:03:10,900
+The code you write is usually converted into
+some other form that a computer knows how
+
+53
+00:03:10,900 --> 00:03:12,060
+to run.
+
+54
+00:03:12,060 --> 00:03:17,120
+This process is called compilation, and the
+period of time this happens is called "compile
+
+55
+00:03:17,120 --> 00:03:18,120
+time".
+
+56
+00:03:18,120 --> 00:03:22,980
+After compilation is over, the program is
+launched, and the period it's running is called
+
+57
+00:03:22,980 --> 00:03:24,610
+"runtime".
+
+58
+00:03:24,610 --> 00:03:29,580
+Some languages check the types and look for
+type errors during compile time.
+
+59
+00:03:29,580 --> 00:03:32,520
+Those have static typing.
+
+60
+00:03:32,520 --> 00:03:37,450
+Other languages check the types and look for
+type errors during runtime.
+
+61
+00:03:37,450 --> 00:03:39,700
+Those have dynamic typing.
+
+62
+00:03:39,700 --> 00:03:44,590
+Another way to think about it: static typing
+means checking the types before running the
+
+63
+00:03:44,590 --> 00:03:50,040
+program, dynamic typing means checking the
+types while running the program.
+
+64
+00:03:50,040 --> 00:03:55,740
+C#, C++, Java, Go are statically typed languages.
+
+65
+00:03:55,740 --> 00:04:00,010
+If you create a number and try to treat it
+as a function in one of those languages, you'll
+
+66
+00:04:00,010 --> 00:04:04,860
+get an error during compilation, and your
+program will not even try to run — it won't
+
+67
+00:04:04,860 --> 00:04:11,010
+get to that point because a type error would've
+been found before runtime, at compile time.
+
+68
+00:04:11,010 --> 00:04:15,910
+JavaScript, Ruby, PHP are dynamically typed
+languages.
+
+69
+00:04:15,910 --> 00:04:21,160
+As you've seen before, if use the incorrect
+type, your program does run, and the error
+
+70
+00:04:21,160 --> 00:04:25,320
+occurs only when that particular line of code
+is executed.
+
+71
+00:04:25,320 --> 00:04:29,060
+So, the types are checked during runtime.
+
+72
+00:04:29,060 --> 00:04:35,340
+Actually, JavaScript *usually* doesn't have
+any compilation at all, but that's a topic
+
+73
+00:04:35,340 --> 00:04:37,710
+for another lesson.
+
+74
+00:04:37,710 --> 00:04:41,400
+Dynamic typing is not worse or better than
+static typing.
+
+75
+00:04:41,400 --> 00:04:45,450
+Both ways have advantages and disadvantages.
+
+76
+00:04:45,450 --> 00:04:50,100
+Dynamically typed languages are usually easier
+to learn and to write programs in, but, as
+
+77
+00:04:50,100 --> 00:04:53,690
+you can imagine, it leads to more mistakes
+and bugs.
+
+78
+00:04:53,690 --> 00:04:57,180
+Now let's talk about weak and strong typing.
+
+79
+00:04:57,180 --> 00:04:59,370
+Check out this JavaScript code:
+
+80
+00:04:59,370 --> 00:05:00,500
+Yeah...
+
+81
+00:05:00,500 --> 00:05:01,590
+This is...
+
+82
+00:05:01,590 --> 00:05:04,010
+Okay, what's going on?
+
+83
+00:05:04,010 --> 00:05:08,920
+Adding number 4 to a string '7' gives us a
+string '47'.
+
+84
+00:05:08,920 --> 00:05:14,990
+JavaScript converted number 4 into a string
+'4' and concatenated two strings — glued
+
+85
+00:05:14,990 --> 00:05:16,310
+them together.
+
+86
+00:05:16,310 --> 00:05:20,750
+JavaScript just took the liberty of assuming
+this is what we wanted.
+
+87
+00:05:20,750 --> 00:05:23,380
+It's hard to blame it — what did we want?
+
+88
+00:05:23,380 --> 00:05:27,530
+Adding a number to a string — that doesn't
+make sense.
+
+89
+00:05:27,530 --> 00:05:33,250
+Some other language, like Ruby or Python would've
+just complained and not do anything.
+
+90
+00:05:33,250 --> 00:05:39,190
+Multiplying number 4 by a string '7' is, well,
+28, according to JavaScript.
+
+91
+00:05:39,190 --> 00:05:45,360
+In this case, it converted string '7' into
+number 7 and did the normal multiplication.
+
+92
+00:05:45,360 --> 00:05:47,590
+JavaScript does this a lot.
+
+93
+00:05:47,590 --> 00:05:52,580
+It knows about the types of different values
+but when types don't match, it tries to assume
+
+94
+00:05:52,580 --> 00:05:56,280
+and convert from type to type without telling
+you.
+
+95
+00:05:56,280 --> 00:05:59,560
+Sometimes it's useful, sometimes it's mindboggling.
+
+96
+00:05:59,560 --> 00:06:03,790
+This happens because JavaScript is a weakly
+typed language.
+
+97
+00:06:03,790 --> 00:06:10,760
+It has the notion of types, but it's like,
+"it's only a game, why you have to be mad?"
+
+98
+00:06:10,760 --> 00:06:15,190
+This has nothing to do with dynamic versus
+static typing, which is about WHEN to check
+
+99
+00:06:15,190 --> 00:06:16,600
+for types.
+
+100
+00:06:16,600 --> 00:06:21,410
+Strong versus weak is about HOW SERIOUS DO
+YOU GET while checking the types.
+
+101
+00:06:21,410 --> 00:06:28,170
+You can say that weak typing is relaxed typing,
+and strong typing is strict typing.
+
+102
+00:06:28,170 --> 00:06:33,740
+Unlike dynamic vs static, the strength of
+the typing system is a spectrum.
+
+103
+00:06:33,740 --> 00:06:36,210
+JavaScript has very weak typing.
+
+104
+00:06:36,210 --> 00:06:38,650
+PHP has somewhat stronger typing.
+
+105
+00:06:38,650 --> 00:06:40,790
+Python — even stronger.
+
+106
+00:06:40,790 --> 00:06:44,300
+And all three are dynamically typed languages.
+
+107
+00:06:44,300 --> 00:06:51,180
+So, JavaScript does a lot of implicit conversions,
+but it also gives us tools to do explicit
+
+108
+00:06:51,180 --> 00:06:52,830
+conversion ourselves.
+
+109
+00:06:52,830 --> 00:06:59,070
+We can convert strings to numbers and numbers
+to strings, boolean to string etc like this:
+
+110
+00:06:59,070 --> 00:07:05,160
+You can probably guess that implicit type
+conversion is not the best idea ever.
+
+111
+00:07:05,160 --> 00:07:11,280
+Implicit means hidden, and hidden means it's
+hard to understand and easy to make mistakes.
+
+112
+00:07:11,280 --> 00:07:15,280
+The behavior of the program becomes less obvious.
+
+113
+00:07:15,280 --> 00:07:20,949
+You write less code, yes, but the code is
+more fragile and less understandable.
+
