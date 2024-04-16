@@ -1,0 +1,136 @@
+% array-type.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 数组类型}文法举例
+
+    \fig{width = 0.30\textwidth}{figs/SDD-type-array}
+    \[
+      \teal{\intkw[2][3]}
+    \]
+
+    \red{\bf 类型表达式} \blue{$(2, (3, \textrm{int}))$}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    继承属性 \red{$C.b$} 将一个基本类型沿着树向下传播
+
+    \fig{width = 0.80\textwidth}{figs/anno-type-array}
+    \vspace{-0.30cm}
+    \[
+        \teal{\intkw[2][3]}
+    \]
+
+    \vspace{0.30cm}
+    综合属性 \blue{$C.t$} 收集最终得到的类型表达式
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayType-g4}
+  \begin{center}
+    \teal{\texttt{ArrayType.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayType-tree}
+  \[
+      \teal{\intkw[2][3]}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayTypeAG-g4}
+  \begin{center}
+    \teal{\texttt{ArrayTypeAG.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    数组声明、数组引用、类型检查
+    \fig{width = 0.85\textwidth}{figs/Array-g4}
+    \vspace{-0.30cm}
+    \teal{\texttt{Array.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.50\textwidth}{figs/Array-g4-input}
+    \column{0.50\textwidth}
+      \fig{width = 0.70\textwidth}{figs/Array-g4-output}
+  \end{columns}
+
+  \vspace{0.80cm}
+  \fig{width = 1.00\textwidth}{figs/Array-tree}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayAG-stat}
+  \begin{center}
+    \teal{\texttt{ArrayAG.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayAG-varDecl-arrDecl}
+  \begin{center}
+    \teal{\texttt{ArrayAG.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/ArrayAG-expr}
+  \begin{center}
+    \teal{\texttt{ArrayAG.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{width = 0.70\textwidth}{figs/patterns-book-ch}
+        \vspace{0.30cm}
+        第八章: 静态类型检查
+      \end{center}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/pfpl-book}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/TypeCheckingListener-Fields}
+  \begin{center}
+    \teal{\texttt{TypeCheckingListener.java}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,94 @@
+% vars-decl.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 类型声明}文法举例
+
+    \fig{width = 0.70\textwidth}{figs/SDD-type-decl}
+    \[
+      \teal{\floatkw\; \id_{1}, \id_{2}, \id_{3}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{$L.inh$} 将声明的类型沿着标识符列表向下传递
+
+    \fig{width = 0.70\textwidth}{figs/anno-type-decl}
+    \[
+        \teal{\floatkw\; \id_{1}, \id_{2}, \id_{3}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \url{https://stackoverflow.com/q/76062088/1833118}
+  \end{center}
+  \fig{width = 0.95\textwidth}{figs/VarsDeclAG-g4}
+
+  \pause
+  \begin{center}
+    Fortunately, you can rewrite it as \blue{\texttt{vars : ID (',' ID)*}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    Fortunately, you can rewrite it as \blue{\texttt{vars : ID (',' ID)*}}
+
+    \vspace{0.80cm}
+    \fig{width = 1.00\textwidth}{figs/VarsDeclStarAG-g4}
+    \teal{\texttt{VarsDeclStarAG.g4}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    ``源码面前, 了无秘密''
+
+    \fig{width = 0.50\textwidth}{figs/hj}
+
+    \teal{\texttt{VarsDeclStarParser.java}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \fig{width = 0.60\textwidth}{figs/VarsDecl-g4}
+%     \[
+%       \teal{\intkw\; \texttt{d}, \texttt{f}, \texttt{g}}
+%     \]
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \texttt{vars} 借助\red{\bf 继承属性}将声明的类型沿着标识符列表向下传递
+
+%     \begin{columns}
+%       \column{0.40\textwidth}
+%         \fig{width = 1.00\textwidth}{figs/VarsDecl-g4}
+%       \column{0.60\textwidth}
+%         \fig{width = 1.00\textwidth}{figs/VarsDecl-tree}
+%         \[
+%           \teal{\intkw\; \texttt{d}, \texttt{f}, \texttt{g}}
+%         \]
+%     \end{columns}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%

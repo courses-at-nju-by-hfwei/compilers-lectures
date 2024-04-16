@@ -1,0 +1,49 @@
+% postfix.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[后缀表示 (Postfix Notation)]
+    \begin{enumerate}[(1)]
+      \setlength{\itemsep}{8pt}
+      \item 如果$E$是一个 \red{\bf 变量或常量}, 则$E$的后缀表示是$E$本身;
+      \item 如果$E$是形如 \red{$E_{1} \;\text{\bf op}\; E_{2}$} 的表达式,
+        则$E$的后缀表示是$E'_{1} E'_{2} \text{\bf op}$,
+        这里 $E'_{1}$ 和 $E'_{2}$ 分别是 $E_{1}$ 与 $E_{2}$ 的后缀表达式;
+      \item 如果$E$是形如 \red{$(E_{1})$} 的表达式, 则$E$的后缀表示是$E_{1}$的后缀表示。
+    \end{enumerate}
+  \end{definition}
+
+  \begin{center}
+    \[
+      (9 * 5)+2 \implies 95*2+
+    \]
+    \[
+      9 * (5+2) \implies 952+*
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+	  \fig{width = 0.35\textwidth}{figs/PostfixExprAG-tree}
+	\end{center}
+
+	\vspace{-0.30cm}
+	\[
+		9 * (5+2) \implies 952+*
+	\]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 后缀表达式} $S$ 属性定义
+
+		\vspace{0.50cm}
+	  \fig{width = 1.00\textwidth}{figs/PostfixExprAG-g4}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,170 @@
+% sdt.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{definition}[语法制导的翻译方案 (Syntax-Directed Translation Scheme; SDT)]
+    \purple{\bf SDT} 是在其产生式体中嵌入\red{\bf 语义动作}的上下文无关文法。
+  \end{definition}
+
+  \vspace{0.30cm}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/SDD-expr-left-recursion-rule}
+    \column{0.50\textwidth}
+      \fig{width = 1.00\textwidth}{figs/SDT-expr-left-recursion}
+  \end{columns}
+
+  \pause
+  \vspace{0.30cm}
+  \begin{center}
+    \red{$Q:$} 如何将带有\blue{\bf 语义规则}的 SDD 转换为带有\blue{\bf 语义动作}的 SDT
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf 时机} (Timing; タイミング)
+
+    \fig{width = 0.60\textwidth}{figs/timing-japanese}
+
+    \vspace{0.30cm}
+    \red{\bf 语义动作嵌入在什么地方? 这决定了何时执行语义动作。}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \begin{columns}
+      \column{0.50\textwidth}
+        \begin{center}
+          \blue{\bf $S$ 属性定义}
+        \end{center}
+        \fig{width = 1.00\textwidth}{figs/SDD-expr-left-recursion-rule}
+      \column{0.50\textwidth}
+        \begin{center}
+          \red{\bf 后缀翻译方案}
+        \end{center}
+        \fig{width = 1.00\textwidth}{figs/SDT-expr-left-recursion}
+    \end{columns}
+
+    \vspace{0.80cm}
+    \red{\bf 后缀翻译方案:} 所有动作都在产生式的最后
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf $L$ 属性定义} 与 \blue{\bf $LL$ 语法分析}
+
+    \vspace{0.30cm}
+    \fig{width = 0.80\textwidth}{figs/dep-expr-no-left-recursion}
+    \vspace{-0.20cm}
+    \[
+      \teal{3 \ast 5}
+    \]
+
+    \vspace{-0.50cm}
+    \[
+      \blue{A \to X_{1} \cdots X_{i} \cdots X_{n}}
+    \]
+
+    \red{\bf 原则:} \teal{\bf 从左到右}处理各个 $X_{i}$ 符号
+
+    \vspace{0.10cm}
+    对每个 $X_{i}$, 先计算\teal{\bf 继承属性}, 后计算\teal{\bf 综合属性}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 递归下降子过程 $A \to X_{1} \cdots X_{i} \cdots X_{n}$}
+
+    \vspace{0.80cm}
+    \begin{itemize}
+      \centering
+      \setlength{\itemsep}{15pt}
+      \item 在调用 $X_{i}$ 子过程之前, 计算 $X_{i}$ 的\red{\bf 继承属性}
+      \item 以 $X_{i}$ 的继承属性为\blue{\bf 参数}调用 $X_{i}$ 子过程
+      \vspace{10pt}
+      \item 在 $X_{i}$ 子过程返回之前, 计算 $X_{i}$ 的\red{\bf 综合属性}
+      \item 在 $X_{i}$ 子过程结束时\blue{\bf 返回} $X_{i}$ 的综合属性
+    \end{itemize}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.90\textwidth}{figs/dep-expr-left-right-recursion}
+  \end{center}
+
+  \vspace{-1.00cm}
+  \[
+    \teal{\boxed{X Y^{\ast}}}
+  \]
+
+  \begin{columns}
+    \column{0.35\textwidth}
+      \centerline{(左递归) $S$ 属性定义}
+      \vspace{-0.80cm}
+      \input{eq/left-recursion-S-SDD}
+    \column{0.65\textwidth}
+      \pause
+      \centerline{(右递归) $L$ 属性定义}
+      \vspace{-0.80cm}
+      {\input{eq/right-recursion-L-SDD}}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    (右递归) $L$属性定义
+    \vspace{-0.50cm}
+    \input{eq/right-recursion-L-SDD}
+
+    \vspace{0.30cm}
+    \red{\bf 原则: 继承属性在处理文法符号之前, 综合属性在处理文法符号之后}
+
+    \pause
+    \vspace{0.50cm}
+    $L$ 属性定义的 SDT
+    \vspace{-0.50cm}
+    \input{eq/SDT-right-recursion-L-SDD}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{eq/SDT-right-recursion-L-SDD}
+
+    \input{algs/L-SDT-LL-A}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \input{eq/SDT-right-recursion-L-SDD}
+
+    \input{algs/L-SDT-LL-R}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\input{parts/csv}  % left as hw?
+%%%%%%%%%%%%%%%%%%%%
