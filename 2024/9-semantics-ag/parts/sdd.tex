@@ -128,71 +128,75 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    $T'$有一个综合属性$syn$与一个继承属性$inh$
-
-    \fig{width = 0.60\textwidth}{figs/SDD-expr-no-left-recursion}
-
     \begin{definition}[继承属性 (Inherited Attribute)]
       节点$N$上的\red{\bf 继承属性}只能通过\blue{$N$的父节点、$N$本身和$N$的兄弟节点}上的属性来定义。
     \end{definition}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    继承属性 \red{$T'.inh$} 用于在表达式中从左向右传递中间计算结果
-
-    \vspace{0.50cm}
     \begin{columns}
       \column{0.45\textwidth}
-        \fig{width = 1.00\textwidth}{figs/SDD-expr-no-left-recursion}
+        \fig{width = 1.00\textwidth}{figs/SDD-type-decl}
       \column{0.55\textwidth}
-        \fig{width = 1.00\textwidth}{figs/anno-expr-no-left-recursion}
-
+        \fig{width = 1.00\textwidth}{figs/anno-type-decl}
         \[
-            \teal{3 \ast 5}
+            \teal{\floatkw\; \id_{1}, \id_{2}, \id_{3}}
         \]
     \end{columns}
 
     \pause
-    \vspace{0.40cm}
-    \blue{在右递归文法下实现了左结合}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \red{\bf 依赖图}用于确定一棵\blue{给定的语法分析树}中\purple{各个属性实例}之间的依赖关系
-
-    \vspace{0.50cm}
-    \fig{width = 0.80\textwidth}{figs/dep-expr-no-left-recursion}
-
-    % \begin{columns}
-    %   \column{0.45\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/anno-expr-no-left-recursion}
-    %   \column{0.55\textwidth}
-    %     \fig{width = 1.00\textwidth}{figs/dep-expr-no-left-recursion}
-    % \end{columns}
-
-    \vspace{0.50cm}
-    \red{\bf 信息流向:} 先从左向右、从上到下传递信息, 再从下到上传递信息
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    \fig{width = 0.70\textwidth}{figs/info-flow}
     \vspace{0.30cm}
+    \red{\bf 继承信息流向:} 先从左向右、从上到下传递信息
+    % $T'$有一个综合属性$syn$与一个继承属性$inh$
 
-    \blue{\bf 语法分析树}上的\red{\bf 有序}信息流动
+    % \fig{width = 0.60\textwidth}{figs/SDD-expr-no-left-recursion}
+    % \fig{width = 0.70\textwidth}{figs/SDD-type-decl}
   \end{center}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     继承属性 \red{$T'.inh$} 用于在表达式中从左向右传递中间计算结果
+
+%     \vspace{0.50cm}
+%     \begin{columns}
+%       \column{0.45\textwidth}
+%         \fig{width = 1.00\textwidth}{figs/SDD-type-decl}
+%       \column{0.55\textwidth}
+%         \fig{width = 0.70\textwidth}{figs/anno-type-decl}
+
+%         \[
+%             \teal{\floatkw\; \id_{1}, \id_{2}, \id_{3}}
+%         \]
+%     \end{columns}
+
+%     % \pause
+%     % \vspace{0.40cm}
+%     % \blue{在右递归文法下实现了左结合}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \red{\bf 依赖图}用于确定一棵\blue{给定的语法分析树}中\purple{各个属性实例}之间的依赖关系
+
+%     \vspace{0.50cm}
+%     \fig{width = 0.80\textwidth}{figs/dep-expr-no-left-recursion}
+
+%     % \begin{columns}
+%     %   \column{0.45\textwidth}
+%     %     \fig{width = 1.00\textwidth}{figs/anno-expr-no-left-recursion}
+%     %   \column{0.55\textwidth}
+%     %     \fig{width = 1.00\textwidth}{figs/dep-expr-no-left-recursion}
+%     % \end{columns}
+
+%     \vspace{0.50cm}
+%     % \red{\bf 信息流向:} 先从左向右、从上到下传递信息, 再从下到上传递信息
+%     \red{\bf 继承信息流向:} 先从左向右、从上到下传递信息
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -223,7 +227,18 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-  \fig{width = 0.50\textwidth}{figs/learn-by-examples}
+  \begin{center}
+    \blue{\bf 语法分析树}上的\red{\bf 有序}信息流动
+
+    \vspace{0.30cm}
+    \fig{width = 0.70\textwidth}{figs/info-flow}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/learn-by-examples}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 \input{parts/postfix}
