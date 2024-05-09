@@ -51,12 +51,13 @@
 		\uncover<2->{\blue {Three Address Code (TAC)}}
 		\uncover<3->{\qquad \red{Static Single Assignment (SSA)}}
 
-		\vspace{0.20cm}
-		\fig{width = 0.95\textwidth}{figs/f0-opt0}
+		\vspace{0.30cm}
+		\fig{width = 0.95\textwidth}{figs/f0-opt1}
+		\vspace{0.30cm}
 
 		\teal{\texttt{clang}} \red{\texttt{-S -emit-llvm}} \blue{\texttt{-fno-discard-value-names}}
 
-		\teal{\texttt{factorial0.c -o f0-opt0.ll}}
+		\teal{\texttt{factorial0.c -o f0-opt0.ll \violet{-O1} \purple{-g0}}}
 
 		% \pause
 		% \vspace{0.10cm}
@@ -66,17 +67,17 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{center}
-		\blue{mem2reg}
-		\vspace{0.30cm}
+% \begin{frame}{}
+% 	\begin{center}
+% 		\blue{mem2reg}
+% 		\vspace{0.30cm}
 
-		\fig{width = 0.95\textwidth}{figs/f0-opt1}
+% 		\fig{width = 0.95\textwidth}{figs/f0-opt1}
 
-		\vspace{0.30cm}
-		\teal{\texttt{clang -S -emit-llvm factorial0.c -o f0-opt1.ll \red{-O1} -g0}}
-	\end{center}
-\end{frame}
+% 		\vspace{0.30cm}
+% 		\teal{\texttt{clang -S -emit-llvm factorial0.c -o f0-opt1.ll \red{-O1} -g0}}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -282,14 +283,14 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{center}
-		\fig{width = 0.20\textwidth}{figs/f1-opt3-factorial-cfg-only}
+% \begin{frame}{}
+% 	\begin{center}
+% 		\fig{width = 0.20\textwidth}{figs/f1-opt3-factorial-cfg-only}
 
-		\vspace{-0.30cm}
-		\texttt{factorial1 (opt3)}
-	\end{center}
-\end{frame}
+% 		\vspace{-0.30cm}
+% 		\texttt{factorial1 (opt3)}
+% 	\end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -336,41 +337,45 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\vspace{-0.50cm}
-	\fig{width = 0.70\textwidth}{figs/f2-opt1-factorial-cfg.pdf}
+	\fig{width = 0.85\textwidth}{figs/factorial2-o1-ll-code}
+	% \fig{width = 0.70\textwidth}{figs/f2-opt1-factorial-cfg.pdf}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% 	\begin{center}
+% 		\fig{width = 0.20\textwidth}{figs/f2-opt3-factorial-cfg-only}
+
+% 		\vspace{-0.30cm}
+% 		\texttt{factorial2 (opt3)}
+% 	\end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+		  \begin{center}
+				\fig{width = 0.80\textwidth}{figs/llvm-ir-animation}
+				\href{https://blog.piovezan.ca/compilers/llvm\_ir\_animation/llvm\_ir.html}{LLVM IR Animation}
+			\end{center}
+		\column{0.50\textwidth}
+		  \begin{center}
+				\fig{width = 0.80\textwidth}{figs/llvm-ir-tutorial}
+				\href{https://www.bilibili.com/video/BV1mE421g7BA/?share\_source=copy\_web\&vd\_source=afddc1f6e07c3046ed07519aa34370fd}{LLVM IR Tutorial @ Bilibili}
+			\end{center}
+	\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\fig{width = 0.20\textwidth}{figs/f2-opt3-factorial-cfg-only}
-
-		\vspace{-0.30cm}
-		\texttt{factorial2 (opt3)}
-	\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{center}
-		\href{https://blog.piovezan.ca/compilers/llvm\_ir\_animation/llvm\_ir.html}{LLVM IR Animation}
-
-		\vspace{0.30cm}
-		\fig{width = 0.60\textwidth}{figs/llvm-ir-tutorial}
-		\vspace{0.30cm}
-
-		\href{https://www.bilibili.com/video/BV1mE421g7BA/?share\_source=copy\_web\&vd\_source=afddc1f6e07c3046ed07519aa34370fd}{LLVM IR Tutorial @ Bilibili}
-	\end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-	\begin{center}
-		\href{https://llvm.org/docs/LangRef.html}{LLVM Language Reference Manual}
-		\fig{width = 0.80\textwidth}{figs/llvm-lang-ref}
+		\href{https://llvm.org/docs/LangRef.html\#instruction-reference}{Instruction Reference @ LLVM Language Reference Manual}
+		\fig{width = 0.60\textwidth}{figs/llvm-lang-ref}
+		\fig{width = 0.60\textwidth}{figs/instruction-ref}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -382,21 +387,9 @@
 
 		\vspace{0.30cm}
 		\fig{width = 0.60\textwidth}{figs/prog-visual}
+		\vspace{0.30cm}
+
+		使用命令行生成 LLVM IR 与控制流图 (Control Flow Graph)
 	\end{center}
 \end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}{}
-% 	\begin{center}
-% 		\fig{width = 0.25\textwidth}{figs/qa}
-% 	\end{center}
-
-% 	\pause
-% 	\begin{itemize}[<+->]
-% 		\setlength{\itemsep}{10pt}
-% 		\item 一个函数里可以包含多个含有 \texttt{ret} 指令的基本块吗?
-% 		\item 如果可以, 那不就可以解决 $\phi$ 指令相关的问题了吗?
-% 	\end{itemize}
-% \end{frame}
 %%%%%%%%%%%%%%%%%%%%

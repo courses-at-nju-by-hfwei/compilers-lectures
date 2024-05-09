@@ -1,0 +1,40 @@
+% expr.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{\bf 表达式的中间代码翻译}
+
+    \vspace{0.30cm}
+    \green{综合属性 $E.code$:} 中间代码
+
+    \begin{columns}
+      \column{0.65\textwidth}
+        % \fig{width = 1.00\textwidth}{figs/SDD-expr-tac}
+        \fig{width = 1.00\textwidth}{figs/grammar-assign-expr}
+      \column{0.35\textwidth}
+        \uncover<2->{
+          \[
+            {a = b + -c}
+          \]
+          \fig{width = 0.85\textwidth}{figs/expr-tac}
+        }
+    \end{columns}
+
+    \vspace{0.50cm}
+    \blue{综合属性 $E.addr$:} 变量名 (包括临时变量)、常量
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/expr-c}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.95\textwidth}{figs/expr-ll}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
