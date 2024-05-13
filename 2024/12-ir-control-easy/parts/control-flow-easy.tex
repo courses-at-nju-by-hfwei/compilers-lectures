@@ -1,0 +1,117 @@
+% control-flow-easy.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    各个非终结符的\red{\bf 分工、合作}明确易懂
+
+    \vspace{0.30cm}
+    \fig{width = 0.40\textwidth}{figs/easy-mode}
+    \vspace{0.30cm}
+
+    只需要使用\blue{\bf 综合属性}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \fig{width = 0.80\textwidth}{figs/daju}
+  \begin{center}
+    心中有``树'' (语法分析树)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\Large 分工 \qquad 合作}
+
+    \vspace{0.20cm}
+    \fig{width = 0.60\textwidth}{figs/team-work-fly}
+  \end{center}
+
+  \begin{center}
+    为布尔表达式 $B$ 计算逻辑值 (假设保存在临时变量 \texttt{t1} 中) \\[5pt]
+    \texttt{\bf if}、\texttt{\bf while} 等语句
+    根据 $B$ 的结果改变控制流
+  \end{center}
+
+  \vspace{-0.30cm}
+  \[
+    \texttt{\bf if}\; (B)\; S_{1}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/talk-code}
+
+    \vspace{0.30cm}
+    \teal{\texttt{CodeGenVisitor.java}}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    实现顺序: \cyan{标识符 $E \to {\bf \texttt{id}}$},
+      \blue{布尔表达式 $B$}、\violet{\texttt{if} 语句}、
+      \red{\texttt{while} 语句}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/cfg-S-grammar}
+    \column{0.50\textwidth}
+      \fig{width = 0.35\textwidth}{figs/cfg-boolexpr-grammar}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    实现方式: \textcolor{lightgray}{Listeners},
+      \textcolor{blue}{Visitors},
+      \textcolor{lightgray}{Attributed Grammar}
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/cfg-S-grammar}
+    \column{0.50\textwidth}
+      \fig{width = 0.35\textwidth}{figs/cfg-boolexpr-grammar}
+  \end{columns}
+
+  \begin{center}
+    \blue{及时输出生成的中间代码, 避免频繁的字符串拼接操作}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    \fig{width = 0.50\textwidth}{figs/break}
+
+    \vspace{0.50cm}
+    如何翻译 ``\texttt{break}'' 语句?
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{center}
+    \fig{width = 0.40\textwidth}{figs/ShortCircuit}
+
+    \vspace{0.20cm}
+    如何实现布尔表达式的 ``短路求值'' (Short-Circuit Evaluation)?
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
