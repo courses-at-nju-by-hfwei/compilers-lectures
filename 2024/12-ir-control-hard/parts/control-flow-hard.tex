@@ -3,13 +3,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    直接\blue{\bf 用布尔表达式改变控制流}
+    直接\blue{\bf 用布尔表达式改变控制流}, 无需计算最终逻辑值
 
     \vspace{0.30cm}
     \fig{width = 0.40\textwidth}{figs/hard-mode}
     \vspace{0.30cm}
 
-    使用控制流跳转间接表明布尔表达式的值
+    从父节点获取\purple{\bf 更具体的跳转目标}, 缩短跳转路径
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -31,6 +31,7 @@
   \vspace{-0.30cm}
   \[
     P \to S \qquad S \to \texttt{\bf if}\; (B)\; S_{1}
+      \qquad B \to \texttt{\bf false}
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
