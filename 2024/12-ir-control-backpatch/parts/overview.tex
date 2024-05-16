@@ -1,0 +1,193 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		使用\blue{标签}标记跳转目标
+	\end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/bool-short-circuit-II}
+    \column{0.50\textwidth}
+      \fig{width = 0.40\textwidth}{figs/bool-short-circuit-II-hard-code}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		Java Bytecode: 使用\red{地址值}作为跳转目标
+	\end{center}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/java-code}
+    \column{0.50\textwidth}
+      \pause
+      \fig{width = 0.45\textwidth}{figs/java-bytecode}
+  \end{columns}
+
+  \pause
+	\begin{center}
+		\red{$Q:$ 如何在一趟扫描中生成跳转目标的地址?}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{\texttt{\large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
+
+    \vspace{0.30cm}
+    \fig{width = 0.50\textwidth}{figs/if-tac}
+
+    $L_{1}$ 标签的位置是由 $P \to S \;(\to {\bf if} \;B\; S_{1})$ 确定的, \\[6pt]
+    但是, 生成 $B$ 所对应的中间代码 {\bf goto} $L_{1}$ 时, 尚不知道 $L_{1}$ 的地址
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{\texttt{\large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
+
+    \fig{width = 1.00\textwidth}{figs/if-boolexpr-ir}
+
+    \vspace{-0.60cm}
+    \pause
+    \[
+      B_{21}.\false \cgets B_{2}.\false \cgets B.\false \cgets S.\nextir = \teal{L_{1}}
+    \]
+    \[
+      B_{22}.\false \cgets B_{2}.\false \cgets B.\false \cgets S.\nextir = \teal{L_{1}}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.50\textwidth}{figs/big-idea}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \teal{\texttt{\large if (x < 100 || x > 200 \&\& x != y) x = 0;}}
+
+    \fig{width = 1.00\textwidth}{figs/if-boolexpr-ir}
+
+    \vspace{-0.60cm}
+    \pause
+    \[
+      \set{\purple{103}} = B_{21}.\false \cto B_{2}.\false \cto B.\false \cto S.\nextir = \teal{107}
+    \]
+    \[
+      \set{\purple{105}} = B_{22}.\false \cto B_{2}.\false \cto B.\false \cto S.\nextir = \teal{107}
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \fig{width = 1.00\textwidth}{figs/SDD-if}
+
+%     \vspace{0.80cm}
+%     \uncover<2->{\blue{$B$ 可以自行计算 $B.\mathit{true}$ 对应的指令地址}}
+
+%     \vspace{0.30cm}
+%     \fig{width = 0.40\textwidth}{figs/if-code-block}
+%     \vspace{0.30cm}
+
+%     \uncover<3->{\red{但是, $B$ 计算不出 $B.\mathit{false}$ 对应的指令地址}}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    子节点暂时不指定跳转指令的目标地址
+  \end{center}
+
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.80\textwidth}{figs/if-tac-placeholder}
+    \column{0.50\textwidth}
+      \uncover<2->{\fig{width = 1.00\textwidth}{figs/is-it-a-big-idea}}
+  \end{columns}
+
+  \vspace{0.50cm}
+  \begin{center}
+    待祖先节点能够确定目标地址时回头填充
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \red{回填 (Backpatching) 技术}: {子节点挖坑、祖先节点填坑}
+
+    \fig{width = 0.50\textwidth}{figs/wakeng}
+
+    \pause
+    \vspace{0.80cm}
+    祖先节点通过\red{\bf 综合属性}\blue{收集}子节点中\purple{具有相同目标的跳转指令}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    南北爱情故事
+
+    \fig{width = 0.65\textwidth}{figs/nju-pku}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.65\textwidth}{figs/train-college-film}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.65\textwidth}{figs/train-college-cartoon}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}} \\[5pt]
+    {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
+
+    \fig{width = 0.50\textwidth}{figs/backpatch-impl}
+
+    {$S/L.\mathit{nextlist}$} 保存{需要跳转到 $S/L.\nextir$ 标签的指令}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    为左部非终结符 \red{$B$} 计算综合属性 $B.\mathit{truelist}$ 与 $B.\mathit{falselist}$ \\[5pt]
+    为左部非终结符 \blue{$S/L$} 计算综合属性 $S/L.\mathit{nextlist}$
+
+    \fig{width = 0.50\textwidth}{figs/backpatch-impl}
+
+    并为已能确定目标地址的跳转指令进行\purple{回填} (考虑每个综合属性)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%

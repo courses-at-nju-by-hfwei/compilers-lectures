@@ -1,0 +1,149 @@
+% bool-backpatch.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.35\textwidth}{figs/control-grammar-backpatch}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 1.00\textwidth}{figs/if-backpatch}
+
+    \vspace{0.40cm}
+    \fig{width = 0.70\textwidth}{figs/M}
+
+    \pause
+    \vspace{1.00cm}
+    \fig{width = 0.95\textwidth}{figs/if}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.75\textwidth}{figs/if-else-backpatch-color}
+
+    \vspace{0.30cm}
+    \fig{width = 0.65\textwidth}{figs/M-N-color}
+
+    \pause
+    \vspace{0.20cm}
+    \fig{width = 0.70\textwidth}{figs/if-else-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.85\textwidth}{figs/while-backpatch-color}
+
+    \vspace{0.20cm}
+    \fig{width = 0.75\textwidth}{figs/M}
+
+    \pause
+    \vspace{0.50cm}
+    \fig{width = 0.80\textwidth}{figs/while-color}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/L-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/S-backpatch}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/cf-backpatch-gen}
+
+  \begin{center}
+    只有 (3) 与 (7) 生成了新的代码, 控制流语句的主要目的是\red{``控制''流}。
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{}
+  \begin{columns}
+    \column{0.20\textwidth}
+    \column{0.60\textwidth}
+      \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+          \Procedure{AreYouOK}{\text{score}}
+            \If{$\text{score} \ge 60$}
+              \While{\text{true}}
+                \State \text{\bf print} ``WanSui''
+              \EndWhile
+            \Else
+              \State \text{\bf print} ``Sad''
+            \EndIf
+          \EndProcedure
+        \end{algorithmic}
+      \end{algorithm}
+    \column{0.20\textwidth}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.60\textwidth}{figs/ifelse-while-backpatch}
+  \pause
+  \fig{width = 0.60\textwidth}{figs/MN-backpatch}
+  \pause
+  \fig{width = 0.70\textwidth}{figs/rel-backpatch}
+  \fig{width = 0.70\textwidth}{figs/true-backpatch}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}} \\[5pt]
+    {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
+
+    \fig{width = 0.50\textwidth}{figs/backpatch-impl}
+
+    {$S/L.\mathit{nextlist}$} 保存{需要跳转到 $S/L.\nextir$ 标签的指令}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    为左部非终结符 \red{$B$} 计算综合属性 $B.\mathit{truelist}$ 与 $B.\mathit{falselist}$ \\[5pt]
+    为左部非终结符 \blue{$S/L$} 计算综合属性 $S/L.\mathit{nextlist}$
+
+    \fig{width = 0.50\textwidth}{figs/backpatch-impl}
+
+    并为已能确定目标地址的跳转指令进行\purple{回填} (考虑每个综合属性)
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/javac-book}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/javac-book-backpatch}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
