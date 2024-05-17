@@ -43,7 +43,9 @@
     \vspace{0.30cm}
     \fig{width = 0.50\textwidth}{figs/if-tac}
 
+    \pause
     $L_{1}$ 标签的位置是由 $P \to S \;(\to {\bf if} \;B\; S_{1})$ 确定的, \\[6pt]
+    \pause
     但是, 生成 $B$ 所对应的中间代码 {\bf goto} $L_{1}$ 时, 尚不知道 $L_{1}$ 的地址
   \end{center}
 \end{frame}
@@ -82,13 +84,40 @@
     \fig{width = 1.00\textwidth}{figs/if-boolexpr-ir}
 
     \vspace{-0.60cm}
-    \pause
+    \only<2>{
     \[
-      \set{\purple{103}} = B_{21}.\false \cto B_{2}.\false \cto B.\false \cto S.\nextir = \teal{107}
+      \set{\purple{103}}
+        \cto B_{21}.\false
+        \cto B_{2}.\false
+        \cto B.\false
+        \cto S.\nextir
+        \;(\teal{107})
     \]
     \[
-      \set{\purple{105}} = B_{22}.\false \cto B_{2}.\false \cto B.\false \cto S.\nextir = \teal{107}
+      \set{\purple{105}}
+        \cto B_{22}.\false
+        \cto B_{2}.\false
+        \cto B.\false
+        \cto S.\nextir
+        \;(\teal{107})
+    \]}
+    \only<3>{
+    \[
+      \set{\purple{103}}
+        \cto {B_{21}.\falselist}
+        \cto {B_{2}.\falselist}
+        \cto {B.\falselist}
+        \cto {S.\nextlist}
+        \;(\teal{107})
     \]
+    \[
+      \set{\purple{105}}
+        \cto {B_{22}.\falselist}
+        \cto {B_{2}.\falselist}
+        \cto {B.\falselist}
+        \cto {S.\nextlist}
+        \;(\teal{107})
+    \]}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -132,14 +161,43 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \[
+    \set{\purple{103}}
+      \cto {B_{21}.\falselist}
+      \cto {B_{2}.\falselist}
+      \cto {B.\falselist}
+      \cto {S.\nextlist}
+      \;(\teal{107})
+  \]
+  \[
+    \set{\purple{105}}
+      \cto {B_{22}.\falselist}
+      \cto {B_{2}.\falselist}
+      \cto {B.\falselist}
+      \cto {S.\nextlist}
+      \;(\teal{107})
+  \]
+
+  \fig{width = 0.40\textwidth}{figs/if-tac}
+
+  \pause
+  \fig{width = 0.80\textwidth}{figs/backpatch-chain}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{center}
     \red{回填 (Backpatching) 技术}: {子节点挖坑、祖先节点填坑}
 
     \fig{width = 0.50\textwidth}{figs/wakeng}
 
     \pause
-    \vspace{0.80cm}
+    \vspace{0.40cm}
     祖先节点通过\red{\bf 综合属性}\blue{收集}子节点中\purple{具有相同目标的跳转指令}
+
+    \vspace{0.20cm}
+    \fig{width = 0.90\textwidth}{figs/backpatch-chain}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -169,12 +227,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}} \\[5pt]
-    {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
+    综合属性 {$B.\mathit{truelist}$ 保存{需要跳转到 $B.\mathit{true}$ 标签}的{指令}} \\[5pt]
+    综合属性 {$B.\mathit{falselist}$ 保存{需要跳转到 $B.\mathit{false}$ 标签}的{指令}}
 
     \fig{width = 0.50\textwidth}{figs/backpatch-impl}
 
-    {$S/L.\mathit{nextlist}$} 保存{需要跳转到 $S/L.\nextir$ 标签的指令}
+    综合属性 {$S/L.\mathit{nextlist}$} 保存{需要跳转到 $S/L.\nextir$ 标签的指令}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
