@@ -19,8 +19,8 @@ addi sp, sp, 4
 
 mul a0, a0, t0		# a0: n * factorial(n - 1)
 
-# li a7, 1
-# ecall
+li a7, 1
+ecall
 
 j end
 
@@ -38,6 +38,3 @@ n: .word 10
 _start:
 lw a0, n
 call factorial
-
-li a7, 1
-ecall
