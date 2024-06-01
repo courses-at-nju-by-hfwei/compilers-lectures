@@ -1,0 +1,73 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     只考虑\red{\bf 无二义性}的文法 \\[4pt]
+%     这意味着, 每个句子对应唯一的一棵语法分析树
+
+%     \fig{width = 0.60\textwidth}{figs/cfg-hierarchy}
+
+%     今日份主题: \red{\bf $LR$ 语法分析器}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     自底向上的、\\[15pt]
+%     不断归约的、\\[15pt]
+%     基于句柄识别自动机的、\\[15pt]
+%     适用于\red{\bf $LR$ 文法}的、\\[15pt]
+%     $LR$ 语法分析器
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+%   \begin{center}
+%     \red{\bf $LR(0)$ 语法分析器}
+
+%     \vspace{0.80cm}
+%     \begin{columns}
+%       \column{0.10\textwidth}
+%       \column{0.80\textwidth}
+%         \begin{description}
+%           \setlength{\itemsep}{15pt}
+%           \item[$L:$] \purple{\bf 从左向右} (Left-to-right) 扫描输入
+%           \item[$R:$] 构建\purple{\bf 反向} (Reverse) \purple{\bf 最右推导}
+%           \item[$0:$] \purple{\bf 归约}时无需向前看
+%         \end{description}
+%       \column{0.10\textwidth}
+%     \end{columns}
+%   \end{center}
+% \end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \begin{columns}
+    \column{0.50\textwidth}
+      \fig{width = 0.90\textwidth}{figs/lr0-automaton-expr}
+    \column{0.50\textwidth}
+      \input{tables/lr0-table-expr}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \[
+    \id \qquad + \qquad \ast \qquad ( \qquad ) \qquad \$
+  \]
+
+  \input{cfg/cfg-expr-add-mul-mul-first-numbering}
+
+  \pause
+  \[
+    \red{\follow(E) = \pause \set{+, ), \$}}
+  \]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
