@@ -65,7 +65,7 @@
     即使考虑了\red{$=\; \in \follow(R)$}, 对该文法来说仍然不够
 
     \vspace{0.20cm}
-    因为, 这仅仅说明 $=$ 可能跟在 $R$ 后面, 是一种``粗糙''的估计
+    因为, 这仅仅说明 $=$ 可能跟在 $R$ 后面, 是一种``粗糙''的\blue{\bf 静态}估计
 
     \fig{width = 0.80\textwidth}{figs/lr0-automaton-SLR}
 
@@ -91,6 +91,7 @@
     则在之前的某个项集 \teal{$I_{i}$} 中包含 \teal{$[B \to \beta \cdot A \gamma]$}
     与 \teal{$[A \to \cdot \alpha]$}
 
+    \pause
     \vspace{0.50cm}
     \red{\fbox{这表明只有$a \in \first(\gamma)$时, 才可以进行 $A \to \alpha$ 归约}}
 
@@ -119,7 +120,7 @@
     \pause
     \vspace{0.50cm}
     \[
-      \blue{[A \to \alpha \cdot, a]}
+      \blue{[A \to \gamma \cdot, a]}
     \]
     只有下一个输入符号为 $a$ 时, 才可以按照 $A \to \alpha$ 进行归约
   \end{center}

@@ -54,6 +54,10 @@
     \column{0.50\textwidth}
       \input{tables/lr0-table-expr}
   \end{columns}
+
+  \begin{center}
+    不是 $LR(0)$ 文法 \pause \qquad \red{能否消除 ``移入-归约'' 冲突?}
+  \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -67,7 +71,7 @@
 
   \pause
   \[
-    \red{\follow(E) = \pause \set{+, ), \$}}
+    \red{\follow(E) = \pause \set{+, ), \$}} \qquad \pause \blue{\ast \notin \follow(E)}
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
