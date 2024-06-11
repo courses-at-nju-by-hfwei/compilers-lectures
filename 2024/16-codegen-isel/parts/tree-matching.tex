@@ -3,9 +3,67 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		\blue{\bf Instruction Selection (ISel)}
+		\fig{width = 1.00\textwidth}{figs/select-def}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
 
-		\fig{width = 0.60\textwidth}{figs/select-def}
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.40\textwidth}{figs/dragon-book}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.70\textwidth}{figs/a[i]=b+1-tree}
+
+		\vspace{0.50cm}
+		局部变量 \texttt{a} 与 \texttt{i} 的地址: 相对于 \texttt{SP}
+		(栈指针) 的常数偏移量 $C_{\texttt{a}}$ 和 $C_{\texttt{i}}$
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/a[i]=b+1-tree}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/tree-reduction-code}
+			\fig{width = 0.90\textwidth}{figs/inc}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.90\textwidth}{figs/a[i]=b+1-tree}
+			\fig{width = 0.90\textwidth}{figs/prefix}
+			\begin{center}
+				前缀表示
+			\end{center}
+		\column{0.50\textwidth}
+			\fig{width = 0.95\textwidth}{figs/grammar}
+			\fig{width = 0.70\textwidth}{figs/input}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		二义性: \purple{\bf 偏向于执行较大的归约, 而不是较小的归约}
+
+		\vspace{1.20cm}
+		\red{归约/归约冲突} \qquad \blue{移入/归约冲突}
+
+		\vspace{0.80cm}
+		\red{优先选择较长的归约} \qquad \blue{优先选择移入动作}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

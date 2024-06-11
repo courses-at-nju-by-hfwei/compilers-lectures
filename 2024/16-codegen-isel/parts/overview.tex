@@ -2,6 +2,24 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \begin{columns}
+    \column{0.33\textwidth}
+      \begin{center}
+        \fig{width = 0.80\textwidth}{figs/llvm-core-book}
+        {\footnotesize \url{https://llvm.org/docs/CodeGenerator.html}}
+      \end{center}
+    \pause
+    \column{0.33\textwidth}
+      \fig{width = 0.85\textwidth}{figs/dragon-book}
+    \pause
+    \column{0.33\textwidth}
+      \fig{width = 0.90\textwidth}{figs/BiSheng-book}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \fig{width = 0.80\textwidth}{figs/compiler-framework}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -9,11 +27,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    \blue{\bf \texttt{in-memory LLVM IR} \quad
+    \blue{\bf \texttt{(in-memory) LLVM IR} \quad
       \texttt{SelectionDAG} \quad \texttt{MachineInstr}
       \quad \texttt{MCInst}}
     \fig{width = 0.80\textwidth}{figs/codegen-framework}
 
+    \pause
+    \vspace{0.30cm}
     \red{Where is ``Prologue/Epilogue Insertion''?}
   \end{center}
 \end{frame}
@@ -23,7 +43,7 @@
 \begin{frame}{}
   \begin{center}
     \href{https://godbolt.org/z/4jbbabM6x}{f0-O0 @ Compiler Explorer}
-    \fig{width = 0.50\textwidth}{figs/f0-O0}
+    \fig{width = 1.00\textwidth}{figs/f0-O0}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -32,7 +52,21 @@
 \begin{frame}{}
   \begin{center}
     \href{https://godbolt.org/z/c7PrEK4c7}{f0-O1 @ Compiler Explorer}
-    \fig{width = 0.50\textwidth}{figs/f0-O1}
+    \fig{width = 1.00\textwidth}{figs/f0-O1}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 1.00\textwidth}{figs/isel-def}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/isel-framework}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -40,9 +74,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
   \begin{center}
-    SDISel \quad FastISel (per basic block) \quad GlobalISel (per function)
+    \red{SDISel} \quad \blue{FastISel} (per basic block) \quad GlobalISel (per function)
 
-    \fig{width = 0.50\textwidth}{figs/SelectionDAG}
+    \fig{width = 0.80\textwidth}{figs/SelectionDAG}
+
+    GlobalISel (per function)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

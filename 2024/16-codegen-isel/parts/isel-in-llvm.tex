@@ -2,11 +2,20 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/mul-c}
+
+  \pause
+  \fig{width = 0.80\textwidth}{figs/mul-llvm}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-c}
+      \fig{width = 1.00\textwidth}{figs/mul-llvm}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-llvm}
+      \fig{width = 0.65\textwidth}{figs/mul-dag-before-combine1}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -15,9 +24,9 @@
 \begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-llvm}
+      \fig{width = 0.65\textwidth}{figs/mul-dag-before-combine1}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-combine1}
+      \fig{width = 0.40\textwidth}{figs/mul-dag-before-legalize-types}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -26,9 +35,9 @@
 \begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-combine1}
+      \fig{width = 0.40\textwidth}{figs/mul-dag-before-legalize-types}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-legalize-types}
+      \fig{width = 0.70\textwidth}{figs/mul-dag-before-combine2}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -37,9 +46,9 @@
 \begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-legalize-types}
+      \fig{width = 0.70\textwidth}{figs/mul-dag-before-combine2}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-combine2}
+      \fig{width = 0.75\textwidth}{figs/mul-dag-before-scheduler}
   \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -48,18 +57,7 @@
 \begin{frame}{}
   \begin{columns}
     \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-combine2}
-    \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-scheduler}
-  \end{columns}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{columns}
-    \column{0.50\textwidth}
-      \fig{width = 0.80\textwidth}{figs/mul-dag-before-scheduler}
+      \fig{width = 0.75\textwidth}{figs/mul-dag-before-scheduler}
     \column{0.50\textwidth}
       \fig{width = 0.80\textwidth}{figs/mul-mir}
   \end{columns}

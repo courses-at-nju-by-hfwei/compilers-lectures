@@ -1,0 +1,111 @@
+% bisheng.tex
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\fig{width = 0.45\textwidth}{figs/BiSheng-book}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		算术与存储指令及树型 (鲲鹏处理器)
+		\fig{width = 0.70\textwidth}{figs/kunpeng-instructions}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.60\textwidth}
+		\begin{center}
+			瓦片覆盖 (tiling)
+			\fig{width = 0.90\textwidth}{figs/kunpeng-tree}
+			\vspace{-0.20cm}
+			\teal{\texttt{a[i] = b}}
+		\end{center}
+		\column{0.40\textwidth}
+			\fig{width = 0.80\textwidth}{figs/kunpeng-code}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.60\textwidth}
+			\fig{width = 1.00\textwidth}{figs/kunpeng-tree}
+			\vspace{-0.20cm}
+			\begin{center}
+				\teal{\texttt{a[i] = b}}
+			\end{center}
+		\column{0.40\textwidth}
+			\fig{width = 0.80\textwidth}{figs/kunpeng-code-long}
+			\begin{center}
+				小树型覆盖方案
+			\end{center}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.60\textwidth}
+		\begin{center}
+			瓦片覆盖 (tiling)
+			\fig{width = 0.90\textwidth}{figs/kunpeng-tree}
+			\vspace{-0.20cm}
+			\teal{\texttt{a[i] = b}}
+		\end{center}
+		\column{0.40\textwidth}
+			\begin{center}
+				\red{最大吞进算法 \\ (maximal munch)}
+				\fig{width = 0.80\textwidth}{figs/kunpeng-code}
+				\blue{最佳覆盖}方案 \\[5pt]
+				{\footnotesize (不存在可以合并成更小代价树型的相邻树型)}
+			\end{center}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		使用\blue{\bf 动态规划}思想计算\red{最优覆盖}方案
+	\end{center}
+
+	\fig{width = 0.40\textwidth}{figs/kunpeng-tree}
+
+	\pause
+	\[
+		\forall n \in \mathit{Node}.\;
+		  c(n) = \min_{\red{t \;\in\; \mathit{tiles}(n)}}
+			  \left(c(t) + \sum_{\blue{n_{i} \;\in\; \mathit{\purple{descendants}(n)}}} c(n_{i})\right)
+	\]
+
+	\pause
+	\[
+		\texttt{Opt} = c(r) \quad (r \text{ is the root})
+	\]
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.15\textwidth}{figs/tree}
+	\pause
+	\fig{width = 0.70\textwidth}{figs/kunpeng-tile-cost-1}
+	\pause
+	\fig{width = 0.60\textwidth}{figs/kunpeng-tile-cost-2}
+\end{frame}
+%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.40\textwidth}{figs/instruction-selection-book}
+\end{frame}
+%%%%%%%%%%%%%%%
