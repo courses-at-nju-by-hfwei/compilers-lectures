@@ -1,0 +1,48 @@
+% overview.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \fig{width = 0.80\textwidth}{figs/compiler-framework}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \blue{\bf \texttt{in-memory LLVM IR} \quad
+      \texttt{SelectionDAG} \quad \texttt{MachineInstr}
+      \quad \texttt{MCInst}}
+    \fig{width = 0.80\textwidth}{figs/codegen-framework}
+
+    \red{Where is ``Prologue/Epilogue Insertion''?}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://godbolt.org/z/4jbbabM6x}{f0-O0 @ Compiler Explorer}
+    \fig{width = 0.50\textwidth}{figs/f0-O0}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    \href{https://godbolt.org/z/c7PrEK4c7}{f0-O1 @ Compiler Explorer}
+    \fig{width = 0.50\textwidth}{figs/f0-O1}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    SDISel \quad FastISel (per basic block) \quad GlobalISel (per function)
+
+    \fig{width = 0.50\textwidth}{figs/SelectionDAG}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
