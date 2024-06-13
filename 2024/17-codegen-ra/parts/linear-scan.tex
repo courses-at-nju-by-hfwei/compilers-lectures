@@ -1,0 +1,204 @@
+% linear-scan.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+		  \fig{width = 0.70\textwidth}{figs/sum}
+		\column{0.50\textwidth}
+		  \fig{width = 0.70\textwidth}{figs/ir}
+	\end{columns}
+
+	\pause
+	\begin{center}
+		以\red{非 SSA 形式}的\blue{中间代码}为例
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\uncover<2->{\blue{问题 1: 变量 $n, s, i$} 的\red{活跃区间} (live interval) 分别是什么?}
+
+		\begin{columns}
+			\column{0.50\textwidth}
+				\fig{width = 0.70\textwidth}{figs/ir}
+			\column{0.50\textwidth}
+			  \uncover<3->{\fig{width = 0.50\textwidth}{figs/cfg}}
+		\end{columns}
+
+		\uncover<4->{\blue{问题 2: 在第 3 行后, 有哪些变量是}\red{活跃}的?}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{definition}[活跃 (Live)]
+		对于给定的变量 $x$, 考虑从其一个定义点 $p$ 到使用点 $q$ 的路径 $l$。\\[5pt]
+		对于该路径 $l$ 上的任意点 $r$,
+		如果 \purple{$r$ 和 $q$ 之间没有对变量 $x$ 的其它定义},\\[5pt]
+		则称 $x$ 在程序点 $r$ 上是\blue{\it 活跃}的。
+	\end{definition}
+
+	\pause
+	\vspace{0.80cm}
+	\begin{center}
+		\fbox{\red{在同一个程序点上活跃的变量是有冲突的, 不能分配到同一个寄存器。}}
+	\end{center}
+
+	\pause
+	\vspace{0.50cm}
+	\begin{definition}[活跃分析 (Liveness Analysis)]
+		分析变量的活跃点的程序分析被称为 \blue{\it 活跃分析}。
+	\end{definition}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\[
+		\livein(s): s\; \text{\blue{执行前}的活跃变量集合}
+	\]
+	\vspace{-0.60cm}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.60\textwidth}{figs/cfg}
+		\column{0.60\textwidth}
+		  \uncover<2->{
+				\begin{gather*}
+					\liveout(s) = \bigcup_{p \in \mathit{succ}(s)} \livein(p) \\[15pt]
+					\livein(s) = (\liveout(s) \setminus \textsf{\violet{def}}(s)) \cup \textsf{\teal{use}}(s)
+				\end{gather*}
+			}
+			\uncover<3->{
+				\begin{center}
+					\red{如何求解这个``数据流''方程组?}
+				\end{center}
+			}
+	\end{columns}
+	\[
+		\liveout(s): s\; \text{\blue{执行后}的活跃变量集合}
+	\]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.60\textwidth}{figs/cfg}
+		\column{0.60\textwidth}
+		  \fig{width = 1.00\textwidth}{figs/live-var-alg}
+			\begin{center}
+				\blue{不动点算法}
+			\end{center}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.70\textwidth}{figs/cfg}
+		\column{0.60\textwidth}
+		  \fig{width = 1.00\textwidth}{figs/live-var}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.70\textwidth}{figs/cfg}
+		\column{0.60\textwidth}
+		  \fig{width = 0.40\textwidth}{figs/live-interval}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.60\textwidth}{figs/live-interval}
+		\column{0.60\textwidth}
+		  \centerline{$s.\text{index}:$ 语句 $s$ 的\blue{行号}}
+		  \fig{width = 1.00\textwidth}{figs/live-interval-alg}
+			\pause
+			\[
+				n: [0, 10] \quad s: [2, 10] \quad i: [3, 11]
+			\]
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.40\textwidth}
+		  \fig{width = 0.60\textwidth}{figs/live-interval}
+		\column{0.60\textwidth}
+			\[
+				n: [0, 10] \quad s: [2, 10] \quad i: [3, 11]
+			\]
+
+			\vspace{0.60cm}
+			\begin{center}
+				\blue{\small 线性扫描分配算法 @ TOPLAS1999}
+				\fig{width = 0.70\textwidth}{figs/linear-scan-paper}
+
+				\vspace{0.30cm}
+				三大关键操作: \violet{\bf 占用、释放、溢出}
+			\end{center}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\begin{align*}
+				x_{1}&: [2, 16] \\[3pt]
+				x_{2}&: [2, 20] \\[3pt]
+				x_{3}&: [7, 8] \\[3pt]
+				x_{4}&: [9, 10] \\[3pt]
+				x_{5}&: [11, 12] \\[3pt]
+				x_{6}&: [15, 19] \\[3pt]
+				x_{7}&: [17, 19]
+			\end{align*}
+		\column{0.50\textwidth}
+			\pause
+			\[
+				\green{|R| = 3 \quad (R_{1}, R_{2}, R_{3})}
+			\]
+
+			\vspace{6.00cm}
+			\[
+				\red{|R| = 2 \quad (R_{1}, R_{2})}
+			\]
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	如何溢出 (两种方法, 避免迭代)
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	伪线性序问题
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	$\phi$ 消除问题
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
