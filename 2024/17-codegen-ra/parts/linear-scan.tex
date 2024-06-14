@@ -6,6 +6,7 @@
 		\column{0.50\textwidth}
 		  \fig{width = 0.70\textwidth}{figs/sum}
 		\column{0.50\textwidth}
+		  \pause
 		  \fig{width = 0.70\textwidth}{figs/ir}
 	\end{columns}
 
@@ -123,11 +124,16 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{columns}
-		\column{0.40\textwidth}
-		  \fig{width = 0.60\textwidth}{figs/live-interval}
-		\column{0.60\textwidth}
+		\column{0.30\textwidth}
+		  \fig{width = 0.80\textwidth}{figs/live-interval}
+		\column{0.70\textwidth}
 		  \centerline{$s.\text{index}:$ 语句 $s$ 的\blue{行号}}
+			\vspace{-0.20cm}
 		  \fig{width = 1.00\textwidth}{figs/live-interval-alg}
+			\pause
+			\vspace{-0.20cm}
+			\centerline{\blue{不计最后一次``使用'' (use)}}
+			\vspace{0.20cm}
 			\pause
 			\[
 				n: [0, 10] \quad s: [2, 10] \quad i: [3, 11]
@@ -187,18 +193,295 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	如何溢出 (两种方法, 避免迭代)
+	\uncover<2->{
+		\centerline{\red{缺点:} 引入了新的临时变量, 需要进行迭代 }
+	}
+	\uncover<3->{
+    \centerline{\footnotesize (稍感欣慰的是, 新临时变量的活跃区间都很短)}
+	}
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.45\textwidth}{figs/cfg}
+		\column{0.50\textwidth}
+			\fig{width = 0.45\textwidth}{figs/spill-i}
+	\end{columns}
+
+	\vspace{0.20cm}
+	\centerline{溢出变量 $i$: \blue{使用 \texttt{store/load} 存/取内存}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	伪线性序问题
+	\begin{center}
+		\blue{解决方案一:} 生成代码时, 使用\violet{临时物理寄存器}实现临时变量
+	\end{center}
+
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 0.45\textwidth}{figs/spill-i}
+		\column{0.50\textwidth}
+		  \begin{center}
+				\red{但是, 物理寄存器本来就不够用}
+
+				\vspace{0.20cm}
+				\pause
+				\blue{使用某寄存器前将其保存到内存中}
+				\vspace{0.30cm}
+
+				\pause
+				\texttt{addi sp, sp, -4}
+
+				\vspace{0.10cm}
+				\texttt{store x2, sp, 0}
+
+				\vspace{0.10cm}
+				\cyan{使用 \texttt{x2} 作为临时寄存器}
+
+				\vspace{0.10cm}
+				\texttt{load x2, sp, 0}
+
+				\vspace{0.10cm}
+				\texttt{addi sp, sp, 4}
+			\end{center}
+	\end{columns}
+	\pause
+	\centerline{\red{缺点:} 可能带来大量内存操作}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	$\phi$ 消除问题
+	\begin{center}
+		\blue{解决方案二:} \purple{预留}若干物理寄存器, 作为溢出处理时所需的\violet{临时寄存器}
+	\end{center}
+
+	\begin{columns}
+		\column{0.50\textwidth}
+		  \begin{gather*}
+				\cdots = x \\[8pt]
+				\cdots \\[8pt]
+				x = \cdots
+			\end{gather*}
+		\column{0.50\textwidth}
+		  \begin{gather*}
+				r_{i} = \cdots \\[8pt]
+				[l_x] = r_{i} \\[12pt]
+				\cdots \\[12pt]
+				r_{i} = [l_x] \\[8pt]
+				\cdots = r_{i}
+			\end{gather*}
+	\end{columns}
+
+	\pause
+	\begin{center}
+		\red{预留多少 ($K$) 个物理寄存器?}
+
+		\pause
+		\vspace{0.30cm}
+		$K$ 为程序中所有语句\textsf{def}集合或\textsf{use}集合的最大元素个数
+
+		\pause
+		\vspace{0.30cm}
+		\teal{\small (对于 RISC-V 典型程序, $K = 2$)}
+	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\blue{解决方案二:} \purple{预留}若干物理寄存器, 作为溢出处理时所需的\violet{临时寄存器}
+	\end{center}
+
+	\begin{columns}
+		\column{0.50\textwidth}
+		  \begin{gather*}
+				y = \tau(x_{1}, x_{2}, \cdots, x_{K})
+			\end{gather*}
+			假设 $x_{1}, \cdots, x_{K}, \red{y}$ 均发生溢出
+		\column{0.50\textwidth}
+		  \begin{gather*}
+				r_{1} = [l_{x_{1}}] \\[8pt]
+				\cdots \\[8pt]
+				r_{K} = [l_{x_{K}}] \\[8pt]
+				\red{r_{1}} = \tau(r_{1}, \cdots, r_{K}) \\[8pt]
+				[l_{y}] = \red{r_{1}}
+			\end{gather*}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		还有\red{两个重要问题}要解决
+
+		\vspace{0.20cm}
+		\fig{width = 0.50\textwidth}{figs/questions}
+		\vspace{0.20cm}
+
+		\pause
+		\blue{代码编号问题 (index) \qquad $\phi$-指令消除问题}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		\uncover<5->{\red{影响``活跃变量''分析结果吗?}}
+		\uncover<6->{\blue{\quad (不影响)}}
+	\end{center}
+
+	\vspace{-0.30cm}
+	\begin{columns}
+		\column{0.33\textwidth}
+		  \uncover<3->{\fig{width = 0.75\textwidth}{figs/cfg}}
+		\column{0.33\textwidth}
+		  \only<1>{\fig{width = 0.75\textwidth}{figs/ir-no-lineno}}
+		  \only<2->{\fig{width = 0.75\textwidth}{figs/cfg-no-lineno}}
+		\column{0.33\textwidth}
+		  \uncover<4->{\fig{width = 0.75\textwidth}{figs/cfg-2}}
+	\end{columns}
+
+	\begin{center}
+		\uncover<7->{\purple{影响``活跃区间''分析结果吗?}}
+		\uncover<8->{\teal{\quad (影响)}}
+
+		\vspace{0.10cm}
+		\uncover<9->{\violet{影响``线性扫描算法''正确性吗?}}
+		\uncover<10->{\cyan{\quad (不影响)}}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		常用编号策略: \purple{深度优先搜索顺序}
+
+		\fig{width = 0.40\textwidth}{figs/dfs}
+
+		\blue{逆后序遍历序} (reverse post-order traversal ordering)
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\fig{width = 0.50\textwidth}{figs/phi}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		基本思想: \blue{将``拷贝''操作上推到前驱基本块的末尾}
+
+		\vspace{0.30cm}
+		\fig{width = 0.80\textwidth}{figs/phi-elim-idea}
+
+		\pause
+		\vspace{0.30cm}
+		注意\red{``循环''}情况
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		问题一: \blue{备份丢失} (lost-copy) 问题
+	\end{center}
+
+	\begin{columns}
+		\column{0.50\textwidth}
+			\fig{width = 1.00\textwidth}{figs/phi-elim-lost-copy}
+			\begin{center}
+				\red{``关键路径''}导致的\blue{备份丢失}问题
+			\end{center}
+		\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/phi-elim-lost-copy-solution}
+			\begin{center}
+				\purple{引入临时变量消除备份丢失}
+			\end{center}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		问题二: \blue{交换} (swap) 问题
+	\end{center}
+
+	\begin{columns}
+		\column{0.20\textwidth}
+		  \fig{width = 0.80\textwidth}{figs/swap-code}
+		\column{0.20\textwidth}
+			\pause
+		  \fig{width = 1.00\textwidth}{figs/swap-phi}
+			\begin{center}
+				\red{$\phi$指令的并行语义}
+			\end{center}
+		\column{0.30\textwidth}
+		  \pause
+		  \fig{width = 0.50\textwidth}{figs/swap-phi-wrong}
+			\begin{center}
+				\blue{交换}问题
+			\end{center}
+		\column{0.33\textwidth}
+		  \pause
+		  \begin{gather*}
+				\teal{t_{x}} \gets x_{0} \\[3pt]
+				\cyan{t_{y}} \gets y_{0}
+			\end{gather*}
+			\begin{center}
+				\purple{\small 引入临时变量}
+			\end{center}
+		  \begin{gather*}
+				x_{1} \gets \teal{t_{x}} \\[3pt]
+				y_{1} \gets \cyan{t_{y}} \\[3pt]
+				\cdots \\[3pt]
+				\teal{t_{x}} \gets y_{1} \\[3pt]
+				\cyan{t_{y}} \gets x_{1} \\[3pt]
+			\end{gather*}
+	\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{}
+% 	\begin{center}
+% 		问题二: \blue{交换} (swap) 问题
+% 	\end{center}
+
+% 	\begin{columns}
+% 		\column{0.50\textwidth}
+% 		  \begin{gather*}
+% 				\teal{x} = \phi(\cyan{y}, u) \\[3pt]
+% 				\cyan{y} = \phi(\teal{x}, v)
+% 			\end{gather*}
+% 			\begin{center}
+% 				\red{$\phi$指令的并行语义}导致的\blue{交换}问题
+% 			\end{center}
+% 			\begin{gather*}
+% 				\teal{x} = \cyan{y}	\qquad \teal{x} = u \\[3pt]
+% 				\cyan{y} = \teal{x} \qquad \cyan{y} = v
+% 			\end{gather*}
+% 		\column{0.50\textwidth}
+% 		  \begin{gather*}
+% 				t_x = \cyan{y}	\qquad t_x = u \\[3pt]
+% 				t_y = \teal{x} \qquad t_y = v
+% 			\end{gather*}
+% 			\begin{center}
+% 				\purple{引入临时变量消除交换问题}
+% 			\end{center}
+% 		  \begin{gather*}
+% 				\teal{x} = t_x	\\[3pt]
+% 				\cyan{y} = t_y
+% 			\end{gather*}
+% 	\end{columns}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%
